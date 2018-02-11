@@ -88,7 +88,7 @@ static void		ft_primray(t_setup *setup, t_ray *ray)
 	{
 		ray->hit = OBJS->param[i].paramfunc((void *)setup, *ray, &dist); // va dans la fonction d'intersection correspondante, quand i = 0, va dans ft_sphere_intersection, retourne si hit ou pas et donne la distance.
 		// attention manque des infos comme la normale au point d'intersection.
-		if (ray->hit == OK && dist < ray->size && ray->size > 0.0001) 
+		if (ray->hit == OK && dist < ray->size && ray->size > 0.0001)
 		{
 			ray->size = dist;
 			ray->obj = i; // permet de savoir de quel type de forme il sagit
@@ -109,15 +109,70 @@ t_color			*ft_getobjclr(t_setup *setup, t_ray ray)
 	return (&SETUP.background);
 }
 
-static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col)
+/*
+**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
+**  {
+** 			Set surface data such as normal and texture coordinates at a given point on the surface
+** 			\param Phit is the point ont the surface we want to get data on
+** 			\param[out] Nhit is the normal at Phit
+** 			\param[out] tex are the texture coordinates at Phit
+**************
+**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
+**      Nhit.normalize();  On normalise le vecteur
+**************
+**      In this particular case, the normal is simular to a point on a unit sphere
+**      centred around the origin. We can thus use the normal coordinates to compute
+**      the spherical coordinates of Phit.
+**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
+**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
+**************
+**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
+**      tex.y = acosf(Nhit.y) / M_PI;
+**  }
+*/
+
+/*
+** EXEMPLE, ici ce qui est important c'est le hitObject, en gros il faut juste que l on sache sur quoi on tape depuis l exterieur du scope de la fonction
+**	bool trace(const Vec3f &orig, const Vec3f &dir, const std::vector<std::unique_ptr<Object>> &objects, float &tNear, const Object *&hitObject)
+**	{
+**		tNear = kInfinity;
+**    std::vector<std::unique_ptr<Object>>::const_iterator iter = objects.begin();
+**    for (; iter != objects.end(); ++iter) {
+**        float t = kInfinity;
+**        if ((*iter)->intersect(orig, dir, t) && t < tNear) {
+**            hitObject = iter->get();
+**            tNear = t;
+**        }
+**    }
+**
+**    return (hitObject != nullptr);
+**	}
+*/
+
+static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAST, retourne la couleur
 {
+  /*
+	** On set la couleur a celle du fond
+	** SI on rencontre un objet (fonction trace)
+	** fonction trace(orig, dir, objects, t, hitObject)
+	** hitObjetc ->
+	** 	Alors on a besoin de :
+	**	Vec3f Phit = orig + dir * t; -> coordonnee d origine + (direction multipliée par la distance a l origine t)
+	**  Vec3f Nhit; -> la normale au point d'intrsection (/!\ c'est un vecteur normalisé MAIS la normale)
+	**  Vec2f tex; -> la texture
+	**	hitObject->getSurfaceData(Phit, Nhit, tex); (on a initialisé le hit object dans la fonction trace)
+	** 	pattern -> permet de def un dammier par exemple
+	** 	hitColor = std::max(0, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+	** ENFIN
+	** On retourne la couleur (hitColor)
+	*/
 	ft_primray(setup, &ray); // rayon lance a partir du point d'origine et qui permet de savoir si rayon hit et dans le cas echeant la distance et l'objet qui correspond
 	if (ray.hit == ERROR)
 		return (&SETUP.background);
 	return (col = ft_getobjclr(setup, ray)); // permet de retourner la couleur de l'objet correspondant
 }
 
-int			ft_raytracing(t_setup *setup)
+int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de render
 {
 	t_pix	pix;
 	t_ray	ray;
@@ -130,6 +185,15 @@ int			ft_raytracing(t_setup *setup)
 		pix.x = -1;
 		while (++pix.x < (int)SETUP.width)
 		{
+			/* ICI on a besoin de l origine de la camera, CAM.pos
+			** de la direction du rayon lancer calculer comme suit:
+			** float x = (2 * (i + 0.5) / (float)options.width - 1) * imageAspectRatio * scale;
+      ** float y = (1 - 2 * (j + 0.5) / (float)options.height) * scale;
+			** ray.dir = normalize(Vec3f(x,y,-1) - Vec3f(0));
+			** ENSUITE on doit transformer le rayon de ses coordonnées screen au coord world //Tu as deja géré ca ?
+			** ENFIN on appelle la fonction RayCast qui nous donnera la couleur
+      ** RayCast prend en arg: origine, direction, objets (forme geo)
+			*/
 			ray = ft_raycalcforpix(setup, pix); // permet de return la direction du rayon caste suivant le pixel et la config de la cam
 			ft_put_pixel(setup, pix.x, pix.y, \
 					ft_colortohex(ft_raytracecol(setup, ray, &col))); // ft_raytracecol permet de faire les operation de calcul de la couleur avec le raytrace
