@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:23:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:53:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ size_t		ft_args_to_fd(t_setup *setup);
 size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
 size_t		ft_select_scene(t_setup *setup);
-int			ft_save_map(t_setup *setup);
-void		ft_draw_map(t_setup *setup);
+size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
@@ -60,7 +59,6 @@ int			ft_configure_dim(t_setup *setup);
 size_t		ft_name_input(t_setup *setup);
 size_t		ft_generate_map(t_setup *setup);
 void		ft_path_maker_dir(t_setup *setup);
-size_t		ft_open_map(t_setup *setup);
 void		ft_pos_player(t_setup *setup);
 size_t		ft_ray_casting(t_setup *setup);
 void		ft_mlx_control(t_setup *setup);
