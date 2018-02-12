@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 17:10:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:23:46 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int				ft_setup_menu(t_setup *setup)
 			, 0x00611DE9, CHOOSE_STR);
 	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1] + 30\
 			, 0x009999FF, SELECT_STR);
-	SETUP.map_num = ft_mlx_keytoint(SETUP.key); // permet de selectioner le numero de map
-	if (SETUP.map_num < NUM_MAP && SETUP.map_num >= 0)
+	SETUP.scn_num = ft_mlx_keytoint(SETUP.key); // permet de selectioner le numero de map
+	if (SETUP.scn_num < NUM_MAP && SETUP.scn_num >= 0)
 	{
-		if (ft_select_map(setup) != OK) // stocke le path vers la map correspondant
+		if (ft_select_scene(setup) != OK) // stocke le path vers la map correspondant
 			return (SETUP.error = FILE_ERROR); //  dans le cas ou fichier inexistant
 		SETUP.mode = STATE_OPEN; // rentre dans le mode qui va permettre d'open la map et de parser
 	}

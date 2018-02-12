@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:17:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:23:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ size_t			ft_envtosetup(t_setup *setup)
 	return (OK);
 }
 
-size_t			ft_select_map(t_setup *setup)
+size_t			ft_select_scene(t_setup *setup)
 {
-	if (SETUP.map_num == 0)
-		SETUP.path = ft_strdup(MAP_PATH_0);
-	else if (SETUP.map_num == 1)
-		SETUP.path = ft_strdup(MAP_PATH_1);
+	if (SETUP.scn_num == 0)
+		SETUP.path = ft_strdup(SCN_PATH_0);
+	else if (SETUP.scn_num == 1)
+		SETUP.path = ft_strdup(SCN_PATH_1);
 	if (SETUP.path != NULL)
 		return (OK);
 	else

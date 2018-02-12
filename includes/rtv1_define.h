@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:44:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:21:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
 
-# define MAP_PATH_0		"maps/map_0"
-# define MAP_PATH_1		"maps/map_1"
-# define MAP_PATH_2		"maps/"
-# define MAP_PATH_3		"maps/"
-# define MAP_PATH_4		"maps/"
-# define MAP_PATH_5		"maps/"
+# define SCN_PATH_0		"scenes/scene_0"
+# define SCN_PATH_1		"scenes/scene_1"
+# define SCN_PATH_2		"scenes/"
+# define SCN_PATH_3		"scenes/"
+# define SCN_PATH_4		"scenes/"
+# define SCN_PATH_5		"scenes/"
 
 # define CHOOSE_STR		"To choose map, press"
 # define SELECT_STR		"0 || 1 || 2 || 3 || 4 || 5 || 6 || 7"

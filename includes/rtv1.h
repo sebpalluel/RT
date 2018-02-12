@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/09 17:12:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:23:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_editenv(t_list *env, char *name, char *value);
 size_t		ft_args_to_fd(t_setup *setup);
 size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
-size_t		ft_select_map(t_setup *setup);
+size_t		ft_select_scene(t_setup *setup);
 int			ft_save_map(t_setup *setup);
 void		ft_draw_map(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);

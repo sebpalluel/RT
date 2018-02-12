@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:22:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:22:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct		s_setup
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*
 	size_t			cam_num;
-	int				map_num;
+	int				scn_num;
 	float			move_step;
 	float			rot_step;
 	int				ac;

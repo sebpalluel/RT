@@ -1,0 +1,67 @@
+{
+	"engine":
+	{
+		"width" : 1280,
+		"height" : 720,
+		"refr_max" : 4,
+		"refl_max" : 4,
+		"amb_light" : 0.09
+	},
+	"cameras":
+	[
+		{
+			"position": [0., 0., 10.],
+			"direction": [0., 0., -1.],
+			"focal_len": 300
+		},
+		{
+			"position": [-8., 0.3, 1.],
+			"direction": [0., 0., -1.],
+			"focal_len": 300
+		}
+	],
+	"objects":
+	[
+		{
+			"type": "sphere",
+			"position": [0.9, 1.4, -6.2],
+			"radius": 3.12,
+			"material":
+			{
+				"color": [1., 0., 0.],
+				"diffuse": 1.0,
+				"specular": 1.0
+			}
+		},
+		{
+			"type": "sphere",
+			"position": [1.9, 1.4, -6.2],
+			"radius": 3.12,
+			"material":
+			{
+				"color": [0., 0., 1.],
+				"diffuse": 1.0,
+				"specular": 1.0
+			}
+		}
+	],
+	"lights":
+	[
+		{
+			"position": [0., 3., 0.],
+			"direction": [0., 0., -1.],
+			"intensity": 1.0,
+			"radius": 20.0,
+			"fallof": 3.0,
+			"color": [1., 1., 1.]
+		},
+		{
+			"position": [0., 3., 0.],
+			"direction": [0., 0., -1.],
+			"intensity": 1.0,
+			"radius": 20.0,
+			"fallof": 3.0,
+			"color": [1., 1., 1.]
+		}
+	]
+}
