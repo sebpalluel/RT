@@ -1,0 +1,102 @@
+<scene>
+
+	<engine>
+		<width> 1280 </width>
+		<height> 720 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.09 </amb_light>
+	<\engine>
+
+	<cameras>
+
+		<camera>
+			<position>
+				<x> 0.0 </x>
+				<y> 0.0 </y>
+				<z> 10.0 </z>
+			</position>
+			<direction>
+				<x> 0.0 </x>
+				<y> 0.0 </y>
+				<z> -1.0 </z>
+			</direction>
+			<focal_len> 300.0 </focal_len>
+		<\camera>
+		<camera>
+			<position>
+				<x> -8.0 </x>
+				<y> 0.3 </y>
+				<z> 1.0 </z>
+			</position>
+			<direction>
+				<x> 0.4 </x>
+				<y> 0.0 </y>
+				<z> -1.0 </z>
+			</direction>
+			<focal_len> 300.0 </focal_len>
+		<\camera>
+	<\cameras>
+
+	<lights>
+
+		<light>
+			<position>
+				<x> 0.0 </x>
+				<y> 3.0 </y>
+				<z> 0.0 </z>
+			</position>
+			<direction>
+				<x> 0.0 </x>
+				<y>  0.0 </y>
+				<z> 1.0 </z>
+			</direction>
+			<color>
+				<r> 1.0 </r>
+				<g> 1.0 </g>
+				<b> 1.0 </b>
+			</color>
+			<intensity> 1. </intensity>
+			<radius> 20. </radius>
+			<fallof> 3. </fallof>
+		</light>
+	</lights>
+
+	<objects>
+
+		<sphere>
+			<position>
+				<x> 0.9 </x>
+				<y> 1.4 </y>
+				<z> -6.2 </z>
+			</position>
+			<radius> 3.12 </radius>
+			<material>
+				<color>
+					<r> 1. </r>
+					<g> 0. </g>
+					<b> 0. </b>
+				</color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		<sphere>
+		<sphere>
+			<position>
+				<x> 1.9 </x>
+				<y> 1.4 </y>
+				<z> -6.2 </z>
+			</position>
+			<radius> 3.12 </radius>
+			<material>
+				<color>
+					<r> 0. </r>
+					<g> 0. </g>
+					<b> 1. </b>
+				</color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		<sphere>
+	</objects>
+</scene>
