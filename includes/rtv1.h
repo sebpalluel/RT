@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:53:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 18:48:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ t_objsfunc	*ft_validfuncsptr(void);
 t_objsparam	*ft_objsparam(void);
 size_t		ft_cam(void *a, t_list **list);
 t_list		*ft_searchenv(t_list *env, char *name);
-t_list		*ft_envlist(char **envp);
+t_list		*ft_envlist(char *file);
 char		**ft_getenv(t_setup *setup);
 void		ft_editenv(t_list *env, char *name, char *value);
 size_t		ft_args_to_fd(t_setup *setup);
+void		ft_parse_scn(t_setup *setup, char *file);
 size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
 size_t		ft_select_scene(t_setup *setup);

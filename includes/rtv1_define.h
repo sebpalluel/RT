@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:53:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:54:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define CAM_ERROR		-4
 # define PLANE_ERROR	-5
 # define SPHERE_ERROR	-6
+# define SCN_ERROR		-7
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
 # define S_WIDTH		setup[0].width

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 17:33:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 18:49:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,19 @@ static t_list	*ft_newenv(char *str)
 	return (env);
 }
 
-t_list			*ft_envlist(char **map_str) // fonction qui va permettre de stocker chaque ligne dans chaque chainons en bypassant les lignes vides
+t_list			*ft_envlist(char *file) // fonction qui va permettre de stocker chaque ligne dans chaque chainons en bypassant les lignes vides
 {
 	int			env_num;
 	t_list		*env;
 
 	env = NULL;
 	env_num = -1;
-	while (map_str[++env_num])
-	{
-		if (map_str[env_num][0] != '\0') // bypass les lignes vides
-			ft_lstaddend(&env, ft_newenv(map_str[env_num])); // chaque node contient le name (par exemple sphere) + la valeur (couleur etc.)
-	}
+	file = NULL;
+	//while (map_str[++env_num])
+	//{
+	//	if (map_str[env_num][0] != '\0') // bypass les lignes vides
+	//		ft_lstaddend(&env, ft_newenv(map_str[env_num])); // chaque node contient le name (par exemple sphere) + la valeur (couleur etc.)
+	//}
 	// a partir de l
 	return (env);
 }

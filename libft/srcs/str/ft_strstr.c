@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 17:36:22 by psebasti          #+#    #+#             */
-/*   Updated: 2016/11/12 16:32:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/12 19:08:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		*ft_strstr(const char *str, const char *tofind)
 	current = 0;
 	if (!*tofind)
 		return ((char *)str);
-	while (str[begin])
+	while (str && str[begin])
 	{
 		if (str[begin + current] == tofind[current])
 			current++;

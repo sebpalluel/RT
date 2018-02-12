@@ -6,7 +6,7 @@
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
-	<\engine>
+	</engine>
 
 	<cameras>
 
@@ -14,13 +14,13 @@
 			<position> 0.0, 0.0, 10.0 </position>
 			<direction> 0.0, 0.0, 10.0 </direction>
 			<focal_len> 300.0 </focal_len>
-		<\camera>
+		</camera>
 		<camera>
 			<position> -8.0, 0.3, 1.0 </position>
 			<direction> 0.4, 0.0, -1.0 </direction>
 			<focal_len> 300.0 </focal_len>
-		<\camera>
-	<\cameras>
+		</camera>
+	</cameras>
 
 	<lights>
 
@@ -44,7 +44,7 @@
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
-		<sphere>
+		</sphere>
 		<sphere>
 			<position> 1.9, 1.4, -6.2 </position>
 			<radius> 3.12 </radius>
@@ -53,6 +53,6 @@
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
-		<sphere>
+		</sphere>
 	</objects>
 </scene>
