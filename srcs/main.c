@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 17:03:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 12:44:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int				usage(int mode)
 		ft_putendl("usage: ./rtv1 map_name");
 	else if (mode == FILE_ERROR)
 		ft_putendl(FILE_ERROR_S);
-	else if (mode == MAP_ERROR)
-		ft_putendl(MAP_ERROR_S);
+	else if (mode == ENG_ERROR)
+		ft_putendl(ENG_ERROR_S);
 	else if (mode == LIGHT_ERROR)
 		ft_putendl(LIGHT_ERROR_S);
 	else if (mode == PLANE_ERROR)
@@ -52,6 +52,10 @@ int				usage(int mode)
 		ft_putendl(SPHERE_ERROR_S);
 	else if (mode == CAM_ERROR)
 		ft_putendl(CAM_ERROR_S);
+	else if (mode == SCN_ERROR)
+		ft_putendl(SCN_ERROR_S);
+	else if (mode == OBJ_ERROR)
+		ft_putendl(OBJ_ERROR_S);
 	return (mode);
 }
 

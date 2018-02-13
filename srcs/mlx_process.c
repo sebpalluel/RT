@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:54:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 12:45:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_expose(t_setup *setup)
 	if (ret == OK && SETUP.mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
 		if ((ret = ft_raytracing(setup)) == ERROR)
-			SETUP.error = MAP_ERROR;
+			SETUP.error = ENG_ERROR;
 		mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->image, 0, 0);
 	}
 		//if (!SETUP.ui)

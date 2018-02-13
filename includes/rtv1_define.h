@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 17:54:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 12:47:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,21 @@
 # define STATE_CAM		6
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
-# define MAP_ERROR_S	"error: map is not in the correct format"
+# define ENG_ERROR_S	"error: engine is not in the correct format"
 # define LIGHT_ERROR_S	"error: light struct is not in the correct format"
 # define PLANE_ERROR_S	"error: plane struct is not in the correct format"
 # define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
+# define SCN_ERROR_S	"error: scene is not in the correct format"
+# define OBJ_ERROR_S	"error: objects are not in the correct format"
 # define FILE_ERROR		-1
-# define MAP_ERROR		-2
+# define ENG_ERROR		-2
 # define LIGHT_ERROR	-3
 # define CAM_ERROR		-4
 # define PLANE_ERROR	-5
 # define SPHERE_ERROR	-6
 # define SCN_ERROR		-7
+# define OBJ_ERROR		-8
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
 # define S_WIDTH		setup[0].width
