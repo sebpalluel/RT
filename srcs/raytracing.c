@@ -163,35 +163,8 @@ static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAS
 	return (col = ft_getobjclr(setup, ray)); // permet de retourner la couleur de l'objet correspondant
 }
 
-/*
-void ft_get_surface_data(hit_point, hit_nrml, hit_text)
-{
-	*
-	**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
-	**  {
-	** 			Set surface data such as normal and texture coordinates at a given point on the surface
-	** 			\param Phit is the point ont the surface we want to get data on
-	** 			\param[out] Nhit is the normal at Phit
-	** 			\param[out] tex are the texture coordinates at Phit
-	**************
-	**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
-	**      Nhit.normalize();  On normalise le vecteur
-	**************
-	**      In this particular case, the normal is simular to a point on a unit sphere
-	**      centred around the origin. We can thus use the normal coordinates to compute
-	**      the spherical coordinates of Phit.
-	**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
-	**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
-	**************
-	**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
-	**      tex.y = acosf(Nhit.y) / M_PI;
-	**  }
-	*
-}
-*/
-
 // ft_trace(ray.orig, ray.dir, ray.size, setup /* stock les obj */, ray.hit)
-t_bool ft_trace(t_ray *ray,t_setup *setup /* stock les obj */)
+t_bool ft_trace(t_ray *ray,t_setup *setup)
 {
 	size_t		i; // correspond au type d'objet (par example SPH = 0 et PLN = 1), on tombera donc dans les fonctions d'intersections correspondantes
 	double		dist;
@@ -229,6 +202,36 @@ t_vec3			orig; // pos de la camera
 t_vec3			dir;
 }					t_ray;
 */
+/*
+void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
+{
+	*
+	**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
+	**  {
+	** 			Set surface data such as normal and texture coordinates at a given point on the surface
+	** 			\param Phit is the point ont the surface we want to get data on
+	** 			\param[out] Nhit is the normal at Phit
+	** 			\param[out] tex are the texture coordinates at Phit
+	**************
+	**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
+	**      Nhit.normalize();  On normalise le vecteur
+	**************
+	**      In this particular case, the normal is simular to a point on a unit sphere
+	**      centred around the origin. We can thus use the normal coordinates to compute
+	**      the spherical coordinates of Phit.
+	**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
+	**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
+	**************
+	**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
+	**      tex.y = acosf(Nhit.y) / M_PI;
+	**  }
+	*
+}
+*/
+
+double max(double a, double b) {
+	return (a >= b ? a : b);
+}
 
 t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
@@ -236,22 +239,31 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 
 	hit_col = SETUP.background;
 	if (ft_trace(&ray, setup))
+	{
+		t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
+		t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
+		ft_vec3normalize(&hit_nrml);
+		/*	t_vec2 hit_text; // pas besoin pour l'instant?
+		ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+		**	// Use the normal and texture coordinates to shade the hit point.
+		**	// The normal is used to compute a simple facing ratio and the texture coordinate
+		**	// to compute a basic checker board pattern
+		**	float scale = 4;
+		**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+		**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+		*/
 		hit_col = OBJDEF.sphere[ray.objn].col;
+		t_vec3 dir_opposite = {-ray.dir.x, -ray.dir.y, -ray.dir.z};
+		double shade = max(0.0, ft_dotproduct(hit_nrml, dir_opposite));
+		hit_col.r *= shade;
+		hit_col.g *= shade;
+		hit_col.b *= shade;
+	}
 	return (hit_col);
 }
 
 /*
 TODO Notes sur ft_cast_ray
-// t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
-**	t_vec3 hit_nrml; // pas besoin pour l instant ?
-**	t_vec2 hit_text; // pas besoin pour l'instant?
-**	ft_get_surface_data(hit_point, hit_nrml, hit_text) set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-**	// Use the normal and texture coordinates to shade the hit point.
-**	// The normal is used to compute a simple facing ratio and the texture coordinate
-**	// to compute a basic checker board pattern
-**	float scale = 4;
-**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
 
 // retourne couleur de l'objet
  on doit :
