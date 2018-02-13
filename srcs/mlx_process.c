@@ -17,12 +17,16 @@ int			ft_expose(t_setup *setup)
 	int		ret;
 
 	ret = OK;
-	ft_imgclean(IMG, SETUP.width, SETUP.height);
+	if (SETUP.mode != STATE_STOP)
+	{
+		ft_imgclean(IMG, SETUP.width, SETUP.height);
+	}
 	if (ret == OK && SETUP.mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
 		if ((ret = ft_raytracing(setup)) == ERROR)
 			SETUP.error = MAP_ERROR;
 		mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->image, 0, 0);
+		SETUP.mode = STATE_STOP;
 	}
 		//if (!SETUP.ui)
 			ft_mlx_control_key(setup);
