@@ -275,18 +275,90 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 //solveQuadratic
 // sphereIntersect
 
+
+/*
+void multVecMatrix(const Vec3<S> &src, Vec3<S> &dst) const
+	 {
+			 S a, b, c, w;
+
+			 a = src[0] * x[0][0] + src[1] * x[1][0] + src[2] * x[2][0] + x[3][0];
+			 b = src[0] * x[0][1] + src[1] * x[1][1] + src[2] * x[2][1] + x[3][1];
+			 c = src[0] * x[0][2] + src[1] * x[1][2] + src[2] * x[2][2] + x[3][2];
+			 w = src[0] * x[0][3] + src[1] * x[1][3] + src[2] * x[2][3] + x[3][3];
+
+			 dst.x = a / w;
+			 dst.y = b / w;
+			 dst.z = c / w;
+	 }
+*/
+
+void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
+	double a, b, c, w;
+
+	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
+	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
+	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2] + x[3][2];
+	w = src->x * x[0][3] + src->y * x[1][3] + src->z * x[2][3] + x[3][3];
+
+	dst->x = a / w;
+	dst->y = b / w;
+	dst->z = c / w;
+}
+/*
+void multDirMatrix(const Vec3<S> &src, Vec3<S> &dst) const
+{
+    S a, b, c;
+
+    a = src[0] * x[0][0] + src[1] * x[1][0] + src[2] * x[2][0];
+    b = src[0] * x[0][1] + src[1] * x[1][1] + src[2] * x[2][1];
+    c = src[0] * x[0][2] + src[1] * x[1][2] + src[2] * x[2][2];
+
+    dst.x = a;
+    dst.y = b;
+    dst.z = c;
+}
+*/
+void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
+	double a, b, c;
+
+	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0];
+	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1];
+	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2];
+
+	dst->x = a;
+	dst->y = b;
+	dst->z = c;
+}
 int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de render
 {
   // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 	t_pix	pix;
 	t_ray	ray;
-	t_vec3 orig = {0,0,0};
-	ray.orig = orig;
+	t_vec3 orig = {0.0, 0.0, 0.0};
+	// ray.orig = orig;
 	t_color	col = {255, 0, 255};
 	int i;
 	int j;
 	pix.y = -1;
-	ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
+	double **camToWorld = ft_matrixzero(4);
+	camToWorld[0][0] = 0.945519;
+	camToWorld[0][1] = 0;
+	camToWorld[0][2] = -0.325569;
+	camToWorld[0][3] = 0;
+	camToWorld[1][0] = -0.179534;
+	camToWorld[1][1] = 0.834209;
+	camToWorld[1][2] = -0.521403;
+	camToWorld[1][3] = 0;
+	camToWorld[2][0] = 0.271593;
+	camToWorld[2][1] = 0.551447;
+	camToWorld[2][2] = 0.78876;
+	camToWorld[2][3] = 0;
+	camToWorld[3][0] = 4.208271;
+	camToWorld[3][1] = 8.374532;
+	camToWorld[3][2] = 17.932925;
+	camToWorld[3][3] = 1;
+	multVecMatrix(&orig, &ray.orig, camToWorld);
+	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	while (++pix.y < (int)SETUP.height)
 	{
 		pix.x = -1;
@@ -300,7 +372,7 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 			// float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * scale;
       // float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
-			ray.dir = dir;
+			multDirMatrix(&dir, &ray.dir, camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.y, pix.x, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
