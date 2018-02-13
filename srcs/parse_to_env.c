@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 17:07:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:37:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 void		ft_getcams(t_list **env, char *cam_str)
 {
 	char	*cam;
-	//char	*value;
+	char	*value;
 	int		index;
 
 	index = 0;
@@ -77,6 +77,12 @@ void		ft_getcams(t_list **env, char *cam_str)
 	{
 		//printf("cam :\n%s\n\n", cam);
 		ft_lstaddend(env, ft_newenv(ft_strdup("camera"), NULL));
+	if ((value = ft_getobjstr(cam, "position", 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup("position"), value));
+	if ((value = ft_getobjstr(cam, "direction", 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup("direction"), value));
+	if ((value = ft_getobjstr(cam, "focal_len", 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup("focal_len"), value));
 	}
 }
 void		ft_getengine(t_list **env, char *eng_str)
