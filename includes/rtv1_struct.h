@@ -33,7 +33,7 @@ typedef struct		s_ray
 typedef struct		s_objsparam
 {
 	// t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
-	t_bool			(*paramfunc)(t_ray *ray, void *a);
+	t_bool			(*paramfunc)(t_ray *ray, void *a, double *t);
 }					t_objsparam;
 
 typedef struct		s_env

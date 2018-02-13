@@ -170,19 +170,22 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 	double		dist;
 	t_bool		hit_once;
 	double		t_near;
+	double		t;
 
 	i = 0;
+	t = MAX_INT;
 	t_near = MAX_INT;
 	hit_once = FALSE;
 	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
-		ray->hit = OBJS->param[i].paramfunc(ray, (void *)setup);
-		if (ray->hit == TRUE && ray->size < t_near)
+		ray->hit = OBJS->param[i].paramfunc(ray, (void *)setup, &t);
+		if (ray->hit == TRUE && t < t_near)
 		{
 			hit_once = ray->hit;
 			ray->objn = SPH_N; // permet de savoir l'index de la forme
-			t_near = ray->size;
+			t_near = t;
+			ray->size = t;
 			ray->obj = i;
 		}
 		SPH_N++;

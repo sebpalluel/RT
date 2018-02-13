@@ -19,7 +19,7 @@
 #define FALSE 0 //parce que if FALSE -> pas execute
 
 # define WIDTH			640
-# define HEIGHT			640
+# define HEIGHT			480
 # define RATIO			WIDTH / HEIGHT
 # define FOV        45
 # define DEG2RAD(x)    ((x * M_PI) / 180)

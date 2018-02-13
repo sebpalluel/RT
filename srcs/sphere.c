@@ -141,7 +141,7 @@ t_bool solve_quadratic(double *abc, float *t0, float *t1) {
 	return (TRUE);
 }
 
-t_bool		ft_sphere_param(t_ray *ray, void *a) {
+t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
 	t_setup		*setup;
 	float t0;
 	float t1;
@@ -168,7 +168,7 @@ t_bool		ft_sphere_param(t_ray *ray, void *a) {
 			return FALSE;
 		}
 	}
-	ray->size = t0;
+	*t = t0;
 	return (TRUE);
 
 	/*

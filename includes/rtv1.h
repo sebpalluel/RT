@@ -49,7 +49,7 @@ void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 size_t		ft_getobjscount(t_setup *setup);
 t_bool		ft_plane_param(void *a, t_ray ray, double *dist);
 t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist);
-t_bool		ft_sphere_param(t_ray *ray, void *a);
+t_bool		ft_sphere_param(t_ray *ray, void *a, double *t);
 
 int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 int			ft_mouse_moove(int x, int y, t_setup *setup);
