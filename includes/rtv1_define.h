@@ -15,8 +15,11 @@
 
 # include "../libft/includes/libft.h"
 
-# define WIDTH			1200
-# define HEIGHT			900
+#define TRUE 1
+#define FALSE 0 //parce que if FALSE -> pas execute
+
+# define WIDTH			300
+# define HEIGHT			300
 # define RATIO			WIDTH / HEIGHT
 # define FOV			(45 * M_PI) / 180
 # define MAX_SIZE		10000

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+#include <math.h>
 
 t_ray		ft_raycalcforpix(t_setup *setup, t_pix pix) {
 	double	px;
@@ -75,7 +76,7 @@ int				ft_getobjn(t_setup *setup, size_t i)
 	return (0);
 }
 
-static void		ft_primray(t_setup *setup, t_ray *ray)
+static void		ft_primray(t_setup *setup, t_ray *ray) // remplacer par trace
 {
 	size_t		i; // correspond au type d'objet (par example SPH = 0 et PLN = 1), on tombera donc dans les fonctions d'intersections correspondantes
 	double		dist;
@@ -86,7 +87,7 @@ static void		ft_primray(t_setup *setup, t_ray *ray)
 	ray->size = MAX_INT; // j'initialise a distance infinie
 	while (ft_chooseobj(setup, &i) == OK) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
-		ray->hit = OBJS->param[i].paramfunc((void *)setup, *ray, &dist); // va dans la fonction d'intersection correspondante, quand i = 0, va dans ft_sphere_intersection, retourne si hit ou pas et donne la distance.
+		// ray->hit = OBJS->param[i].paramfunc((void *)setup, *ray, &dist); // va dans la fonction d'intersection correspondante, quand i = 0, va dans ft_sphere_intersection, retourne si hit ou pas et donne la distance.
 		// attention manque des infos comme la normale au point d'intersection.
 		if (ray->hit == OK && dist < ray->size && ray->size > 0.0001)
 		{
@@ -108,29 +109,6 @@ t_color			*ft_getobjclr(t_setup *setup, t_ray ray)
 		return (&OBJDEF.plane[ray.objn].col);
 	return (&SETUP.background);
 }
-
-/*
-**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
-**  {
-** 			Set surface data such as normal and texture coordinates at a given point on the surface
-** 			\param Phit is the point ont the surface we want to get data on
-** 			\param[out] Nhit is the normal at Phit
-** 			\param[out] tex are the texture coordinates at Phit
-**************
-**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
-**      Nhit.normalize();  On normalise le vecteur
-**************
-**      In this particular case, the normal is simular to a point on a unit sphere
-**      centred around the origin. We can thus use the normal coordinates to compute
-**      the spherical coordinates of Phit.
-**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
-**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
-**************
-**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
-**      tex.y = acosf(Nhit.y) / M_PI;
-**  }
-*/
-
 /*
 ** EXEMPLE, ici ce qui est important c'est le hitObject, en gros il faut juste que l on sache sur quoi on tape depuis l exterieur du scope de la fonction
 **	bool trace(const Vec3f &orig, const Vec3f &dir, const std::vector<std::unique_ptr<Object>> &objects, float &tNear, const Object *&hitObject)
@@ -149,7 +127,7 @@ t_color			*ft_getobjclr(t_setup *setup, t_ray ray)
 **	}
 */
 
-static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAST, retourne la couleur
+static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAST, retourne la couleur, remplacer par ft_cast_ray
 {
   /*
 	** On set la couleur a celle du fond
@@ -173,23 +151,6 @@ static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAS
 	** Pour eviter les soucis:
 	**	"Thus the formula suffers from the effect of what we call a loss of significance. This happens for instance when b and the root of the discriminant don't have the same sign but have values very close to each other. Because of the limited numbers used to represent floating numbers on the computer, in that particular case, the numbers would either cancel out when they shouldn't (this is called catastrophic cancellation) or round off to an unacceptable error (you will easily find more
 	**	information related to this topic on the internet)"
-	** TODO
-	**	bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1)
-	**	{
-	**	    float discr = b * b - 4 * a * c;
-	**	    if (discr < 0) return false;
-	**	    else if (discr == 0) x0 = x1 = - 0.5 * b / a;
-	**	    else {
-	**	        float q = (b > 0) ?
-	**	            -0.5 * (b + sqrt(discr)) :
-	**	            -0.5 * (b - sqrt(discr));
-	**	        x0 = q / a;
-	**	        x1 = c / q;
-	**	    }
-	**	    if (x0 > x1) std::swap(x0, x1);
-	**
-	**	    return true;
-	**	}
 	**	hitObject->getSurfaceData(Phit, Nhit, tex); (on a initialisé le hit object dans la fonction trace)
 	** 	pattern -> permet de def un dammier par exemple
 	** 	hitColor = std::max(0, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
@@ -202,12 +163,128 @@ static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAS
 	return (col = ft_getobjclr(setup, ray)); // permet de retourner la couleur de l'objet correspondant
 }
 
+/*
+void ft_get_surface_data(hit_point, hit_nrml, hit_text)
+{
+	*
+	**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
+	**  {
+	** 			Set surface data such as normal and texture coordinates at a given point on the surface
+	** 			\param Phit is the point ont the surface we want to get data on
+	** 			\param[out] Nhit is the normal at Phit
+	** 			\param[out] tex are the texture coordinates at Phit
+	**************
+	**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
+	**      Nhit.normalize();  On normalise le vecteur
+	**************
+	**      In this particular case, the normal is simular to a point on a unit sphere
+	**      centred around the origin. We can thus use the normal coordinates to compute
+	**      the spherical coordinates of Phit.
+	**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
+	**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
+	**************
+	**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
+	**      tex.y = acosf(Nhit.y) / M_PI;
+	**  }
+	*
+}
+*/
+
+// ft_trace(ray.orig, ray.dir, ray.size, setup /* stock les obj */, ray.hit)
+t_bool ft_trace(t_ray *ray,t_setup *setup /* stock les obj */)
+{
+	size_t		i; // correspond au type d'objet (par example SPH = 0 et PLN = 1), on tombera donc dans les fonctions d'intersections correspondantes
+	double		dist;
+	t_bool		hit_once;
+	double		t_near;
+
+	i = 0;
+	t_near = MAX_INT;
+	// ray->size = MAX_INT - 1; // j'initialise a distance infinie
+	hit_once = FALSE;
+	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
+	{
+		ray->hit = FALSE; // je part du principe que ca n'a pas hit
+		ray->objn = -1;
+		ray->hit = OBJS->param[i].paramfunc(ray, (void *)setup);
+		if (ray->hit == TRUE && ray->size < t_near)
+		{
+			hit_once = ray->hit;
+			ray->objn = SPH_N; // permet de savoir l'index de la forme
+			t_near = ray->size;
+			ray->obj = i;
+		}
+		SPH_N++;
+	}
+	ft_resetchooseobj(setup); // reset tous les index
+	return (hit_once);
+}
+
+/*
+typedef struct		s_ray
+{
+double			size; // dist entre le point d'origine et l'objet touche le plus proche
+t_bool			hit; //Nathan remplacer par l index de l objet pointé
+size_t			obj; // de quel type de forme il s'agit
+size_t			objn; // l'index de l'objet (par exemple sphere[objn])
+t_vec3			orig; // pos de la camera
+t_vec3			dir;
+}					t_ray;
+*/
+
+t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
+{
+	t_vec3 vec = {1,1,1};
+	t_vec3 tmp;
+	t_color hit_col;
+
+	hit_col = SETUP.background;
+	if (ft_trace(&ray, setup)) /* TODO ray.hit --> index */
+	{
+		// t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
+		/*
+		**	t_vec3 hit_nrml; // pas besoin pour l instant ?
+		**	t_vec2 hit_text; // pas besoin pour l'instant?
+		**	ft_get_surface_data(hit_point, hit_nrml, hit_text) set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+		**	// Use the normal and texture coordinates to shade the hit point.
+		**	// The normal is used to compute a simple facing ratio and the texture coordinate
+		**	// to compute a basic checker board pattern
+		**	float scale = 4;
+		**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+		**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+		*/
+    // retourne couleur de l'objet
+		/* on doit :
+		** trouver l'objet
+		** set la hit_color a la couleur de l'objet rencontré
+		*/
+		// couleur degradés
+		// tmp = ft_vec3vop_r(ray.dir, vec, '+');
+		// tmp = ft_vec3sop_r(tmp, 0.5, '*');
+		// hit_col.r = tmp.x * 255;
+		// hit_col.g = tmp.y * 255;
+		// hit_col.b = tmp.z * 255;
+		// printf("HIT, color should be red\n");
+		hit_col = *ft_getobjclr(setup, ray);
+		// printf("r: %d, g: %d, b: %d\n", hit_col.r, hit_col.g, hit_col.b);
+	}
+	return (hit_col);
+}
+/*
+*/
+//solveQuadratic
+// sphereIntersect
+
 int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de render
 {
+  // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 	t_pix	pix;
 	t_ray	ray;
-	t_color	col;
-
+	t_vec3 orig = {0,0,0};
+	ray.orig = orig;
+	t_color	col = {255, 0, 255};
+	int i;
+	int j;
 	pix.y = -1;
 	ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	while (++pix.y < (int)SETUP.height)
@@ -215,6 +292,18 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 		pix.x = -1;
 		while (++pix.x < (int)SETUP.width)
 		{
+			float scale = tan((90 * 0.5) * M_PI / 180);
+    	float imageAspectRatio = SETUP.width / (float)SETUP.height;
+			float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * imageAspectRatio * scale;
+      float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale;
+			// MAYA
+			// float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * scale;
+      // float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale * 1 / imageAspectRatio;
+			t_vec3 dir = {x, y, -1};
+			ray.dir = dir;
+			ft_vec3normalize(&ray.dir);
+			col = ft_cast_ray(pix.y, pix.x, ray, setup);
+			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			/* ICI on a besoin de l origine de la camera, CAM.pos
 			** de la direction du rayon lancer calculer comme suit:
 			** float x = (2 * (i + 0.5) / (float)options.width - 1) * imageAspectRatio * scale;
@@ -224,9 +313,10 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 			** ENFIN on appelle la fonction RayCast qui nous donnera la couleur
       ** RayCast prend en arg: origine, direction, objets (forme geo)
 			*/
-			ray = ft_raycalcforpix(setup, pix); // permet de return la direction du rayon caste suivant le pixel et la config de la cam
-			ft_put_pixel(setup, pix.x, pix.y, \
-					ft_colortohex(ft_raytracecol(setup, ray, &col))); // ft_raytracecol permet de faire les operation de calcul de la couleur avec le raytrace
+			// ray = ft_raycalcforpix(setup, pix); // permet de return la direction du rayon caste suivant le pixel et la config de la cam
+			// ft_put_pixel(setup, pix.x, pix.y, \
+				 // ft_colortohex(ft_raytracecol(setup, ray, &col))); // ft_raytracecol permet de faire les operation de calcul de la couleur avec le raytrace
+			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
 	return (OK);

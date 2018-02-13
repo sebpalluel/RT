@@ -22,7 +22,7 @@ CMP			=	gcc
 
 DEBUG_F		=	-g3 -fsanitize=address
 
-FLAGS		=	-Wall -Wextra -Werror 
+FLAGS		=	
 
 OBJDIR		=	./obj/
 INCDIR		=	./includes/

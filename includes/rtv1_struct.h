@@ -25,14 +25,15 @@ typedef struct		s_ray
 	double			size; // dist entre le point d'origine et l'objet touche le plus proche
 	t_bool			hit;
 	size_t			obj; // de quel type de forme il s'agit
-	size_t			objn; // l'index de l'objet (par exemple sphere[objn]) 
+	size_t			objn; // l'index de l'objet (par exemple sphere[objn])
 	t_vec3			orig; // pos de la camera
 	t_vec3			dir;
 }					t_ray;
 
 typedef struct		s_objsparam
 {
-	t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
+	// t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
+	t_bool			(*paramfunc)(t_ray *ray, void *a);
 }					t_objsparam;
 
 typedef struct		s_env
@@ -72,7 +73,7 @@ typedef struct		s_plane
 
 typedef struct		s_sphere
 {
-	t_vec3			pos;
+	t_vec3			pos; // en fait c est le centre
 	float			rad;
 	t_color			col;
 	size_t			num_arg;
@@ -100,7 +101,7 @@ typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 
 	t_objdef		objdef; // contient toutes les formes (sphere, cylindre, plan etc.)
 	char			**validobjs; // valide que la struct est geree (cam, sphere etc.), avec ft_validobjs
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet 
+	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet
 }					t_objs;
 
 typedef struct		s_setup

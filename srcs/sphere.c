@@ -101,8 +101,97 @@ static double	ft_spherefromdisk(double abc[3], double distSqrt)
 **
 **		        return true;
 **		}
+**
+**	bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1)
+**	{
+**	    float discr = b * b - 4 * a * c;
+**	    if (discr < 0) return false;
+**	    else if (discr == 0) x0 = x1 = - 0.5 * b / a;
+**	    else {
+**	        float q = (b > 0) ?
+**	            -0.5 * (b + sqrt(discr)) :
+**	            -0.5 * (b - sqrt(discr));
+**	        x0 = q / a;
+**	        x1 = c / q;
+**	    }
+**	    if (x0 > x1) std::swap(x0, x1);
+**
+**	    return true;
+**	}
 */
-t_bool		ft_sphere_param(void *a, t_ray ray, double *dist)
+
+t_bool solve_quadratic(double *abc, float *t0, float *t1) {
+	float discr;
+	float q;
+	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
+
+	if (discr < 0)
+	{
+		return FALSE;
+	}
+	else if ( discr == 0) {
+		*t0 =  -.05 * abc[1] / abc[0];
+	} else {
+		q = (abc[1] > 0) ? -0.5 * (abc[1] + sqrt(discr)) : -0.5 * (abc[1] - sqrt(discr));
+		*t0 = q / abc[0];
+		*t1 = abc[2] / q;
+	}
+	if (t0 > t1)
+		ft_swap(t0, t1, sizeof(float));
+	return (TRUE);
+}
+
+t_bool		ft_sphere_param(t_ray *ray, void *a) {
+	t_setup		*setup;
+	float t0;
+	float t1;
+	t_vec3 L;
+	setup = (t_setup *)a;
+	double		abc[3] = {0, 0, 0};
+
+	L = ft_vec3vop_r(ray->orig, SPHERE[SPH_N].pos, '-');
+	abc[0] = ft_dotproduct(ray->dir, ray->dir);
+	abc[1] = 2. * ft_dotproduct(ray->dir, L);
+	abc[2] = ft_dotproduct(L, L) - SQUARE(SPHERE[SPH_N].rad);
+	if (!solve_quadratic(abc, &t0, &t1))
+	{
+		return FALSE;
+	}
+	if (t0 > t1)
+	{
+		ft_swap(&t0, &t1, sizeof(float));
+	}
+	if (t0 < 0) {
+		t0 = t1;
+		if (t0 < 0)
+		{
+			return FALSE;
+		}
+	}
+	ray->size = t0;
+	return (TRUE);
+
+	/*
+	float t0, t1; // solutions for t if the ray intersects
+	Vec3f L = orig - center;
+	**		        float a = dir.dotProduct(dir);
+	**		        float b = 2 * dir.dotProduct(L);
+	**		        float c = L.dotProduct(L) - radius2;
+	**		        if (!solveQuadratic(a, b, c, t0, t1)) return false;
+	if (t0 > t1) std::swap(t0, t1);
+	**
+	**		        if (t0 < 0) {
+	**		            t0 = t1; // if t0 is negative, let's use t1 instead
+	**		            if (t0 < 0) return false; // both t0 and t1 are negative
+	**		        }
+	**
+	**		        t = t0;
+	**
+	**		        return true;
+	*/
+}
+
+t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist)
 {
 	t_setup		*setup;
 	t_vec3		ro_sc;
