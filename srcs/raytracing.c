@@ -353,7 +353,7 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 		pix.x = -1;
 		while (++pix.x < (int)SETUP.width)
 		{
-			float scale = tan((90 * 0.5) * M_PI / 180);
+			float scale = tan(DEG2RAD((FOV * 0.5)));
     	float imageAspectRatio = SETUP.width / (float)SETUP.height;
 			float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * imageAspectRatio * scale;
       float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale;

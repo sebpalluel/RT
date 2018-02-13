@@ -1,14 +1,14 @@
 sphere=
-sphere_pos=-10, 0, 1
-sphere_rad=3
-sphere_col=255, 33, 180
+sphere_pos=2, 2, 4
+sphere_rad=1
+sphere_col=204, 255, 153
 
 sphere=
-sphere_pos=-10, 0, 5
-sphere_rad=3
-sphere_col=90, 180, 180
+sphere_pos=-4, -2, 5
+sphere_rad=1
+sphere_col=255, 128, 0
 
 sphere=
-sphere_pos=-10, -8, 10
-sphere_rad=3
-sphere_col=5, 33, 180
+sphere_pos=-2, -8, 10
+sphere_rad=1
+sphere_col=153, 153, 255

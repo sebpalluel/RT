@@ -21,7 +21,8 @@
 # define WIDTH			640
 # define HEIGHT			480
 # define RATIO			WIDTH / HEIGHT
-# define FOV			(45 * M_PI) / 180
+# define FOV        45
+# define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define NUM_THREAD		1
