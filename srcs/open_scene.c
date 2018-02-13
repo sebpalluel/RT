@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 11:35:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:59:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ size_t			ft_envtosetup(t_setup *setup)
 					env = env->next; // si c'est ok on passe au chainon suivant qui devra correspondre a un objet qui qui est pris en charge (cam, light, sphere etc.)
 			}
 		}
-		if (flag == ERROR) // ici dans le cas ou aucun objet correspondant
-			return (ERROR);
+		printf("name : %s\n", ENVSTRUCT(env)->name);
+		printf("value : %s\n", ENVSTRUCT(env)->value);
+					env = env->next; // si c'est ok on passe au chainon suivant qui devra correspondre a un objet qui qui est pris en charge (cam, light, sphere etc.)
+		//if (flag == ERROR) // ici dans le cas ou aucun objet correspondant
+		//	return (ERROR);
 	}
 	return (OK);
 }
@@ -74,8 +77,7 @@ size_t			ft_open_scene(t_setup *setup)
 		free(tmp);
 	}
 	// le fichier est bien stocke dans file et il faut le parser
-	ft_parse_scn(setup, file);
-	if ((SETUP.env = ft_envlist(file)) == NULL || ft_envtosetup(setup) != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
+	if (!(SETUP.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
 		return (ERROR);
 	// appartir de la, on a le setup qui est entierement peuple et aucune erreur
 	OBJDEF.objscount = ft_getobjscount(setup); // permet de savoir combien d'objet le raytracer va devoir traiter

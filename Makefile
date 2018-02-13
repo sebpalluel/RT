@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/13 13:16:37 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/13 15:59:26 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -50,7 +50,7 @@ SRCNAME 	=	main.c \
 				utils.c \
 				raytracing.c \
 				parser.c \
-				parsetoenv.c \
+				parse_to_env.c
 				#draw.c \
 				#raycaster.c \
 				#color.c \

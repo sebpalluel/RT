@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 15:09:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:39:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_list		*ft_envlistfromparse(t_setup *setup, char **parsed)
 	t_list	*env;
 
 	env = NULL;
-	if(!(env = ft_getengine(env, ENG_S)))
-		SETUP.error = ENG_ERROR;
-	
+	ft_getengine(&env, ENG_S);
 
+	SETUP.error = OK;
+	return (env);
 }
 
 t_list		*ft_parse_scn(t_setup *setup, char *file)

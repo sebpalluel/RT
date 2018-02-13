@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 15:16:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:20:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ t_list			*ft_newenv(char *name, char *value)
 		return (NULL);
 	env->content_size = sizeof(t_env);
 	env->next = NULL;
-	if (!(ENVSTRUCT(env)->name = name))
-		return (NULL);
-	if (!(ENVSTRUCT(env)->value = value))
+	ENVSTRUCT(env)->name = name;
+	if (value)
+		ENVSTRUCT(env)->value = value;
+	else
+		ENVSTRUCT(env)->value = ft_strdup("");
+	if (!ENVSTRUCT(env)->name || !ENVSTRUCT(env)->value)
 		return (NULL);
 	return (env);
 }
