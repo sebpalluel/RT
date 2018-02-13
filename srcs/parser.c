@@ -6,70 +6,46 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 11:36:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 12:33:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-char			*ft_get_matching_end(char *str, char *objstart,
-				char *objend)
+static char	*ft_extractobj(size_t len, char *from_begin, char *from_end)
 {
-	int			count;
-	int			i;
+	char	*objstr;
 
-	i = 0;
-	count = 0;
-	while (str && str[i])
+	if (from_end - (from_begin + len + 1) > 0)
 	{
-		if (ft_strncmp(str + i, objstart, ft_strlen(objstart)) == OK)
-			count++;
-		if (ft_strncmp(str + i, objend, ft_strlen(objend)) == OK)
-		{
-			if (count != 0)
-				count--;
-			else
-				return (str + i);
-		}
-		i++;
+		if (!(objstr = ft_strnew(from_end - (from_begin + len) + 1)))
+			return (NULL);
+		ft_strncpy(objstr, from_begin + len, from_end - (from_begin + len));
+		return (objstr);
 	}
 	return (NULL);
 }
 
-static char	*ft_inner(size_t len, char *ptr[2])
-{
-	char	*ret;
-
-	if (ptr[1] - (ptr[0] + len + 1) >= 0)
-	{
-		if ((ret = malloc(ptr[1] - (ptr[0] + len) + 1)) == NULL)
-			exit(-1);
-		ft_strncpy(ret, ptr[0] + len, ptr[1] - (ptr[0] + len));
-		ret[ptr[1] - (ptr[0] + len)] = '\0';
-		return (ret);
-	}
-	return (NULL);
-}
-
-char		*ft_get_inner(char *str, char *obj)
+char		*ft_getobjstr(char *str, char *obj)
 {
 	char	*objstart;
 	char	*objend;
-	char	*ptr[2];
-	char	*ret;
+	char	*from_begin;
+	char	*from_end;
+	char	*objstr;
 
-	ret = NULL;
+	objstr = NULL;
 	objstart = ft_strjoinfree(ft_strdup("<"), ft_strjoin(obj, ">"), 0);
-	printf("objstart : %s\n", objstart);
 	objend = ft_strjoinfree(ft_strdup("</"), ft_strjoin(obj, ">"), 0);
-	printf("objend : %s\n", objend);
-	if ((ptr[0] = ft_strstr(str, objstart)) != NULL
-		&& (ptr[1] = ft_get_matching_end(ptr[0] + 1,
-			objstart, objend)) != NULL)
-		ret = ft_inner(ft_strlen(objstart), ptr);
-	ft_strdel(&objstart);
-	ft_strdel(&objend);
-	return (ret);
+	if (objstart && objend)
+	{
+		if ((from_begin = ft_strstr(str, objstart)) && \
+				(from_end = ft_strstr(from_begin, objend)))
+			objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
+		ft_strdel(&objstart);
+		ft_strdel(&objend);
+	}
+	return (objstr);
 }
 
 void		ft_parse_scn(t_setup *setup, char *file)
@@ -79,9 +55,9 @@ void		ft_parse_scn(t_setup *setup, char *file)
 	//char	*lights;
 	//char	*objects;
 	//char	*config;
-	if (!(scene = ft_get_inner(file, "scene")))
+	if (!(scene = ft_getobjstr(file, "scene")))
 		SETUP.error = SCN_ERROR;
-	if ((cameras = ft_get_inner(scene, "cameras")) == NULL)
+	if (!(cameras = ft_getobjstr(scene, "cameras")))
 		SETUP.error = CAM_ERROR;
 	printf("cameras :\n%s\n", cameras);
 	//if ((config = ft_get_inner(scene, "config")) == NULL)
