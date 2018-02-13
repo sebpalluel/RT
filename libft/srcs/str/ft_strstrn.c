@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_srtnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strstrn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/11 17:34:57 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 17:32:51 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/13 17:25:40 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/13 17:31:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strnstr(const char *str, const char *tofind, size_t n)
+static size_t	ft_lastoccur(int *begin, int *current, size_t *occur_n)
 {
-	size_t	begin;
-	size_t	current;
+	if (!*occur_n)
+		return (OK);
+	else
+	{
+		*occur_n -= 1;
+		*begin += *current;
+		*current = 0;
+		return (ERROR);
+	}
+}
+
+char			*ft_strstrn(const char *str, const char *tofind, size_t occur_n)
+{
+	int			begin;
+	int			current;
 
 	begin = 0;
 	current = 0;
 	if (!*tofind)
 		return ((char *)str);
-	while (str[begin] && n > begin)
+	while (str && str[begin])
 	{
-		if ((str[begin + current] == tofind[current]) && (begin + current < n))
+		if (str[begin + current] == tofind[current])
 			current++;
 		else
 		{
@@ -31,7 +44,10 @@ char		*ft_strnstr(const char *str, const char *tofind, size_t n)
 			begin++;
 		}
 		if (!tofind[current])
-			return ((char *)str + begin);
+		{
+			if (ft_lastoccur(&begin, &current, &occur_n) == OK)
+				return ((char *)str + begin);
+		}
 	}
 	return (NULL);
 }

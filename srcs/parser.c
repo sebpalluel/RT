@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 15:39:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:33:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,21 @@ static char	*ft_extractobj(size_t len, char *from_begin, char *from_end)
 	return (NULL);
 }
 
-char		*ft_getobjstr(char *str, char *obj)
+
+
+//size_t		ft_getobjstartnum(char **from_begin, char *str, char *objstart)
+//{
+//	if (!*from_begin)
+//		*from_begin = ft_strstr(str, objstart);
+//	else
+//		*from_begin = ft_strstr(*from_begin, objstart);
+//	if (!*from_begin)
+//		return (ERROR);
+//
+//	return (OK);
+//}
+
+char		*ft_getobjstr(char *str, char *obj, int num)
 {
 	char	*objstart;
 	char	*objend;
@@ -35,16 +49,19 @@ char		*ft_getobjstr(char *str, char *obj)
 	char	*objstr;
 
 	objstr = NULL;
+	from_begin = NULL;
 	objstart = ft_strjoinfree(ft_strdup("<"), ft_strjoin(obj, ">"), 0);
 	objend = ft_strjoinfree(ft_strdup("</"), ft_strjoin(obj, ">"), 0);
 	if (objstart && objend)
 	{
-		if ((from_begin = ft_strstr(str, objstart)) && \
-				(from_end = ft_strstr(from_begin, objend)))
-			objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
-		ft_strdel(&objstart);
-		ft_strdel(&objend);
+		if (!(from_begin = ft_strstrn(str, objstart, num)) || \
+				!(from_end = ft_strstr(from_begin, objend)))
+			return (NULL);
+		printf("%s :\n\n%s\n\n\n", objstart, from_begin);
+		objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
 	}
+	ft_strdel(&objstart);
+	ft_strdel(&objend);
 	return (objstr);
 }
 
@@ -54,7 +71,7 @@ t_list		*ft_envlistfromparse(t_setup *setup, char **parsed)
 
 	env = NULL;
 	ft_getengine(&env, ENG_S);
-
+	ft_getcams(&env, CAM_S);
 	SETUP.error = OK;
 	return (env);
 }
@@ -66,15 +83,15 @@ t_list		*ft_parse_scn(t_setup *setup, char *file)
 
 	if (!(parsed = (char **)ft_memalloc(sizeof(char *) * 5)))
 		return (NULL);
-	if (!(scene = ft_getobjstr(file, "scene")))
+	if (!(scene = ft_getobjstr(file, "scene", 0)))
 		SETUP.error = SCN_ERROR;
-	if (SETUP.error == OK && !(ENG_S = ft_getobjstr(scene, "engine")))
+	if (SETUP.error == OK && !(ENG_S = ft_getobjstr(scene, "engine", 0)))
 		SETUP.error = ENG_ERROR;
-	if (SETUP.error == OK && !(CAM_S = ft_getobjstr(scene, "cameras")))
+	if (SETUP.error == OK && !(CAM_S = ft_getobjstr(scene, "cameras", 0)))
 		SETUP.error = CAM_ERROR;
-	if (SETUP.error == OK && !(LGT_S = ft_getobjstr(scene, "lights")))
+	if (SETUP.error == OK && !(LGT_S = ft_getobjstr(scene, "lights", 0)))
 		SETUP.error = LIGHT_ERROR;
-	if (SETUP.error == OK && !(OBJ_S = ft_getobjstr(scene, "objects")))
+	if (SETUP.error == OK && !(OBJ_S = ft_getobjstr(scene, "objects", 0)))
 		SETUP.error = OBJ_ERROR;
 	if (SETUP.error != OK)
 		return (NULL);

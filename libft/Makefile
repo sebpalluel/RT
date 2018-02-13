@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/01 17:33:44 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/13 17:32:25 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -73,6 +73,7 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(STRPATH)ft_strchr.c\
 			$(STRPATH)ft_strrchr.c\
 			$(STRPATH)ft_strstr.c\
+			$(STRPATH)ft_strstrn.c\
 			$(STRPATH)ft_strnstr.c\
 			$(STRPATH)ft_strcmp.c\
 			$(STRPATH)ft_strncmp.c\
