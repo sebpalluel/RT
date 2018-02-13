@@ -157,9 +157,39 @@ static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col) //RAYCAS
 	** fonction trace(orig, dir, objects, t, hitObject)
 	** hitObjetc ->
 	** 	Alors on a besoin de :
-	**	Vec3f Phit = orig + dir * t; -> coordonnee d origine + (direction multipliée par la distance a l origine t)
+	**	Vec3f Phit = ray.orig + ray.dir * t; -> coordonnee d origine + (direction multipliée par la distance a l origine t)
 	**  Vec3f Nhit; -> la normale au point d'intrsection (/!\ c'est un vecteur normalisé MAIS la normale)
+	**		pour une sphere :  Vec3f Nhit = normalize(Phit - C); avec C le centre
 	**  Vec2f tex; -> la texture
+	** 		les coordonnees spherique d un point sur la sphere ramppé dans sur l'intervale [0,1]
+	**		coordonnes spherique:
+	**			P.x=cos(θ)sin(ϕ),
+	**			P.y=cos(θ),
+	**			P.z=sin(θ)sin(ϕ).
+	**		ou d'apres le point dans l espace cartesien
+	**			ϕ=atan(z,x),
+	**			θ=acos(P.yR).
+	**		Avec R le rayon (radius ?) de la sphere
+	** Pour eviter les soucis:
+	**	"Thus the formula suffers from the effect of what we call a loss of significance. This happens for instance when b and the root of the discriminant don't have the same sign but have values very close to each other. Because of the limited numbers used to represent floating numbers on the computer, in that particular case, the numbers would either cancel out when they shouldn't (this is called catastrophic cancellation) or round off to an unacceptable error (you will easily find more
+	**	information related to this topic on the internet)"
+	** TODO
+	**	bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1)
+	**	{
+	**	    float discr = b * b - 4 * a * c;
+	**	    if (discr < 0) return false;
+	**	    else if (discr == 0) x0 = x1 = - 0.5 * b / a;
+	**	    else {
+	**	        float q = (b > 0) ?
+	**	            -0.5 * (b + sqrt(discr)) :
+	**	            -0.5 * (b - sqrt(discr));
+	**	        x0 = q / a;
+	**	        x1 = c / q;
+	**	    }
+	**	    if (x0 > x1) std::swap(x0, x1);
+	**
+	**	    return true;
+	**	}
 	**	hitObject->getSurfaceData(Phit, Nhit, tex); (on a initialisé le hit object dans la fonction trace)
 	** 	pattern -> permet de def un dammier par exemple
 	** 	hitColor = std::max(0, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
