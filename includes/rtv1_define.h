@@ -36,6 +36,7 @@
 # define STATE_OPEN		4
 # define STATE_DRAW		5
 # define STATE_CAM		6
+#define STATE_STOP    7
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
 # define MAP_ERROR_S	"error: map is not in the correct format"

@@ -200,12 +200,10 @@ t_bool ft_trace(t_ray *ray,t_setup *setup /* stock les obj */)
 
 	i = 0;
 	t_near = MAX_INT;
-	// ray->size = MAX_INT - 1; // j'initialise a distance infinie
 	hit_once = FALSE;
 	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
-		ray->objn = -1;
 		ray->hit = OBJS->param[i].paramfunc(ray, (void *)setup);
 		if (ray->hit == TRUE && ray->size < t_near)
 		{
@@ -234,62 +232,38 @@ t_vec3			dir;
 
 t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
-	t_vec3 vec = {1,1,1};
-	t_vec3 tmp;
 	t_color hit_col;
 
 	hit_col = SETUP.background;
-	if (ft_trace(&ray, setup)) /* TODO ray.hit --> index */
-	{
-		// t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
-		/*
-		**	t_vec3 hit_nrml; // pas besoin pour l instant ?
-		**	t_vec2 hit_text; // pas besoin pour l'instant?
-		**	ft_get_surface_data(hit_point, hit_nrml, hit_text) set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-		**	// Use the normal and texture coordinates to shade the hit point.
-		**	// The normal is used to compute a simple facing ratio and the texture coordinate
-		**	// to compute a basic checker board pattern
-		**	float scale = 4;
-		**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-		**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
-		*/
-    // retourne couleur de l'objet
-		/* on doit :
-		** trouver l'objet
-		** set la hit_color a la couleur de l'objet rencontré
-		*/
-		// couleur degradés
-		// tmp = ft_vec3vop_r(ray.dir, vec, '+');
-		// tmp = ft_vec3sop_r(tmp, 0.5, '*');
-		// hit_col.r = tmp.x * 255;
-		// hit_col.g = tmp.y * 255;
-		// hit_col.b = tmp.z * 255;
-		// printf("HIT, color should be red\n");
-		hit_col = *ft_getobjclr(setup, ray);
-		// printf("r: %d, g: %d, b: %d\n", hit_col.r, hit_col.g, hit_col.b);
-	}
+	if (ft_trace(&ray, setup))
+		hit_col = OBJDEF.sphere[ray.objn].col;
 	return (hit_col);
 }
-/*
-*/
-//solveQuadratic
-// sphereIntersect
-
 
 /*
-void multVecMatrix(const Vec3<S> &src, Vec3<S> &dst) const
-	 {
-			 S a, b, c, w;
+TODO Notes sur ft_cast_ray
+// t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
+**	t_vec3 hit_nrml; // pas besoin pour l instant ?
+**	t_vec2 hit_text; // pas besoin pour l'instant?
+**	ft_get_surface_data(hit_point, hit_nrml, hit_text) set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+**	// Use the normal and texture coordinates to shade the hit point.
+**	// The normal is used to compute a simple facing ratio and the texture coordinate
+**	// to compute a basic checker board pattern
+**	float scale = 4;
+**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
 
-			 a = src[0] * x[0][0] + src[1] * x[1][0] + src[2] * x[2][0] + x[3][0];
-			 b = src[0] * x[0][1] + src[1] * x[1][1] + src[2] * x[2][1] + x[3][1];
-			 c = src[0] * x[0][2] + src[1] * x[1][2] + src[2] * x[2][2] + x[3][2];
-			 w = src[0] * x[0][3] + src[1] * x[1][3] + src[2] * x[2][3] + x[3][3];
+// retourne couleur de l'objet
+ on doit :
+** trouver l'objet
+** set la hit_color a la couleur de l'objet rencontré
 
-			 dst.x = a / w;
-			 dst.y = b / w;
-			 dst.z = c / w;
-	 }
+// couleur degradés
+// tmp = ft_vec3vop_r(ray.dir, vec, '+');
+// tmp = ft_vec3sop_r(tmp, 0.5, '*');
+// hit_col.r = tmp.x * 255;
+// hit_col.g = tmp.y * 255;
+// hit_col.b = tmp.z * 255;
 */
 
 void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
@@ -304,20 +278,7 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->y = b / w;
 	dst->z = c / w;
 }
-/*
-void multDirMatrix(const Vec3<S> &src, Vec3<S> &dst) const
-{
-    S a, b, c;
 
-    a = src[0] * x[0][0] + src[1] * x[1][0] + src[2] * x[2][0];
-    b = src[0] * x[0][1] + src[1] * x[1][1] + src[2] * x[2][1];
-    c = src[0] * x[0][2] + src[1] * x[1][2] + src[2] * x[2][2];
-
-    dst.x = a;
-    dst.y = b;
-    dst.z = c;
-}
-*/
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	double a, b, c;
 
@@ -335,15 +296,13 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 	t_pix	pix;
 	t_ray	ray;
 	t_vec3 orig = {0.0, 0.0, 0.0};
-	// ray.orig = orig;
 	t_color	col = {255, 0, 255};
 	int i;
 	int j;
-	pix.y = -1;
 	double **camToWorld = ft_matrixzero(4);
 	camToWorld[0][0] = 0.945519;
 	camToWorld[0][1] = 0;
-	camToWorld[0][2] = -0.325569;
+	camToWorld[0][2] = -0.125569;
 	camToWorld[0][3] = 0;
 	camToWorld[1][0] = -0.179534;
 	camToWorld[1][1] = 0.834209;
@@ -357,8 +316,26 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 	camToWorld[3][1] = 8.374532;
 	camToWorld[3][2] = 17.932925;
 	camToWorld[3][3] = 1;
+	// camToWorld[0][0] = 0;
+	// camToWorld[0][1] = 0;
+	// camToWorld[0][2] = 0;
+	// camToWorld[0][3] = 0;
+	// camToWorld[1][0] = 0;
+	// camToWorld[1][1] = 0;
+	// camToWorld[1][2] = 0;
+	// camToWorld[1][3] = 0;
+	// camToWorld[2][0] = 0;
+	// camToWorld[2][1] = 0;
+	// camToWorld[2][2] = 0;
+	// camToWorld[2][3] = 0;
+	// camToWorld[3][0] = 0;
+	// camToWorld[3][1] = 0;
+	// camToWorld[3][2] = 0;
+	// camToWorld[3][3] = 0;
+
 	multVecMatrix(&orig, &ray.orig, camToWorld);
 	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
+	pix.y = -1;
 	while (++pix.y < (int)SETUP.height)
 	{
 		pix.x = -1;
@@ -376,18 +353,6 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.y, pix.x, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
-			/* ICI on a besoin de l origine de la camera, CAM.pos
-			** de la direction du rayon lancer calculer comme suit:
-			** float x = (2 * (i + 0.5) / (float)options.width - 1) * imageAspectRatio * scale;
-      ** float y = (1 - 2 * (j + 0.5) / (float)options.height) * scale;
-			** ray.dir = normalize(Vec3f(x,y,-1) - Vec3f(0));
-			** ENSUITE on doit transformer le rayon de ses coordonnées screen au coord world //Tu as deja géré ca ?
-			** ENFIN on appelle la fonction RayCast qui nous donnera la couleur
-      ** RayCast prend en arg: origine, direction, objets (forme geo)
-			*/
-			// ray = ft_raycalcforpix(setup, pix); // permet de return la direction du rayon caste suivant le pixel et la config de la cam
-			// ft_put_pixel(setup, pix.x, pix.y, \
-				 // ft_colortohex(ft_raytracecol(setup, ray, &col))); // ft_raytracecol permet de faire les operation de calcul de la couleur avec le raytrace
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}

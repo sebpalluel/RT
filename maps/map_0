@@ -1,13 +1,14 @@
-cam=
-cam_pos=0.0, 0.0, -1.
-cam_dir=0.0, 0., -1.0
-
 sphere=
-sphere_pos=-5, -30, 10
-sphere_rad= 4
+sphere_pos=-10, 0, 1
+sphere_rad=3
 sphere_col=255, 33, 180
 
 sphere=
-sphere_pos=-5, 5, 10
-sphere_rad= 1
-sphere_col=0, 33, 180
+sphere_pos=-10, 0, 5
+sphere_rad=3
+sphere_col=90, 180, 180
+
+sphere=
+sphere_pos=-10, -8, 10
+sphere_rad=3
+sphere_col=5, 33, 180
