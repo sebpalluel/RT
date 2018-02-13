@@ -355,15 +355,15 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 		{
 			float scale = tan(DEG2RAD((FOV * 0.5)));
     	float imageAspectRatio = SETUP.width / (float)SETUP.height;
-			float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * imageAspectRatio * scale;
-      float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale;
+			float x = (2 * (pix.x + 0.5) / (float)SETUP.width - 1) * imageAspectRatio * scale;
+      float y = (1 - 2 * (pix.y + 0.5) / (float)SETUP.height) * scale;
 			// MAYA
 			// float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * scale;
       // float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, camToWorld);
 			ft_vec3normalize(&ray.dir);
-			col = ft_cast_ray(pix.y, pix.x, ray, setup);
+			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}

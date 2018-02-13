@@ -1,4 +1,4 @@
 sphere=
-sphere_pos=-0.5, -0.2, -8
+sphere_pos=0, 0, 5
 sphere_rad=1
-sphere_col=204, 255, 153
+sphere_col=255, 0, 0
