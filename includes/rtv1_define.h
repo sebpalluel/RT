@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 12:47:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 14:30:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@
 # define SPHERE_ERROR	-6
 # define SCN_ERROR		-7
 # define OBJ_ERROR		-8
+
+# define ENG_S			parsed[0]
+# define CAM_S			parsed[1]
+# define LGT_S			parsed[2]
+# define OBJ_S			parsed[3]
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
 # define S_WIDTH		setup[0].width

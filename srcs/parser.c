@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 12:52:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:09:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,37 @@ char		*ft_getobjstr(char *str, char *obj)
 	return (objstr);
 }
 
-void		ft_parse_scn(t_setup *setup, char *file)
+t_list		*ft_envlistfromparse(t_setup *setup, char **parsed)
+{
+	t_list	*env;
+
+	env = NULL;
+	if(!(env = ft_getengine(env, ENG_S)))
+		SETUP.error = ENG_ERROR;
+	
+
+}
+
+t_list		*ft_parse_scn(t_setup *setup, char *file)
 {
 	char	*scene;
-	char	*engine;
-	char	*cameras;
-	char	*lights;
-	char	*objects;
+	char	**parsed;
 
+	if (!(parsed = (char **)ft_memalloc(sizeof(char *) * 5)))
+		return (NULL);
 	if (!(scene = ft_getobjstr(file, "scene")))
 		SETUP.error = SCN_ERROR;
-	if (SETUP.error == OK && !(engine = ft_getobjstr(scene, "engine")))
+	if (SETUP.error == OK && !(ENG_S = ft_getobjstr(scene, "engine")))
 		SETUP.error = ENG_ERROR;
-	if (SETUP.error == OK && !(cameras = ft_getobjstr(scene, "cameras")))
+	if (SETUP.error == OK && !(CAM_S = ft_getobjstr(scene, "cameras")))
 		SETUP.error = CAM_ERROR;
-	if (SETUP.error == OK && !(lights = ft_getobjstr(scene, "lights")))
+	if (SETUP.error == OK && !(LGT_S = ft_getobjstr(scene, "lights")))
 		SETUP.error = LIGHT_ERROR;
-	if (SETUP.error == OK && !(objects = ft_getobjstr(scene, "objects")))
+	if (SETUP.error == OK && !(OBJ_S = ft_getobjstr(scene, "objects")))
 		SETUP.error = OBJ_ERROR;
+	if (SETUP.error != OK)
+		return (NULL);
+	return (ft_envlistfromparse(setup, parsed));
 	//((lights = ft_get_inner(scene, "lights")) != NULL) ?
 	//	ft_get_lights(lights, ft_strlen(lights), e) :
 	//	ft_putstr("There are no lights in your scene file.\n");

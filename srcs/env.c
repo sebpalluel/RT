@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 18:49:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:16:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,19 @@ t_list			*ft_searchenv(t_list *env, char *name)
 	return (NULL);
 }
 
-static t_list	*ft_newenv(char *str)
+t_list			*ft_newenv(char *name, char *value)
 {
 	t_list		*env; // changer env pour list parce que pas tres clair
-	char		*tmp;
 
 	if (!(env = (t_list*)malloc(sizeof(t_list))) || \
 			!(env->content = (t_env*)ft_memalloc(sizeof(t_env))))
 		return (NULL);
 	env->content_size = sizeof(t_env);
 	env->next = NULL;
-	if (!(ENVSTRUCT(env)->name = ft_strsub(str, 0, ft_strchr(str, '=') - str)))
+	if (!(ENVSTRUCT(env)->name = name))
 		return (NULL);
-	tmp = ft_strchr(str, '=') + 1;
-	if (!*tmp)
-		ENVSTRUCT(env)->value = ft_strdup("");
-	else
-		ENVSTRUCT(env)->value = ft_strdup(tmp);
-	return (env);
-}
-
-t_list			*ft_envlist(char *file) // fonction qui va permettre de stocker chaque ligne dans chaque chainons en bypassant les lignes vides
-{
-	int			env_num;
-	t_list		*env;
-
-	env = NULL;
-	env_num = -1;
-	file = NULL;
-	//while (map_str[++env_num])
-	//{
-	//	if (map_str[env_num][0] != '\0') // bypass les lignes vides
-	//		ft_lstaddend(&env, ft_newenv(map_str[env_num])); // chaque node contient le name (par exemple sphere) + la valeur (couleur etc.)
-	//}
-	// a partir de l
+	if (!(ENVSTRUCT(env)->value = value))
+		return (NULL);
 	return (env);
 }
 
@@ -90,20 +69,13 @@ char			**ft_getenv(t_setup *setup)
 
 void			ft_editenv(t_list *env, char *name, char *value)
 {
-	char		*tmp;
 	t_list		*list;
 
 	if (name)
 	{
 		list = ft_searchenv(env, name);
-		tmp = NULL;
 		if (list == NULL)
-		{
-			tmp = ft_strjoin(name, "=");
-			tmp = ft_strjoinfree(tmp, value, 1);
-			ft_lstaddend(&env, ft_newenv(tmp));
-			free(tmp);
-		}
+			ft_lstaddend(&env, ft_newenv(name, value));
 		else
 		{
 			free(ENVSTRUCT(list)->value);
