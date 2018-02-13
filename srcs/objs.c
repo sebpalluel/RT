@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:16:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:09:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 
 	if (!(validobjs = (char**)ft_memalloc(sizeof(char*) * NUM_OBJS + 1)))
 		return (NULL);
-	validobjs[0] = ft_strdup("cam");
-	validobjs[1] = ft_strdup("light");
-	validobjs[2] = ft_strdup("plane");
-	validobjs[3] = ft_strdup("sphere");
+	validobjs[0] = ft_strdup("engine");
+	validobjs[1] = ft_strdup("camera");
+	validobjs[2] = ft_strdup("light");
+	validobjs[3] = ft_strdup("plane");
+	validobjs[4] = ft_strdup("sphere");
 	return (validobjs);
 }
 
@@ -31,10 +32,11 @@ t_objsfunc				*ft_validfuncsptr(void)
 
 	if (!(objs = ft_memalloc(sizeof(t_objsfunc) * NUM_OBJS + 1)))
 		return (NULL);
-	objs[0].builtinfunc = ft_cam; // voir les explications ici car c'est le meme process pour les autres
-	objs[1].builtinfunc = ft_light;
-	objs[2].builtinfunc = ft_plane;
-	objs[3].builtinfunc = ft_sphere;
+	objs[0].builtinfunc = ft_engine;
+	objs[1].builtinfunc = ft_cam; // voir les explications ici car c'est le meme process pour les autres
+	objs[2].builtinfunc = ft_light;
+	objs[3].builtinfunc = ft_plane;
+	objs[4].builtinfunc = ft_sphere;
 	return (objs);
 }
 

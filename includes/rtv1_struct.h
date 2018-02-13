@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:22:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:12:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct		s_cam
 	t_vec3			plane_center;
 	t_vec3			plane_dirX;
 	t_vec3			plane_dirY;
-	double			focal_len;
+	float			focal_len;
 	size_t			num_arg;
 }					t_cam;
 
@@ -107,6 +107,10 @@ typedef struct		s_setup
 {
 	size_t			width;
 	size_t			height;
+	size_t			refr_max;
+	size_t			refl_max;
+	float			amb_light;
+	size_t			num_arg;
 	t_bool			ui; // afficher ou nom GUI
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:12:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:52:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ t_bool			ft_getcolfromenv(t_color *col, char *value)
 t_bool			ft_getfloatfromenv(float *val, char *value)
 {
 	*val = ft_atof(value);
+	return (OK);
+}
+
+t_bool			ft_getsize_tfromenv(size_t *val, char *value)
+{
+	*val = (size_t)ft_atoi(value);
 	return (OK);
 }
 

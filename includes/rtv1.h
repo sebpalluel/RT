@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 16:27:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:57:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
 t_bool		ft_getvec3fromenv(t_vec3 *vec3, char *value);
 t_bool		ft_getcolfromenv(t_color *col, char *value);
 t_bool		ft_getfloatfromenv(float *val, char *value);
+t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
+size_t		ft_engine(void *a, t_list **list);
 size_t		ft_cam(void *a, t_list **list);
 size_t		ft_light(void *a, t_list **list);
 size_t		ft_plane(void *a, t_list **list);

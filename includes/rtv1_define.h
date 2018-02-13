@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 14:30:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:13:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MAX_OBJ		20
 # define NUM_THREAD		1
 # define NUM_MAP		8
-# define NUM_OBJS		4
+# define NUM_OBJS		5
 # define AMP			1.3
 
 # define STATE_RUN		0
@@ -57,6 +57,7 @@
 # define OBJ_S			parsed[3]
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
+# define NVARENG		5
 # define S_WIDTH		setup[0].width
 # define S_HEIGHT		setup[0].height
 # define MLX			setup[0].mlx
@@ -67,7 +68,7 @@
 # define CAM			setup[0].objs->cam
 # define NCAM			setup[0].objs->ncam
 # define CAM_N			setup[0].cam_num
-# define NVARCAM		2
+# define NVARCAM		3
 # define LIGHT			setup[0].objs->light
 # define NLIGHT			setup[0].objs->nlight
 # define NVARLIGHT		3

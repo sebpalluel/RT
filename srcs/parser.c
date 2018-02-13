@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 17:34:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:17:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char		*ft_getobjstr(char *str, char *obj, int num)
 		if (!(from_begin = ft_strstrn(str, objstart, num)) || \
 				!(from_end = ft_strstr(from_begin, objend)))
 			return (NULL);
-		printf("%s :\n\n%s\n\n\n", objstart, from_begin);
 		objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
 	}
 	ft_strdel(&objstart);
