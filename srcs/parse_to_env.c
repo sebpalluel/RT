@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:13:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:57:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,58 @@
 //	return (0);
 //}
 //
+//void		ft_getmaterial(t_list **env, char *mat_str)
+//{
+//
+//}
+
+void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name)
+{
+	char	*value;
+
+	if (name && (value = ft_getobjstr(obj_str, (char *)name, 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup(name), value));
+}
 
 void		ft_getcams(t_list **env, char *cam_str)
 {
 	char	*cam;
-	char	*value;
 	int		index;
 
 	index = 0;
 	while ((cam = ft_getobjstr(cam_str, "camera", index++)))
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("camera"), NULL));
-	if ((value = ft_getobjstr(cam, "position", 0)))
-		ft_lstaddend(env, ft_newenv(ft_strdup("position"), value));
-	if ((value = ft_getobjstr(cam, "direction", 0)))
-		ft_lstaddend(env, ft_newenv(ft_strdup("direction"), value));
-	if ((value = ft_getobjstr(cam, "focal_len", 0)))
-		ft_lstaddend(env, ft_newenv(ft_strdup("focal_len"), value));
+		ft_getvaluetoenv(env, cam, "position");
+		ft_getvaluetoenv(env, cam, "direction");
+		ft_getvaluetoenv(env, cam, "focal_len");
+		//if ((value = ft_getobjstr(cam, "position", 0)))
+		//	ft_lstaddend(env, ft_newenv(ft_strdup("position"), value));
+		//if ((value = ft_getobjstr(cam, "direction", 0)))
+		//	ft_lstaddend(env, ft_newenv(ft_strdup("direction"), value));
+		//if ((value = ft_getobjstr(cam, "focal_len", 0)))
+		//	ft_lstaddend(env, ft_newenv(ft_strdup("focal_len"), value));
 	}
 }
+
+void		ft_getobjects(t_list **env, char *obj_str)
+{
+	char	*sphere;
+	char	*value;
+	int		index;
+
+	index = 0;
+	while ((sphere = ft_getobjstr(obj_str, "sphere", index++)))
+	{
+		ft_lstaddend(env, ft_newenv(ft_strdup("sphere"), NULL));
+		if ((value = ft_getobjstr(sphere, "position", 0)))
+			ft_lstaddend(env, ft_newenv(ft_strdup("position"), value));
+		if ((value = ft_getobjstr(sphere, "radius", 0)))
+			ft_lstaddend(env, ft_newenv(ft_strdup("radius"), value));
+		//ft_getmaterial(env, ft_getobjstr(sphere, "material", 0));
+	}
+}
+
 void		ft_getengine(t_list **env, char *eng_str)
 {
 	char	*value;

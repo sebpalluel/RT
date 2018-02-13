@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:17:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:20:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,15 @@ char		*ft_getobjstr(char *str, char *obj, int num)
 	return (objstr);
 }
 
-t_list		*ft_envlistfromparse(t_setup *setup, char **parsed)
+t_list		*ft_envlistfromparse(char **parsed)
 {
 	t_list	*env;
 
 	env = NULL;
 	ft_getengine(&env, ENG_S);
 	ft_getcams(&env, CAM_S);
-	SETUP.error = OK;
+	ft_getobjects(&env, OBJ_S);
+
 	return (env);
 }
 
@@ -94,7 +95,7 @@ t_list		*ft_parse_scn(t_setup *setup, char *file)
 		SETUP.error = OBJ_ERROR;
 	if (SETUP.error != OK)
 		return (NULL);
-	return (ft_envlistfromparse(setup, parsed));
+	return (ft_envlistfromparse(parsed));
 	//((lights = ft_get_inner(scene, "lights")) != NULL) ?
 	//	ft_get_lights(lights, ft_strlen(lights), e) :
 	//	ft_putstr("There are no lights in your scene file.\n");

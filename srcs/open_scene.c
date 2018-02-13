@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:16:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:57:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ size_t			ft_envtosetup(t_setup *setup)
 	t_bool		flag;
 
 	env = SETUP.env;
+	//while (env)
+	//{
+	//	if (env && ENVSTRUCT(env))
+	//	{
+	//		printf("name : %s\n", ENVSTRUCT(env)->name);
+	//		printf("value : %s\n", ENVSTRUCT(env)->value);
+	//	}
+	//	env = env->next;
+	//}
+	//env = SETUP.env;
 	while (env && ENVSTRUCT(env))
 	{
 		i = -1;
@@ -27,11 +37,7 @@ size_t			ft_envtosetup(t_setup *setup)
 		{
 			if (ft_strcmp(ENVSTRUCT(env)->name, OBJS->validobjs[i]) == 0) // ici permet de savoir si cet element est pris en charge
 			{
-				if (env && ENVSTRUCT(env))
-				{
-					printf("name : %s\n", ENVSTRUCT(env)->name);
-					printf("value : %s\n", ENVSTRUCT(env)->value);
-				}
+
 				flag = OK; // dans ce cas la le chainon est valide
 				if (OBJS->builtin[i].builtinfunc((void *)setup, &env) != OK) // ici on rentre dans la fonction de l'objet correspondant (par example pour name "sphere" on rentre dans la fonction ft_sphere
 					return (ERROR); // dans le cas ou cette structure est mal formatee (information qui manque etc)
@@ -39,7 +45,6 @@ size_t			ft_envtosetup(t_setup *setup)
 					env = env->next; // si c'est ok on passe au chainon suivant qui devra correspondre a un objet qui qui est pris en charge (cam, light, sphere etc.)
 			}
 		}
-
 		if (flag == ERROR) // ici dans le cas ou aucun objet correspondant
 			return (ERROR);
 	}
