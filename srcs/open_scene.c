@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 19:17:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 11:35:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ size_t			ft_open_scene(t_setup *setup)
 
 	lines = -1;
 	ft_args_to_fd(setup);
-	line = NULL;
+	file = NULL;
 	if (ft_open(FD, O_RDONLY, O_APPEND) != OK ) // permet de gerer cas d'erreur d'open, pas les droits etc
 		return (setup->error = FILE_ERROR);
 	while (get_next_line(FD->fd, &line))
@@ -73,7 +73,6 @@ size_t			ft_open_scene(t_setup *setup)
 		file = ft_strjoin(tmp, line);
 		free(tmp);
 	}
-	printf("file : %s\n", file);
 	// le fichier est bien stocke dans file et il faut le parser
 	ft_parse_scn(setup, file);
 	if ((SETUP.env = ft_envlist(file)) == NULL || ft_envtosetup(setup) != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures

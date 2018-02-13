@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 19:14:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/13 11:36:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		ft_parse_scn(t_setup *setup, char *file)
 	//char	*config;
 	if (!(scene = ft_get_inner(file, "scene")))
 		SETUP.error = SCN_ERROR;
-	printf("scene :\n%s\n", scene);
 	if ((cameras = ft_get_inner(scene, "cameras")) == NULL)
 		SETUP.error = CAM_ERROR;
 	printf("cameras :\n%s\n", cameras);
