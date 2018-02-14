@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 14:10:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:20:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ size_t			ft_light(void *a, t_list **list)
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARLIGHT);
 	while (LIGHT[NLIGHT].num_arg < (num_arg = (LIGHT[NLIGHT].type ? \
 				NVARLIGHT : NVARLIGHT - 2)) && env && (env = env->next))
-	{
 		ft_light_struct_pop(setup, env, flag);
-		printf("name light : %s\n", ENVSTRUCT(env)->name);
-	}
 	if (ft_checkifallset(flag, num_arg) != OK)
 		return (SETUP.error = LIGHT_ERROR);
 	NLIGHT++;

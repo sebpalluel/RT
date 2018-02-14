@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 14:18:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:35:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 		flag[3] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
+		flag[4] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.specular, \
 				ENVSTRUCT(env)->value);
 	SPHERE[NSPHERE].num_arg++;
 }

@@ -60,7 +60,7 @@
 			<radius> 3.12 </radius>
 			<material>
 				<color> 0, 0, 255 </color>
-				<diffuse> 1. </diffuse>
+				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
 		</sphere>
