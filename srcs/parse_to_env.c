@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:23:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:33:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void		ft_getplanes(t_list **env, char *obj_str)
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("planes"), NULL));
 		ft_getvaluetoenv(env, planes, "position");
-		ft_getvaluetoenv(env, planes, "radius");
+		ft_getvaluetoenv(env, planes, "normx");
+		ft_getvaluetoenv(env, planes, "normy");
+		ft_getvaluetoenv(env, planes, "normz");
 		ft_getmaterial(env, ft_getobjstr(planes, "material", 0));
 	}
 }
@@ -76,6 +78,7 @@ void		ft_getplanes(t_list **env, char *obj_str)
 void		ft_getobjects(t_list **env, char *obj_str)
 {
 	ft_getspheres(env, obj_str);
+	ft_getplanes(env, obj_str);
 }
 
 void		ft_getengine(t_list **env, char *eng_str)

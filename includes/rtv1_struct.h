@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:07:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:41:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_light
 {
 	t_vec3			pos;
 	t_mat			mat;
-	float			intensity;
+	double			intensity;
 	size_t			num_arg;
 }					t_light;
 
@@ -63,7 +63,7 @@ typedef struct		s_cam
 	t_vec3			plane_center;
 	t_vec3			plane_dirX;
 	t_vec3			plane_dirY;
-	float			focal_len;
+	double			focal_len;
 	size_t			num_arg;
 }					t_cam;
 
@@ -81,7 +81,7 @@ typedef struct		s_sphere
 {
 	t_vec3			pos;
 	t_mat			mat;
-	float			rad;
+	double			rad;
 	size_t			num_arg;
 }					t_sphere;
 
@@ -116,15 +116,15 @@ typedef struct		s_setup
 	size_t			height;
 	size_t			refr_max;
 	size_t			refl_max;
-	float			amb_light;
+	double			amb_light;
 	size_t			num_arg;
 	t_bool			ui; // afficher ou nom GUI
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*
 	size_t			cam_num;
 	int				scn_num;
-	float			move_step;
-	float			rot_step;
+	double			move_step;
+	double			rot_step;
 	int				ac;
 	char			*path;
 	int				key;

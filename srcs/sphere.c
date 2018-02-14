@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:04:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:44:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@ void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "postition") == 0)
 		flag[0] = ft_getvec3fromenv(&SPHERE[NSPHERE].pos, ENVSTRUCT(env)->value);
-	else if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[1] = ft_getfloatfromenv(&SPHERE[NSPHERE].rad, \
+	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
+		flag[1] = ft_getdoublefromenv(&SPHERE[NSPHERE].rad, \
 				ENVSTRUCT(env)->value);
-	else if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
+	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
 		flag[2] = ft_getcolfromenv(&SPHERE[NSPHERE].mat.col, \
+				ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
+		flag[3] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
+				ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
+		flag[4] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	SPHERE[NSPHERE].num_arg++;
 }

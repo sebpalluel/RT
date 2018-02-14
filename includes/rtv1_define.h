@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:13:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:44:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@
 # define PLANE			setup[0].objs->objdef.plane
 # define NPLANE			setup[0].objs->objdef.nplane
 # define PL_N			setup[0].objs->objdef.pl_n
-# define NVARPLANE		5
+# define NVARPLANE		7
 # define SPHERE			setup[0].objs->objdef.sphere
 # define NSPHERE		setup[0].objs->objdef.nsphere
 # define SPH_N			setup[0].objs->objdef.sph_n
-# define NVARSPHERE		3
+# define NVARSPHERE		5
 # define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
