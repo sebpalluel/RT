@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/13 17:32:25 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/14 16:02:00 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -218,7 +218,7 @@ SRC		=	$(MEMPATH)ft_memset.c\
 OBJS 	=	$(SRCS:.c=.o)
 
 CMP		=	gcc
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror -g -g3
 DEBUG_F	=	-g3 -fsanitize=address
 
 SRC := $(filter $(addprefix %, .c), $(SRC))

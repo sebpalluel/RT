@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 13:59:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:21:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
 
-# define SCN_PATH_0		"scenes/scene_0"
-# define SCN_PATH_1		"scenes/scene_1"
+# define SCN_PATH_0		"scenes/scene_0.xml"
+# define SCN_PATH_1		"scenes/scene_1.xml"
 # define SCN_PATH_2		"scenes/"
 # define SCN_PATH_3		"scenes/"
 # define SCN_PATH_4		"scenes/"

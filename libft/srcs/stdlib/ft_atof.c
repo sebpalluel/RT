@@ -6,28 +6,34 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 18:15:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 14:32:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:35:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		ft_atof(char *str)
+double ft_atof(const char *str)
 {
-	double	res;
-	double	res2;
-	char	*c;
-	int		len;
+	int			i;
+	int			x;
+	double		sign;
+	double		res;
 
-	c = (char *)str;
-	res = (double)ft_atoi(c);
-	while (*c && *c != '.')
-		c++;
-	if (*c == '.')
-		c++;
-	res2 = (double)ft_atoi(c);
-	len = ft_strlen(c);
-	while (len--)
-		res2 /= 10;
-	return (res + ((res > 0) ? res2 : -res2));
+	i = 0;
+	x = 0;
+	res = 0;
+	while (str[i] == ' ')
+		i++;
+	sign = (str[i] == '-' ? -1 : 1 );
+	i += ((str[i] == '-' || str[i] == '+') ? 1 : 0);
+	while (str[i] && str[i] == ' ')
+		i++;
+	while (str[i] && str[i] != '.' && str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + (str[i++] - '0');
+	i += ((str[i] == '.') ? 1 : 0);
+	while (str[i + x] && (str[i + x] >= '0' && str[i + x] <= '9'))
+		res = res * 10 + (str[i + x++] - '0');
+	while (x-- > 0)
+		res /= 10;
+	return (res * sign);
 }
