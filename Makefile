@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/14 16:01:40 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/14 19:10:07 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -22,7 +22,7 @@ CMP			=	gcc
 
 DEBUG_F		=	-g3 -fsanitize=address
 
-FLAGS		=	-Wall -Wextra -Werror -g -g3
+FLAGS		=	-Wall -Wextra -Werror
 
 OBJDIR		=	./obj/
 INCDIR		=	./includes/

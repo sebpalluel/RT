@@ -1,22 +1,19 @@
-cam=
-cam_pos=0.0, 0.0, 10.
-cam_dir=0.0, 0., -1.0
-
-light=
-light_pos=8.0, 0.0, 1.0
-light_intensity=1.0
-light_col=255, 255, 255
-
 sphere=
-sphere_pos=0.9, 1.4, -6.2
-sphere_rad=3.12
+sphere_pos=2, 2, 4
+sphere_rad=1
 sphere_col=255, 0, 0
 
 sphere=
-sphere_pos=1.9, 3.4, -3.2
-sphere_rad=3.12
-sphere_col=255, 0, 0
+sphere_pos=-4, -2, 5
+sphere_rad=1
+sphere_col=0, 255, 0
 
-cam=
-cam_pos=-8.0, 0.3, 1.
-cam_dir=0.0, 0.0., -1.0
+sphere=
+sphere_pos=-2, -8, -1
+sphere_rad=1
+sphere_col=0, 0, 255
+
+sphere=
+sphere_pos=-2, -8, -0.5
+sphere_rad=1
+sphere_col=255, 0, 255

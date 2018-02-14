@@ -47,7 +47,7 @@ t_objsparam				*ft_objsparam(void)
 	if (!(objs = ft_memalloc(sizeof(t_objsparam) * 2 + 1)))
 		return (NULL);
 	objs[SPH].paramfunc = ft_sphere_param;
-	objs[PLN].paramfunc = ft_plane_param;
+	// objs[PLN].paramfunc = ft_plane_param;
 	return (objs);
 }
 

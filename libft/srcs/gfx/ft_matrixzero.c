@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 13:40:30 by psebasti          #+#    #+#             */
-/*   Updated: 2017/10/09 15:38:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:24:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double		**ft_matrixzero(int size)
 	int		x;
 	int		y;
 
-	mat = (double**)malloc(sizeof(double*) * size + 1);
+	mat = (double**)malloc(sizeof(double*) * (size + 1));
 	if (mat == NULL)
 		return (NULL);
 	x = -1;

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 19:00:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:19:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 
 # include "../libft/includes/libft.h"
 
-# define WIDTH			1200
-# define HEIGHT			900
+#define TRUE 1
+#define FALSE 0 //parce que if FALSE -> pas execute
+
+# define WIDTH			1280
+# define HEIGHT			720
 # define RATIO			WIDTH / HEIGHT
-# define FOV			(45 * M_PI) / 180
+# define FOV        45
+# define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define NUM_THREAD		1
@@ -33,6 +37,7 @@
 # define STATE_OPEN		4
 # define STATE_DRAW		5
 # define STATE_CAM		6
+# define STATE_STOP		7
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
 # define ENG_ERROR_S	"error: engine is not in the correct format"

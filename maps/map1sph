@@ -1,0 +1,4 @@
+sphere=
+sphere_pos=0, 0, 5
+sphere_rad=1
+sphere_col=255, 0, 0
