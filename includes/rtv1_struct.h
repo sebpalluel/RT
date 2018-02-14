@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:12:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:07:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,17 @@ typedef struct		s_env
 	char			*value;
 }					t_env;
 
+typedef struct		s_mat
+{
+	t_color			col;
+	double			diffuse;
+	double			specular;
+}					t_mat;
+
 typedef struct		s_light
 {
 	t_vec3			pos;
-	t_color			col;
+	t_mat			mat;
 	float			intensity;
 	size_t			num_arg;
 }					t_light;
@@ -66,15 +73,15 @@ typedef struct		s_plane
 	t_vec3			normx;
 	t_vec3			normy;
 	t_vec3			normz;
-	t_color			col;
+	t_mat			mat;
 	size_t			num_arg;
 }					t_plane;
 
 typedef struct		s_sphere
 {
 	t_vec3			pos;
+	t_mat			mat;
 	float			rad;
-	t_color			col;
 	size_t			num_arg;
 }					t_sphere;
 
@@ -122,7 +129,7 @@ typedef struct		s_setup
 	char			*path;
 	int				key;
 	char			*str;
-	t_color			background;
+	t_mat			background;
 	t_mlx			*mlx;
 	t_img			*img;
 	t_list			*env;

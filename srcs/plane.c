@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 15:59:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:09:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			ft_plane_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "plane_normz") == 0)
 		flag[3] = ft_getvec3fromenv(&PLANE[NPLANE].normz, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "plane_col") == 0)
-		flag[4] = ft_getcolfromenv(&PLANE[NPLANE].col, ENVSTRUCT(env)->value);
+		flag[4] = ft_getcolfromenv(&PLANE[NPLANE].mat.col, ENVSTRUCT(env)->value);
 	PLANE[NPLANE].num_arg++;
 }
 

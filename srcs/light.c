@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 17:52:43 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:04:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_light_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 		flag[1] = ft_getfloatfromenv(&LIGHT[NLIGHT].intensity, \
 				ENVSTRUCT(env)->value);
 	else if (ft_strcmp(ENVSTRUCT(env)->name, "light_col") == 0)
-		flag[2] = ft_getcolfromenv(&LIGHT[NLIGHT].col, ENVSTRUCT(env)->value);
+		flag[2] = ft_getcolfromenv(&LIGHT[NLIGHT].mat.col, ENVSTRUCT(env)->value);
 	LIGHT[NLIGHT].num_arg++;
 }
 

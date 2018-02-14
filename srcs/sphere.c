@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/10 18:46:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:04:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "sphere_pos") == 0)
+	if (ft_strcmp(ENVSTRUCT(env)->name, "postition") == 0)
 		flag[0] = ft_getvec3fromenv(&SPHERE[NSPHERE].pos, ENVSTRUCT(env)->value);
-	else if (ft_strcmp(ENVSTRUCT(env)->name, "sphere_rad") == 0)
+	else if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
 		flag[1] = ft_getfloatfromenv(&SPHERE[NSPHERE].rad, \
 				ENVSTRUCT(env)->value);
-	else if (ft_strcmp(ENVSTRUCT(env)->name, "sphere_col") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE[NSPHERE].col, ENVSTRUCT(env)->value);
+	else if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
+		flag[2] = ft_getcolfromenv(&SPHERE[NSPHERE].mat.col, \
+				ENVSTRUCT(env)->value);
 	SPHERE[NSPHERE].num_arg++;
 }
 

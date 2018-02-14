@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 16:11:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 11:07:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ static void		ft_primray(t_setup *setup, t_ray *ray)
 	ft_resetchooseobj(setup); // reset tous les index
 }
 
-t_color			*ft_getobjclr(t_setup *setup, t_ray ray)
+t_mat			*ft_getobjmat(t_setup *setup, t_ray ray)
 {
 	if (ray.obj == SPH)
-		return (&OBJDEF.sphere[ray.objn].col);
+		return (&OBJDEF.sphere[ray.objn].mat);
 	if (ray.obj == PLN)
-		return (&OBJDEF.plane[ray.objn].col);
+		return (&OBJDEF.plane[ray.objn].mat);
 	return (&SETUP.background);
 }
 
@@ -113,8 +113,8 @@ static t_color	*ft_raytracecol(t_setup *setup, t_ray ray, t_color *col)
 {
 	ft_primray(setup, &ray); // rayon lance a partir du point d'origine et qui permet de savoir si rayon hit et dans le cas echeant la distance et l'objet qui correspond
 	if (ray.hit == ERROR)
-		return (&SETUP.background);
-	return (col = ft_getobjclr(setup, ray)); // permet de retourner la couleur de l'objet correspondant
+		return (&SETUP.background.col);
+	return (col = &ft_getobjmat(setup, ray)->col); // permet de retourner la couleur de l'objet correspondant
 }
 
 int			ft_raytracing(t_setup *setup)
