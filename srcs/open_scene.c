@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 14:33:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:37:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t			ft_envtosetup(t_setup *setup)
 	t_bool		flag;
 
 	env = SETUP.env;
-	//while (env)
+	//while (env) // can be used to see all the linked list for eventual debug
 	//{
 	//	if (env && ENVSTRUCT(env))
 	//	{
