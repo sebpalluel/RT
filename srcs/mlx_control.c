@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/12 14:52:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:55:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,41 +61,7 @@ void		ft_mlx_control_key(t_setup *setup)
 	//if (SETUP.key == M_KEY)
 	//	MAP->draw_map = !MAP->draw_map ? 1 : 0;
 }
-//
-//static int	ft_sky_apply(t_setup *setup, char *path, int num)
-//{
-//	if (SKY)
-//		ft_imgdel(SKY, MLX->mlx_ptr);
-//	if ((SKY = ft_xmpnew(MLX->mlx_ptr, path, SETUP.width, SETUP.height)))
-//	{
-//		SETUP.sky_num = num;
-//		return (OK);
-//	}
-//	return (ERROR);
-//}
-//
-//int			ft_cam_select(t_setup *setup)
-//{
-//	int		err;
-//
-//	err = OK;
-//	if (SETUP.key == ONE && SETUP.sky_num != 1)
-//		err = ft_sky_apply(setup, SKY_PATH_1, 1);
-//	else if (SETUP.key == TWO && SETUP.sky_num != 2)
-//		err = ft_sky_apply(setup, SKY_PATH_2, 2);
-//	else if (SETUP.key == THREE && SETUP.sky_num != 3)
-//		err = ft_sky_apply(setup, SKY_PATH_3, 3);
-//	else if (SETUP.key == FOUR && SETUP.sky_num != 4)
-//		err = ft_sky_apply(setup, SKY_PATH_4, 4);
-//	else if (SETUP.key == FIVE && SETUP.sky_num != 5)
-//		err = ft_sky_apply(setup, SKY_PATH_5, 5);
-//	else if (SETUP.key == SIX && SETUP.sky_num != 0)
-//		err = ft_sky_apply(setup, SKY_PATH_0, 0);
-//	if (err == OK)
-//		return (OK);
-//	return (ERROR);
-//}
-//
+
 //void		ft_mlx_control(t_setup *setup)
 //{
 //	int		x;

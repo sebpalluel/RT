@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:07:24 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:56:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ t_ray		ft_raycalcforpix(t_setup *setup, t_pix pix) {
 	ray.hit = ERROR;
 	return (ray);
 }
-
-//Ray ray_makeForPixel(const Camera *c, size_t x, size_t y) {
-//    double dy = 1.0;
-//    double dx = 1.0;
-//    double py = (- c->height / 2.0) + dy * ((double)y + 0.5);
-//    double px = (- c->width / 2.0) + dx * ((double)x + 0.5);
-//    Vector3 p = vec3_add3(c->planeCenter,
-//                          vec3_mult(c->planeDirectionX, px),
-//                          vec3_mult(c->planeDirectionY, py));
-//    Vector3 u_r = vec3_unit(vec3_sub(p, c->position));
-//    return ray_make(c->position, u_r);
-//}
 
 int				ft_chooseobj(t_setup *setup, size_t *i)
 {

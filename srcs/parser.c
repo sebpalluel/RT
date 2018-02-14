@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 14:18:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:55:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ static char	*ft_extractobj(size_t len, char *from_begin, char *from_end)
 	}
 	return (NULL);
 }
-
-
-
-//size_t		ft_getobjstartnum(char **from_begin, char *str, char *objstart)
-//{
-//	if (!*from_begin)
-//		*from_begin = ft_strstr(str, objstart);
-//	else
-//		*from_begin = ft_strstr(*from_begin, objstart);
-//	if (!*from_begin)
-//		return (ERROR);
-//
-//	return (OK);
-//}
 
 char		*ft_getobjstr(char *str, char *obj, int num)
 {
@@ -96,12 +82,4 @@ t_list		*ft_parse_scn(t_setup *setup, char *file)
 	if (SETUP.error != OK)
 		return (NULL);
 	return (ft_envlistfromparse(parsed));
-	//((lights = ft_get_inner(scene, "lights")) != NULL) ?
-	//	ft_get_lights(lights, ft_strlen(lights), e) :
-	//	ft_putstr("There are no lights in your scene file.\n");
-	//ft_set_config(config, e);
-	//ft_set_camera(camera, e);
-	//ft_set_objects(objects, e);
-	//ft_free_all_dat_stuff((char **[5]){&lights, &scene, &camera, &objects,
-	//										&config});
 }
