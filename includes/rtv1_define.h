@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:44:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:59:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@
 # define NVARCAM		3
 # define LIGHT			setup[0].objs->light
 # define NLIGHT			setup[0].objs->nlight
-# define NVARLIGHT		3
+# define NVARLIGHT		8
 # define OBJDEF			setup[0].objs->objdef
 # define PLANE			setup[0].objs->objdef.plane
 # define NPLANE			setup[0].objs->objdef.nplane
 # define PL_N			setup[0].objs->objdef.pl_n
-# define NVARPLANE		7
+# define NVARPLANE		5
 # define SPHERE			setup[0].objs->objdef.sphere
 # define NSPHERE		setup[0].objs->objdef.nsphere
 # define SPH_N			setup[0].objs->objdef.sph_n

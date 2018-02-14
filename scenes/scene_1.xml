@@ -25,12 +25,22 @@
 	<lights>
 
 		<light>
+			<type> 0 </type>
 			<position> 0.0, 3., 0.0 </position>
-			<direction> 0.0, 0.0, 1.0 </direction>
 			<color> 255, 255, 255 </color>
 			<intensity> 1. </intensity>
 			<radius> 20. </radius>
 			<fallof> 3. </fallof>
+		</light>
+		<light>
+			<type> 1 </type>
+			<position> 0.0, 3., 0.0 </position>
+			<color> 255, 255, 255 </color>
+			<intensity> 1. </intensity>
+			<radius> 20. </radius>
+			<fallof> 3. </fallof>
+			<focal_len> 1. </focal_len>
+			<direction> 0.0, 0.0, 1.0 </direction>
 		</light>
 	</lights>
 
@@ -38,9 +48,7 @@
 
 		<plane>
 			<position> 4., -10.4, -6.2 </position>
-			<normx> 0.8, 0.01, 0.0 </normx>
-			<normy> 0.01, -0.99, 0.0 </normy>
-			<normz> 0.0, 0.0, -1. </normz>
+			<norm> 0.8, 0.01, 0.0 </normx>
 			<material>
 				<color> 0, 255, 255 </color>
 				<diffuse> 1. </diffuse>
@@ -58,9 +66,7 @@
 		</sphere>
 		<plane>
 			<position> 4., -10.4, -6.2 </position>
-			<normx> 0.8, 0.01, 0.0 </normx>
-			<normy> 0.01, -0.99, 0.0 </normy>
-			<normz> 0.0, 0.0, -1. </normz>
+			<norm> 0.8, 0.01, 0.0 </normx>
 			<material>
 				<color> 0, 255, 255 </color>
 				<diffuse> 1. </diffuse>

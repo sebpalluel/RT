@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:41:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:59:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,14 @@ typedef struct		s_mat
 
 typedef struct		s_light
 {
+	size_t			type;
 	t_vec3			pos;
-	t_mat			mat;
+	t_vec3			dir;
+	t_color			col;
 	double			intensity;
+	double			radius;
+	double			fallof;
+	double			focal_len;
 	size_t			num_arg;
 }					t_light;
 
@@ -70,9 +75,7 @@ typedef struct		s_cam
 typedef struct		s_plane
 {
 	t_vec3			pos;
-	t_vec3			normx;
-	t_vec3			normy;
-	t_vec3			normz;
+	t_vec3			norm;
 	t_mat			mat;
 	size_t			num_arg;
 }					t_plane;

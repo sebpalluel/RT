@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:20:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:18:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_list		*ft_envlistfromparse(char **parsed)
 	ft_getengine(&env, ENG_S);
 	ft_getcams(&env, CAM_S);
 	ft_getobjects(&env, OBJ_S);
-
+	ft_getlights(&env, LGT_S);
 	return (env);
 }
 

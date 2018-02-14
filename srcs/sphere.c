@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:44:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:18:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "postition") == 0)
+	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
 		flag[0] = ft_getvec3fromenv(&SPHERE[NSPHERE].pos, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
 		flag[1] = ft_getdoublefromenv(&SPHERE[NSPHERE].rad, \

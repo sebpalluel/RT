@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:41:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:44:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_bool			ft_getcolfromenv(t_color *col, char *value)
 	return (OK);
 }
 
-t_bool			ft_getfloatfromenv(double *val, char *value)
+t_bool			ft_getdoublefromenv(double *val, char *value)
 {
 	*val = ft_atof(value);
 	return (OK);

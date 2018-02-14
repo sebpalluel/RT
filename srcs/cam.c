@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:57:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:44:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		ft_cam_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 	else if (ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
 		flag[1] = ft_getvec3fromenv(&CAM[NCAM].dir, ENVSTRUCT(env)->value);
 	else if (ft_strcmp(ENVSTRUCT(env)->name, "focal_len") == 0)
-		flag[2] = ft_getfloatfromenv(&CAM[NCAM].focal_len, \
+		flag[2] = ft_getdoublefromenv(&CAM[NCAM].focal_len, \
 				ENVSTRUCT(env)->value);
 	CAM[NCAM].num_arg++;
 }

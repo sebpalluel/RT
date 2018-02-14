@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 11:38:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:18:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_list		*ft_parse_scn(t_setup *setup, char *file);
 void		ft_getengine(t_list **env, char *eng_str);
 void		ft_getcams(t_list **env, char *cam_str);
 void		ft_getobjects(t_list **env, char *obj_str);
+void		ft_getlights(t_list **env, char *light_str);
 size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
 size_t		ft_select_scene(t_setup *setup);

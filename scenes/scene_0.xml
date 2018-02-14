@@ -25,12 +25,22 @@
 	<lights>
 
 		<light>
+			<type> 0 </type>
 			<position> 0.0, 3., 0.0 </position>
-			<direction> 0.0, 0.0, 1.0 </direction>
 			<color> 255, 255, 255 </color>
 			<intensity> 1. </intensity>
 			<radius> 20. </radius>
 			<fallof> 3. </fallof>
+		</light>
+		<light>
+			<type> 1 </type>
+			<position> 0.0, 3., 0.0 </position>
+			<color> 255, 255, 255 </color>
+			<intensity> 1. </intensity>
+			<radius> 20. </radius>
+			<fallof> 3. </fallof>
+			<focal_len> 1. </focal_len>
+			<direction> 0.0, 0.0, 1.0 </direction>
 		</light>
 	</lights>
 

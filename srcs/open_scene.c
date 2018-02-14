@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/13 18:57:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:19:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ size_t			ft_open_scene(t_setup *setup)
 	// le fichier est bien stocke dans file et il faut le parser
 	if (!(SETUP.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
 		return (ERROR);
+	if (NCAM == 0)
+		return (SETUP.error = CAM_ERROR);
 	// appartir de la, on a le setup qui est entierement peuple et aucune erreur
 	OBJDEF.objscount = ft_getobjscount(setup); // permet de savoir combien d'objet le raytracer va devoir traiter
 	SETUP.mode = STATE_DRAW; // on peut render !!
