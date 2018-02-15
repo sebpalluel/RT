@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:17:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:35:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ char		*ft_getobjstr(char *str, char *obj, int num)
 	return (objstr);
 }
 
-t_list		*ft_envlistfromparse(char **parsed)
+static t_list	*ft_envlistfromparse(t_setup *setup, char **parsed)
 {
-	t_list	*env;
+	t_list		*env;
 
 	env = NULL;
 	ft_getengine(&env, ENG_S);
 	ft_getcams(&env, CAM_S);
 	ft_getobjects(&env, OBJ_S);
-	ft_getlights(&env, LGT_S);
+	ft_getlights(setup, &env, LGT_S);
 	return (env);
 }
 
@@ -75,11 +75,10 @@ t_list		*ft_parse_scn(t_setup *setup, char *file)
 		SETUP.error = ENG_ERROR;
 	if (SETUP.error == OK && !(CAM_S = ft_getobjstr(scene, "cameras", 0)))
 		SETUP.error = CAM_ERROR;
-	if (SETUP.error == OK && !(LGT_S = ft_getobjstr(scene, "lights", 0)))
-		SETUP.error = LIGHT_ERROR;
+	LGT_S = ft_getobjstr(scene, "lights", 0);
 	if (SETUP.error == OK && !(OBJ_S = ft_getobjstr(scene, "objects", 0)))
 		SETUP.error = OBJ_ERROR;
 	if (SETUP.error != OK)
 		return (NULL);
-	return (ft_envlistfromparse(parsed));
+	return (ft_envlistfromparse(setup, parsed));
 }

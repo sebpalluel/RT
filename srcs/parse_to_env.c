@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:55:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:33:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void		ft_getmaterial(t_list **env, char *mat_str)
 
 }
 
-void		ft_getlights(t_list **env, char *light_str)
+void		ft_getlights(t_setup *setup, t_list **env, char *light_str)
 {
 	char	*light;
 	int		index;
+	t_bool	no_lght;
 
 	index = 0;
+	no_lght = (light_str != NULL ? ERROR : OK);
 	while ((light = ft_getobjstr(light_str, "light", index++)))
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("light"), NULL));
@@ -45,7 +47,10 @@ void		ft_getlights(t_list **env, char *light_str)
 		ft_getvaluetoenv(env, light, "fallof");
 		ft_getvaluetoenv(env, light, "focal_len");
 		ft_getvaluetoenv(env, light, "direction");
+		no_lght = OK;
 	}
+	if (no_lght != OK)
+		SETUP.error = LIGHT_ERROR;
 }
 
 void		ft_getcams(t_list **env, char *cam_str)
