@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:15:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:37:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,23 @@ int			ft_expose(t_setup *setup)
 	int		ret;
 
 	ret = OK;
-	if (SETUP.mode != STATE_STOP)
-		ft_imgclean(IMG, SETUP.width, SETUP.height);
+	ft_imgclean(&IMG[UI], S_WIDTH[UI], S_HEIGHT[UI]);
+	if (SETUP.mode != STATE_STOP && WIN)
+		ft_imgclean(&IMG[WIN], S_WIDTH[WIN], S_HEIGHT[WIN]);
 	if (ret == OK && SETUP.mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
 		if ((ret = ft_raytracing(setup)) == ERROR)
 			SETUP.error = ENG_ERROR;
-		mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->image, 0, 0);
+		mlx_put_image_to_window(MLX->mlx_ptr, MLX[WIN].win_ptr, \
+				IMG[WIN].image, 0, 0);
 		SETUP.mode = STATE_STOP;
+		printf("drawn\n");
 	}
-		//if (!SETUP.ui)
-			ft_mlx_control_key(setup);
+	//if (!SETUP.ui)
+	ft_mlx_control_key(setup);
 	if (ret != OK)
 		ft_setup_mode(&SETUP, 0);
-	ft_mlx_process(setup);
+	printf("re process\n");
 	return (0);
 }
 
@@ -39,6 +42,7 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 	int		ret;
 
 	SETUP.key = keycode;
+	printf("key %d\n", keycode);
 	ret = OK; // je part du principe que tout est OK pour detecter erreur eventuelle
 	if (SETUP.key == ENTER && SETUP.mode == STATE_START)
 		SETUP.mode = (SETUP.ac > 1) ? STATE_OPEN : STATE_SELECT; // Si arg va direct lancer parsing de la map sinon selection de map
@@ -64,7 +68,8 @@ void		ft_mlx_process(t_setup *setup)
 	if (SETUP.mode == STATE_START)
 		ft_start(setup); // juste UI, taper ENTER
 	mlx_hook(MLX->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hook, setup);
-	mlx_hook(MLX->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, ft_quit, setup);
+	mlx_hook(MLX->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
+			ft_quit, setup);
 	mlx_expose_hook(MLX->win_ptr, ft_expose, setup);
 	mlx_loop(MLX->mlx_ptr);
 }

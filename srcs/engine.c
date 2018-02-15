@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:17:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:52:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "width") == 0)
-		flag[0] = ft_getsize_tfromenv(&SETUP.width, ENVSTRUCT(env)->value);
+		flag[0] = ft_getsize_tfromenv(&S_WIDTH[1], ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "height") == 0)
-		flag[1] = ft_getsize_tfromenv(&SETUP.height, ENVSTRUCT(env)->value);
+		flag[1] = ft_getsize_tfromenv(&S_HEIGHT[1], ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "refr_max") == 0)
 		flag[2] = ft_getsize_tfromenv(&SETUP.refr_max, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "refl_max") == 0)
@@ -27,15 +27,15 @@ void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 	SETUP.num_arg++;
 }
 
-static	void	ft_delete_create_window(t_setup *setup)
+static void		ft_create_new_window(t_setup *setup)
 {
-	mlx_destroy_window(MLX->mlx_ptr, MLX->win_ptr);
-	mlx_destroy_image(MLX->mlx_ptr, IMG->image);
-	MLX->win_ptr = mlx_new_window(MLX->mlx_ptr, SETUP.width, SETUP.height, \
+	MLX[WIN].win_ptr = mlx_new_window(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN], \
 			SETUP.path);
-	IMG->image = mlx_new_image(MLX->mlx_ptr, SETUP.width, SETUP.height);
-	IMG->image_addr = mlx_get_data_addr(IMG->image, \
-			&(IMG->bbp), &(IMG->size_x), &(IMG->endian));
+	IMG[WIN].image = mlx_new_image(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
+	IMG[WIN].image_addr = mlx_get_data_addr(IMG[WIN].image, \
+			&(IMG[WIN].bbp), &(IMG[WIN].size_x), &(IMG[WIN].endian));
+	printf("create : image_addr %p. image %p, bbp %d, size_x %d, endian %d\n",\
+			IMG[WIN].image_addr, IMG[WIN].image, IMG[WIN].bbp, IMG[WIN].size_x, IMG[WIN].endian);
 }
 
 size_t			ft_engine(void *a, t_list **list)
@@ -43,26 +43,24 @@ size_t			ft_engine(void *a, t_list **list)
 	t_setup		*setup;
 	t_list		*env;
 	t_bool		*flag;
-	size_t		w_h_value[2];
 
 	setup = (t_setup *)a;
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARENG)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARENG);
-	w_h_value[0] = SETUP.width;
-	w_h_value[1] = SETUP.height;
 	while (SETUP.num_arg < NVARENG && env && (env = env->next))
 		ft_engine_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARENG) != OK)
 		return (SETUP.error = ENG_ERROR);
-	if (SETUP.width != w_h_value[0] || SETUP.height != w_h_value[1])
+	WIN++;
+	if (S_WIDTH[WIN] >= 100 && S_WIDTH[WIN] <= 4000 && \
+			S_HEIGHT[WIN] >= 100 && S_HEIGHT[WIN] <= 4000)
+		ft_create_new_window(setup);
+	else
 	{
-		if (SETUP.width >= 100 && SETUP.width <= 4000 && \
-				SETUP.height >= 100 && SETUP.height <= 4000)
-			ft_delete_create_window(setup);
-		else
-			SETUP.error = DIM_ERROR;
+		WIN--;
+		SETUP.error = DIM_ERROR;
 	}
 	*list = env;
 	return (OK);

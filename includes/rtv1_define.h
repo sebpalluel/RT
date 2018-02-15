@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:23:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:41:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define NUM_THREAD		1
 # define NUM_MAP		8
 # define NUM_OBJS		5
+# define MAX_WINDOW		5
 # define AMP			1.3
 
 # define STATE_RUN		0
@@ -64,6 +65,8 @@
 # define OBJ_S			parsed[3]
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
+# define UI				0 // Window 0, UI
+# define WIN			setup[0].window // Window 1, 2, 3, 4, display the scene
 # define NVARENG		5
 # define S_WIDTH		setup[0].width
 # define S_HEIGHT		setup[0].height

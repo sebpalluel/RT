@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 19:09:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:16:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,13 @@ typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 
 
 typedef struct		s_setup
 {
-	size_t			width;
-	size_t			height;
+	size_t			*width;
+	size_t			*height;
 	size_t			refr_max;
 	size_t			refl_max;
 	double			amb_light;
 	size_t			num_arg;
+	size_t			window;
 	t_bool			ui; // afficher ou nom GUI
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*
@@ -135,6 +136,7 @@ typedef struct		s_setup
 	char			*str;
 	t_mat			background;
 	t_mlx			*mlx;
+	void			*mlx_ptr;
 	t_img			*img;
 	t_list			*env;
 	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)

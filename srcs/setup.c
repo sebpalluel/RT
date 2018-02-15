@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:19:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:18:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int				ft_setup_menu(t_setup *setup)
 {
 	size_t		xy[2];
 
-	xy[0] = SETUP.width / 2 - SETUP.width / 14;
-	xy[1] = SETUP.height / 2 - SETUP.height / 10;
+	xy[0] = S_WIDTH[0] / 2 - S_WIDTH[0] / 14;
+	xy[1] = S_HEIGHT[0] / 2 - S_HEIGHT[0] / 10;
 	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->image, 0, 0);
 	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1]\
 			, 0x00611DE9, CHOOSE_STR);
@@ -37,8 +37,8 @@ void			ft_start(t_setup *setup)
 {
 	size_t		xy[2];
 
-	xy[0] = SETUP.width / 2 - SETUP.width / 14;
-	xy[1] = SETUP.height / 2 - SETUP.height / 10;
+	xy[0] = S_WIDTH[0] / 2 - S_WIDTH[0] / 14;
+	xy[1] = S_HEIGHT[0] / 2 - S_HEIGHT[0] / 10;
 	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1], \
 			0xFFFFFF, START_STR);
 	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1] + 30, \
@@ -57,12 +57,33 @@ static size_t	ft_alloc_objs(t_setup *setup) // alloue chaque objets
 	return (OK); // a ce moment tout est alloue, SETUP completement ready
 }
 
+static size_t	ft_init_mlx_img(t_setup *setup)
+{
+	if (!(MLX = (t_mlx*)malloc(sizeof(t_mlx) * MAX_WINDOW)))
+		return (ERROR);
+	MLX->mlx_ptr = mlx_init();
+	MLX->win_ptr = mlx_new_window(MLX->mlx_ptr, S_WIDTH[0], S_HEIGHT[0], \
+			"rtv1 GUI");
+	if (!(IMG = (t_img *)malloc(sizeof(t_img) * MAX_WINDOW)))
+		return (ERROR);
+	if ((IMG[0].image = mlx_new_image(MLX->mlx_ptr, S_WIDTH[0], \
+					S_HEIGHT[0])))
+		IMG[0].image_addr = mlx_get_data_addr(IMG[0].image, \
+				&(IMG[0].bbp), &(IMG[0].size_x), &(IMG[0].endian));
+	else
+		return (ERROR);
+	return (OK);	
+}
+
 static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des racourcis sur la structure setup
 {
-	SETUP.width = WIDTH;
-	SETUP.height = HEIGHT;
-	if (SETUP.width < 100 || SETUP.width > 4000 || \
-			SETUP.height < 100 || SETUP.height > 4000)
+	if (!(SETUP.width = ft_memalloc(sizeof(size_t *) * MAX_WINDOW)) || \
+			!(SETUP.height = ft_memalloc(sizeof(size_t *) * MAX_WINDOW)))
+		return (ERROR);
+	S_WIDTH[0] = WIDTH;
+	S_HEIGHT[0] = HEIGHT;
+	if (S_WIDTH[0] < 100 || S_WIDTH[0] > 4000 || \
+			S_HEIGHT[0] < 100 || S_HEIGHT[0] > 4000)
 		return (SETUP.error = DIM_ERROR);
 	SETUP.move_step = MOVE_STEP;
 	SETUP.rot_step = ROT_STEP;
@@ -70,8 +91,9 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 	OBJS->validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
 	OBJS->builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
 	OBJS->param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
-	MLX = ft_initwindow("rtv1", SETUP.width, SETUP.height);
-	IMG = ft_imgnew(MLX->mlx_ptr, SETUP.width, SETUP.height);
+	//MLX = ft_initwindow("rtv1", S_WIDTH[0], S_HEIGHT[0]);
+	//IMG = ft_imgnew(MLX->mlx_ptr, S_WIDTH[0], S_HEIGHT[0]);
+	ft_init_mlx_img(&SETUP);
 	FD = (t_fd *)ft_memalloc(sizeof(t_fd));
 	if (!OBJS->validobjs || !OBJS->builtin || !OBJS->param || !MLX || !IMG \
 			|| !FD || !OBJS || ft_alloc_objs(setup) != OK) // verifie les mallocs precedent et va initialiser tous les objets

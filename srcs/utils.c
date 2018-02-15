@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:56:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:14:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,21 @@ void			ft_put_pixel(t_setup *setup, int x, int y, int color)
 {
 	int			*tmp;
 	size_t		index;
+	static t_bool one = OK;
 
-	if (y >= (int)setup->height || x >= (int)setup->width || x < 0 || y < 0)
+	if (y >= (int)S_HEIGHT[WIN] || x >= (int)S_WIDTH[WIN] || x < 0 || y < 0)
 		return ;
-	index = (y * setup->width) * (IMG->bbp >> 3) \
-			+ x * (IMG->bbp >> 3);
-	tmp = (int *)&IMG->image_addr[index];
+	index = (y * S_HEIGHT[WIN]) * (IMG[WIN].bbp >> 3) \
+			+ x * (IMG[WIN].bbp >> 3);
+	tmp = (int *)&IMG[WIN].image_addr[index];
+	if (one == OK)
+	{
+		printf("draw : image_addr %p. image %p, bbp %d, size_x %d, endian %d\n",\
+				IMG[WIN].image_addr, IMG[WIN].image, IMG[WIN].bbp, IMG[WIN].size_x, IMG[WIN].endian);
+		printf("UI : image_addr %p. image %p, bbp %d, size_x %d, endian %d\n",\
+				IMG[UI].image_addr, IMG[UI].image, IMG[UI].bbp, IMG[UI].size_x, IMG[UI].endian);
+		one = ERROR;
+	}
 	*tmp = color;
 }
 

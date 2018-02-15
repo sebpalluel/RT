@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 19:22:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:51:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_ray		ft_raycalcforpix(t_setup *setup, t_pix pix) {
 	t_vec3	p;
 	t_ray	ray;
 
-	py = (-(int)SETUP.height / 2.0) + 1. * ((double)pix.y + 0.5);
-	px = (-(int)SETUP.width / 2.0) + 1. * ((double)pix.x + 0.5);
+	py = (-(int)S_HEIGHT[1] / 2.0) + 1. * ((double)pix.y + 0.5);
+	px = (-(int)S_WIDTH[1] / 2.0) + 1. * ((double)pix.x + 0.5);
 	p = ft_vec3add3(CAM[CAM_N].plane_center, \
 			ft_vec3sop_r(CAM[CAM_N].plane_dirX, px, '*'), \
 			ft_vec3sop_r(CAM[CAM_N].plane_dirY, py, '*'));
@@ -353,18 +353,18 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 	multVecMatrix(&orig, &ray.orig, camToWorld);
 	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	pix.y = -1;
-	while (++pix.y < (int)SETUP.height)
+	while (++pix.y < (int)S_HEIGHT[1])
 	{
 		pix.x = -1;
-		while (++pix.x < (int)SETUP.width)
+		while (++pix.x < (int)S_WIDTH[1])
 		{
 			float scale = tan(DEG2RAD((FOV * 0.5)));
-    	float imageAspectRatio = SETUP.width / (float)SETUP.height;
-			float x = (2 * (pix.x + 0.5) / (float)SETUP.width - 1) * imageAspectRatio * scale;
-      float y = (1 - 2 * (pix.y + 0.5) / (float)SETUP.height) * scale;
+    	float imageAspectRatio = S_WIDTH[1] / (float)S_HEIGHT[1];
+			float x = (2 * (pix.x + 0.5) / (float)S_WIDTH[1] - 1) * imageAspectRatio * scale;
+      float y = (1 - 2 * (pix.y + 0.5) / (float)S_HEIGHT[1]) * scale;
 			// MAYA
-			// float x = (2 * (pix.y + 0.5) / (float)SETUP.width - 1) * scale;
-      // float y = (1 - 2 * (pix.x + 0.5) / (float)SETUP.height) * scale * 1 / imageAspectRatio;
+			// float x = (2 * (pix.y + 0.5) / (float)S_WIDTH[1] - 1) * scale;
+      // float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, camToWorld);
 			ft_vec3normalize(&ray.dir);
