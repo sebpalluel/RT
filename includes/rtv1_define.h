@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 19:42:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:20:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
+# define DIM_ERROR_S	"error: dim is not in the correct format [100;4000]"
 # define FILE_ERROR		-1
 # define ENG_ERROR		-2
 # define LIGHT_ERROR	-3
@@ -55,6 +56,7 @@
 # define SPHERE_ERROR	-6
 # define SCN_ERROR		-7
 # define OBJ_ERROR		-8
+# define DIM_ERROR		-9
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]

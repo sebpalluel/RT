@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 10:37:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:17:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	void	ft_delete_create_window(t_setup *setup)
 			SETUP.path);
 	IMG->image = mlx_new_image(MLX->mlx_ptr, SETUP.width, SETUP.height);
 	IMG->image_addr = mlx_get_data_addr(IMG->image, \
-								&(IMG->bbp), &(IMG->size_x), &(IMG->endian));
+			&(IMG->bbp), &(IMG->size_x), &(IMG->endian));
 }
 
 size_t			ft_engine(void *a, t_list **list)
@@ -57,7 +57,13 @@ size_t			ft_engine(void *a, t_list **list)
 	if (ft_checkifallset(flag, NVARENG) != OK)
 		return (SETUP.error = ENG_ERROR);
 	if (SETUP.width != w_h_value[0] || SETUP.height != w_h_value[1])
-		ft_delete_create_window(setup);
+	{
+		if (SETUP.width >= 100 && SETUP.width <= 4000 && \
+				SETUP.height >= 100 && SETUP.height <= 4000)
+			ft_delete_create_window(setup);
+		else
+			SETUP.error = DIM_ERROR;
+	}
 	*list = env;
 	return (OK);
 }
