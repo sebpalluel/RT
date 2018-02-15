@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 18:04:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 18:53:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,31 +292,48 @@ void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->y = b;
 	dst->z = c;
 }
+
+void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
+	double a, b, c, w;
+
+	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
+	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
+	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2] + x[3][2];
+	w = src->x * x[0][3] + src->y * x[1][3] + src->z * x[2][3] + x[3][3];
+
+	dst->x = a / w;
+	dst->y = b / w;
+	dst->z = c / w;
+}
+
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
   // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
   	t_pix		pix;
+	t_ray		ray;
+	t_vec3 orig = {0.0, 0.0, 0.0};
 	t_color	col = {255, 0, 255};
 
-	//pthread_t	id;
-	//int			i;
+	pthread_t	id;
+	int			i;
 	setup = (t_setup*)a;
 	size_t		inc;
 
+	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld);
 // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 
-	//id = pthread_self();
-	//i = -1;
+	id = pthread_self();
+	i = -1;
 	inc = S_HEIGHT[WIN] / THREAD;
-	//while (++i < THREAD) // permet d'identifier dans quel thread on est
-	//	if (pthread_equal(id, SETUP.thrd[i]))
-	//		break ;
-	//pix.y = (i * S_HEIGHT[WIN]) / (THREAD - 1) - 1;
-	//pix.y = inc * i - 1;
-	pix.y = inc * SETUP.i - 1;
-	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (SETUP.i + 1) - 1));
-	while (++pix.y < (int)(inc * (SETUP.i + 1) - 1))
+	while (++i < THREAD) // permet d'identifier dans quel thread on est
+		if (pthread_equal(id, SETUP.thrd[i]))
+			break ;
+	pix.y = (i * S_HEIGHT[WIN]) / (THREAD - 1) - 1;
+	pix.y = inc * i - 1;
+	//pix.y = inc * SETUP.i - 1;
+	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (i + 1) - 1));
+	while (++pix.y < (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)S_WIDTH[1])
@@ -329,14 +346,17 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			// float x = (2 * (pix.y + 0.5) / (float)S_WIDTH[1] - 1) * scale;
       // float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
-			multDirMatrix(&dir, &SETUP.ray.dir, SETUP.camToWorld);
-			ft_vec3normalize(&SETUP.ray.dir);
-			col = ft_cast_ray(pix.x, pix.y, SETUP.ray, setup);
+			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
+			ft_vec3normalize(&ray.dir);
+			col = ft_cast_ray(pix.x, pix.y, ray, setup);
+			if (pix.x == 1350 && pix.y == 100)
+				printf("col.r %d, col.g %d, col.b %d\n", \
+						col.r, col.g, col.b);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
 	//return (OK);
-	//pthread_exit(NULL);
-	return (NULL);
+	pthread_exit(NULL);
+	//return (NULL);
 }

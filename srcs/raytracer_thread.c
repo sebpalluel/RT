@@ -6,24 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 18:09:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 18:48:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-
-void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
-	double a, b, c, w;
-
-	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
-	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
-	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2] + x[3][2];
-	w = src->x * x[0][3] + src->y * x[1][3] + src->z * x[2][3] + x[3][3];
-
-	dst->x = a / w;
-	dst->y = b / w;
-	dst->z = c / w;
-}
 
 size_t		ft_initcamToWorld(t_setup *setup)
 {
@@ -45,7 +32,6 @@ size_t		ft_initcamToWorld(t_setup *setup)
 		SETUP.camToWorld[3][1] = 8.374532;
 		SETUP.camToWorld[3][2] = 17.932925;
 		SETUP.camToWorld[3][3] = 1;
-	multVecMatrix(&SETUP.orig, &SETUP.ray.orig, SETUP.camToWorld);
 		return (OK);
 	}
 	if (SETUP.camToWorld)
@@ -55,24 +41,24 @@ size_t		ft_initcamToWorld(t_setup *setup)
 
 int			ft_raytracing_thread(t_setup *setup)
 {
-	//int		i;
+	int		i;
 
 	if (ft_initcamToWorld(setup) != OK)
 		return (SETUP.error = ERROR);
-	//(SCN != NULL) ? mlx_destroy_image(MLX->mlx_ptr, SCN->image) : 0;
-	//SCN = ft_imgnew(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
-	//i = -1;
-	//while (++i < THREAD)
-	//	pthread_create(&(SETUP.thrd[i]), NULL, ft_raytracing, (void *)setup);
-	//i = -1;
-	//while (++i < THREAD)
-	//	pthread_join(SETUP.thrd[i], NULL);
-	SETUP.i = 1;
-	ft_raytracing((void*)setup);
-	SETUP.i = 2;
-	ft_raytracing((void*)setup);
-	SETUP.i = 0;
-	ft_raytracing((void*)setup);
+	(SCN != NULL) ? mlx_destroy_image(MLX->mlx_ptr, SCN->image) : 0;
+	SCN = ft_imgnew(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
+	i = -1;
+	while (++i < THREAD)
+		pthread_create(&(SETUP.thrd[i]), NULL, ft_raytracing, (void *)setup);
+	i = -1;
+	while (++i < THREAD)
+		pthread_join(SETUP.thrd[i], NULL);
+	//SETUP.i = 1;
+	//ft_raytracing((void*)setup);
+	//SETUP.i = 2;
+	//ft_raytracing((void*)setup);
+	//SETUP.i = 0;
+	//ft_raytracing((void*)setup);
 	return (SETUP.error); // Here return OK or the corresponding error
 }
 
