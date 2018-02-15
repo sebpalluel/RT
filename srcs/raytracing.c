@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 18:53:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:13:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,6 +306,13 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->z = c / w;
 }
 
+typedef struct s_data {
+    int var;
+    pthread_mutex_t mutex;
+} t_data;
+
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
+
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
@@ -348,10 +355,12 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
 			ft_vec3normalize(&ray.dir);
+			pthread_mutex_lock(&mutex);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			if (pix.x == 1350 && pix.y == 100)
-				printf("col.r %d, col.g %d, col.b %d\n", \
-						col.r, col.g, col.b);
+			pthread_mutex_unlock(&mutex);
+			//if (pix.x == 1350 && pix.y == 100)
+			//	printf("col.r %d, col.g %d, col.b %d\n", \
+			//			col.r, col.g, col.b);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
