@@ -1,8 +1,8 @@
 <scene>
 
 	<engine>
-		<width> 1280 </width>
-		<height> 720 </height>
+		<width> 1920 </width>
+		<height> 1080 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
@@ -47,7 +47,7 @@
 	<objects>
 
 		<sphere>
-			<position> 0.9, 1.4, -6.2 </position>
+			<position> -10.9, 1.4, -6.2 </position>
 			<radius> 3.12 </radius>
 			<material>
 				<color> 255, 0, 0 </color>
