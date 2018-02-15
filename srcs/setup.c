@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:33:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:54:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 	//MLX = ft_initwindow("rtv1", S_WIDTH[0], S_HEIGHT[0]);
 	//IMG = ft_imgnew(MLX->mlx_ptr, S_WIDTH[0], S_HEIGHT[0]);
 	ft_init_mlx_img(&SETUP);
+	SETUP.thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
 	FD = (t_fd *)ft_memalloc(sizeof(t_fd));
 	if (!OBJS->validobjs || !OBJS->builtin || !OBJS->param || !MLX || !IMG \
-			|| !FD || !OBJS || ft_alloc_objs(setup) != OK) // verifie les mallocs precedent et va initialiser tous les objets
+			|| !FD || !OBJS || !SETUP.thrd || ft_alloc_objs(setup) != OK) // verifie les mallocs precedent et va initialiser tous les objets
 		return (ERROR);
 	return (OK);
 }

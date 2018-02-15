@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:09:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:55:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,17 +305,14 @@ void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->y = b;
 	dst->z = c;
 }
-int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de render
+void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
+	t_setup		*setup;
   // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 	t_pix	pix;
 	t_ray	ray;
 	t_vec3 orig = {0.0, 0.0, 0.0};
 	t_color	col = {255, 0, 255};
-	int i;
-	int j;
-	i = 0;
-	j = 0;
 	double **camToWorld = ft_matrixzero(4);
 	camToWorld[0][0] = 0.945519;
 	camToWorld[0][1] = 0;
@@ -349,6 +346,7 @@ int			ft_raytracing(t_setup *setup) // Nathan: en fait ici c est la fonction de 
 	// camToWorld[3][1] = 0;
 	// camToWorld[3][2] = 0;
 	// camToWorld[3][3] = 0;
+	setup = (t_setup*)a;
 
 	multVecMatrix(&orig, &ray.orig, camToWorld);
 	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser

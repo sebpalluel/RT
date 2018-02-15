@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:13:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:53:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			ft_expose(t_setup *setup)
 	//	ft_imgclean(SKY, S_WIDTH[WIN], S_HEIGHT[WIN]);
 	if (ret == OK && SETUP.mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
-		if ((ret = ft_raytracing(setup)) == ERROR)
+		if ((ret = ft_raytracing_thread(setup)) != OK)
 			SETUP.error = ENG_ERROR;
 		//mlx_put_image_to_window(MLX->mlx_ptr, MLX[WIN].win_ptr, \
 		//		IMG[WIN].image, 0, 0);
