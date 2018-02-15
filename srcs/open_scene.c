@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:55:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 11:32:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,18 @@ size_t			ft_select_scene(t_setup *setup)
 
 size_t			ft_open_scene(t_setup *setup)
 {
-	int			lines;
 	char		*file;
 	char		*line;
 	char		*tmp;
 
-	lines = -1;
 	ft_args_to_fd(setup);
 	file = NULL;
+	line = NULL;
 	if (ft_open(FD, O_RDONLY, O_APPEND) != OK ) // permet de gerer cas d'erreur d'open, pas les droits etc
 		return (setup->error = FILE_ERROR);
 	while (get_next_line(FD->fd, &line))
 	{
-		++lines;
-		if (lines == 0 && !line) // permet de gerer le cas d'erreur d'ouverture d'un dossier
+		if (!line) // permet de gerer le cas d'erreur d'ouverture d'un dossier
 			return (SETUP.error = FILE_ERROR);
 		tmp = file;
 		file = ft_strjoin(tmp, line);
