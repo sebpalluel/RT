@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:55:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:56:46 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,19 +281,6 @@ TODO Notes sur ft_cast_ray
 // hit_col.b = tmp.z * 255;
 */
 
-void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
-	double a, b, c, w;
-
-	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
-	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
-	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2] + x[3][2];
-	w = src->x * x[0][3] + src->y * x[1][3] + src->z * x[2][3] + x[3][3];
-
-	dst->x = a / w;
-	dst->y = b / w;
-	dst->z = c / w;
-}
-
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	double a, b, c;
 
@@ -309,49 +296,26 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 {
 	t_setup		*setup;
   // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
-	t_pix	pix;
-	t_ray	ray;
-	t_vec3 orig = {0.0, 0.0, 0.0};
+  	t_pix		pix;
 	t_color	col = {255, 0, 255};
-	double **camToWorld = ft_matrixzero(4);
-	camToWorld[0][0] = 0.945519;
-	camToWorld[0][1] = 0;
-	camToWorld[0][2] = -0.125569;
-	camToWorld[0][3] = 0;
-	camToWorld[1][0] = -0.179534;
-	camToWorld[1][1] = 0.834209;
-	camToWorld[1][2] = -0.521403;
-	camToWorld[1][3] = 0;
-	camToWorld[2][0] = 0.271593;
-	camToWorld[2][1] = 0.551447;
-	camToWorld[2][2] = 0.78876;
-	camToWorld[2][3] = 0;
-	camToWorld[3][0] = 4.208271;
-	camToWorld[3][1] = 8.374532;
-	camToWorld[3][2] = 17.932925;
-	camToWorld[3][3] = 1;
-	// camToWorld[0][0] = 0;
-	// camToWorld[0][1] = 0;
-	// camToWorld[0][2] = 0;
-	// camToWorld[0][3] = 0;
-	// camToWorld[1][0] = 0;
-	// camToWorld[1][1] = 0;
-	// camToWorld[1][2] = 0;
-	// camToWorld[1][3] = 0;
-	// camToWorld[2][0] = 0;
-	// camToWorld[2][1] = 0;
-	// camToWorld[2][2] = 0;
-	// camToWorld[2][3] = 0;
-	// camToWorld[3][0] = 0;
-	// camToWorld[3][1] = 0;
-	// camToWorld[3][2] = 0;
-	// camToWorld[3][3] = 0;
-	setup = (t_setup*)a;
 
-	multVecMatrix(&orig, &ray.orig, camToWorld);
-	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
-	pix.y = -1;
-	while (++pix.y < (int)S_HEIGHT[1])
+	pthread_t	id;
+	int			i;
+	setup = (t_setup*)a;
+	size_t		inc;
+
+// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
+
+	id = pthread_self();
+	i = -1;
+	inc = S_HEIGHT[WIN] / THREAD;
+	while (++i < THREAD) // permet d'identifier dans quel thread on est
+		if (pthread_equal(id, SETUP.thrd[i]))
+			break ;
+	//pix.y = (i * S_HEIGHT[WIN]) / (THREAD - 1) - 1;
+	pix.y = inc * i - 1;
+	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (i + 1) - 1));
+	while (++pix.y < (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)S_WIDTH[1])
@@ -364,12 +328,13 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			// float x = (2 * (pix.y + 0.5) / (float)S_WIDTH[1] - 1) * scale;
       // float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
-			multDirMatrix(&dir, &ray.dir, camToWorld);
-			ft_vec3normalize(&ray.dir);
-			col = ft_cast_ray(pix.x, pix.y, ray, setup);
+			multDirMatrix(&dir, &SETUP.ray.dir, SETUP.camToWorld);
+			ft_vec3normalize(&SETUP.ray.dir);
+			col = ft_cast_ray(pix.x, pix.y, SETUP.ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
-	return (OK);
+	//return (OK);
+	pthread_exit(NULL);
 }
