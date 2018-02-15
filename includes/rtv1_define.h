@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 14:41:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:59:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 # define S_WIDTH		setup[0].width
 # define S_HEIGHT		setup[0].height
 # define MLX			setup[0].mlx
+# define SKY			setup[0].sky // TEMPORARY
+# define SKY_PATH_0		"textures/sky.xpm"
 # define IMG			setup[0].img
 # define FD				setup[0].fd
 # define RAY			setup[0].raytracer
