@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 17:56:46 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 18:04:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,23 +299,24 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
   	t_pix		pix;
 	t_color	col = {255, 0, 255};
 
-	pthread_t	id;
-	int			i;
+	//pthread_t	id;
+	//int			i;
 	setup = (t_setup*)a;
 	size_t		inc;
 
 // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 
-	id = pthread_self();
-	i = -1;
+	//id = pthread_self();
+	//i = -1;
 	inc = S_HEIGHT[WIN] / THREAD;
-	while (++i < THREAD) // permet d'identifier dans quel thread on est
-		if (pthread_equal(id, SETUP.thrd[i]))
-			break ;
+	//while (++i < THREAD) // permet d'identifier dans quel thread on est
+	//	if (pthread_equal(id, SETUP.thrd[i]))
+	//		break ;
 	//pix.y = (i * S_HEIGHT[WIN]) / (THREAD - 1) - 1;
-	pix.y = inc * i - 1;
-	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (i + 1) - 1));
-	while (++pix.y < (int)(inc * (i + 1) - 1))
+	//pix.y = inc * i - 1;
+	pix.y = inc * SETUP.i - 1;
+	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (SETUP.i + 1) - 1));
+	while (++pix.y < (int)(inc * (SETUP.i + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)S_WIDTH[1])
@@ -336,5 +337,6 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 		}
 	}
 	//return (OK);
-	pthread_exit(NULL);
+	//pthread_exit(NULL);
+	return (NULL);
 }

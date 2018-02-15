@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 17:41:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 18:09:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,25 @@ size_t		ft_initcamToWorld(t_setup *setup)
 
 int			ft_raytracing_thread(t_setup *setup)
 {
-	int		i;
+	//int		i;
 
 	if (ft_initcamToWorld(setup) != OK)
 		return (SETUP.error = ERROR);
-	(SCN != NULL) ? mlx_destroy_image(MLX->mlx_ptr, SCN->image) : 0;
-	SCN = ft_imgnew(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
-	i = -1;
-	while (++i < THREAD)
-		pthread_create(&(SETUP.thrd[i]), NULL, ft_raytracing, (void *)setup);
-	i = -1;
-	while (++i < THREAD)
-		pthread_join(SETUP.thrd[i], NULL);
-	return (SETUP.error);
+	//(SCN != NULL) ? mlx_destroy_image(MLX->mlx_ptr, SCN->image) : 0;
+	//SCN = ft_imgnew(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
+	//i = -1;
+	//while (++i < THREAD)
+	//	pthread_create(&(SETUP.thrd[i]), NULL, ft_raytracing, (void *)setup);
+	//i = -1;
+	//while (++i < THREAD)
+	//	pthread_join(SETUP.thrd[i], NULL);
+	SETUP.i = 1;
+	ft_raytracing((void*)setup);
+	SETUP.i = 2;
+	ft_raytracing((void*)setup);
+	SETUP.i = 0;
+	ft_raytracing((void*)setup);
+	return (SETUP.error); // Here return OK or the corresponding error
 }
 
 
