@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 15:57:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:06:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ typedef struct		s_setup
 	t_mlx			*mlx;
 	void			*mlx_ptr;
 	t_img			*img;
-	t_img			*sky; // temporary
+	t_img			*scn;
 	t_list			*env;
 	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)
 	t_fd			*fd;
