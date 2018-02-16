@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:36:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 15:01:06 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ft_expose(t_setup *setup)
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			SETUP.error = ENG_ERROR;
 	//TODO adapt here for scene
-		mlx_put_image_to_window(SETUP.mlx_ptr, SCN.win->win_ptr, SCN.img, 0, 0);
+		mlx_put_image_to_window(SETUP.mlx_ptr, SCN.win->win_ptr, SCN.img->image, 0, 0);
 		SETUP.mode = STATE_STOP;
 		printf("drawn\n");
 	}
