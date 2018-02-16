@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:55:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:50:12 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ t_bool		ft_plane_param(void *a, t_ray ray, double *dist)
 	setup = (t_setup *)a;
 	*dist = 0;
 	ray.size = 0;
-	//printf("PL_N %lu\n", PL_N);
 	PL_N++;
 	return (OK);
 }
