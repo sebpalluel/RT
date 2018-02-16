@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:32:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 18:05:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 
 	SETUP.key = keycode;
 	ret = OK; // je part du principe que tout est OK pour detecter erreur eventuelle
+	ft_mlx_control_key(&SETUP);
 	if (SETUP.key == ENTER && SETUP.mode == STATE_START)
 		SETUP.mode = (SETUP.ac > 1) ? STATE_OPEN : STATE_SELECT; // Si arg va direct lancer parsing de la map sinon selection de map
 	if (SETUP.mode == STATE_SELECT)
@@ -51,7 +52,6 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 		ret = ft_open_scene(setup); // va ouvrir la map selon le path
 	if (SETUP.key == ESC || ret != OK) // le ret va permettre de savoir si il y a eu une erreur de parsing et dans ce cas exit et free
 		ft_quit(setup); // on sera si il y a erreur laquelle
-	ft_mlx_control_key(&SETUP);
 	ft_expose(setup);
 	return (0);
 }

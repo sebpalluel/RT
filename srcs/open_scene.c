@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:50:24 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 18:12:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ size_t			ft_open_scene(t_setup *setup)
 	OBJDEF.objscount = ft_getobjscount(setup); // permet de savoir combien d'objet le raytracer va devoir traiter
 	if (!SETUP.num_scn)
 		SETUP.num_scn = 1;
+	mlx_put_image_to_window(SETUP.mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
 	SETUP.mode = STATE_DRAW; // on peut render !!
 	return (OK);
 }
