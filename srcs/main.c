@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 12:11:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 11:30:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				main(int ac, char **av)
 {
 	t_setup		*setup;
 
-	if (!(setup = (t_setup *)ft_memalloc(sizeof(t_setup) * (NUM_THREAD + 1)))) // en prevision du multi-threading, alloue structure mere pour chaque thread
+	if (!(setup = (t_setup *)ft_memalloc(sizeof(t_setup))))
 		return (-1);
 	setup->mode = STATE_START;
 	setup->ac = ac;

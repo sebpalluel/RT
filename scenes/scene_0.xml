@@ -48,7 +48,7 @@
 
 		<sphere>
 			<position> -10.9, 1.4, -6.2 </position>
-			<radius> 20.12 </radius>
+			<radius> 8.12 </radius>
 			<material>
 				<color> 255, 0, 0 </color>
 				<diffuse> 1. </diffuse>
