@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:17:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:36:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ int			ft_expose(t_setup *setup)
 	ret = OK;
 	ft_imgclean(UI_IMG, SETUP.width, SETUP.height);
 	//TODO adapt here for scene
-	//if (SETUP.mode != STATE_STOP && WIN)
-	//	ft_imgclean(SCN, S_WIDTH[WIN], S_HEIGHT[WIN]);
+	if (SETUP.mode != STATE_STOP && SETUP.num_scn)
+		ft_imgclean(SCN.img, SCN.width, SCN.height);
 	if (ret == OK && SETUP.mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			SETUP.error = ENG_ERROR;
 	//TODO adapt here for scene
-		//mlx_put_image_to_window(SETUP.mlx_ptr, MLX[WIN].win_ptr, \
-		//			SCN->image, 0, 0);
-		//SETUP.mode = STATE_STOP;
+		mlx_put_image_to_window(SETUP.mlx_ptr, SCN.win->win_ptr, SCN.img, 0, 0);
+		SETUP.mode = STATE_STOP;
 		printf("drawn\n");
 	}
 	//if (!SETUP.ui)

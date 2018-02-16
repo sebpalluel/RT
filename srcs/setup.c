@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:22:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:24:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 	if (SETUP.width < 100 || SETUP.width > 4000 || \
 			SETUP.height < 100 || SETUP.height > 4000)
 		return (SETUP.error = DIM_ERROR);
-	printf("scn_num %lu SCN %p\n", SETUP.scn_num, &SCN);
 	SCN.move_step = MOVE_STEP;
 	SCN.rot_step = ROT_STEP;
 	SETUP.mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
