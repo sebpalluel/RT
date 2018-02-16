@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 10:43:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 10:55:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,12 @@ typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 
 	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet
 }					t_objs;
 
+typedef struct		s_mutex
+{
+	int var;
+	pthread_mutex_t	mutex;
+}					t_mutex;
+
 typedef struct		s_setup
 {
 	size_t			*width;
@@ -143,6 +149,7 @@ typedef struct		s_setup
 	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)
 	t_fd			*fd;
 	pthread_t		*thrd;
+	t_mutex			mutex;
 	double			**camToWorld;
 	t_vec3			orig;
 	t_ray			ray;

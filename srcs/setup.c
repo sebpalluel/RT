@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 10:42:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 11:21:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,11 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 		return (SETUP.error = DIM_ERROR);
 	SETUP.move_step = MOVE_STEP;
 	SETUP.rot_step = ROT_STEP;
+	SETUP.mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	OBJS = (t_objs *)ft_memalloc(sizeof(t_objs)); // alloue le t_objs qui gere tout les objets 
 	OBJS->validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
 	OBJS->builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
 	OBJS->param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
-	//MLX = ft_initwindow("rtv1", S_WIDTH[0], S_HEIGHT[0]);
-	//IMG = ft_imgnew(MLX->mlx_ptr, S_WIDTH[0], S_HEIGHT[0]);
 	ft_init_mlx_img(&SETUP);
 	SETUP.thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
 	FD = (t_fd *)ft_memalloc(sizeof(t_fd));

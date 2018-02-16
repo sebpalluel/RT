@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 17:51:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 10:53:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define NUM_THREAD		1
-# define THREAD			3
+# define THREAD			4
 # define NUM_MAP		8
 # define NUM_OBJS		5
 # define MAX_WINDOW		5

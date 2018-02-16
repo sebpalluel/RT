@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 10:43:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 11:18:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,13 +306,6 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->z = c / w;
 }
 
-typedef struct s_data {
-	int var;
-	pthread_mutex_t mutex;
-} t_data;
-
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
-
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
@@ -336,12 +329,9 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 	while (++i < THREAD) // permet d'identifier dans quel thread on est
 		if (pthread_equal(id, SETUP.thrd[i]))
 			break ;
-	pix.y = (i * S_HEIGHT[WIN]) / (THREAD - 1) - 1;
 	pix.y = inc * i - 1;
-	//pix.y = inc * SETUP.i - 1;
-	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (i + 1) - 1));
-	pthread_mutex_lock(&mutex);
-	while (++pix.y < (int)(inc * (i + 1) - 1))
+	pthread_mutex_lock(&SETUP.mutex.mutex);
+	while (++pix.y <= (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)S_WIDTH[1])
@@ -357,15 +347,10 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			//if (pix.x == 1350 && pix.y == 100)
-			//	printf("col.r %d, col.g %d, col.b %d\n", \
-			//			col.r, col.g, col.b);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
-	pthread_mutex_unlock(&mutex);
-	//return (OK);
+	pthread_mutex_unlock(&SETUP.mutex.mutex);
 	pthread_exit(NULL);
-	//return (NULL);
 }
