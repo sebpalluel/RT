@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 19:13:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 10:43:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void			ft_resetchooseobj(t_setup *setup)
 int				ft_getobjn(t_setup *setup, size_t i)
 {
 	if (i == SPH)
-			return (SPH_N - 1);
+		return (SPH_N - 1);
 	else if (i == PLN)
-			return (PL_N - 1);
+		return (PL_N - 1);
 	return (0);
 }
 
@@ -103,22 +103,22 @@ t_mat			*ft_getobjmat(t_setup *setup, t_ray ray)
 	return (&SETUP.background);
 }
 /*
-** EXEMPLE, ici ce qui est important c'est le hitObject, en gros il faut juste que l on sache sur quoi on tape depuis l exterieur du scope de la fonction
-**	bool trace(const Vec3f &orig, const Vec3f &dir, const std::vector<std::unique_ptr<Object>> &objects, float &tNear, const Object *&hitObject)
-**	{
-**		tNear = kInfinity;
-**    std::vector<std::unique_ptr<Object>>::const_iterator iter = objects.begin();
-**    for (; iter != objects.end(); ++iter) {
-**        float t = kInfinity;
-**        if ((*iter)->intersect(orig, dir, t) && t < tNear) {
-**            hitObject = iter->get();
-**            tNear = t;
-**        }
-**    }
-**
-**    return (hitObject != nullptr);
-**	}
-*/
+ ** EXEMPLE, ici ce qui est important c'est le hitObject, en gros il faut juste que l on sache sur quoi on tape depuis l exterieur du scope de la fonction
+ **	bool trace(const Vec3f &orig, const Vec3f &dir, const std::vector<std::unique_ptr<Object>> &objects, float &tNear, const Object *&hitObject)
+ **	{
+ **		tNear = kInfinity;
+ **    std::vector<std::unique_ptr<Object>>::const_iterator iter = objects.begin();
+ **    for (; iter != objects.end(); ++iter) {
+ **        float t = kInfinity;
+ **        if ((*iter)->intersect(orig, dir, t) && t < tNear) {
+ **            hitObject = iter->get();
+ **            tNear = t;
+ **        }
+ **    }
+ **
+ **    return (hitObject != nullptr);
+ **	}
+ */
 
 /* TODO
  * Seb a mis cette fonction en commentaire pour resoudre erreur de compilation
@@ -193,42 +193,42 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 }
 
 /*
-typedef struct		s_ray
-{
-double			size; // dist entre le point d'origine et l'objet touche le plus proche
-t_bool			hit; //Nathan remplacer par l index de l objet pointé
-size_t			obj; // de quel type de forme il s'agit
-size_t			objn; // l'index de l'objet (par exemple sphere[objn])
-t_vec3			orig; // pos de la camera
-t_vec3			dir;
-}					t_ray;
-*/
+   typedef struct		s_ray
+   {
+   double			size; // dist entre le point d'origine et l'objet touche le plus proche
+   t_bool			hit; //Nathan remplacer par l index de l objet pointé
+   size_t			obj; // de quel type de forme il s'agit
+   size_t			objn; // l'index de l'objet (par exemple sphere[objn])
+   t_vec3			orig; // pos de la camera
+   t_vec3			dir;
+   }					t_ray;
+   */
 /*
-void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
-{
-	*
-	**	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
-	**  {
-	** 			Set surface data such as normal and texture coordinates at a given point on the surface
-	** 			\param Phit is the point ont the surface we want to get data on
-	** 			\param[out] Nhit is the normal at Phit
-	** 			\param[out] tex are the texture coordinates at Phit
-	**************
-	**      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
-	**      Nhit.normalize();  On normalise le vecteur
-	**************
-	**      In this particular case, the normal is simular to a point on a unit sphere
-	**      centred around the origin. We can thus use the normal coordinates to compute
-	**      the spherical coordinates of Phit.
-	**      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
-	**      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
-	**************
-	**      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
-	**      tex.y = acosf(Nhit.y) / M_PI;
-	**  }
-	*
-}
-*/
+   void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
+   {
+ *
+ **	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
+ **  {
+ ** 			Set surface data such as normal and texture coordinates at a given point on the surface
+ ** 			\param Phit is the point ont the surface we want to get data on
+ ** 			\param[out] Nhit is the normal at Phit
+ ** 			\param[out] tex are the texture coordinates at Phit
+ **************
+ **      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
+ **      Nhit.normalize();  On normalise le vecteur
+ **************
+ **      In this particular case, the normal is simular to a point on a unit sphere
+ **      centred around the origin. We can thus use the normal coordinates to compute
+ **      the spherical coordinates of Phit.
+ **      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
+ **      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
+ **************
+ **      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
+ **      tex.y = acosf(Nhit.y) / M_PI;
+ **  }
+ *
+ }
+ */
 
 double max(double a, double b) {
 	return (a >= b ? a : b);
@@ -247,14 +247,14 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
 		ft_vec3normalize(&hit_nrml);
 		/*	t_vec2 hit_text; // pas besoin pour l'instant?
-		ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-		**	// Use the normal and texture coordinates to shade the hit point.
-		**	// The normal is used to compute a simple facing ratio and the texture coordinate
-		**	// to compute a basic checker board pattern
-		**	float scale = 4;
-		**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-		**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
-		*/
+			ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+		 **	// Use the normal and texture coordinates to shade the hit point.
+		 **	// The normal is used to compute a simple facing ratio and the texture coordinate
+		 **	// to compute a basic checker board pattern
+		 **	float scale = 4;
+		 **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+		 **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+		 */
 		hit_col = OBJDEF.sphere[ray.objn].mat.col;
 		t_vec3 dir_opposite = {-ray.dir.x, -ray.dir.y, -ray.dir.z};
 		double shade = max(0.0, ft_dotproduct(hit_nrml, dir_opposite));
@@ -266,12 +266,12 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 }
 
 /*
-TODO Notes sur ft_cast_ray
+   TODO Notes sur ft_cast_ray
 
 // retourne couleur de l'objet
- on doit :
-** trouver l'objet
-** set la hit_color a la couleur de l'objet rencontré
+on doit :
+ ** trouver l'objet
+ ** set la hit_color a la couleur de l'objet rencontré
 
 // couleur degradés
 // tmp = ft_vec3vop_r(ray.dir, vec, '+');
@@ -307,8 +307,8 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 }
 
 typedef struct s_data {
-    int var;
-    pthread_mutex_t mutex;
+	int var;
+	pthread_mutex_t mutex;
 } t_data;
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
@@ -316,8 +316,8 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
-  // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
-  	t_pix		pix;
+	// TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
+	t_pix		pix;
 	t_ray		ray;
 	t_vec3 orig = {0.0, 0.0, 0.0};
 	t_color	col = {255, 0, 255};
@@ -328,7 +328,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 	size_t		inc;
 
 	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld);
-// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
+	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 
 	id = pthread_self();
 	i = -1;
@@ -340,24 +340,23 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 	pix.y = inc * i - 1;
 	//pix.y = inc * SETUP.i - 1;
 	printf("pix.y %d to_y %d\n", pix.y, (int)(inc * (i + 1) - 1));
+	pthread_mutex_lock(&mutex);
 	while (++pix.y < (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)S_WIDTH[1])
 		{
 			float scale = tan(DEG2RAD((FOV * 0.5)));
-    	float imageAspectRatio = S_WIDTH[1] / (float)S_HEIGHT[1];
+			float imageAspectRatio = S_WIDTH[1] / (float)S_HEIGHT[1];
 			float x = (2 * (pix.x + 0.5) / (float)S_WIDTH[1] - 1) * imageAspectRatio * scale;
-      float y = (1 - 2 * (pix.y + 0.5) / (float)S_HEIGHT[1]) * scale;
+			float y = (1 - 2 * (pix.y + 0.5) / (float)S_HEIGHT[1]) * scale;
 			// MAYA
 			// float x = (2 * (pix.y + 0.5) / (float)S_WIDTH[1] - 1) * scale;
-      // float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
+			// float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
 			ft_vec3normalize(&ray.dir);
-			pthread_mutex_lock(&mutex);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			pthread_mutex_unlock(&mutex);
 			//if (pix.x == 1350 && pix.y == 100)
 			//	printf("col.r %d, col.g %d, col.b %d\n", \
 			//			col.r, col.g, col.b);
@@ -365,6 +364,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
+	pthread_mutex_unlock(&mutex);
 	//return (OK);
 	pthread_exit(NULL);
 	//return (NULL);
