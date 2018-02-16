@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 11:29:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 13:12:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int				ft_setup_menu(t_setup *setup)
 
 	xy[0] = S_WIDTH[0] / 2 - S_WIDTH[0] / 14;
 	xy[1] = S_HEIGHT[0] / 2 - S_HEIGHT[0] / 10;
-	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->image, 0, 0);
-	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1]\
+	mlx_put_image_to_window(SETUP.mlx_ptr, UI_WIN->win_ptr, IMG->image, 0, 0);
+	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1]\
 			, 0x00611DE9, CHOOSE_STR);
-	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1] + 30\
+	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30\
 			, 0x009999FF, SELECT_STR);
 	SETUP.scn_num = ft_mlx_keytoint(SETUP.key); // permet de selectioner le numero de map
 	if (SETUP.scn_num < NUM_MAP && SETUP.scn_num >= 0)
@@ -39,9 +39,9 @@ void			ft_start(t_setup *setup)
 
 	xy[0] = S_WIDTH[0] / 2 - S_WIDTH[0] / 14;
 	xy[1] = S_HEIGHT[0] / 2 - S_HEIGHT[0] / 10;
-	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1], \
+	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1], \
 			0xFFFFFF, START_STR);
-	mlx_string_put(MLX->mlx_ptr, MLX->win_ptr, xy[0], xy[1] + 30, \
+	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30, \
 			0xFFFFFF, ENTER_STR);
 }
 
@@ -59,14 +59,14 @@ static size_t	ft_alloc_objs(t_setup *setup) // alloue chaque objets
 
 static size_t	ft_init_mlx_img(t_setup *setup)
 {
-	if (!(MLX = (t_mlx*)malloc(sizeof(t_mlx) * MAX_WINDOW)))
+	if (!(UI_WIN = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (ERROR);
-	MLX->mlx_ptr = mlx_init();
-	MLX->win_ptr = mlx_new_window(MLX->mlx_ptr, S_WIDTH[0], S_HEIGHT[0], \
+	SETUP.mlx_ptr = mlx_init();
+	UI_WIN->win_ptr = mlx_new_window(SETUP.mlx_ptr, S_WIDTH[0], S_HEIGHT[0], \
 			"rtv1 GUI");
 	if (!(IMG = (t_img *)malloc(sizeof(t_img) * MAX_WINDOW)))
 		return (ERROR);
-	if ((IMG[0].image = mlx_new_image(MLX->mlx_ptr, S_WIDTH[0], \
+	if ((IMG[0].image = mlx_new_image(SETUP.mlx_ptr, S_WIDTH[0], \
 					S_HEIGHT[0])))
 		IMG[0].image_addr = mlx_get_data_addr(IMG[0].image, \
 				&(IMG[0].bbp), &(IMG[0].size_x), &(IMG[0].endian));
@@ -95,7 +95,7 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 	ft_init_mlx_img(&SETUP);
 	SETUP.thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
 	FD = (t_fd *)ft_memalloc(sizeof(t_fd));
-	if (!OBJS->validobjs || !OBJS->builtin || !OBJS->param || !MLX || !IMG \
+	if (!OBJS->validobjs || !OBJS->builtin || !OBJS->param || !UI_WIN || !IMG \
 			|| !FD || !OBJS || !SETUP.thrd || ft_alloc_objs(setup) != OK) // verifie les mallocs precedent et va initialiser tous les objets
 		return (ERROR);
 	return (OK);
@@ -105,7 +105,7 @@ static void		ft_setup_delete(t_setup *setup)
 {
 	if (setup)
 	{
-		ft_mlxdelete(MLX, IMG);
+		ft_mlxdelete(UI_WIN, IMG);
 		if (SETUP.path)
 			free(SETUP.path);
 		if (OBJS)

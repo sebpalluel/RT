@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 11:33:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 13:04:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,10 @@ typedef struct		s_mutex
 	pthread_mutex_t	mutex;
 }					t_mutex;
 
+typedef struct		s_scenes
+{
+}					t_scenes;
+
 typedef struct		s_setup
 {
 	size_t			*width;
@@ -141,7 +145,7 @@ typedef struct		s_setup
 	int				key;
 	char			*str;
 	t_mat			background;
-	t_mlx			*mlx;
+	t_mlx			*ui_win;
 	void			*mlx_ptr;
 	t_img			*img;
 	t_img			*scn;

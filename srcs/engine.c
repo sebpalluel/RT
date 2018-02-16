@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:38:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 13:14:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,11 @@ void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 
 static void		ft_create_new_window(t_setup *setup)
 {
-	MLX[WIN].win_ptr = mlx_new_window(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN], \
-			SETUP.path);
-	SCN = ft_imgnew(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
-	//IMG[WIN].image = mlx_new_image(MLX->mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
-	//IMG[WIN].image = mlx_xpm_file_to_image(MLX->mlx_ptr, "textures/sky.xpm", \
-	//		(int*)&S_WIDTH[WIN], (int*)&S_HEIGHT[WIN]);
-	//IMG[WIN].image_addr = mlx_get_data_addr(IMG[WIN].image, \
-	//		&(IMG[WIN].bbp), &(IMG[WIN].size_x), &(IMG[WIN].endian));
-	//printf("create : image_addr %p. image %p, bbp %d, size_x %d, endian %d\n",\
-	//		IMG[WIN].image_addr, IMG[WIN].image, IMG[WIN].bbp, IMG[WIN].size_x, IMG[WIN].endian);
+	if (SETUP.ui)
+		;
+	//MLX[WIN].win_ptr = mlx_new_window(SETUP.mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN], \
+	//		SETUP.path);
+	// SCN = ft_imgnew(SETUP.mlx_ptr, S_WIDTH[WIN], S_HEIGHT[WIN]);
 }
 
 size_t			ft_engine(void *a, t_list **list)

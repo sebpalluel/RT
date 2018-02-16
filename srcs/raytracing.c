@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 11:36:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 13:14:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,7 +348,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
-			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
+			//ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
 	pthread_mutex_unlock(&SETUP.mutex.mutex);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 11:31:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 13:05:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 # define NVARENG		5
 # define S_WIDTH		setup[0].width
 # define S_HEIGHT		setup[0].height
-# define MLX			setup[0].mlx
+# define UI_WIN			setup[0].ui_win
 # define SCN			setup[0].scn
 # define IMG			setup[0].img
 # define FD				setup[0].fd
