@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 16:52:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:01:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_setup *setup, t_list **env, char *light_str);
 size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
-size_t		ft_select_scene(t_setup *setup);
+size_t		ft_select_scene(t_setup *setup, int scene);
 size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);

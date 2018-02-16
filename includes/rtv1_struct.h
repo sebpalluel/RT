@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:04:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:15:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,38 +120,41 @@ typedef struct		s_mutex
 	pthread_mutex_t	mutex;
 }					t_mutex;
 
-typedef struct		s_scenes
+typedef struct		s_scene
 {
-}					t_scenes;
-
-typedef struct		s_setup
-{
-	size_t			*width;
-	size_t			*height;
+	size_t			width;
+	size_t			height;
+	size_t			num_arg;
+	t_list			*env;
+	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)
+	t_mlx			*win;
+	t_img			*img;
+	t_fd			*fd;
+	char			*path;
+	double			move_step;
+	double			rot_step;
+	size_t			cam_num;
 	size_t			refr_max;
 	size_t			refl_max;
 	double			amb_light;
-	size_t			num_arg;
-	size_t			window;
+}					t_scene;
+
+typedef struct		s_setup
+{
+	size_t			width;
+	size_t			height;
 	t_bool			ui; // afficher ou nom GUI
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*
-	size_t			cam_num;
-	int				scn_num;
-	double			move_step;
-	double			rot_step;
 	int				ac;
-	char			*path;
 	int				key;
-	char			*str;
 	t_mat			background;
 	t_mlx			*ui_win;
+	t_img			*ui_img;
 	void			*mlx_ptr;
-	t_img			*img;
-	t_img			*scn;
-	t_list			*env;
-	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)
-	t_fd			*fd;
+	t_scene			*scene;
+	size_t			num_scn;
+	size_t			scn_num;
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	double			**camToWorld;

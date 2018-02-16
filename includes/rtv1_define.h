@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:05:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:15:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			4
-# define NUM_MAP		8
 # define NUM_OBJS		5
 # define MAX_WINDOW		5
 # define AMP			1.3
@@ -65,32 +64,26 @@
 # define OBJ_S			parsed[3]
 
 # define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
-# define UI				0 // Window 0, UI
-# define WIN			setup[0].window // Window 1, 2, 3, 4, display the scene
+# define UI_WIN			SETUP.ui_win
+# define UI_IMG			SETUP.ui_img
 # define NVARENG		5
-# define S_WIDTH		setup[0].width
-# define S_HEIGHT		setup[0].height
-# define UI_WIN			setup[0].ui_win
-# define SCN			setup[0].scn
-# define IMG			setup[0].img
-# define FD				setup[0].fd
-# define RAY			setup[0].raytracer
-# define OBJS			setup[0].objs
-# define CAM			setup[0].objs->cam
-# define NCAM			setup[0].objs->ncam
-# define CAM_N			setup[0].cam_num
+# define SCN			SETUP.scene[SETUP.scn_num]
+# define OBJS			SCN.objs
+# define CAM			OBJS->cam
+# define NCAM			OBJS->ncam
+# define CAM_N			SCN.cam_num
 # define NVARCAM		3
-# define LIGHT			setup[0].objs->light
-# define NLIGHT			setup[0].objs->nlight
+# define LIGHT			OBJS->light
+# define NLIGHT			OBJS->nlight
 # define NVARLIGHT		8
-# define OBJDEF			setup[0].objs->objdef
-# define PLANE			setup[0].objs->objdef.plane
-# define NPLANE			setup[0].objs->objdef.nplane
-# define PL_N			setup[0].objs->objdef.pl_n
+# define OBJDEF			OBJS->objdef
+# define PLANE			OBJS->objdef.plane
+# define NPLANE			OBJS->objdef.nplane
+# define PL_N			OBJS->objdef.pl_n
 # define NVARPLANE		5
-# define SPHERE			setup[0].objs->objdef.sphere
-# define NSPHERE		setup[0].objs->objdef.nsphere
-# define SPH_N			setup[0].objs->objdef.sph_n
+# define SPHERE			OBJS->objdef.sphere
+# define NSPHERE		OBJS->objdef.nsphere
+# define SPH_N			OBJS->objdef.sph_n
 # define NVARSPHERE		5
 # define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)

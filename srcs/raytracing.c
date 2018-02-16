@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:14:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:12:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_ray		ft_raycalcforpix(t_setup *setup, t_pix pix) {
 	t_vec3	p;
 	t_ray	ray;
 
-	py = (-(int)S_HEIGHT[1] / 2.0) + 1. * ((double)pix.y + 0.5);
-	px = (-(int)S_WIDTH[1] / 2.0) + 1. * ((double)pix.x + 0.5);
+	py = (-(int)SCN.height / 2.0) + 1. * ((double)pix.y + 0.5);
+	px = (-(int)SCN.width / 2.0) + 1. * ((double)pix.x + 0.5);
 	p = ft_vec3add3(CAM[CAM_N].plane_center, \
 			ft_vec3sop_r(CAM[CAM_N].plane_dirX, px, '*'), \
 			ft_vec3sop_r(CAM[CAM_N].plane_dirY, py, '*'));
@@ -325,7 +325,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 
 	id = pthread_self();
 	i = -1;
-	inc = S_HEIGHT[WIN] / THREAD;
+	inc = SCN.height / THREAD;
 	while (++i < THREAD) // permet d'identifier dans quel thread on est
 		if (pthread_equal(id, SETUP.thrd[i]))
 			break ;
@@ -334,20 +334,21 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 	while (++pix.y <= (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
-		while (++pix.x < (int)S_WIDTH[1])
+		while (++pix.x < (int)SCN.width)
 		{
 			float scale = tan(DEG2RAD((FOV * 0.5)));
-			float imageAspectRatio = S_WIDTH[1] / (float)S_HEIGHT[1];
-			float x = (2 * (pix.x + 0.5) / (float)S_WIDTH[1] - 1) * imageAspectRatio * scale;
-			float y = (1 - 2 * (pix.y + 0.5) / (float)S_HEIGHT[1]) * scale;
+			float imageAspectRatio = SCN.width / (float)SCN.height;
+			float x = (2 * (pix.x + 0.5) / (float)SCN.width - 1) * imageAspectRatio * scale;
+			float y = (1 - 2 * (pix.y + 0.5) / (float)SCN.height) * scale;
 			// MAYA
-			// float x = (2 * (pix.y + 0.5) / (float)S_WIDTH[1] - 1) * scale;
-			// float y = (1 - 2 * (pix.x + 0.5) / (float)S_HEIGHT[1]) * scale * 1 / imageAspectRatio;
+			// float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
+			// float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
+	//TODO adapt here for scene
 			//ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}

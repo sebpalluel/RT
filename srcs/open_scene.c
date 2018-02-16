@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/15 15:35:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:04:46 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t			ft_envtosetup(t_setup *setup)
 	int			i;
 	t_bool		flag;
 
-	env = SETUP.env;
+	env = SCN.env;
 	//while (env) // can be used to see all the linked list for eventual debug
 	//{
 	//	if (env && ENVSTRUCT(env))
@@ -51,13 +51,13 @@ size_t			ft_envtosetup(t_setup *setup)
 	return (OK);
 }
 
-size_t			ft_select_scene(t_setup *setup)
+size_t			ft_select_scene(t_setup *setup, int scene)
 {
-	if (SETUP.scn_num == 0)
-		SETUP.path = ft_strdup(SCN_PATH_0);
-	else if (SETUP.scn_num == 1)
-		SETUP.path = ft_strdup(SCN_PATH_1);
-	if (SETUP.path != NULL)
+	if (scene == 0)
+		SCN.path = ft_strdup(SCN_PATH_0);
+	else if (scene == 1)
+		SCN.path = ft_strdup(SCN_PATH_1);
+	if (SCN.path != NULL)
 		return (OK);
 	else
 		return (ERROR);
@@ -69,12 +69,13 @@ size_t			ft_open_scene(t_setup *setup)
 	char		*line;
 	char		*tmp;
 
+	//TODO adapt here for scene
 	ft_args_to_fd(setup);
 	file = NULL;
 	line = NULL;
-	if (ft_open(FD, O_RDONLY, O_APPEND) != OK ) // permet de gerer cas d'erreur d'open, pas les droits etc
+	if (ft_open(SCN.fd, O_RDONLY, O_APPEND) != OK ) // permet de gerer cas d'erreur d'open, pas les droits etc
 		return (setup->error = FILE_ERROR);
-	while (get_next_line(FD->fd, &line))
+	while (get_next_line(SCN.fd->fd, &line))
 	{
 		if (!line) // permet de gerer le cas d'erreur d'ouverture d'un dossier
 			return (SETUP.error = FILE_ERROR);
@@ -83,7 +84,7 @@ size_t			ft_open_scene(t_setup *setup)
 		free(tmp);
 	}
 	// le fichier est bien stocke dans file et il faut le parser
-	if (!(SETUP.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
+	if (!(SCN.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
 			|| SETUP.error != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
 		return (ERROR);
 	if (NCAM == 0)

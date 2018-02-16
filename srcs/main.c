@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:08:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:15:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
 
-	if (!SETUP.path | !(tmp = ft_strsplit(SETUP.path, '/')))
+	if (!SCN.path | !(tmp = ft_strsplit(SCN.path, '/')))
 		return (ERROR);
 	if (tmp[1] != NULL)
 	{
-		FD->path = ft_straddchar(tmp[0], '/');
-		FD->name = ft_strdup(tmp[1]);
+		SCN.fd->path = ft_straddchar(tmp[0], '/');
+		SCN.fd->name = ft_strdup(tmp[1]);
 	}
 	else
 	{
-		FD->path = ft_strdup("./");
-		FD->name = ft_strdup(tmp[0]);
+		SCN.fd->path = ft_strdup("./");
+		SCN.fd->name = ft_strdup(tmp[0]);
 	}
-	if (FD->path == NULL || FD->name == NULL)
+	if (SCN.fd->path == NULL || SCN.fd->name == NULL)
 		return (ERROR);
 	ft_tabfree((void **)tmp);
 	return (OK);
@@ -65,12 +65,14 @@ int				main(int ac, char **av)
 {
 	t_setup		*setup;
 
-	if (!(setup = (t_setup *)ft_memalloc(sizeof(t_setup))))
+	if (!(setup = (t_setup *)ft_memalloc(sizeof(t_setup))) || \
+			!(SETUP.scene = (t_scene *)ft_memalloc(sizeof(t_scene) \
+					* MAX_WINDOW)))
 		return (-1);
 	setup->mode = STATE_START;
 	setup->ac = ac;
 	ft_color(&setup->background.col, 0, 0, 0);
-	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
+	SCN.path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
 	if ((setup->error = (ac < 3) ? OK : ERROR) == OK \
 			&& ft_setup_mode(setup, 1) == OK) // premiere initialisation des structures
 		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
