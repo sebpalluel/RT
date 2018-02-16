@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:51:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:11:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		ft_mlx_control_key(t_setup *setup)
 {
 	if (SETUP.key == C_KEY || SETUP.mode == STATE_CAM)
 		ft_change_cam(setup);
+	if (SETUP.key == S_KEY)
+		SETUP.mode = STATE_SELECT; // va ouvrir la map selon le path
 	//if (SETUP.key == DOWN)
 	//	SETUP.udlr[1] = 1;
 	//if (SETUP.key == LEFT)

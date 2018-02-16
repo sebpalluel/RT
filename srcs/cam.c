@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:04:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:43:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ Matrix44f lookAt(const Vec3f& from, const Vec3f& to, const Vec3f& tmp = Vec3f(0,
 }
 */
 
-
-
 static void		ft_cam_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
@@ -64,6 +62,7 @@ size_t			ft_cam(void *a, t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCAM))) // initialise un tableau de bool a ERROR, pour verifier que tout est bien formate a la fin
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCAM);
+	printf("SETUP.scn_num %lu\n", SETUP.scn_num);
 	while (CAM[NCAM].num_arg < NVARCAM && env && (env = env->next)) // je passe au node suivant, qui est sense etre cam_pos ou cam_dir
 		ft_cam_struct_pop(setup, env, flag); // va trouver la variable correspondante au node (ici cam_pos ou cam_dir) et peuple cette variable + cherche si erreur
 	if (ft_checkifallset(flag, NVARCAM) != OK) // ici si tout le tableau de flag est a OK, c'est que pas d'erreur

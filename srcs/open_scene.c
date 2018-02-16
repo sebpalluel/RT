@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:48:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:38:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ size_t			ft_envtosetup(t_setup *setup)
 size_t			ft_select_scene(t_setup *setup, int scene)
 {
 	if (scene == 0)
-		SCN.path = ft_strdup(SCN_PATH_0);
+		SETUP.path = ft_strdup(SCN_PATH_0);
 	else if (scene == 1)
-		SCN.path = ft_strdup(SCN_PATH_1);
-	if (SCN.path != NULL)
+		SETUP.path = ft_strdup(SCN_PATH_1);
+	if (SETUP.path != NULL)
 		return (OK);
 	else
 		return (ERROR);
@@ -114,6 +114,8 @@ size_t			ft_open_scene(t_setup *setup)
 		return (SETUP.error = CAM_ERROR);
 	// appartir de la, on a le setup qui est entierement peuple et aucune erreur
 	OBJDEF.objscount = ft_getobjscount(setup); // permet de savoir combien d'objet le raytracer va devoir traiter
+	if (!SETUP.num_scn)
+		SETUP.num_scn = 1;
 	SETUP.mode = STATE_DRAW; // on peut render !!
 	return (OK);
 }

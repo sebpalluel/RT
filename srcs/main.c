@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:24:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:37:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
 
-	if (!SCN.path | !(tmp = ft_strsplit(SCN.path, '/')))
+	if (!SETUP.path | !(tmp = ft_strsplit(SETUP.path, '/')))
 		return (ERROR);
 	if (tmp[1] != NULL)
 	{
@@ -72,7 +72,7 @@ int				main(int ac, char **av)
 	setup->mode = STATE_START;
 	setup->ac = ac;
 	ft_color(&setup->background.col, 0, 0, 0);
-	SCN.path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
+	SETUP.path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
 	if ((setup->error = (ac < 3) ? OK : ERROR) == OK \
 			&& ft_setup_mode(setup, 1) == OK) // premiere initialisation des structures
 		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START

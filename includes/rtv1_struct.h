@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:50:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:36:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct		s_scene
 	t_mlx			*win;
 	t_img			*img;
 	t_fd			*fd;
-	char			*path;
 	double			move_step;
 	double			rot_step;
 	size_t			cam_num;
@@ -140,6 +139,7 @@ typedef struct		s_setup
 {
 	size_t			width;
 	size_t			height;
+	char			*path;
 	t_bool			ui; // afficher ou nom GUI
 	size_t			error; // output la string d'erreur (avec fonction usage())
 	size_t			mode; // gere different etat du programme STATE_*
