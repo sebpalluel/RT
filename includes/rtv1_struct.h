@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:15:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:50:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,6 @@ typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 
 	size_t			light_n; // index de la light
 	size_t			nlight; // nombre total de cam
 	t_objdef		objdef; // contient toutes les formes (sphere, cylindre, plan etc.)
-	char			**validobjs; // valide que la struct est geree (cam, sphere etc.), avec ft_validobjs
-	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet
 }					t_objs;
 
 typedef struct		s_mutex
@@ -158,6 +155,9 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	double			**camToWorld;
+	char			**validobjs; // valide que la struct est geree (cam, sphere etc.), avec ft_validobjs
+	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
+	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet
 }					t_setup;
 
 #endif

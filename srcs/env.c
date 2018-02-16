@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:08:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:52:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char			**ft_getenv(t_setup *setup)
 	int			i;
 	t_list		*tmp;
 
-	if (!(envtab = (char **)malloc(sizeof(char*) * (ft_lstlen(setup->env) + 1))))
+	if (!(envtab = (char **)malloc(sizeof(char*) * (ft_lstlen(SCN.env) + 1))))
 		return (NULL);
-	tmp = setup->env;
+	tmp = SCN.env;
 	i = 0;
 	while (tmp)
 	{

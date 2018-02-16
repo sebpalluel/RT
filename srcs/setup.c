@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:24:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:49:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@ void			ft_start(t_setup *setup)
 			0xFFFFFF, ENTER_STR);
 }
 
-static size_t	ft_alloc_objs(t_setup *setup) // alloue chaque objets
-{
-	PLANE = (t_plane *)ft_memalloc(sizeof(t_plane) * MAX_OBJ);
-	SPHERE = (t_sphere *)ft_memalloc(sizeof(t_sphere) * MAX_OBJ);
-	CAM = (t_cam *)ft_memalloc(sizeof(t_cam) * MAX_OBJ);
-	LIGHT = (t_light *)ft_memalloc(sizeof(t_light) * MAX_OBJ);
-	if (PLANE == NULL || CAM == NULL || LIGHT == NULL || SPHERE == NULL)
-		return (ERROR);
-	return (OK); // a ce moment tout est alloue, SETUP completement ready
-}
-
 static size_t	ft_init_mlx_img(t_setup *setup)
 {
 	if (!(UI_WIN = (t_mlx*)malloc(sizeof(t_mlx))))
@@ -79,19 +68,14 @@ static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des r
 	if (SETUP.width < 100 || SETUP.width > 4000 || \
 			SETUP.height < 100 || SETUP.height > 4000)
 		return (SETUP.error = DIM_ERROR);
-	SCN.move_step = MOVE_STEP;
-	SCN.rot_step = ROT_STEP;
-	SETUP.mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	OBJS = (t_objs *)ft_memalloc(sizeof(t_objs)); // alloue le t_objs qui gere tout les objets 
-	OBJS->validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
-	OBJS->builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
-	OBJS->param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
-	ft_init_mlx_img(setup);
 	SETUP.thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
-	SCN.fd = (t_fd *)ft_memalloc(sizeof(t_fd));
-	//TODO adapt here for scene
-	if (!OBJS->validobjs || !OBJS->builtin || !OBJS->param || !UI_WIN || !UI_IMG \
-			|| !SCN.fd || !OBJS || !SETUP.thrd || ft_alloc_objs(setup) != OK) // verifie les mallocs precedent et va initialiser tous les objets
+	SETUP.mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	SETUP.validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
+	SETUP.builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
+	SETUP.param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
+	ft_init_mlx_img(setup);
+	if (!SETUP.validobjs || !SETUP.builtin || !SETUP.param || !UI_WIN || \
+			!UI_IMG || !SETUP.thrd) // verifie les mallocs precedent et va initialiser tous les objets
 		return (ERROR);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 14:12:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:50:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
-		ray->hit = OBJS->param[i].paramfunc(ray, (void *)setup, &t);
+		ray->hit = SETUP.param[i].paramfunc(ray, (void *)setup, &t);
 		if (ray->hit == TRUE && t < t_near)
 		{
 			hit_once = ray->hit;

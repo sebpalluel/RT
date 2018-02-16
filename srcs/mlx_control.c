@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:10:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:51:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_change_cam(t_setup *setup)
 	char	*nbr;
 
 	OK;
-	x = S_WIDTH[UI] / 32;
+	x = SETUP.width / 32;
 	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, x, 16, 0x0000FF, CAM_AV_STR);
 	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, x + 290, \
 			16, 0x0000FF, nbr = (ft_itoa((int)NCAM)));
