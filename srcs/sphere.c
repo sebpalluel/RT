@@ -6,29 +6,28 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:57:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 20:09:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
+void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
-		flag[0] = ft_getvec3fromenv(&SPHERE[NSPHERE].pos, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "center") == 0)
+		flag[0] = ft_getvectfromenv(&SPHERE(form).ctr, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[1] = ft_getdoublefromenv(&SPHERE[NSPHERE].rad, \
-				ENVSTRUCT(env)->value);
+		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE[NSPHERE].mat.col, \
+		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
+		flag[3] = ft_getdoublefromenv(&SPHERE(form).mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.specular, \
+		flag[4] = ft_getdoublefromenv(&SPHERE(form).mat.specular, \
 				ENVSTRUCT(env)->value);
-	SPHERE[NSPHERE].num_arg++;
+	FORM(form)->num_arg++;
 }
 
 
@@ -36,6 +35,7 @@ size_t			ft_sphere(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
+	t_list		*form;
 	t_bool		*flag;
 
 	setup = get_st();
@@ -43,11 +43,15 @@ size_t			ft_sphere(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE);
-	while (SPHERE[NSPHERE].num_arg < NVARSPHERE && env && (env = env->next))
-		ft_sphere_struct_pop(setup, env, flag);
+	ft_lstaddend(&SCN.forms, ft_newform());
+	form = SCN.forms;
+	while (form->next)
+		form = form->next;
+	FORM(form)->type = SPH;
+	while (FORM(form)->num_arg < NVARSPHERE && env && (env = env->next))
+		ft_sphere_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, NVARSPHERE) != OK)
 		return (setup->error = SPHERE_ERROR);
-	NSPHERE++;
 	*list = env;
 	return (OK);
 }
