@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 14:56:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 15:06:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ typedef struct		s_objsfunc
 	size_t			(*builtinfunc)(void *a, t_list **list);
 }					t_objsfunc;
 
-typedef struct		s_ray
-{
-	double			size; // dist entre le point d'origine et l'objet touche le plus proche
-	t_bool			hit;
-	size_t			obj; // de quel type de forme il s'agit
-	size_t			objn; // l'index de l'objet (par exemple sphere[objn])
-	t_vec3			orig; // pos de la camera
-	t_vec3			dir;
-}					t_ray;
-
+//typedef struct		s_ray
+//{
+//	double			size; // dist entre le point d'origine et l'objet touche le plus proche
+//	t_bool			hit;
+//	size_t			obj; // de quel type de forme il s'agit
+//	size_t			objn; // l'index de l'objet (par exemple sphere[objn])
+//	t_vec3			orig; // pos de la camera
+//	t_vec3			dir;
+//}					t_ray;
+//
 typedef struct		s_objsparam
 {
 	// t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
@@ -49,67 +49,66 @@ typedef struct		s_mat
 	double			specular;
 }					t_mat;
 
-typedef struct		s_light
-{
-	size_t			type;
-	t_vec3			pos;
-	t_vec3			dir;
-	t_color			col;
-	double			intensity;
-	double			radius;
-	double			fallof;
-	double			focal_len;
-	size_t			num_arg;
-}					t_light;
-
-typedef struct		s_cam
-{
-	t_vec3			pos;
-	t_vec3			dir;
-	t_vec3			plane_center;
-	t_vec3			plane_dirX;
-	t_vec3			plane_dirY;
-	double			focal_len;
-	size_t			num_arg;
-}					t_cam;
-
-typedef struct		s_plane
-{
-	t_vec3			pos;
-	t_vec3			norm;
-	t_mat			mat;
-	size_t			num_arg;
-}					t_plane;
-
-typedef struct		s_sphere
-{
-	t_vec3			pos; // en fait c est le centre
-	t_mat			mat;
-	double			rad;
-	size_t			num_arg;
-}					t_sphere;
-
-typedef struct		s_objdef
-{
-	t_plane			*plane;
-	size_t			pl_n;
-	size_t			nplane;
-	t_sphere		*sphere;
-	size_t			sph_n;
-	size_t			nsphere;
-	size_t			objscount;
-}					t_objdef;
-
-typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 (attention cas d'erreur a verifier si plus de 20 !)
-{
-	t_cam			*cam; // Array de cam
-	size_t			cam_n; // index de la cam
-	size_t			ncam; // nombre total de cam
-	t_light			*light; // Array de light
-	size_t			light_n; // index de la light
-	size_t			nlight; // nombre total de cam
-	t_objdef		objdef; // contient toutes les formes (sphere, cylindre, plan etc.)
-}					t_objs;
+//typedef struct		s_light
+//{
+//	size_t			type;
+//	t_vec3			pos;
+//	t_vec3			dir;
+//	t_color			col;
+//	double			intensity;
+//	double			radius;
+//	double			fallof;
+//	double			focal_len;
+//	size_t			num_arg;
+//}					t_light;
+//
+//typedef struct		s_cam
+//{
+//	t_vec3			pos;
+//	t_vec3			dir;
+//	t_vec3			plane_center;
+//	t_vec3			plane_dirX;
+//	t_vec3			plane_dirY;
+//	double			focal_len;
+//	size_t			num_arg;
+//}					t_cam;
+//
+//typedef struct		s_plane
+//{
+//	t_vec3			pos;
+//	t_vec3			norm;
+//	t_mat			mat;
+//	size_t			num_arg;
+//}					t_plane;
+//
+//typedef struct		s_sphere
+//{
+//	t_vec3			pos; // en fait c est le centre
+//	t_mat			mat;
+//	double			rad;
+//	size_t			num_arg;
+//}					t_sphere;
+//
+//typedef struct		s_objdef
+//{
+//	t_plane			*plane;
+//	size_t			pl_n;
+//	size_t			nplane;
+//	t_sphere		*sphere;
+//	size_t			sph_n;
+//	size_t			nsphere;
+//	size_t			objscount;
+//}					t_objdef;
+//
+//typedef struct		s_objs // touts les types d'objets sont alloue sur MAX_OBJ = 20 (attention cas d'erreur a verifier si plus de 20 !)
+//{
+//	size_t			cam_n; // index de la cam
+//	size_t			ncam; // nombre total de cam
+//	t_light			*light; // Array de light
+//	size_t			light_n; // index de la light
+//	size_t			nlight; // nombre total de cam
+//	t_objdef		objdef; // contient toutes les formes (sphere, cylindre, plan etc.)
+//}					t_objs;
 
 typedef struct		s_mutex
 {
@@ -131,6 +130,7 @@ typedef struct	s_lgt
 {
 	t_vec3	vect;
 	t_col	col;
+	size_t	num_arg;
 }				t_lgt;
 
 typedef struct	s_sph
@@ -138,6 +138,7 @@ typedef struct	s_sph
 	t_vec3	ctr;
 	t_col	col;
 	double	r;
+	size_t	num_arg;
 }				t_sph;
 
 typedef struct	s_plan
@@ -145,6 +146,7 @@ typedef struct	s_plan
 	t_vec3	nrml;
 	double	dst;
 	t_col	col;
+	size_t	num_arg;
 }				t_plan;
 
 typedef struct	s_cone
@@ -153,6 +155,7 @@ typedef struct	s_cone
 	t_vec3	dir;
 	double	theta;
 	t_col	col;
+	size_t	num_arg;
 }				t_cone;
 
 typedef struct	s_formes
@@ -171,6 +174,38 @@ typedef struct	s_lights
 	struct s_lights	*next;
 	double			nblgt;
 }				t_lights;
+
+typedef struct	s_cam
+{
+	t_vec3 org;
+	t_vec3 frt;
+	t_vec3 rgt;
+	t_vec3 dwn;
+	size_t	num_arg;
+}				t_cam;
+
+typedef struct	s_mat
+{
+	int		i;
+	int		j;
+	double	**mat;
+}				t_mat;
+
+typedef struct	s_vect
+{
+	double x;
+	double y;
+	double z;
+}				t_vect;
+
+typedef struct	s_ray
+{
+	t_vect	org;
+	t_vect	dir;
+	double	dist;
+	int		forme;
+}				t_ray;
+
 //////////TODO Eliot
 
 typedef struct		s_scene
@@ -179,7 +214,9 @@ typedef struct		s_scene
 	size_t			height;
 	size_t			num_arg;
 	t_list			*env;
-	t_objs			*objs; // ce qui contient tous les objets confondus (cam, light, forms)
+	t_formes		*formes;
+	t_lights		*lights;
+	t_cam			*cams;
 	t_mlx			*win;
 	t_img			*img;
 	t_fd			*fd;

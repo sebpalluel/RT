@@ -1,0 +1,88 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.09 </amb_light>
+	</engine>
+
+	<cameras>
+
+		<camera>
+			<origin> 0.0, 0.0, 10.0 </origin>
+			<look_at> 0.0, 0.0, 10.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+
+		<light>
+			<type> 0 </type>
+			<position> 0.0, -0.5, 0. </position>
+			<color> 1., 0., 0., 1. </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.25, 0.433 </position>
+			<color> 0., 1., 0., 1. </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.25, -0.433 </position>
+			<color> 0., 0., 1., 1. </color>
+		</light>
+	</lights>
+
+	<objects>
+
+		<cone>
+			<origin> 2.0, 0., 0. </origin>
+			<direction> 1., -1., 1. </direction>
+			<theta> M_PI/4 </theta>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</cone>
+		<cone>
+			<origin> 1., 0., 0. </origin>
+			<direction> 0., 1., 0. </direction>
+			<theta> M_PI/4 </theta>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</cone>
+		<sphere>
+			<center> 1.0, 0., 0. </center>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 3.0, 0., 0.5 </center>
+			<radius> 0.1 </radius>
+			<material>
+				<color> 1., 1., 1., 0. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
+		<plane>
+			<normal> 0.0, 0.0, 0.5 </normal>
+			<distance> 0.5 </distance>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</plane>
+	</objects>
+</scene>
