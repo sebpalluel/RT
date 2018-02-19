@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 15:06:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:12:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ typedef struct		s_objsfunc
 //	t_vec3			dir;
 //}					t_ray;
 //
-typedef struct		s_objsparam
-{
-	// t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
-	t_bool			(*paramfunc)(t_ray *ray, void *a, double *t);
-}					t_objsparam;
+//typedef struct		s_objsparam
+//{
+//	// t_bool			(*paramfunc)(void *a, t_ray ray, double *dist);
+//	t_bool			(*paramfunc)(t_ray ray, void *a, double *t);
+//}					t_objsparam;
 
-typedef struct		s_env
-{
-	char			*name;
-	char			*value;
-}					t_env;
-
-typedef struct		s_mat
-{
-	t_color			col;
-	double			diffuse;
-	double			specular;
-}					t_mat;
-
+//typedef struct		s_env
+//{
+//	char			*name;
+//	char			*value;
+//}					t_env;
+//
+//typedef struct		s_mat
+//{
+//	t_color			col;
+//	double			diffuse;
+//	double			specular;
+//}					t_mat;
+//
 //typedef struct		s_light
 //{
 //	size_t			type;
@@ -118,6 +118,13 @@ typedef struct		s_mutex
 
 
 //////////TODO Eliot
+typedef struct	s_vect
+{
+	double x;
+	double y;
+	double z;
+}				t_vect;
+
 typedef struct	s_col
 {
 	double r;
@@ -126,16 +133,29 @@ typedef struct	s_col
 	double s;
 }				t_col;
 
+typedef struct		s_env
+{
+	char			*name;
+	char			*value;
+}					t_env;
+
+typedef struct		s_mat
+{
+	t_col			col;
+	double			diffuse;
+	double			specular;
+}					t_mat;
+
 typedef struct	s_lgt
 {
-	t_vec3	vect;
+	t_vect	vect;
 	t_col	col;
 	size_t	num_arg;
 }				t_lgt;
 
 typedef struct	s_sph
 {
-	t_vec3	ctr;
+	t_vect	ctr;
 	t_col	col;
 	double	r;
 	size_t	num_arg;
@@ -143,7 +163,7 @@ typedef struct	s_sph
 
 typedef struct	s_plan
 {
-	t_vec3	nrml;
+	t_vect	nrml;
 	double	dst;
 	t_col	col;
 	size_t	num_arg;
@@ -151,8 +171,8 @@ typedef struct	s_plan
 
 typedef struct	s_cone
 {
-	t_vec3	org;
-	t_vec3	dir;
+	t_vect	org;
+	t_vect	dir;
 	double	theta;
 	t_col	col;
 	size_t	num_arg;
@@ -165,7 +185,7 @@ typedef struct	s_formes
 	t_sph				sph;
 	t_plan				plan;
 	t_cone				cone;
-	t_vec3				norm;
+	t_vect				norm;
 }				t_formes;
 
 typedef struct	s_lights
@@ -177,26 +197,19 @@ typedef struct	s_lights
 
 typedef struct	s_cam
 {
-	t_vec3 org;
-	t_vec3 frt;
-	t_vec3 rgt;
-	t_vec3 dwn;
+	t_vect org;
+	t_vect frt;
+	t_vect rgt;
+	t_vect dwn;
 	size_t	num_arg;
 }				t_cam;
 
-typedef struct	s_mat
+typedef struct	s_matrix
 {
 	int		i;
 	int		j;
 	double	**mat;
-}				t_mat;
-
-typedef struct	s_vect
-{
-	double x;
-	double y;
-	double z;
-}				t_vect;
+}				t_matrix;
 
 typedef struct	s_ray
 {
@@ -206,6 +219,8 @@ typedef struct	s_ray
 	int		forme;
 }				t_ray;
 
+typedef t_col (*t_func_col)();
+typedef double (*t_func_double)();
 //////////TODO Eliot
 
 typedef struct		s_scene
@@ -238,7 +253,7 @@ typedef struct		s_setup
 	size_t			mode; // gere different etat du programme STATE_*
 	int				ac;
 	int				key;
-	t_mat			background;
+	t_col			background;
 	t_mlx			*ui_win;
 	t_img			*ui_img;
 	void			*mlx_ptr;

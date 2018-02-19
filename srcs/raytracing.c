@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 15:40:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:15:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_mat			*ft_getobjmat(t_setup *setup, t_ray ray)
 		return (&OBJDEF.sphere[ray.objn].mat);
 	if (ray.obj == PLN)
 		return (&OBJDEF.plane[ray.objn].mat);
-	return (&SETUP.background);
+	return (&setup->background);
 }
 /*
  ** EXEMPLE, ici ce qui est important c'est le hitObject, en gros il faut juste que l on sache sur quoi on tape depuis l exterieur du scope de la fonction
@@ -156,7 +156,7 @@ t_mat			*ft_getobjmat(t_setup *setup, t_ray ray)
 //	*/
 //	ft_primray(setup, &ray); // rayon lance a partir du point d'origine et qui permet de savoir si rayon hit et dans le cas echeant la distance et l'objet qui correspond
 //	if (ray.hit == ERROR)
-//		return (&SETUP.background.col);
+//		return (&setup->background.col);
 //	return (col = &ft_getobjmat(setup, ray)->col); // permet de retourner la couleur de l'objet correspondant
 //}
 
@@ -177,7 +177,7 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
-		ray->hit = SETUP.param[i].paramfunc(ray, (void *)setup, &t);
+		ray->hit = setup->param[i].paramfunc(ray, (void *)setup, &t);
 		if (ray->hit == TRUE && t < t_near)
 		{
 			hit_once = ray->hit;
@@ -238,7 +238,7 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	t_color hit_col;
 
-	hit_col = SETUP.background.col;
+	hit_col = setup->background.col;
 	i = 0;
 	j = 0;
 	if (ft_trace(&ray, setup))
@@ -320,17 +320,17 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 	setup = (t_setup*)a;
 	size_t		inc;
 
-	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld);
+	multVecMatrix(&orig, &ray.orig, setup->camToWorld);
 	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 
 	id = pthread_self();
 	i = -1;
 	inc = SCN.height / THREAD;
 	while (++i < THREAD) // permet d'identifier dans quel thread on est
-		if (pthread_equal(id, SETUP.thrd[i]))
+		if (pthread_equal(id, setup->thrd[i]))
 			break ;
 	pix.y = inc * i - 1;
-	pthread_mutex_lock(&SETUP.mutex.mutex);
+	pthread_mutex_lock(&setup->mutex.mutex);
 	while (++pix.y <= (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
@@ -344,7 +344,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			// float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
 			// float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
-			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
+			multDirMatrix(&dir, &ray.dir, setup->camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
@@ -352,6 +352,6 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
 		}
 	}
-	pthread_mutex_unlock(&SETUP.mutex.mutex);
+	pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }

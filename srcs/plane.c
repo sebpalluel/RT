@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:50:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:15:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t			ft_plane(void *a, t_list **list)
 	while (PLANE[NPLANE].num_arg < NVARPLANE && env && (env = env->next))
 		ft_plane_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARPLANE) != OK)
-		return (SETUP.error = PLANE_ERROR);
+		return (setup->error = PLANE_ERROR);
 	NPLANE++;
 	*list = env;
 	return (OK);

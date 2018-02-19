@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:51:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:00:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "../includes/rtv1_define.h"
 
 int			usage(int mode);
+int			ft_quit(t_setup *setup);
+t_setup		*ft_setup_alloc(t_setup *setup); // tous les define sont juste des racourcis sur la structure setup
 char		**ft_validobjs(void);
 t_objsfunc	*ft_validfuncsptr(void);
 t_objsparam	*ft_objsparam(void);
@@ -34,7 +36,6 @@ void		ft_getengine(t_list **env, char *eng_str);
 void		ft_getcams(t_list **env, char *cam_str);
 void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_setup *setup, t_list **env, char *light_str);
-size_t		ft_setup_mode(t_setup *setup, size_t mode);
 int			ft_setup_menu(t_setup *setup);
 size_t		ft_select_scene(t_setup *setup, int scene);
 size_t		ft_open_scene(t_setup *setup);
@@ -60,22 +61,45 @@ t_bool		ft_plane_param(void *a, t_ray ray, double *dist);
 t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist);
 t_bool		ft_sphere_param(t_ray *ray, void *a, double *t);
 
-int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
-int			ft_mouse_moove(int x, int y, t_setup *setup);
-int			ft_expose_hook(t_setup *setup);
-void		ft_print(t_setup *setup);
-void		ft_start(t_setup *setup);
-void		ft_path_maker(t_setup *setup);
-int			ft_configure_dim(t_setup *setup);
-size_t		ft_name_input(t_setup *setup);
-size_t		ft_generate_map(t_setup *setup);
-void		ft_path_maker_dir(t_setup *setup);
-void		ft_mlx_control(t_setup *setup);
-void		ft_mlx_control_key(t_setup *setup);
-int			ft_sky_select(t_setup *setup);
-int			ft_quit(t_setup *setup);
-int			ft_select_color(t_setup *setup);
-int			ft_give_color(t_setup *setup, t_color *color, int alpha);
-void		ft_draw_vert_line(t_setup *setup, int posx, int len);
+// TODO Eliot functions
+t_setup		*get_st(void);
+int			coltoi(t_col col);
+t_col		addcol(t_col col1, t_col col2);
+t_col		mult_scale_col(double t, t_col col);
+t_col		multcol(t_col col1, t_col col2);
+t_col		init_col(double r, double g, double b, double s);
+t_col		interpolcol(t_col col1, t_col col2, double t);
+int			init_mat(t_mat *mat, int i, int j);
+void		add_mat(t_mat *a, t_mat *b);
+t_mat		*mult_mat(t_mat a, t_mat b);
+void		scale_mat(double a, t_mat *res);
+t_vect		vect_dot(t_vect u, t_vect v);
+t_mat		rot_mat(t_vect v, double theta);
+t_mat		id_mat(void);
+t_vect		mult_vect_mat(t_mat a, t_vect b);
+t_vect		rot_vect(t_vect v, double theta, t_vect axis);
+t_vect		init_vect(double x, double y, double z);
+void		vect_mat_mult(t_mat a, t_vect *u);
+t_vect		vect_scale(double a, t_vect v);
+t_vect		vect_mult(t_vect u, t_vect v);
+t_vect		vect_add(t_vect u, t_vect v);
+///////////////////////
+//int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
+//int			ft_mouse_moove(int x, int y, t_setup *setup);
+//int			ft_expose_hook(t_setup *setup);
+//void		ft_print(t_setup *setup);
+//void		ft_start(t_setup *setup);
+//void		ft_path_maker(t_setup *setup);
+//int			ft_configure_dim(t_setup *setup);
+//size_t		ft_name_input(t_setup *setup);
+//size_t		ft_generate_map(t_setup *setup);
+//void		ft_path_maker_dir(t_setup *setup);
+//void		ft_mlx_control(t_setup *setup);
+//void		ft_mlx_control_key(t_setup *setup);
+//int			ft_sky_select(t_setup *setup);
+//int			ft_quit(t_setup *setup);
+//int			ft_select_color(t_setup *setup);
+//int			ft_give_color(t_setup *setup, t_color *color, int alpha);
+//void		ft_draw_vert_line(t_setup *setup, int posx, int len);
 
 #endif

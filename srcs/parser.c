@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:50:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:15:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ t_list		*ft_parse_scn(t_setup *setup, char *file)
 	if (!(parsed = (char **)ft_memalloc(sizeof(char *) * 5)))
 		return (NULL);
 	if (!(scene = ft_getobjstr(file, "scene", 0)))
-		SETUP.error = SCN_ERROR;
-	if (SETUP.error == OK && !(ENG_S = ft_getobjstr(scene, "engine", 0)))
-		SETUP.error = ENG_ERROR;
-	if (SETUP.error == OK && !(CAM_S = ft_getobjstr(scene, "cameras", 0)))
-		SETUP.error = CAM_ERROR;
+		setup->error = SCN_ERROR;
+	if (setup->error == OK && !(ENG_S = ft_getobjstr(scene, "engine", 0)))
+		setup->error = ENG_ERROR;
+	if (setup->error == OK && !(CAM_S = ft_getobjstr(scene, "cameras", 0)))
+		setup->error = CAM_ERROR;
 	LGT_S = ft_getobjstr(scene, "lights", 0);
-	if (SETUP.error == OK && !(OBJ_S = ft_getobjstr(scene, "objects", 0)))
-		SETUP.error = OBJ_ERROR;
-	if (SETUP.error != OK)
+	if (setup->error == OK && !(OBJ_S = ft_getobjstr(scene, "objects", 0)))
+		setup->error = OBJ_ERROR;
+	if (setup->error != OK)
 		return (NULL);
 	return (ft_envlistfromparse(setup, parsed));
 }

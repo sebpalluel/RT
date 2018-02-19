@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:51:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:14:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ size_t			ft_cam(void *a, t_list **list)
 	while (CAM[NCAM].num_arg < NVARCAM && env && (env = env->next)) // je passe au node suivant, qui est sense etre cam_pos ou cam_dir
 		ft_cam_struct_pop(setup, env, flag); // va trouver la variable correspondante au node (ici cam_pos ou cam_dir) et peuple cette variable + cherche si erreur
 	if (ft_checkifallset(flag, NVARCAM) != OK) // ici si tout le tableau de flag est a OK, c'est que pas d'erreur
-		return (SETUP.error = CAM_ERROR);
+		return (setup->error = CAM_ERROR);
 	NCAM++; // passe a la camera suivant si il y en a, permet en meme temps d'indiquer le nombre total de camera
 	*list = env;
 	return (OK);

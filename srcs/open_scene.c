@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 18:12:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:15:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ size_t			ft_envtosetup(t_setup *setup)
 	//	}
 	//	env = env->next;
 	//}
-	//env = SETUP.env;
+	//env = setup->env;
 	while (env && ENVSTRUCT(env))
 	{
 		i = -1;
 		flag = ERROR; // je part du principe que l'element est inconnu
 		while (env && ++i < NUM_OBJS) // NUM_OBJS nombre d'objets que l'on sait gerer
 		{
-			if (ft_strcmp(ENVSTRUCT(env)->name, SETUP.validobjs[i]) == 0) // ici permet de savoir si cet element est pris en charge
+			if (ft_strcmp(ENVSTRUCT(env)->name, setup->validobjs[i]) == 0) // ici permet de savoir si cet element est pris en charge
 			{
 
 				flag = OK; // dans ce cas la le chainon est valide
-				if (SETUP.builtin[i].builtinfunc((void *)setup, &env) != OK) // ici on rentre dans la fonction de l'objet correspondant (par example pour name "sphere" on rentre dans la fonction ft_sphere
+				if (setup->builtin[i].builtinfunc((void *)setup, &env) != OK) // ici on rentre dans la fonction de l'objet correspondant (par example pour name "sphere" on rentre dans la fonction ft_sphere
 					return (ERROR); // dans le cas ou cette structure est mal formatee (information qui manque etc)
 				if (env)
 					env = env->next; // si c'est ok on passe au chainon suivant qui devra correspondre a un objet qui qui est pris en charge (cam, light, sphere etc.)
@@ -54,10 +54,10 @@ size_t			ft_envtosetup(t_setup *setup)
 size_t			ft_select_scene(t_setup *setup, int scene)
 {
 	if (scene == 0)
-		SETUP.path = ft_strdup(SCN_PATH_0);
+		setup->path = ft_strdup(SCN_PATH_0);
 	else if (scene == 1)
-		SETUP.path = ft_strdup(SCN_PATH_1);
-	if (SETUP.path != NULL)
+		setup->path = ft_strdup(SCN_PATH_1);
+	if (setup->path != NULL)
 		return (OK);
 	else
 		return (ERROR);
@@ -72,7 +72,7 @@ size_t			ft_alloc_objs(t_setup *setup) // alloue chaque objets
 	LIGHT = (t_light *)ft_memalloc(sizeof(t_light) * MAX_OBJ);
 	if (PLANE == NULL || CAM == NULL || LIGHT == NULL || SPHERE == NULL)
 		return (ERROR);
-	return (OK); // a ce moment tout est alloue, SETUP completement ready
+	return (OK); // a ce moment tout est alloue, setup->completement ready
 }
 
 size_t			ft_alloc_new_scene(t_setup *setup)
@@ -101,22 +101,22 @@ size_t			ft_open_scene(t_setup *setup)
 	while (get_next_line(SCN.fd->fd, &line))
 	{
 		if (!line) // permet de gerer le cas d'erreur d'ouverture d'un dossier
-			return (SETUP.error = FILE_ERROR);
+			return (setup->error = FILE_ERROR);
 		tmp = file;
 		file = ft_strjoin(tmp, line);
 		free(tmp);
 	}
 	// le fichier est bien stocke dans file et il faut le parser
 	if (!(SCN.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
-			|| SETUP.error != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
+			|| setup->error != OK) // ft_envlist retourne la list chainee peuplee, ft_envtosetup se charge du parsing et de la population des structures
 		return (ERROR);
 	if (NCAM == 0)
-		return (SETUP.error = CAM_ERROR);
+		return (setup->error = CAM_ERROR);
 	// appartir de la, on a le setup qui est entierement peuple et aucune erreur
 	OBJDEF.objscount = ft_getobjscount(setup); // permet de savoir combien d'objet le raytracer va devoir traiter
-	if (!SETUP.num_scn)
-		SETUP.num_scn = 1;
-	mlx_put_image_to_window(SETUP.mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
-	SETUP.mode = STATE_DRAW; // on peut render !!
+	if (!setup->num_scn)
+		setup->num_scn = 1;
+	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
+	setup->mode = STATE_DRAW; // on peut render !!
 	return (OK);
 }

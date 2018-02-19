@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 13:08:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:14:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t			ft_light(void *a, t_list **list)
 				NVARLIGHT : NVARLIGHT - 2)) && env && (env = env->next))
 		ft_light_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, num_arg) != OK)
-		return (SETUP.error = LIGHT_ERROR);
+		return (setup->error = LIGHT_ERROR);
 	NLIGHT++;
 	*list = env;
 	return (OK);

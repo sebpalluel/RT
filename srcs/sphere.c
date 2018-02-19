@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:49:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:16:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t			ft_sphere(void *a, t_list **list)
 	while (SPHERE[NSPHERE].num_arg < NVARSPHERE && env && (env = env->next))
 		ft_sphere_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARSPHERE) != OK)
-		return (SETUP.error = SPHERE_ERROR);
+		return (setup->error = SPHERE_ERROR);
 	NSPHERE++;
 	*list = env;
 	return (OK);

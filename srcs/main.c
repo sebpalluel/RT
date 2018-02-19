@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:50:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:14:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
 
-	if (!SETUP.path | !(tmp = ft_strsplit(SETUP.path, '/')))
+	if (!setup->path | !(tmp = ft_strsplit(setup->path, '/')))
 		return (ERROR);
 	if (tmp[1] != NULL)
 	{
@@ -61,20 +61,24 @@ int				usage(int mode)
 	return (mode);
 }
 
+t_setup					*get_st(void)
+{
+	static t_setup		setup;
+
+	return (&setup);
+}
+
 int				main(int ac, char **av)
 {
 	t_setup		*setup;
 
-	if (!(setup = (t_setup *)ft_memalloc(sizeof(t_setup))) || \
-			!(SETUP.scene = (t_scene *)ft_memalloc(sizeof(t_scene) \
-					* MAX_WINDOW)))
-		return (-1);
+	if (!(setup = ft_setup_alloc(get_st())))
+		return (EXIT_FAILURE);
 	setup->mode = STATE_START;
 	setup->ac = ac;
-	ft_color(&setup->background.col, 0, 0, 0);
-	SETUP.path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
-	if ((setup->error = (ac < 3) ? OK : ERROR) == OK \
-			&& ft_setup_mode(setup, 1) == OK) // premiere initialisation des structures
+	setup->background = init_col(0, 0, 0, 0);
+	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
+	if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
 		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
-	return (ft_setup_mode(setup, 0));
+	return (ft_quit(setup));
 }

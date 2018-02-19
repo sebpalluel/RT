@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:50:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:15:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		ft_getlights(t_setup *setup, t_list **env, char *light_str)
 		no_lght = OK;
 	}
 	if (no_lght != OK)
-		SETUP.error = LIGHT_ERROR;
+		setup->error = LIGHT_ERROR;
 }
 
 void		ft_getcams(t_list **env, char *cam_str)
