@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:50:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 20:23:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int				usage(int mode)
 		ft_putendl(PLANE_ERROR_S);
 	else if (mode == SPHERE_ERROR)
 		ft_putendl(SPHERE_ERROR_S);
+	else if (mode == CONE_ERROR)
+		ft_putendl(CONE_ERROR_S);
 	else if (mode == CAM_ERROR)
 		ft_putendl(CAM_ERROR_S);
 	else if (mode == SCN_ERROR)

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:58:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 20:22:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define LIGHT_ERROR_S	"error: light struct is not in the correct format"
 # define PLANE_ERROR_S	"error: plane struct is not in the correct format"
 # define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
+# define CONE_ERROR_S	"error: cone struct is not in the correct format"
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
@@ -55,9 +56,10 @@
 # define CAM_ERROR		-4
 # define PLANE_ERROR	-5
 # define SPHERE_ERROR	-6
-# define SCN_ERROR		-7
-# define OBJ_ERROR		-8
-# define DIM_ERROR		-9
+# define CONE_ERROR		-7
+# define SCN_ERROR		-8
+# define OBJ_ERROR		-9
+# define DIM_ERROR		-10
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]
@@ -70,8 +72,9 @@
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
 # define NVARLIGHT		4
-# define NVARPLANE		5
 # define NVARSPHERE		5
+# define NVARPLANE		5
+# define NVARCONE		6
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_forms *)(*(x)).content)
