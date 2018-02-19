@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:38:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:52:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_list	*ft_newlgt(void)
 	if (!(lgt = (t_list*)malloc(sizeof(t_list))) || \
 			!(lgt->content = (t_lgt*)ft_memalloc(sizeof(t_cam))))
 		return (NULL);
-	lgt->content_size = sizeof(t_cam);
+	lgt->content_size = sizeof(t_lgt);
 	lgt->next = NULL;
 	return (lgt);
 }

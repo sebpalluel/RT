@@ -76,7 +76,7 @@
 			</material>
 		</sphere>
 		<plane>
-			<normal> 0.0, 0.0, 0.5 </normal>
+			<normale> 0.0, 0.0, 0.5 </normale>
 			<distance> 0.5 </distance>
 			<material>
 				<color> 1., 1., 1., 1. </color>

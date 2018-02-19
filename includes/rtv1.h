@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:37:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:46:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char		**ft_validobjs(void); // ce qui contient tous les types d'objet qu'on gere
 //t_objsparam	*ft_objsparam(void);
 t_list		*ft_searchenv(t_list *env, char *name);
 t_list		*ft_envlist(char *file);
+t_list		*ft_newform(void);
 char		**ft_getenv(t_setup *setup);
 t_list		*ft_newenv(char *name, char *value);
 void		ft_editenv(t_list *env, char *name, char *value);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:37:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:55:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,17 +167,15 @@ typedef struct	s_lgt
 typedef struct	s_sph
 {
 	t_vect	ctr;
-	t_col	col;
 	double	r;
-	size_t	num_arg;
+	t_mat	mat;
 }				t_sph;
 
 typedef struct	s_plan
 {
 	t_vect	nrml;
 	double	dst;
-	t_col	col;
-	size_t	num_arg;
+	t_mat	mat;
 }				t_plan;
 
 typedef struct	s_cone
@@ -185,13 +183,13 @@ typedef struct	s_cone
 	t_vect	org;
 	t_vect	dir;
 	double	theta;
-	t_col	col;
-	size_t	num_arg;
+	t_mat	mat;
 }				t_cone;
 
 typedef struct	s_forms
 {
 	int					type;
+	size_t				num_arg;
 	t_sph				sph;
 	t_plan				plan;
 	t_cone				cone;
