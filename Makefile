@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/19 16:38:22 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/19 20:18:12 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -38,7 +38,6 @@ INCNAME		=	rtv1.h \
 				rtv1_struct.h
 SRCNAME 	=	main.c \
 				setup.c \
-				objs.c \
 				mlx_process.c \
 				mlx_control.c \
 				open_scene.c \
@@ -56,6 +55,9 @@ SRCNAME 	=	main.c \
 				color.c \
 				sp_mat.c \
 				matrices.c \
+				forms.c \
+				singleton.c \
+				ray.c \
 				vect.c
 				#draw.c \
 				#raycaster.c \
