@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:52:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 14:56:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,62 @@ typedef struct		s_mutex
 	int var;
 	pthread_mutex_t	mutex;
 }					t_mutex;
+
+
+//////////TODO Eliot
+typedef struct	s_col
+{
+	double r;
+	double g;
+	double b;
+	double s;
+}				t_col;
+
+typedef struct	s_lgt
+{
+	t_vec3	vect;
+	t_col	col;
+}				t_lgt;
+
+typedef struct	s_sph
+{
+	t_vec3	ctr;
+	t_col	col;
+	double	r;
+}				t_sph;
+
+typedef struct	s_plan
+{
+	t_vec3	nrml;
+	double	dst;
+	t_col	col;
+}				t_plan;
+
+typedef struct	s_cone
+{
+	t_vec3	org;
+	t_vec3	dir;
+	double	theta;
+	t_col	col;
+}				t_cone;
+
+typedef struct	s_formes
+{
+	struct s_formes		*next;
+	int					type;
+	t_sph				sph;
+	t_plan				plan;
+	t_cone				cone;
+	t_vec3				norm;
+}				t_formes;
+
+typedef struct	s_lights
+{
+	t_lgt			lgt;
+	struct s_lights	*next;
+	double			nblgt;
+}				t_lights;
+//////////TODO Eliot
 
 typedef struct		s_scene
 {
