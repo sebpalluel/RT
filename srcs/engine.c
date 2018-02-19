@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:14:46 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:57:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static void		ft_create_new_window(t_setup *setup)
 		setup->error = ERROR;
 }
 
-size_t			ft_engine(void *a, t_list **list)
+size_t			ft_engine(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
 	t_bool		*flag;
 
-	setup = (t_setup *)a;
+	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARENG)))
 		return (ERROR);

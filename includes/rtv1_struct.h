@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:12:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:04:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,15 @@ typedef struct		s_mat
 	double			specular;
 }					t_mat;
 
+typedef struct	s_cam
+{
+	t_vect org;
+	t_vect frt;
+	t_vect rgt;
+	t_vect dwn;
+	size_t	num_arg;
+}				t_cam;
+
 typedef struct	s_lgt
 {
 	t_vect	vect;
@@ -186,23 +195,7 @@ typedef struct	s_formes
 	t_plan				plan;
 	t_cone				cone;
 	t_vect				norm;
-}				t_formes;
-
-typedef struct	s_lights
-{
-	t_lgt			lgt;
-	struct s_lights	*next;
-	double			nblgt;
-}				t_lights;
-
-typedef struct	s_cam
-{
-	t_vect org;
-	t_vect frt;
-	t_vect rgt;
-	t_vect dwn;
-	size_t	num_arg;
-}				t_cam;
+}						t_formes;
 
 typedef struct	s_matrix
 {
@@ -219,8 +212,10 @@ typedef struct	s_ray
 	int		forme;
 }				t_ray;
 
-typedef t_col (*t_func_col)();
-typedef double (*t_func_double)();
+typedef t_col	(*t_func_col)();
+typedef double	(*t_func_double)();
+typedef char	*(*t_name_obj)();
+typedef size_t	(*t_parse_obj)();
 //////////TODO Eliot
 
 typedef struct		s_scene
@@ -229,15 +224,16 @@ typedef struct		s_scene
 	size_t			height;
 	size_t			num_arg;
 	t_list			*env;
-	t_formes		*formes;
-	t_lights		*lights;
+	t_list			*forms;
+	t_list			*lghts;
 	t_cam			*cams;
+	size_t			cam_n;
+	size_t			num_cam;
 	t_mlx			*win;
 	t_img			*img;
-	t_fd			*fd;
+	t_fd			fd;
 	double			move_step;
 	double			rot_step;
-	size_t			cam_num;
 	size_t			refr_max;
 	size_t			refl_max;
 	double			amb_light;
@@ -265,7 +261,6 @@ typedef struct		s_setup
 	double			**camToWorld;
 	char			**validobjs; // valide que la struct est geree (cam, sphere etc.), avec ft_validobjs
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_objsparam		*param; // ft_objparam, pointeur sur fonction pour gerer les intersections de chaque objet
 }					t_setup;
 
 #endif

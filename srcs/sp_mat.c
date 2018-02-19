@@ -6,15 +6,15 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 02:18:14 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/13 13:29:47 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:54:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
-t_mat	rot_mat(t_vect v, double theta)
+t_matrix	rot_mat(t_vect v, double theta)
 {
-	t_mat rot;
+	t_matrix rot;
 
 	if (!(init_mat(&rot, 3, 3)))
 		return (rot);
@@ -30,9 +30,9 @@ t_mat	rot_mat(t_vect v, double theta)
 	return (rot);
 }
 
-t_mat	id_mat(void)
+t_matrix	id_mat(void)
 {
-	t_mat id;
+	t_matrix id;
 
 	if (!(init_mat(&id, 3, 3)))
 		return (id);
@@ -42,7 +42,7 @@ t_mat	id_mat(void)
 	return (id);
 }
 
-t_vect	mult_vect_mat(t_mat a, t_vect b)
+t_vect	mult_vect_mat(t_matrix a, t_vect b)
 {
 	t_vect	res;
 

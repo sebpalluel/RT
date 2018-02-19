@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:15:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:32:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			ft_expose(t_setup *setup)
 	//if (!setup->ui)
 	ft_mlx_control_key(setup);
 	if (ret != OK)
-		ft_setup_mode(&setup-> 0);
+		ft_quit(setup);
 	return (0);
 }
 
@@ -43,7 +43,7 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 
 	setup->key = keycode;
 	ret = OK; // je part du principe que tout est OK pour detecter erreur eventuelle
-	ft_mlx_control_key(&setup->;
+	ft_mlx_control_key(setup);
 	if (setup->key == ENTER && setup->mode == STATE_START)
 		setup->mode = (setup->ac > 1) ? STATE_OPEN : STATE_SELECT; // Si arg va direct lancer parsing de la map sinon selection de map
 	if (setup->mode == STATE_SELECT)

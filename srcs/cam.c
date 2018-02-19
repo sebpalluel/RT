@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:14:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:00:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static void		ft_cam_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 	CAM[NCAM].num_arg++;
 }
 
-size_t			ft_cam(void *a, t_list **list)
+size_t			ft_cam(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
 	t_bool		*flag;
 
-	setup = (t_setup *)a;
+	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCAM))) // initialise un tableau de bool a ERROR, pour verifier que tout est bien formate a la fin
 		return (ERROR);

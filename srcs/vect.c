@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 04:50:31 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/19 16:46:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:50:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 t_vect	init_vect(double x, double y, double z)
 {
@@ -22,7 +22,7 @@ t_vect	init_vect(double x, double y, double z)
 	return (v);
 }
 
-void	vect_mat_mult(t_mat a, t_vect *u)
+void	vect_mat_mult(t_matrix a, t_vect *u)
 {
 	double tmpx;
 	double tmpy;

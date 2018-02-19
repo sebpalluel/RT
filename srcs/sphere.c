@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:16:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:57:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 }
 
 
-size_t			ft_sphere(void *a, t_list **list)
+size_t			ft_sphere(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
 	t_bool		*flag;
 
-	setup = (t_setup *)a;
+	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE)))
 		return (ERROR);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:14:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:50:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ size_t			ft_args_to_fd(t_setup *setup)
 		return (ERROR);
 	if (tmp[1] != NULL)
 	{
-		SCN.fd->path = ft_straddchar(tmp[0], '/');
-		SCN.fd->name = ft_strdup(tmp[1]);
+		SCN.fd.path = ft_straddchar(tmp[0], '/');
+		SCN.fd.name = ft_strdup(tmp[1]);
 	}
 	else
 	{
-		SCN.fd->path = ft_strdup("./");
-		SCN.fd->name = ft_strdup(tmp[0]);
+		SCN.fd.path = ft_strdup("./");
+		SCN.fd.name = ft_strdup(tmp[0]);
 	}
-	if (SCN.fd->path == NULL || SCN.fd->name == NULL)
+	if (SCN.fd.path == NULL || SCN.fd.name == NULL)
 		return (ERROR);
 	ft_tabfree((void **)tmp);
 	return (OK);
@@ -59,13 +59,6 @@ int				usage(int mode)
 	else if (mode == DIM_ERROR)
 		ft_putendl(DIM_ERROR_S);
 	return (mode);
-}
-
-t_setup					*get_st(void)
-{
-	static t_setup		setup;
-
-	return (&setup);
 }
 
 int				main(int ac, char **av)

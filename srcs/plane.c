@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:15:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:57:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void			ft_plane_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 }
 
 
-size_t			ft_plane(void *a, t_list **list)
+size_t			ft_plane(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
 	t_bool		*flag;
 
-	setup = (t_setup *)a;
+	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE)))
 		return (ERROR);

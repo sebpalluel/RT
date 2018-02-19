@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matop.c                                            :+:      :+:    :+:   */
+/*   matrices.c                                            :+:      :+:    :+:*/
 /*                                                    +:+ +:+         +:+     */
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 00:19:29 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/01 17:12:22 by esuits           ###   ########.fr       */
+/*   Updated: 2018/02/19 17:54:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-#include "matrice.h"
+#include "../includes/rtv1.h"
 
-int		init_mat(t_mat *mat, int i, int j)
+int		init_mat(t_matrix *mat, int i, int j)
 {
 	int		a;
 
@@ -28,7 +27,7 @@ int		init_mat(t_mat *mat, int i, int j)
 	return (1);
 }
 
-void	add_mat(t_mat *a, t_mat *b)
+void	add_mat(t_matrix *a, t_matrix *b)
 {
 	int		x;
 	int		y;
@@ -41,12 +40,12 @@ void	add_mat(t_mat *a, t_mat *b)
 			a->mat[x][y] += b->mat[x][y];
 }
 
-t_mat	*mult_mat(t_mat a, t_mat b)
+t_matrix	*mult_mat(t_matrix a, t_matrix b)
 {
 	int		x;
 	int		y;
 	int		k;
-	t_mat	*res;
+	t_matrix	*res;
 
 	res = NULL;
 	if (a.j != b.i)
@@ -61,7 +60,7 @@ t_mat	*mult_mat(t_mat a, t_mat b)
 	return (res);
 }
 
-void	scale_mat(double a, t_mat *res)
+void	scale_mat(double a, t_matrix *res)
 {
 	int		x;
 	int		y;

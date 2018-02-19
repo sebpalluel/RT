@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 16:58:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:04:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define THREAD			4
 # define NUM_OBJS		5
 # define MAX_WINDOW		5
+# define MAX_CAM		10
 # define AMP			1.3
 
 # define STATE_RUN		0
@@ -63,27 +64,13 @@
 # define LGT_S			parsed[2]
 # define OBJ_S			parsed[3]
 
-# define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
-# define UI_WIN			SETUP.ui_win
-# define UI_IMG			SETUP.ui_img
+# define UI_WIN			setup->ui_win
+# define UI_IMG			setup->ui_img
 # define NVARENG		5
-# define SCN			SETUP.scene[SETUP.scn_num]
-# define OBJS			SCN.objs
-# define CAM			OBJS->cam
-# define NCAM			OBJS->ncam
-# define CAM_N			SCN.cam_num
+# define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		3
-# define LIGHT			OBJS->light
-# define NLIGHT			OBJS->nlight
 # define NVARLIGHT		8
-# define OBJDEF			OBJS->objdef
-# define PLANE			OBJS->objdef.plane
-# define NPLANE			OBJS->objdef.nplane
-# define PL_N			OBJS->objdef.pl_n
 # define NVARPLANE		5
-# define SPHERE			OBJS->objdef.sphere
-# define NSPHERE		OBJS->objdef.nsphere
-# define SPH_N			OBJS->objdef.sph_n
 # define NVARSPHERE		5
 # define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
