@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 18:23:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:46:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ size_t			ft_envtosetup(t_setup *setup)
 
 size_t			ft_select_scene(t_setup *setup, int scene)
 {
+	if (setup->path)
+		ft_strdel(&setup->path);
 	if (scene == 0)
 		setup->path = ft_strdup(SCN_PATH_0);
 	else if (scene == 1)
@@ -82,9 +84,7 @@ size_t			ft_init_new_scene(t_setup *setup)
 	ft_args_to_fd(setup);
 	SCN.move_step = MOVE_STEP;
 	SCN.rot_step = ROT_STEP;
-	if ((SCN.cams = (t_cam *)ft_memalloc(sizeof(t_cam) * MAX_CAM)))
-		return (OK);
-	return (ERROR);
+	return (OK);
 }
 
 size_t			ft_open_scene(t_setup *setup)

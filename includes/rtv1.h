@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 18:23:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:10:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
-t_bool		ft_getvec3fromenv(t_vec3 *vec3, char *value);
+t_bool		ft_getvectfromenv(t_vect *vect, char *value);
 t_bool		ft_getcolfromenv(t_color *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
@@ -85,6 +85,12 @@ void		vect_mat_mult(t_matrix a, t_vect *u);
 t_vect		vect_scale(double a, t_vect v);
 t_vect		vect_mult(t_vect u, t_vect v);
 t_vect		vect_add(t_vect u, t_vect v);
+t_ray		init_ray(t_vect org, t_vect dir);
+t_vect		vect_sub(t_vect u, t_vect v);
+double		norme_vect(t_vect u);
+t_vect		normal_vect(t_vect u);
+double		vect_mult_scale(t_vect u, t_vect v);
+t_col		send_ray(t_ray ray, t_env *env);
 ///////////////////////
 //int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 //int			ft_mouse_moove(int x, int y, t_setup *setup);

@@ -6,22 +6,22 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:16:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:46:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_bool			ft_getvec3fromenv(t_vec3 *vec3, char *value)
+t_bool			ft_getvectfromenv(t_vect *vect, char *value)
 {
 	char		**vec_tmp;
 
 	vec_tmp = ft_strsplit(value, ',');
 	if (!vec_tmp || !vec_tmp[0] || !vec_tmp[1] || !vec_tmp[2] || vec_tmp[3])
 		return (ERROR);
-	vec3->x = ft_atof(vec_tmp[0]);
-	vec3->y = ft_atof(vec_tmp[1]);
-	vec3->z = ft_atof(vec_tmp[2]);
+	vect->x = ft_atof(vec_tmp[0]);
+	vect->y = ft_atof(vec_tmp[1]);
+	vect->z = ft_atof(vec_tmp[2]);
 	ft_tabfree((void **)vec_tmp);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 18:04:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:20:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ typedef struct	s_cam
 	t_vect frt;
 	t_vect rgt;
 	t_vect dwn;
+	t_vect look_at;
 	size_t	num_arg;
 }				t_cam;
 
@@ -187,15 +188,14 @@ typedef struct	s_cone
 	size_t	num_arg;
 }				t_cone;
 
-typedef struct	s_formes
+typedef struct	s_forms
 {
-	struct s_formes		*next;
 	int					type;
 	t_sph				sph;
 	t_plan				plan;
 	t_cone				cone;
 	t_vect				norm;
-}						t_formes;
+}						t_forms;
 
 typedef struct	s_matrix
 {
@@ -226,7 +226,7 @@ typedef struct		s_scene
 	t_list			*env;
 	t_list			*forms;
 	t_list			*lghts;
-	t_cam			*cams;
+	t_list			*cams;
 	size_t			cam_n;
 	size_t			num_cam;
 	t_mlx			*win;
@@ -259,7 +259,6 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	double			**camToWorld;
-	char			**validobjs; // valide que la struct est geree (cam, sphere etc.), avec ft_validobjs
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
 }					t_setup;
 
