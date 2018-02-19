@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:20:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:30:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			init_cam(t_cam *cam, t_vect org, t_vect look_at)
 	cam->rgt = normal_vect(vect_mult(cam->frt, cam->dwn));
 }
 
-t_list			*ft_newcam(void)
+static t_list	*ft_newcam(void)
 {
 	t_list		*cam; // changer cam pour list parce que pas tres clair
 

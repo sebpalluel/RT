@@ -6,11 +6,23 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:57:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:40:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+static t_list	*ft_newpln(void)
+{
+	t_list		*pln;
+
+	if (!(pln = (t_list*)malloc(sizeof(t_list))) || \
+			!(pln->content = (t_lgt*)ft_memalloc(sizeof(t_cam))))
+		return (NULL);
+	pln->content_size = sizeof(t_cam);
+	pln->next = NULL;
+	return (pln);
+}
 
 void			ft_plane_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 {
@@ -47,7 +59,6 @@ size_t			ft_plane(t_list **list)
 		ft_plane_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARPLANE) != OK)
 		return (setup->error = PLANE_ERROR);
-	NPLANE++;
 	*list = env;
 	return (OK);
 }

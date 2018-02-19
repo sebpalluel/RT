@@ -6,42 +6,46 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:56:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:38:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void			ft_light_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
+static t_list	*ft_newlgt(void)
+{
+	t_list		*lgt;
+
+	if (!(lgt = (t_list*)malloc(sizeof(t_list))) || \
+			!(lgt->content = (t_lgt*)ft_memalloc(sizeof(t_cam))))
+		return (NULL);
+	lgt->content_size = sizeof(t_cam);
+	lgt->next = NULL;
+	return (lgt);
+}
+
+void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
 {	
 	if (ft_strcmp(ENVSTRUCT(env)->name, "type") == 0)
-		flag[0] = ft_getsize_tfromenv(&LIGHT[NLIGHT].type, \
+		flag[0] = ft_getsize_tfromenv(&LGT(lgt)->type, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
-		flag[1] = ft_getvec3fromenv(&LIGHT[NLIGHT].pos, ENVSTRUCT(env)->value);
+		flag[1] = ft_getvectfromenv(&LGT(lgt)->vect, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&LIGHT[NLIGHT].col, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "intensity") == 0)
-		flag[3] = ft_getdoublefromenv(&LIGHT[NLIGHT].intensity, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[4] = ft_getdoublefromenv(&LIGHT[NLIGHT].radius, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "fallof") == 0)
-		flag[5] = ft_getdoublefromenv(&LIGHT[NLIGHT].fallof, \
-				ENVSTRUCT(env)->value);
-	if (LIGHT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "focal_len") == 0)
-		flag[6] = ft_getdoublefromenv(&LIGHT[NLIGHT].focal_len, \
-				ENVSTRUCT(env)->value);
-	if (LIGHT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
-		flag[7] = ft_getvec3fromenv(&LIGHT[NLIGHT].dir, ENVSTRUCT(env)->value);
-	LIGHT[NLIGHT].num_arg++;
+		flag[2] = ft_getcolfromenv(&LGT(lgt)->col, ENVSTRUCT(env)->value);
+		//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "focal_len") == 0)
+	//	flag[6] = ft_getdoublefromenv(&LGT[NLIGHT].focal_len, \
+	//			ENVSTRUCT(env)->value);
+	//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
+	//	flag[7] = ft_getvectfromenv(&LGT[NLIGHT].dir, ENVSTRUCT(env)->value);
+	LGT(lgt)->num_arg++;
 }
 
 size_t			ft_light(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
+	t_list		*lgt;
 	t_bool		*flag;
 	size_t		num_arg;
 
@@ -50,12 +54,16 @@ size_t			ft_light(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARLIGHT)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARLIGHT);
-	while (LIGHT[NLIGHT].num_arg < (num_arg = (LIGHT[NLIGHT].type ? \
-				NVARLIGHT : NVARLIGHT - 2)) && env && (env = env->next))
-		ft_light_struct_pop(setup, env, flag);
+	ft_lstaddend(&SCN.lgts, ft_newlgt());
+	lgt = SCN.lgts;
+	while (lgt->next)
+		lgt = lgt->next;
+	while (LGT(lgt)->num_arg < (num_arg = (LGT(lgt)->type ? \
+				NVARLIGHT : NVARLIGHT - 1)) && env && (env = env->next))
+		ft_light_struct_pop(lgt, env, flag);
 	if (ft_checkifallset(flag, num_arg) != OK)
 		return (setup->error = LIGHT_ERROR);
-	NLIGHT++;
+	SCN.num_lgt++;
 	*list = env;
 	return (OK);
 }

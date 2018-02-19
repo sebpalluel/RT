@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:10:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:37:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
 t_bool		ft_getvectfromenv(t_vect *vect, char *value);
-t_bool		ft_getcolfromenv(t_color *col, char *value);
+t_bool		ft_getcolfromenv(t_col *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);

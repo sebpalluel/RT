@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:13:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:32:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,11 @@
 # define NVARENG		5
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
-# define NVARLIGHT		8
+# define NVARLIGHT		4
 # define NVARPLANE		5
 # define NVARSPHERE		5
 # define CAM(x)			((t_cam *)(*(x)).content)
+# define LGT(x)		((t_lgt *)(*(x)).content)
 //# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 

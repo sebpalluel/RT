@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 18:46:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:37:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ t_bool			ft_getvectfromenv(t_vect *vect, char *value)
 	return (OK);
 }
 
-t_bool			ft_getcolfromenv(t_color *col, char *value)
+t_bool			ft_getcolfromenv(t_col *col, char *value)
 {
 	char		**col_tmp;
 
 	col_tmp = ft_strsplit(value, ',');
 	if (!col_tmp || !col_tmp[0] || !col_tmp[1] || !col_tmp[2] || col_tmp[3])
 		return (ERROR);
-	col->r = ft_atoi(col_tmp[0]);
-	col->g = ft_atoi(col_tmp[1]);
-	col->b = ft_atoi(col_tmp[2]);
+	col->r = ft_atof(col_tmp[0]);
+	col->g = ft_atof(col_tmp[1]);
+	col->b = ft_atof(col_tmp[2]);
 	ft_tabfree((void **)col_tmp);
 	return (OK);
 }

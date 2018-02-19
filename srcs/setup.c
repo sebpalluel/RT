@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:19:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:22:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,9 @@ t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des raco
 	}
 	setup->thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
 	setup->mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	setup->validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
-	setup->builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
-	setup->param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
 	ft_init_mlx_img(setup);
 	setup->scene = (t_scene *)ft_memalloc(sizeof(t_scene) * MAX_WINDOW);
-	if (!setup->validobjs || !setup->builtin || !setup->param || !UI_WIN || \
-			!UI_IMG || !setup->thrd || !setup->scene) // verifie les mallocs precedent et va initialiser tous les objets
+	if (!UI_WIN || !UI_IMG || !setup->thrd || !setup->scene) // verifie les mallocs precedent et va initialiser tous les objets
 		return (NULL);
 	return (setup);
 }
