@@ -174,7 +174,7 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 	t_near = MAX_INT;
 	hit_once = FALSE;
 	dist = 0;
-	while (SPH_N < NSPHERE) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
+	while (ft_chooseobj(setup, &i) == OK) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
 		ray->hit = SETUP.param[i].paramfunc(ray, (void *)setup, &t);
@@ -234,8 +234,19 @@ double max(double a, double b) {
 	return (a >= b ? a : b);
 }
 
+/* COMMENT 1
+**	t_vec2 hit_text; // pas besoin pour l'instant?
+**	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+**	// Use the normal and texture coordinates to shade the hit point.
+**	// The normal is used to compute a simple facing ratio and the texture coordinate
+**	// to compute a basic checker board pattern
+**	float scale = 4;
+**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+*/
 t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
+	double shade;
 	t_color hit_col;
 
 	hit_col = SETUP.background.col;
@@ -245,19 +256,10 @@ t_color ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	{
 		t_vec3 hit_point = ft_vec3vop_r(ray.orig, ft_vec3sop_r(ray.dir, ray.size, '*'), '+');
 		t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
-		ft_vec3normalize(&hit_nrml);
-		/*	t_vec2 hit_text; // pas besoin pour l'instant?
-			ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-		 **	// Use the normal and texture coordinates to shade the hit point.
-		 **	// The normal is used to compute a simple facing ratio and the texture coordinate
-		 **	// to compute a basic checker board pattern
-		 **	float scale = 4;
-		 **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-		 **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
-		 */
+		ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
 		hit_col = OBJDEF.sphere[ray.objn].mat.col;
 		t_vec3 dir_opposite = {-ray.dir.x, -ray.dir.y, -ray.dir.z};
-		double shade = max(0.0, ft_dotproduct(hit_nrml, dir_opposite));
+		shade = max(0.0, ft_dotproduct(hit_nrml, dir_opposite));
 		hit_col.r *= shade;
 		hit_col.g *= shade;
 		hit_col.b *= shade;
@@ -282,7 +284,9 @@ on doit :
 */
 
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
-	double a, b, c;
+	double a;
+	double b;
+	double c;
 
 	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0];
 	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1];
@@ -294,7 +298,10 @@ void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 }
 
 void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
-	double a, b, c, w;
+	double a;
+	double b;
+	double c;
+	double w;
 
 	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
 	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
@@ -306,23 +313,24 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->z = c / w;
 }
 
-void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
+// TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
+// MAYA
+// float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
+// float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
+// TODO Refacto
+void			*ft_raytracng(v&ioid * == OKa) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
-	// TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 	t_pix		pix;
 	t_ray		ray;
 	t_vec3 orig = {0.0, 0.0, 0.0};
 	t_color	col = {255, 0, 255};
-
 	pthread_t	id;
 	int			i;
 	setup = (t_setup*)a;
 	size_t		inc;
 
-	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld);
-	// ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
-
+	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld); // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	id = pthread_self();
 	i = -1;
 	inc = SCN.height / THREAD;
@@ -340,16 +348,11 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			float imageAspectRatio = SCN.width / (float)SCN.height;
 			float x = (2 * (pix.x + 0.5) / (float)SCN.width - 1) * imageAspectRatio * scale;
 			float y = (1 - 2 * (pix.y + 0.5) / (float)SCN.height) * scale;
-			// MAYA
-			// float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
-			// float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
 			t_vec3 dir = {x, y, -1};
 			multDirMatrix(&dir, &ray.dir, SETUP.camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			// *(pix++) = castRay(orig, dir, objects, lights, options, 0);
-	//TODO adapt here for scene
-			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col));
+			ft_put_pixel(setup, pix.x, pix.y, ft_colortohex(&col)); //TODO adapt here for scene
 		}
 	}
 	pthread_mutex_unlock(&SETUP.mutex.mutex);

@@ -153,30 +153,25 @@ t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
 	float t0;
 	float t1;
 	t_vec3 L;
-	setup = (t_setup *)a;
-	double		abc[3] = {0, 0, 0};
+	double		abc[3];
 
+	setup = (t_setup *)a;
 	L = ft_vec3vop_r(ray->orig, SPHERE[SPH_N].pos, '-');
 	abc[0] = ft_dotproduct(ray->dir, ray->dir);
 	abc[1] = 2. * ft_dotproduct(ray->dir, L);
 	abc[2] = ft_dotproduct(L, L) - SQUARE(SPHERE[SPH_N].rad);
 	if (!solve_quadratic(abc, &t0, &t1))
-	{
 		return FALSE;
-	}
 	if (t0 > t1)
-	{
 		ft_swap(&t0, &t1, sizeof(float));
-	}
 	if (t0 < 0) {
 		t0 = t1;
 		if (t0 < 0)
-		{
 			return FALSE;
-		}
 	}
 	*t = t0;
 	return (TRUE);
+}
 
 	/*
 	float t0, t1; // solutions for t if the ray intersects
@@ -196,7 +191,6 @@ t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
 	**
 	**		        return true;
 	*/
-}
 
 t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist)
 {
