@@ -186,7 +186,10 @@ t_bool ft_trace(t_ray *ray,t_setup *setup)
 			ray->size = t;
 			ray->obj = i;
 		}
-		SPH_N++;
+		if (i == SPH)
+			SPH_N++;
+		else if (i == PL_N)
+			PL_N++;
 	}
 	ft_resetchooseobj(setup); // reset tous les index
 	return (hit_once);
@@ -318,7 +321,7 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 // float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
 // float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
 // TODO Refacto
-void			*ft_raytracng(v&ioid * == OKa) // Nathan: en fait ici c est la fonction de render
+void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	t_setup		*setup;
 	t_pix		pix;
@@ -327,9 +330,9 @@ void			*ft_raytracng(v&ioid * == OKa) // Nathan: en fait ici c est la fonction d
 	t_color	col = {255, 0, 255};
 	pthread_t	id;
 	int			i;
-	setup = (t_setup*)a;
 	size_t		inc;
 
+	setup = (t_setup *)a;
 	multVecMatrix(&orig, &ray.orig, SETUP.camToWorld); // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	id = pthread_self();
 	i = -1;
