@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:30:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 12:02:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ size_t			ft_cam(t_list **list)
 		return (setup->error = CAM_ERROR);
 	SCN.num_cam++; // passe a la camera suivant si il y en a, permet en meme temps d'indiquer le nombre total de camera
 	*list = env;
-	SCN.cams = cam;
 	return (OK);
 }
 
