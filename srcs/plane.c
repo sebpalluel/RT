@@ -16,8 +16,8 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "normale") == 0)
 		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "distance") == 0)
-		flag[1] = ft_getdoublefromenv(&PLAN(form).dst, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
+		flag[1] = ft_getvectfromenv(&PLAN(form).pos, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
 		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, \
 				ENVSTRUCT(env)->value);
@@ -70,16 +70,16 @@ size_t			ft_plane(t_list **list)
 t_bool	ft_plane_param(t_ray *ray, t_forms *form, double *t)
 {
 	double		denom;
-	// t_vec3	diff;
+	t_vec3	diff;
 
 	denom = ft_dotproduct(form->plan.nrml, ray->dir);
 	if (denom > 0.000001)
 	{
-		*t = ft_dotproduct(form->plan.nrml, ft_vec3vop_r(ray->org,
-					ft_vec3sop_r(form->plan.nrml, form->plan.dst, '*'), '-'));
-		// diff = ft_vec3vop_r(PLANE[PL_N].pos, ray->orig, '-');
-		// *t = ft_dotproduct(diff, PLANE[PL_N].norm) / denom;
-		return (t >= 0);
+		// *t = ft_dotproduct(form->plan.nrml, ft_vec3vop_r(ray->org,
+		// 			ft_vec3sop_r(form->plan.nrml, form->plan.dst, '*'), '-'));
+		diff = ft_vec3vop_r(form->plan.pos, ray->org, '-');
+		*t = ft_dotproduct(diff, form->plan.nrml) / denom;
+		return (t >= 0 ? TRUE : FALSE);
 	}
 	return (FALSE);
 }

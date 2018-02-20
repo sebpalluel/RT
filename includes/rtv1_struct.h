@@ -168,7 +168,8 @@ typedef struct	s_sph
 typedef struct	s_plan
 {
 	t_vec3	nrml;
-	double	dst;
+	t_vec3	pos;
+	//double	dst;
 	t_mat	mat;
 }				t_plan;
 

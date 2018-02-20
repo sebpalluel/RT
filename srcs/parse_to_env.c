@@ -92,7 +92,7 @@ void		ft_getplanes(t_list **env, char *obj_str)
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("plane"), NULL));
 		ft_getvaluetoenv(env, plane, "normale");
-		ft_getvaluetoenv(env, plane, "distance");
+		ft_getvaluetoenv(env, plane, "position");
 		ft_getmaterial(env, ft_getobjstr(plane, "material", 0));
 	}
 }

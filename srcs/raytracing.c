@@ -343,6 +343,11 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 				ray->dist = t;
 				//ray->obj = i;
 				*form = *FORM(list);
+				// if (FORM(list)->type == 1)
+				// {
+				// 	printf("FORM LIST TYPE %d\t", FORM(list)->type);
+				// 	printf("form type: %d\n", form->type);
+				// }
 				//printf("form trace %p\n", &form);
 			}
 		}
@@ -418,10 +423,20 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
 		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
 		//printf("form after %p\n", &form);
+		// printf("form type: %d\n", form.type);
 		if (form.type == SPH)
+		{
 			hit_col = form.sph.mat.col;
-		// else if (form.type == PLN)
-		// 	hit_col = form.plan.mat.col;
+		}
+		else if (form.type == PLN)
+		{
+			// printf("plane intersect\n");
+			hit_col = form.plan.mat.col;
+			// hit_col.r = 0.;
+			// hit_col.g = 1.;
+			// hit_col.b = 0.;
+			// hit_col.s = 1.;
+		}
 		else
 		{
 			hit_col.r = 1.;
