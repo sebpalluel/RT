@@ -1,4 +1,5 @@
 libft/libft.a
 libft/objs/*
+scenes/*
 obj/*
 rtv1
