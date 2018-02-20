@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/20 17:19:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:31:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ t_col	send_ray(t_ray ray, t_setup *setup)
 		form = form->next;
 		i++;
 	}
-	FORM(form) = env->formes;
+	form = SCN.forms;
 	if (j == -1)
-		return (BACK_COLOR);
+		return (setup->background);
 	while (j--)
-		FORM(form) = FORM(form)->next;
+		form = form->next;
 	if (FORM(form)->type != 0)
-		return (intersection()[FORM(form)->type - 1](ray, FORM(form), *env));
-	return (BACK_COLOR);
+		return (intersection()[FORM(form)->type - 1](ray, FORM(form), setup));
+	return (setup->background);
 }

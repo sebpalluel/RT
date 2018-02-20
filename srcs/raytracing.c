@@ -6,34 +6,35 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 17:14:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:33:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 #include <math.h>
 
-static inline t_ray	calculate_ray(int32_t x, int32_t y, t_env *env)
+static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
-	SDL_Surface		*s;
 	t_ray			ray;
+	t_cam			*cam;
 
-	s = env->surface;
+	//TODO will be hable to handle which cam is it
+	cam = CAM(SCN.cams);
 	ray = init_ray(
 			vect_add(
 				vect_add(
-					vect_scale((x - (s->w / 2.0)) / s->h, env->cam.rgt)
-					, vect_scale((y - (s->h / 2.0)) / s->h, env->cam.dwn))
-				, env->cam.org),
+					vect_scale((x - (SCN.width/ 2.0)) / SCN.height, cam->rgt)
+					, vect_scale((y - (SCN.height / 2.0)) / SCN.height, cam->dwn))
+				, cam->org),
 			normal_vect(
 				vect_sub(
-					vect_scale(env->pers, env->cam.frt)
-					, vect_sub(env->cam.org
+					vect_scale(SCN.pers, cam->frt)
+					, vect_sub(cam->org
 					, vect_add(
 						vect_add(
-							vect_scale((x - (s->w / 2.0)) / s->h, env->cam.rgt)
-							, vect_scale((y - s->h / 2.0) / s->h, env->cam.dwn))
-					, env->cam.org)))));
+							vect_scale((x - (SCN.width / 2.0)) / SCN.height, cam->rgt)
+							, vect_scale((y - SCN.height / 2.0) / SCN.height, cam->dwn))
+					, cam->org)))));
 	return (ray);
 }
 //t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
@@ -139,15 +140,11 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 {
 	t_setup		*setup;
 	t_pix		pix;
-	t_ray		ray;
-	t_vec3 orig = {0.0, 0.0, 0.0};
-	t_col	col = {1., 0., 0., 0.};
 	pthread_t	id;
 	int			i;
 	size_t		inc;
 
 	setup = (t_setup *)a;
-	multVecMatrix(&orig, &ray.org, setup->camToWorld); // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
 	id = pthread_self();
 	i = -1;
 	inc = SCN.height / THREAD;
@@ -162,7 +159,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 		while (++pix.x < (int)SCN.width)
 		{
 			ft_put_pixel(setup, pix.x, pix.y, \
-					send_ray(calculate_ray(pix.x, px.y, setup), setup));
+					coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), setup)));
 		}
 	}
 	pthread_mutex_unlock(&setup->mutex.mutex);

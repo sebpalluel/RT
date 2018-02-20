@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:14:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:24:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_vec3		vect_sub(t_vec3 u, t_vec3 v);
 double		norme_vect(t_vec3 u);
 t_vec3		normal_vect(t_vec3 u);
 double		vect_mult_scale(t_vec3 u, t_vec3 v);
-t_col		send_ray(t_ray ray, t_env *env);
+t_col		send_ray(t_ray ray, t_setup *setup);
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
 t_col		diffuse(t_setup *setup, t_forms *forme, t_ray ray, t_col col_obj);
