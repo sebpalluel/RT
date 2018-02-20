@@ -12,9 +12,9 @@
 
 #include "../includes/rtv1.h"
 
-t_vect	init_vect(double x, double y, double z)
+t_vec3	init_vec3(double x, double y, double z)
 {
-	t_vect v;
+	t_vec3 v;
 
 	v.x = x;
 	v.y = y;
@@ -22,7 +22,7 @@ t_vect	init_vect(double x, double y, double z)
 	return (v);
 }
 
-void	vect_mat_mult(t_matrix a, t_vect *u)
+void	vect_mat_mult(t_matrix a, t_vec3 *u)
 {
 	double tmpx;
 	double tmpy;
@@ -36,7 +36,7 @@ void	vect_mat_mult(t_matrix a, t_vect *u)
 	u->y = tmpy;
 }
 
-t_vect	vect_scale(double a, t_vect v)
+t_vec3	vect_scale(double a, t_vec3 v)
 {
 	v.x *= a;
 	v.y *= a;
@@ -44,7 +44,7 @@ t_vect	vect_scale(double a, t_vect v)
 	return (v);
 }
 
-t_vect	vect_mult(t_vect u, t_vect v)
+t_vec3	vect_mult(t_vec3 u, t_vec3 v)
 {
 	double tmpx;
 	double tmpy;
@@ -57,7 +57,7 @@ t_vect	vect_mult(t_vect u, t_vect v)
 	return (u);
 }
 
-t_vect	vect_add(t_vect u, t_vect v)
+t_vec3	vect_add(t_vec3 u, t_vec3 v)
 {
 	u.x += v.x;
 	u.y += v.y;

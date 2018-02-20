@@ -6,13 +6,13 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/20 13:28:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:19:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_ray	init_ray(t_vect org, t_vect dir)
+t_ray	init_ray(t_vec3 org, t_vec3 dir)
 {
 	t_ray ray;
 
@@ -22,7 +22,7 @@ t_ray	init_ray(t_vect org, t_vect dir)
 	return (ray);
 }
 
-t_vect	vect_sub(t_vect u, t_vect v)
+t_vec3	vect_sub(t_vec3 u, t_vec3 v)
 {
 	u.x -= v.x;
 	u.y -= v.y;
@@ -30,25 +30,25 @@ t_vect	vect_sub(t_vect u, t_vect v)
 	return (u);
 }
 
-double	norme_vect(t_vect u)
+double	norme_vect(t_vec3 u)
 {
 	return (sqrt(u.x * u.x + u.y * u.y + u.z * u.z));
 }
 
-t_vect	normal_vect(t_vect u)
+t_vec3	normal_vect(t_vec3 u)
 {
 	double n;
 
 	n = norme_vect(u);
 	if (n <= 0.0)
-		return (init_vect(0.0, 0.0, 0.0));
+		return (init_vec3(0.0, 0.0, 0.0));
 	u.x = u.x / n;
 	u.y = u.y / n;
 	u.z = u.z / n;
 	return (u);
 }
 
-double	vect_mult_scale(t_vect u, t_vect v)
+double	vect_mult_scale(t_vec3 u, t_vec3 v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }

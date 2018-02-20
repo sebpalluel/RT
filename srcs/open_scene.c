@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 12:06:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:20:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ size_t			ft_init_new_scene(t_setup *setup)
 	ft_args_to_fd(setup);
 	SCN.move_step = MOVE_STEP;
 	SCN.rot_step = ROT_STEP;
+	SCN.pers = 1.;
+	SCN.expo = 1.;
 	return (OK);
 }
 

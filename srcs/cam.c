@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 13:15:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:20:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void			init_cam(t_cam *cam)
 {
 	cam->frt = normal_vect(vect_sub(cam->look_at, cam->org));
-	cam->dwn = normal_vect(vect_mult(init_vect(0.0, 1.0, 0.0), cam->frt));
-	if (vect_mult_scale(cam->dwn, init_vect(0.0, 0.0, 1.0)) > 0.0)
+	cam->dwn = normal_vect(vect_mult(init_vec3(0.0, 1.0, 0.0), cam->frt));
+	if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
 		cam->dwn = vect_scale(-1.0, cam->dwn);
 	if (norme_vect(cam->dwn) == 0.0)
 	{
-		cam->dwn = normal_vect(vect_mult(init_vect(1.0, 0.0, 0.0), cam->frt));
-		if (vect_mult_scale(cam->dwn, init_vect(0.0, 0.0, 1.0)) > 0.0)
+		cam->dwn = normal_vect(vect_mult(init_vec3(1.0, 0.0, 0.0), cam->frt));
+		if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
 			cam->dwn = vect_scale(-1.0, cam->dwn);
 	}
 	cam->rgt = normal_vect(vect_mult(cam->frt, cam->dwn));
@@ -29,7 +29,7 @@ void			init_cam(t_cam *cam)
 
 static t_list	*ft_newcam(void)
 {
-	t_list		*cam; // changer cam pour list parce que pas tres clair
+	t_list		*cam;
 
 	if (!(cam = (t_list*)malloc(sizeof(t_list))) || \
 			!(cam->content = (t_cam*)ft_memalloc(sizeof(t_cam))))
@@ -73,33 +73,3 @@ size_t			ft_cam(t_list **list)
 	*list = env;
 	return (OK);
 }
-
-// See: http://people.cs.clemson.edu/~dhouse/courses/405/notes/raycamera.pdf
-//void			ft_setup_cam(t_setup *setup)
-//{
-//	int			cam_n;
-//	t_vec3		u_x;
-//	t_vec3		u_y;
-//	t_vec3		c_0;
-//
-//	cam_n = -1;
-//	while (++cam_n < (int)NCAM)
-//	{
-//		CAM[cam_n].focal_len = 360.; // gere l'ouverture du champ de vision
-//		//ft_vec3vop_r (gere toutes les operations de vecteur sur vecteur et return le vecteur resultant)
-//		//ft_vec3sop_r (gere toutes les operations de vecteur sur double et return le vecteur resultant)
-//		c_0 = ft_vec3vop_r(CAM[cam_n].pos, ft_vec3sop_r(CAM[cam_n].dir, \
-//					CAM[cam_n].focal_len, '*'), '+');
-//		//printf("c_0 : %f, %f, %f\n", c_0.x, c_0.y, c_0.z);
-//		u_x = ft_vec3unit(ft_vec3vop_r(CAM[cam_n].dir, \
-//					ft_vec3_r(0., -1., 0.), 'c'));
-//		u_y = ft_vec3vop_r(ft_vec3sop_r(CAM[cam_n].dir, -1.0, '*'), u_x, 'c');
-//		CAM[cam_n].plane_center = c_0;
-//		CAM[cam_n].plane_dirX = u_x;
-//		CAM[cam_n].plane_dirY = u_y;
-//		//	printf("CAM[cam_n] dirX : %f, %f, %f\nCAM[cam_n] dirY : %f, %f, %f\nCAM[cam_n] center : %f, %f, %f\n", \
-//		//				CAM[cam_n].plane_dirX.x, CAM[cam_n].plane_dirX.y, CAM[cam_n].plane_dirX.z, \
-//		//				CAM[cam_n].plane_dirY.x, CAM[cam_n].plane_dirY.y, CAM[cam_n].plane_dirY.z, \
-//		//				CAM[cam_n].plane_center.x, CAM[cam_n].plane_center.y, CAM[cam_n].plane_center.z);
-//	}
-//}

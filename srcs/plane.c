@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:38:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:06:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
 size_t			ft_plane(t_list **list)
 {
 	t_setup		*setup;
@@ -52,17 +51,33 @@ size_t			ft_plane(t_list **list)
 		ft_plane_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, NVARPLANE) != OK)
 		return (setup->error = PLANE_ERROR);
+	PLAN(form).nrml = normal_vect(PLAN(form).nrml);
 	*list = env;
 	return (OK);
 }
 
-//t_bool		ft_plane_param(void *a, t_ray ray, double *dist)
-//{
-//	t_setup		*setup;
-//
-//	setup = (t_setup *)a;
-//	*dist = 0;
-//	ray.size = 0;
-//	PL_N++;
-//	return (OK);
-//}
+double	hit_plan(t_ray ray, t_forms *formes)
+{
+	double a;
+	double b;
+
+	a = vect_mult_scale(ray.dir, formes->plan.nrml);
+	if (a == 0)
+		return (-1);
+	b = vect_mult_scale(formes->plan.nrml, vect_add(ray.org,
+				vect_scale(formes->plan.dst, formes->plan.nrml)));
+	return (-b / a);
+	}
+
+t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
+{
+	t_forms		*form;
+
+	form = FORM(pln);
+	if (ray.dist >= 0.0)
+	{
+		form->norm = form->plan.nrml;
+		return (diffuse(setup, form, ray, form->plan.mat.col));
+	}
+	return (setup->background);
+}

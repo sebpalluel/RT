@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 20:27:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:14:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
-t_bool		ft_getvectfromenv(t_vect *vect, char *value);
+t_bool		ft_getvectfromenv(t_vec3 *vect, char *value);
 t_bool		ft_getcolfromenv(t_col *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
@@ -60,10 +60,6 @@ void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de rende
 int			ft_raytracing_thread(t_setup *setup);
 void		ft_setup_cam(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
-size_t		ft_getobjscount(t_setup *setup);
-t_bool		ft_plane_param(void *a, t_ray ray, double *dist);
-t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist);
-t_bool		ft_sphere_param(t_ray *ray, void *a, double *t);
 
 // TODO Eliot functions
 t_setup		*get_st(void);
@@ -77,22 +73,33 @@ int			init_mat(t_matrix *mat, int i, int j);
 void		add_mat(t_matrix *a, t_matrix *b);
 t_matrix	*mult_mat(t_matrix a, t_matrix b);
 void		scale_mat(double a, t_matrix *res);
-t_vect		vect_dot(t_vect u, t_vect v);
-t_matrix	rot_mat(t_vect v, double theta);
+t_vec3		vect_dot(t_vec3 u, t_vec3 v);
+t_matrix	rot_mat(t_vec3 v, double theta);
 t_matrix	id_mat(void);
-t_vect		mult_vect_mat(t_matrix a, t_vect b);
-t_vect		rot_vect(t_vect v, double theta, t_vect axis);
-t_vect		init_vect(double x, double y, double z);
-void		vect_mat_mult(t_matrix a, t_vect *u);
-t_vect		vect_scale(double a, t_vect v);
-t_vect		vect_mult(t_vect u, t_vect v);
-t_vect		vect_add(t_vect u, t_vect v);
-t_ray		init_ray(t_vect org, t_vect dir);
-t_vect		vect_sub(t_vect u, t_vect v);
-double		norme_vect(t_vect u);
-t_vect		normal_vect(t_vect u);
-double		vect_mult_scale(t_vect u, t_vect v);
+t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
+t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
+t_vec3		init_vec3(double x, double y, double z);
+void		vect_mat_mult(t_matrix a, t_vec3 *u);
+t_vec3		vect_scale(double a, t_vec3 v);
+t_vec3		vect_mult(t_vec3 u, t_vec3 v);
+t_vec3		vect_add(t_vec3 u, t_vec3 v);
+t_ray		init_ray(t_vec3 org, t_vec3 dir);
+t_vec3		vect_sub(t_vec3 u, t_vec3 v);
+double		norme_vect(t_vec3 u);
+t_vec3		normal_vect(t_vec3 u);
+double		vect_mult_scale(t_vec3 u, t_vec3 v);
 t_col		send_ray(t_ray ray, t_env *env);
+t_func_col	*intersection(void);
+t_func_dble	*hit_shape(void);
+t_col		diffuse(t_setup *setup, t_forms *forme, t_ray ray, t_col col_obj);
+double		hit_plan(t_ray ray, t_forms *formes);
+double		hit_sphere(t_ray ray, t_forms *formes);
+double		hit_cone(t_ray ray, t_forms *formes);
+t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
+t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
+t_col		intersec_cone(t_ray ray, t_list *con, t_setup *setup);
+
+
 ///////////////////////
 //int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 //int			ft_mouse_moove(int x, int y, t_setup *setup);

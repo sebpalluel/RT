@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-t_bool			ft_getvectfromenv(t_vect *vect, char *value)
+t_bool			ft_getvectfromenv(t_vec3 *vect, char *value)
 {
 	char		**vec_tmp;
 

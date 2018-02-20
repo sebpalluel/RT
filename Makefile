@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/19 20:19:29 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/20 17:41:33 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -59,6 +59,7 @@ SRCNAME 	=	main.c \
 				forms.c \
 				singleton.c \
 				ray.c \
+				diffuse.c \
 				vect.c
 				#draw.c \
 				#raycaster.c \
