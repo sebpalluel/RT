@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 20:26:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:46:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@
 //# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
-# define SPH			0
-# define PLN			1
-# define CON			2
+# define SPH			1
+# define PLN			2
+# define CON			3
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1

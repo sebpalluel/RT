@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:03:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:52:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ double	hit_sphere(t_ray ray, t_forms *formes)
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
+	printf("hit_sph\n");
 	return ((-b - sqrt(delta)) / (2.0 * a));
 }
 
@@ -81,9 +82,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	form = FORM(sph);
 	if (ray.dist >= 0.0)
 	{
-		form->norm = normal_vect(
-			vect_sub(vect_add(ray.org,
-						vect_scale(ray.dist, ray.dir)), form->sph.ctr));
+		form->norm = normal_vect(vect_sub(vect_add(ray.org, vect_scale(ray.dist, ray.dir)), form->sph.ctr));
 		return (diffuse(setup, form, ray, form->sph.mat.col));
 	}
 	return (setup->background);
