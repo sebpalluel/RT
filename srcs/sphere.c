@@ -6,74 +6,78 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:49:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 11:34:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void			ft_sphere_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
+void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
-		flag[0] = ft_getvec3fromenv(&SPHERE[NSPHERE].pos, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "center") == 0)
+		flag[0] = ft_getvectfromenv(&SPHERE(form).ctr, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[1] = ft_getdoublefromenv(&SPHERE[NSPHERE].rad, \
-				ENVSTRUCT(env)->value);
+		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE[NSPHERE].mat.col, \
+		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.diffuse, \
+		flag[3] = ft_getdoublefromenv(&SPHERE(form).mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&SPHERE[NSPHERE].mat.specular, \
+		flag[4] = ft_getdoublefromenv(&SPHERE(form).mat.specular, \
 				ENVSTRUCT(env)->value);
-	SPHERE[NSPHERE].num_arg++;
+	FORM(form)->num_arg++;
 }
 
 
-size_t			ft_sphere(void *a, t_list **list)
+size_t			ft_sphere(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
+	t_list		*form;
 	t_bool		*flag;
 
-	setup = (t_setup *)a;
+	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE);
-	while (SPHERE[NSPHERE].num_arg < NVARSPHERE && env && (env = env->next))
-		ft_sphere_struct_pop(setup, env, flag);
+	ft_lstaddend(&SCN.forms, ft_newform());
+	form = SCN.forms;
+	while (form->next)
+		form = form->next;
+	FORM(form)->type = SPH;
+	while (FORM(form)->num_arg < NVARSPHERE && env && (env = env->next))
+		ft_sphere_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, NVARSPHERE) != OK)
-		return (SETUP.error = SPHERE_ERROR);
-	NSPHERE++;
+		return (setup->error = SPHERE_ERROR);
 	*list = env;
 	return (OK);
 }
 
-static double	ft_spherefromdisk(double abc[3], double distSqrt)
-{
-	double		t[2];
-	double		q;
-	double		swap;
-
-	q = (abc[1] < 0. ? (-abc[1] - distSqrt) / 2. : (-abc[1] + distSqrt) / 2.);
-	t[0] = q / abc[0];
-	t[1] = abc[2] / q;
-	if (t[0] > t[1])
-	{
-		swap = t[0];
-		t[0] = t[1];
-		t[1] = swap;
-	}
-	if (t[1] < 0.)
-		return (0.);
-	else if (t[0] < 0.)
-		return (t[1]);
-	else
-		return (t[0]);
-}
+// static double	ft_spherefromdisk(double abc[3], double distSqrt)
+// {
+// 	double		t[2];
+// 	double		q;
+// 	double		swap;
+//
+// 	q = (abc[1] < 0. ? (-abc[1] - distSqrt) / 2. : (-abc[1] + distSqrt) / 2.);
+// 	t[0] = q / abc[0];
+// 	t[1] = abc[2] / q;
+// 	if (t[0] > t[1])
+// 	{
+// 		swap = t[0];
+// 		t[0] = t[1];
+// 		t[1] = swap;
+// 	}
+// 	if (t[1] < 0.)
+// 		return (0.);
+// 	else if (t[0] < 0.)
+// 		return (t[1]);
+// 	else
+// 		return (t[0]);
+// }
 /* TODO
 **	fonction d intersections
 **	bool intersect(const Ray &ray) const
@@ -81,7 +85,7 @@ static double	ft_spherefromdisk(double abc[3], double distSqrt)
 **		        float t0, t1; // solutions for t if the ray intersects
 **		#if 0
 **		        // geometric solution
-**		        Vec3f L = center - orig;
+**		        Vec3f L = center - org;
 **		        float tca = L.dotProduct(dir);
 **		        // if (tca < 0) return false;
 **		        float d2 = L.dotProduct(L) - tca * tca;
@@ -91,7 +95,7 @@ static double	ft_spherefromdisk(double abc[3], double distSqrt)
 **		        t1 = tca + thc;
 **		#else  ON GARDE CELLE LA
 **		        // analytic solution
-**		        Vec3f L = orig - center;
+**		        Vec3f L = org - center;
 **		        float a = dir.dotProduct(dir);
 **		        float b = 2 * dir.dotProduct(L);
 **		        float c = L.dotProduct(L) - radius2;
@@ -148,18 +152,17 @@ t_bool solve_quadratic(double *abc, float *t0, float *t1) {
 	return (TRUE);
 }
 
-t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
-	t_setup		*setup;
+t_bool		ft_sphere_param(t_ray *ray, t_forms *form, double *t) {
 	float t0;
 	float t1;
 	t_vec3 L;
 	double		abc[3];
 
-	setup = (t_setup *)a;
-	L = ft_vec3vop_r(ray->orig, SPHERE[SPH_N].pos, '-');
+
+	L = ft_vec3vop_r(ray->org, form->sph.ctr, '-');
 	abc[0] = ft_dotproduct(ray->dir, ray->dir);
 	abc[1] = 2. * ft_dotproduct(ray->dir, L);
-	abc[2] = ft_dotproduct(L, L) - SQUARE(SPHERE[SPH_N].rad);
+	abc[2] = ft_dotproduct(L, L) - SQUARE(form->sph.r);
 	if (!solve_quadratic(abc, &t0, &t1))
 		return FALSE;
 	if (t0 > t1)
@@ -175,7 +178,7 @@ t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
 
 	/*
 	float t0, t1; // solutions for t if the ray intersects
-	Vec3f L = orig - center;
+	Vec3f L = org - center;
 	**		        float a = dir.dotProduct(dir);
 	**		        float b = 2 * dir.dotProduct(L);
 	**		        float c = L.dotProduct(L) - radius2;
@@ -192,22 +195,22 @@ t_bool		ft_sphere_param(t_ray *ray, void *a, double *t) {
 	**		        return true;
 	*/
 
-t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist)
-{
-	t_setup		*setup;
-	t_vec3		ro_sc;
-	double		abc[3] = {0, 0, 0};
-	double		disk;
-
-	setup = (t_setup *)a;
-	*dist = 0;
-	abc[0] = ft_dotproduct(ray.dir, ray.dir);
-	ft_vec3vop(&ro_sc, ray.orig, SPHERE[SPH_N].pos, '-');
-	abc[1] = 2. * ft_dotproduct(ray.dir, ro_sc);
-	abc[2] = ft_dotproduct(ro_sc, ro_sc) - SQUARE(SPHERE[SPH_N].rad);
-	SPH_N++; //ici doit bien incrementer l'index pour passer aux objets suivants
-	if (((disk = SQUARE(abc[1]) - 4 * abc[0] * abc[2]) < 0) || \
-			(*dist = ft_spherefromdisk(abc, sqrt(disk))) == 0.)
-		return (ERROR); // pas hit
-	return (OK); // ici on part du principe qu'il a hit
-}
+// t_bool		ft_sphere_param2(void *a, t_ray ray, double *dist)
+// {
+// 	t_setup		*setup;
+// 	t_vec3		ro_sc;
+// 	double		abc[3] = {0, 0, 0};
+// 	double		disk;
+//
+// 	setup = (t_setup *)a;
+// 	*dist = 0;
+// 	abc[0] = ft_dotproduct(ray.dir, ray.dir);
+// 	ft_vec3vop(&ro_sc, ray.org, SPHERE[SPH_N].pos, '-');
+// 	abc[1] = 2. * ft_dotproduct(ray.dir, ro_sc);
+// 	abc[2] = ft_dotproduct(ro_sc, ro_sc) - SQUARE(SPHERE[SPH_N].rad);
+// 	SPH_N++; //ici doit bien incrementer l'index pour passer aux objets suivants
+// 	if (((disk = SQUARE(abc[1]) - 4 * abc[0] * abc[2]) < 0) || \
+// 			(*dist = ft_spherefromdisk(abc, sqrt(disk))) == 0.)
+// 		return (ERROR); // pas hit
+// 	return (OK); // ici on part du principe qu'il a hit
+// }

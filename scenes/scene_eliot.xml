@@ -41,20 +41,49 @@
 
 	<objects>
 
-		<sphere>
-			<center> -10.9, 1.4., -6.2. </center>
-			<radius> 8.12 </radius>
+		<cone>
+			<origin> 2.0, 0., 0. </origin>
+			<direction> 1., -1., 1. </direction>
+			<degres> 45 </degres>
 			<material>
-				<color> 1., 0., 0., 1. </color>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</cone>
+		<cone>
+			<origin> 1., 0., 0. </origin>
+			<direction> 0., 1., 0. </direction>
+			<degres> 45 </degres>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 1. </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</cone>
+		<plane>
+			<normale> 0.0, 0.0, 0.5 </normale>
+			<distance> 0.5 </distance>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</plane>
+		<sphere>
+			<center> 1.0, 0., 0. </center>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
 		</sphere>
 		<sphere>
-			<center> 0.0, 0., 1. </center>
-			<radius> 2. </radius>
+			<center> 3.0, 0., 0.5 </center>
+			<radius> 0.1 </radius>
 			<material>
-				<color> 0., 0., 1., 0. </color>
+				<color> 1., 1., 1., 0. </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
