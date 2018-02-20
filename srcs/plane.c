@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 20:23:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 11:35:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "distance") == 0)
 		flag[1] = ft_getdoublefromenv(&PLAN(form).dst, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
+	{
+		printf("value color %s\n", ENVSTRUCT(env)->value);
+		printf("FORM(form)->type %d\n", FORM(form)->type);
 		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, \
 				ENVSTRUCT(env)->value);
+	}
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
 		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, \
 				ENVSTRUCT(env)->value);
@@ -47,6 +51,7 @@ size_t			ft_plane(t_list **list)
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
+	printf("&PLAN(form).mat.col %p\n", &PLAN(form).mat.col);
 	FORM(form)->type = PLN;
 	while (FORM(form)->num_arg < NVARPLANE && env && (env = env->next))
 		ft_plane_struct_pop(form, env, flag);

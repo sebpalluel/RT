@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 20:17:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 11:37:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list			*ft_newform(void)
 	t_list		*form;
 
 	if (!(form = (t_list*)malloc(sizeof(t_list))) || \
-			!(form->content = (t_forms*)ft_memalloc(sizeof(t_cam))))
+			!(form->content = (t_forms*)ft_memalloc(sizeof(t_forms))))
 		return (NULL);
 	form->content_size = sizeof(t_forms);
 	form->next = NULL;
