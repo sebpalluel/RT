@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:33:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 11:42:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ t_bool			ft_getcolfromenv(t_col *col, char *value)
 	if (!col_tmp || !col_tmp[0] || !col_tmp[1] || !col_tmp[2] || !col_tmp[3] \
 			|| col_tmp[4])
 		return (ERROR);
-	printf("col->r %s, %f\n", col_tmp[0], ft_atof(col_tmp[0]));
-	printf("col->r %p\n", &col->r);
 	col->r = ft_atof(col_tmp[0]);
 	col->g = ft_atof(col_tmp[1]);
 	col->b = ft_atof(col_tmp[2]);

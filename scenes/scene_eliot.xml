@@ -40,7 +40,7 @@
 		<cone>
 			<origin> 2.0, 0., 0. </origin>
 			<direction> 1., -1., 1. </direction>
-			<radian> M_PI/4 </radian>
+			<degres> 45 </degres>
 			<material>
 				<color> 1.0, 1.0, 1.0, 1.0 </color>
 				<diffuse> 1. </diffuse>
