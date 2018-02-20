@@ -57,3 +57,31 @@ size_t			ft_cldre(t_list **list)
 	*list = env;
 	return (OK);
 }
+
+t_bool ft_cldre_intersect(t_ray *ray, t_forms *form, double *t)
+{
+	float t0;
+	float t1;
+	double DV;
+	double distV;
+	double abc[3];
+	t_vec3 dist;
+
+	dist = ft_vec3vop_r(ray->org, form->cldre.pos, '-');
+	DV = ft_dotproduct(ray->dir, form->cldre.dir);
+	distV = ft_dotproduct(dist, form->cldre.dir);
+	abc[0] = ft_dotproduct(ray->dir, ray->dir) - (DV * DV);
+	abc[1] = 2 * (ft_dotproduct(ray->dir, dist) - DV * distV);
+	abc[2] = ft_dotproduct(dist, dist) - (distV * distV) - (form->cldre.r * form->cldre.r);
+	if (!solve_quadratic(abc, &t0, &t1)) // TODO DUPLICATE WITH sphere.c sphere_param
+		return FALSE;
+	if (t0 > t1)
+		ft_swap(&t0, &t1, sizeof(float));
+	if (t0 < 0) {
+		t0 = t1;
+		if (t0 < 0)
+			return FALSE;
+	}
+	*t = t0;
+	return (TRUE);
+}

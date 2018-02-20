@@ -41,7 +41,7 @@ t_parse_obj				*parse_obj(void)
 
 t_param				*param(void)
 {
-	static t_param param_ret[3] = {&ft_sphere_param, &ft_plane_param, &ft_cone_intersect};
+	static t_param param_ret[4] = {&ft_sphere_param, &ft_plane_param, &ft_cone_intersect, &ft_cldre_intersect};
 
 	return (param_ret);
 }
