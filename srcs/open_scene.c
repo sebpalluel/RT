@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:58:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 12:06:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ size_t			ft_envtosetup(t_setup *setup)
 		if (flag == ERROR) // ici dans le cas ou aucun objet correspondant
 			return (ERROR);
 	}
-	env = SCN.cams;
-	while (env) // can be used to see all the linked list for eventual debug
-	{
-		if (env && CAM(env))
-			printf("CAM(env) look_at.z %f\n", CAM(env)->look_at.z);
-		env = env->next;
-	}
+	//env = SCN.cams;
+	//while (env) // can be used to see all the linked list for eventual debug
+	//{
+	//	if (env && CAM(env))
+	//		printf("CAM(env) look_at.z %f\n", CAM(env)->look_at.z);
+	//	env = env->next;
+	//}
 	return (OK);
 }
 
