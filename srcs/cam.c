@@ -39,17 +39,17 @@ Matrix44f lookAt(const Vec3f& from, const Vec3f& to, const Vec3f& tmp = Vec3f(0,
 }
 */
 
-void			init_cam(t_cam *cam, t_vect org, t_vect look_at)
+void			init_cam(t_cam *cam, t_vec3 org, t_vec3 look_at)
 {
 	cam->org = org;
 	cam->frt = normal_vect(vect_sub(look_at, org));
-	cam->dwn = normal_vect(vect_mult(init_vect(0.0, 1.0, 0.0), cam->frt));
-	if (vect_mult_scale(cam->dwn, init_vect(0.0, 0.0, 1.0)) > 0.0)
+	cam->dwn = normal_vect(vect_mult(init_vec3(0.0, 1.0, 0.0), cam->frt));
+	if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
 		cam->dwn = vect_scale(-1.0, cam->dwn);
 	if (norme_vect(cam->dwn) == 0.0)
 	{
-		cam->dwn = normal_vect(vect_mult(init_vect(1.0, 0.0, 0.0), cam->frt));
-		if (vect_mult_scale(cam->dwn, init_vect(0.0, 0.0, 1.0)) > 0.0)
+		cam->dwn = normal_vect(vect_mult(init_vec3(1.0, 0.0, 0.0), cam->frt));
+		if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
 			cam->dwn = vect_scale(-1.0, cam->dwn);
 	}
 	cam->rgt = normal_vect(vect_mult(cam->frt, cam->dwn));

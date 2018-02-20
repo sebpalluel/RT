@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-t_matrix	rot_mat(t_vect v, double theta)
+t_matrix	rot_mat(t_vec3 v, double theta)
 {
 	t_matrix rot;
 
@@ -42,9 +42,9 @@ t_matrix	id_mat(void)
 	return (id);
 }
 
-t_vect	mult_vect_mat(t_matrix a, t_vect b)
+t_vec3	mult_vec3_mat(t_matrix a, t_vec3 b)
 {
-	t_vect	res;
+	t_vec3	res;
 
 	res.x = b.x * a.mat[0][0] + b.y * a.mat[0][1] + b.z * a.mat[0][2];
 	res.y = b.x * a.mat[1][0] + b.y * a.mat[1][1] + b.z * a.mat[1][2];
@@ -52,7 +52,7 @@ t_vect	mult_vect_mat(t_matrix a, t_vect b)
 	return (res);
 }
 
-t_vect	rot_vect(t_vect v, double theta, t_vect axis)
+t_vec3	rot_vec3(t_vec3 v, double theta, t_vec3 axis)
 {
-	return (mult_vect_mat(rot_mat(axis, theta), v));
+	return (mult_vec3_mat(rot_mat(axis, theta), v));
 }

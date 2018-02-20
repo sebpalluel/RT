@@ -118,12 +118,6 @@ typedef struct		s_mutex
 
 
 //////////TODO Eliot
-typedef struct	s_vect
-{
-	double x;
-	double y;
-	double z;
-}				t_vect;
 
 typedef struct	s_col
 {
@@ -148,52 +142,52 @@ typedef struct		s_mat
 
 typedef struct	s_cam
 {
-	t_vect org;
-	t_vect frt;
-	t_vect rgt;
-	t_vect dwn;
-	t_vect look_at;
+	t_vec3 org;
+	t_vec3 frt;
+	t_vec3 rgt;
+	t_vec3 dwn;
+	t_vec3 look_at;
 	size_t	num_arg;
 }				t_cam;
 
 typedef struct	s_lgt
 {
 	size_t	type;
-	t_vect	vect;
+	t_vec3	vect;
 	t_col	col;
 	size_t	num_arg;
 }				t_lgt;
 
 typedef struct	s_sph
 {
-	t_vect	ctr;
+	t_vec3	ctr;
 	double	r;
 	t_mat	mat;
 }				t_sph;
 
 typedef struct	s_plan
 {
-	t_vect	nrml;
+	t_vec3	nrml;
 	double	dst;
 	t_mat	mat;
 }				t_plan;
 
 typedef struct	s_cone
 {
-	t_vect	org;
-	t_vect	dir;
+	t_vec3	org;
+	t_vec3	dir;
 	double	theta;
 	t_mat	mat;
 }				t_cone;
 
 typedef struct	s_forms
 {
-	int					type;
+	int						type;
 	size_t				num_arg;
-	t_sph				sph;
+	t_sph					sph;
 	t_plan				plan;
 	t_cone				cone;
-	t_vect				norm;
+	t_vec3				norm;
 }						t_forms;
 
 typedef struct	s_matrix
@@ -205,16 +199,18 @@ typedef struct	s_matrix
 
 typedef struct	s_ray
 {
-	t_vect	org;
-	t_vect	dir;
+	t_vec3	org;
+	t_vec3	dir;
 	double	dist;
 	int		forme;
+	t_bool hit;
 }				t_ray;
 
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_double)();
 typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
+typedef t_bool	(*t_param)();
 //////////TODO Eliot
 
 typedef struct		s_scene

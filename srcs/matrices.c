@@ -71,9 +71,9 @@ void	scale_mat(double a, t_matrix *res)
 			res->mat[x][y] *= a;
 }
 
-t_vect	vect_dot(t_vect u, t_vect v)
+t_vec3	vect_dot(t_vec3 u, t_vec3 v)
 {
-	t_vect w;
+	t_vec3 w;
 
 	w.x = u.x * v.x;
 	w.y = u.y * v.y;

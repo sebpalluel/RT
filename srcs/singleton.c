@@ -39,6 +39,13 @@ t_parse_obj				*parse_obj(void)
 	return (parse);
 }
 
+t_param				*param(void)
+{
+	static t_param param_ret[2] = {&ft_sphere_param, &ft_plane_param};
+
+	return (param_ret);
+}
+
 char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on gere pour le parsing
 {
 	static char			*validobjs[NUM_OBJS];

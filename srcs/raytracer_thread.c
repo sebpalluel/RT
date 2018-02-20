@@ -42,7 +42,10 @@ size_t		ft_initcamToWorld(t_setup *setup)
 int			ft_raytracing_thread(t_setup *setup)
 {
 	int		i;
+	t_list *list;
 
+	list = SCN.forms;
+	printf("sphere r %f\n", SPHERE(list).mat.col.r);
 	if (ft_initcamToWorld(setup) != OK)
 		return (setup->error = ERROR);
 	i = -1;
