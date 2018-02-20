@@ -99,6 +99,9 @@ t_col		send_ray(t_ray ray, t_env *env);
 t_param				*param(void);
 t_bool        solve_quadratic(double *abc, float *t0, float *t1);
 t_bool ft_cone_intersect(t_ray *ray, t_forms *form, double *t);
+void			ft_cldre_struct_pop(t_list *form, t_list *env, t_bool *flag);
+size_t			ft_cldre(t_list **list);
+void		ft_getcylindres(t_list **env, char *obj_str);
 ///////////////////////
 //int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 //int			ft_mouse_moove(int x, int y, t_setup *setup);

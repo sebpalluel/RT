@@ -34,7 +34,7 @@ t_setup					*get_st(void)
 t_parse_obj				*parse_obj(void)
 {
 	static t_parse_obj parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
-	, &ft_plane, &ft_sphere, &ft_cone};
+	, &ft_plane, &ft_sphere, &ft_cone, &ft_cldre};
 
 	return (parse);
 }
@@ -56,5 +56,6 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 	validobjs[3] = "plane";
 	validobjs[4] = "sphere";
 	validobjs[5] = "cone";
+	validobjs[6] = "cylindre";
 	return (validobjs);
 }

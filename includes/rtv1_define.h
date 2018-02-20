@@ -26,7 +26,7 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			4
-# define NUM_OBJS		6
+# define NUM_OBJS		7
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
@@ -75,18 +75,21 @@
 # define NVARSPHERE		5
 # define NVARPLANE		5
 # define NVARCONE		6
+# define NVARCLDRE		6
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_forms *)(*(x)).content)
 # define SPHERE(x)		FORM(x)->sph
 # define PLAN(x)		FORM(x)->plan
 # define CONE(x)		FORM(x)->cone
+# define CLDRE(x)		FORM(x)->cldre
 //# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
 # define SPH			0
 # define PLN			1
 # define CON			2
+# define CYL      3
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1

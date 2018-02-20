@@ -181,6 +181,14 @@ typedef struct	s_cone
 	t_mat	mat;
 }				t_cone;
 
+typedef struct s_cldre
+{
+	t_vec3	pos;
+	t_vec3	dir;
+	double	r;
+	t_mat		mat;
+}					t_cldre;
+
 typedef struct	s_forms
 {
 	int						type;
@@ -188,6 +196,7 @@ typedef struct	s_forms
 	t_sph					sph;
 	t_plan				plan;
 	t_cone				cone;
+	t_cldre				cldre;
 	t_vec3				norm;
 }						t_forms;
 

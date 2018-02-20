@@ -113,11 +113,28 @@ void		ft_getcones(t_list **env, char *obj_str)
 	}
 }
 
+void		ft_getcylindres(t_list **env, char *obj_str)
+{
+	char	*cylindre;
+	int		index;
+
+	index = 0;
+	while ((cylindre = ft_getobjstr(obj_str, "cylindre", index++)))
+	{
+		ft_lstaddend(env, ft_newenv(ft_strdup("cylindre"), NULL));
+		ft_getvaluetoenv(env, cylindre, "origin");
+		ft_getvaluetoenv(env, cylindre, "direction");
+		ft_getvaluetoenv(env, cylindre, "radius");
+		ft_getmaterial(env, ft_getobjstr(cylindre, "material", 0));
+	}
+}
+
 void		ft_getobjects(t_list **env, char *obj_str)
 {
 	ft_getspheres(env, obj_str);
 	ft_getplanes(env, obj_str);
 	ft_getcones(env, obj_str);
+	ft_getcylindres(env, obj_str);
 }
 
 void		ft_getengine(t_list **env, char *eng_str)
