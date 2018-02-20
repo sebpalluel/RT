@@ -32,6 +32,22 @@ size_t		ft_initcamToWorld(t_setup *setup)
 		setup->camToWorld[3][1] = 8.374532;
 		setup->camToWorld[3][2] = 17.932925;
 		setup->camToWorld[3][3] = 1;
+		// setup->camToWorld[0][0] = 1;
+		// setup->camToWorld[0][1] = 0;
+		// setup->camToWorld[0][2] = 0;
+		// setup->camToWorld[0][3] = 0;
+		// setup->camToWorld[1][0] = 0;
+		// setup->camToWorld[1][1] = 1;
+		// setup->camToWorld[1][2] = 0;
+		// setup->camToWorld[1][3] = 0;
+		// setup->camToWorld[2][0] = 0;
+		// setup->camToWorld[2][1] = 0;
+		// setup->camToWorld[2][2] = 1;
+		// setup->camToWorld[2][3] = 0;
+		// setup->camToWorld[3][0] = 0;
+		// setup->camToWorld[3][1] = 0;
+		// setup->camToWorld[3][2] = 0;
+		// setup->camToWorld[3][3] = 1;
 		return (OK);
 	}
 	if (setup->camToWorld)
