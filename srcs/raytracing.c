@@ -332,7 +332,7 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 	while (list) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
 	{
 		ray->hit = FALSE; // je part du principe que ca n'a pas hit
-		if (FORM(list)->type < 2)
+		if (FORM(list)->type <= 2)
 		{
 			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t);
 			if (ray->hit == TRUE && t < t_near)
@@ -436,6 +436,10 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			// hit_col.g = 1.;
 			// hit_col.b = 0.;
 			// hit_col.s = 1.;
+		}
+		else if (form.type == CON)
+		{
+			hit_col = form.cone.mat.col;
 		}
 		else
 		{

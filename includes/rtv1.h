@@ -97,6 +97,8 @@ t_col		send_ray(t_ray ray, t_env *env);
 
 // TODO NATHAN
 t_param				*param(void);
+t_bool        solve_quadratic(double *abc, float *t0, float *t1);
+t_bool ft_cone_intersect(t_ray *ray, t_forms *form, double *t);
 ///////////////////////
 //int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 //int			ft_mouse_moove(int x, int y, t_setup *setup);

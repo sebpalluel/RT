@@ -57,3 +57,34 @@ size_t			ft_cone(t_list **list)
 	*list = env;
 	return (OK);
 }
+
+
+t_bool ft_cone_intersect(t_ray *ray, t_forms *form, double *t)
+{
+	float t0;
+	float t1;
+	float k;
+	double DV;
+	double distV;
+	double abc[3];
+	t_vec3 dist;
+
+	k = tan(DEG2RAD(form->cone.theta) / 2);
+	dist = ft_vec3vop_r(ray->org, form->cone.org, '-');
+	DV = ft_dotproduct(ray->dir, form->cone.dir);
+	distV = ft_dotproduct(dist, form->cone.dir);
+	abc[0] = ft_dotproduct(ray->dir, ray->dir) - (1 + k * k) * (DV * DV);
+	abc[1] = 2 * (ft_dotproduct(ray->dir, dist) - (1 + k * k) * DV * distV);
+	abc[2] = ft_dotproduct(dist, dist) - (1 + k * k) * (distV * distV);
+	if (!solve_quadratic(abc, &t0, &t1)) // TODO DUPLICATE WITH sphere.c sphere_param
+		return FALSE;
+	if (t0 > t1)
+		ft_swap(&t0, &t1, sizeof(float));
+	if (t0 < 0) {
+		t0 = t1;
+		if (t0 < 0)
+			return FALSE;
+	}
+	*t = t0;
+	return (TRUE);
+}
