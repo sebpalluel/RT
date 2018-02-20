@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/19 19:09:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 13:28:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,31 @@ double	vect_mult_scale(t_vect u, t_vect v)
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-//t_col	send_ray(t_ray ray, t_env *env)
-//{
-//	t_formes	*ptr;
-//	double		dist;
-//	int			i;
-//	int			j;
-//
-//	i = 0;
-//	j = -1;
-//	ptr = env->formes;
-//	while (ptr)
-//	{
-//		if (((ptr->type != 0) && (dist = hit_shape()[ptr->type - 1](ray, ptr)) >= 0)
-//				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0)
-//				&& ((j = i) || 1))
-//			ray.dist = dist;
-//		ptr = ptr->next;
-//		i++;
-//	}
-//	ptr = env->formes;
-//	if (j == -1)
-//		return (BACK_COLOR);
-//	while (j--)
-//		ptr = ptr->next;
-//	if (ptr->type != 0)
-//		return (intersection()[ptr->type - 1](ray, ptr, *env));
-//	return (BACK_COLOR);
-//}
+t_col	send_ray(t_ray ray, t_setup *setup)
+{
+	t_list		*form;
+	double		dist;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = -1;
+	form = SCN.forms;
+	while (form)
+	{
+		if (((FORM(form)->type != 0) && (dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0)
+				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0)
+				&& ((j = i) || 1))
+			ray.dist = dist;
+		form = form->next;
+		i++;
+	}
+	FORM(form) = env->formes;
+	if (j == -1)
+		return (BACK_COLOR);
+	while (j--)
+		FORM(form) = FORM(form)->next;
+	if (FORM(form)->type != 0)
+		return (intersection()[FORM(form)->type - 1](ray, FORM(form), *env));
+	return (BACK_COLOR);
+}
