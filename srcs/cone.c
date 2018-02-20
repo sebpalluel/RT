@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:57:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:32:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ size_t			ft_cone(t_list **list)
 	return (OK);
 }
 
-double	hit_cone(t_ray ray, t_forms *formes)
+double	hit_cone(t_ray ray, t_forms *form)
 {
 	double a;
 	double b;
@@ -67,18 +67,18 @@ double	hit_cone(t_ray ray, t_forms *formes)
 	double delta;
 	t_vec3 oc;
 
-	k = tan(formes->cone.theta / 2);
+	k = tan(form->cone.theta / 2);
 	k = k * k;
-	oc = vect_sub(ray.org, formes->cone.org);
+	oc = vect_sub(ray.org, form->cone.org);
 	a = vect_mult_scale(ray.dir, ray.dir)
-		- (1 + k) * vect_mult_scale(ray.dir, formes->cone.dir) *
-		vect_mult_scale(ray.dir, formes->cone.dir);
+		- (1 + k) * vect_mult_scale(ray.dir, form->cone.dir) *
+		vect_mult_scale(ray.dir, form->cone.dir);
 	b = 2 * (vect_mult_scale(ray.dir, oc) - (1 + k) *
-			vect_mult_scale(ray.dir, formes->cone.dir) *
-			vect_mult_scale(oc, formes->cone.dir));
+			vect_mult_scale(ray.dir, form->cone.dir) *
+			vect_mult_scale(oc, form->cone.dir));
 	k = vect_mult_scale(oc, oc) - (1 + k) *
-		vect_mult_scale(oc, formes->cone.dir) *
-		vect_mult_scale(oc, formes->cone.dir);
+		vect_mult_scale(oc, form->cone.dir) *
+		vect_mult_scale(oc, form->cone.dir);
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);

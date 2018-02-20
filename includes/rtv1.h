@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:24:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:00:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_col		send_ray(t_ray ray, t_setup *setup);
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
 t_col		diffuse(t_setup *setup, t_forms *forme, t_ray ray, t_col col_obj);
-double		hit_plan(t_ray ray, t_forms *formes);
-double		hit_sphere(t_ray ray, t_forms *formes);
-double		hit_cone(t_ray ray, t_forms *formes);
+double		hit_plan(t_ray ray, t_forms *form);
+double		hit_sphere(t_ray ray, t_forms *form);
+double		hit_cone(t_ray ray, t_forms *form);
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
 t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
 t_col		intersec_cone(t_ray ray, t_list *con, t_setup *setup);

@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/20 18:22:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:33:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				hit_obj(t_lgt *lgt, t_ray camray, t_setup *setup)
 	while (form)
 	{
 		if (((FORM(form)->type != 0) &&
-			(dist = hit_shape()[FORM(form)->type - 1](ray, form)) >= 0) &&
+			(dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0) &&
 			((ray.dist > dist || ray.dist == -1) && dist >= 0))
 		{
 				ray.dist = dist;

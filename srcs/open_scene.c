@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:20:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:13:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ size_t			ft_envtosetup(t_setup *setup)
 		if (flag == ERROR) // ici dans le cas ou aucun objet correspondant
 			return (ERROR);
 	}
-	//env = SCN.cams;
+	//env = SCN.forms;
 	//while (env) // can be used to see all the linked list for eventual debug
 	//{
-	//	if (env && CAM(env))
-	//		printf("CAM(env) look_at.z %f\n", CAM(env)->look_at.z);
+	//	printf("parser form %p, type %d\n", FORM(env), FORM(env)->type);
 	//	env = env->next;
 	//}
 	return (OK);

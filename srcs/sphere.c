@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:52:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:30:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ size_t			ft_sphere(t_list **list)
 	return (OK);
 }
 
-double	hit_sphere(t_ray ray, t_forms *formes)
+double	hit_sphere(t_ray ray, t_forms *form)
 {
 	t_vec3 oc;
 	double a;
@@ -64,14 +64,13 @@ double	hit_sphere(t_ray ray, t_forms *formes)
 	double c;
 	double delta;
 
-	oc = vect_sub(ray.org, formes->sph.ctr);
+	oc = vect_sub(ray.org, form->sph.ctr);
 	a = vect_mult_scale(ray.dir, ray.dir);
 	b = 2.0 * vect_mult_scale(ray.dir, oc);
-	c = vect_mult_scale(oc, oc) - (formes->sph.r * formes->sph.r);
+	c = vect_mult_scale(oc, oc) - (form->sph.r * form->sph.r);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	printf("hit_sph\n");
 	return ((-b - sqrt(delta)) / (2.0 * a));
 }
 
