@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 19:30:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:42:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,25 @@ double	hit_sphere(t_ray ray, t_forms *form)
 	return ((-b - sqrt(delta)) / (2.0 * a));
 }
 
+//t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
+//{
+//	t_forms		*form;
+//
+//	form = FORM(sph);
+//	if (ray.dist >= 0.0)
+//	{
+//		form->norm = normal_vect(vect_sub(vect_add(ray.org, vect_scale(ray.dist, ray.dir)), form->sph.ctr));
+//		return (diffuse(setup, form, ray, form->sph.mat.col));
+//	}
+//	return (setup->background);
+//}
+
 t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 {
-	t_forms		*form;
-
-	form = FORM(sph);
 	if (ray.dist >= 0.0)
 	{
-		form->norm = normal_vect(vect_sub(vect_add(ray.org, vect_scale(ray.dist, ray.dir)), form->sph.ctr));
-		return (diffuse(setup, form, ray, form->sph.mat.col));
+		FORM(sph)->norm = normal_vect(vect_sub(vect_add(ray.org, vect_scale(ray.dist, ray.dir)), SPHERE(sph).ctr));
+		return (diffuse(setup, FORM(sph), ray, SPHERE(sph).mat.col));
 	}
 	return (setup->background);
 }
