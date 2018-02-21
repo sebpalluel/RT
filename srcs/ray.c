@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/20 19:30:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:31:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,25 @@ double	vect_mult_scale(t_vec3 u, t_vec3 v)
 
 t_col	send_ray(t_ray ray, t_setup *setup)
 {
-	t_list		*form;
+	t_list		*ptr;
+	t_list		*nearest;
 	double		dist;
-	int			i;
-	int			j;
 
-	i = 0;
-	j = -1;
-	form = SCN.forms;
-	while (form)
+	ptr = SCN.forms;
+	nearest = NULL;
+	while (ptr)
 	{
-		if (((FORM(form)->type != 0) && (dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0)
-				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0)
-				&& ((j = i) || 1))
+		if (((FORM(ptr)->type != 0) && (dist = hit_shape()[FORM(ptr)->type - 1](ray, FORM(ptr))) >= 0)
+				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0))
+		{
+			nearest = ptr;
 			ray.dist = dist;
-		form = form->next;
-		i++;
+		}
+	ptr = ptr->next;
 	}
-	form = SCN.forms;
-	if (j == -1)
+	if (!nearest)
 		return (setup->background);
-	while (j--)
-		form = form->next;
-	if (FORM(form)->type != 0)
-		return (intersection()[FORM(form)->type - 1](ray, form, setup));
+	if (FORM(nearest)->type != 0)
+		return (intersection()[FORM(nearest)->type - 1](ray, nearest, setup));
 	return (setup->background);
 }
