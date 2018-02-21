@@ -42,7 +42,7 @@
 	<objects>
 
 		<sphere>
-			<center> 8.0, 3., 0.5 </center>
+			<center> 28.0, 3., 0.5 </center>
 			<radius> 1.9 </radius>
 			<material>
 				<color> 1., 1., 1., 0. </color>
@@ -51,10 +51,10 @@
 			</material>
 		</sphere>
 		<sphere>
-			<center> 3.0, -3.2, 0.5 </center>
-			<radius> 0.9 </radius>
+			<center> 18.0, -6.2, 0.5 </center>
+			<radius> 4.9 </radius>
 			<material>
-				<color> 1., 1., 1., 0. </color>
+				<color> 1., 0., 0., 0. </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>

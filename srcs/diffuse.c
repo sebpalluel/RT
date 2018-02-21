@@ -6,33 +6,31 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/21 11:22:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:08:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int				hit_obj(t_lgt *lgt, t_ray camray, t_setup *setup)
+int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_setup *setup)
 {
 	double		dist;
 	t_vec3		dir;
 	t_ray		ray;
-	t_list		*form;
 	t_list		*ombre;
 
 	dir = vect_sub(vect_add(camray.org, vect_scale(camray.dist, camray.dir)), 
-	lgt->vect);
+			lgt->vect);
 	ray = init_ray(lgt->vect, normal_vect(dir));
-	form = SCN.forms;
 	ombre = NULL;
 	while (form)
 	{
 		if (((FORM(form)->type != 0) &&
-			(dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0) &&
-			((ray.dist > dist || ray.dist == -1) && dist >= 0))
+					(dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0) &&
+				((ray.dist > dist || ray.dist == -1) && dist >= 0))
 		{
-				ray.dist = dist;
-				ombre = form;
+			ray.dist = dist;
+			ombre = form;
 		}
 		form = form->next;
 	}
@@ -65,10 +63,10 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 {
 	return (vect_mult_scale(normal_vect(vect_sub(LGT(lgt)->vect,
-		vect_add(ray.org, vect_scale(ray.dist, ray.dir)))), norm));
+						vect_add(ray.org, vect_scale(ray.dist, ray.dir)))), norm));
 }
 
-t_col	diffuse(t_setup *setup, t_forms *forme, t_ray ray, t_col col_obj)
+t_col	diffuse(t_setup *setup, t_list *form, t_ray ray, t_col col_obj)
 {
 	double		lmbrt;
 	t_col		col;
@@ -80,19 +78,23 @@ t_col	diffuse(t_setup *setup, t_forms *forme, t_ray ray, t_col col_obj)
 	lgt = SCN.lgts;
 	while (lgt)
 	{
-		if (hit_obj(LGT(lgt), ray, setup))
+		if (hit_obj(LGT(lgt), ray, form, setup))
 		{
+		if (SPHERE(form).ctr.x == 28.)
+				printf("first sphere\n"); 
+			//if (SPHERE(form).ctr.x == 18.)
+			//	printf("second sphere\n"); 
 			lgt = lgt->next;
 			continue ;
 		}
-		lmbrt = lambert(ray, forme->norm, lgt);
+		lmbrt = lambert(ray, FORM(form)->norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
 		col = addcol(interpolcol(setup->background, mult_scale_col(SCN.expo, multcol(
-					col_obj, LGT(lgt)->col)), lmbrt * lmbrt), col);
+							col_obj, LGT(lgt)->col)), lmbrt * lmbrt), col);
 		spec = addcol(spec, mult_scale_col(SCN.expo, interpolcol(setup->background,
-			LGT(lgt)->col, phong(ray, col_obj, forme->norm,
-				lgt))));
+						LGT(lgt)->col, phong(ray, col_obj, FORM(form)->norm,
+							lgt))));
 		lgt = lgt->next;
 	}
 	return (addcol(spec, col));
