@@ -78,7 +78,7 @@
 			</material>
 		</plane>
 		<cone>
-			<origin> 0., -7., -10. </origin>
+			<origin> 0., -7., -1. </origin>
 			<direction> 0., -1., 0. </direction>
 			<degres> 10 </degres>
 			<material>

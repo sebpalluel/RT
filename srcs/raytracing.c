@@ -408,42 +408,113 @@ double max(double a, double b) {
 **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
 **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
 */
+
+void illuminate(t_vec3 *p, t_vec3 *hit_nrml,t_col *hit_col, t_mat *mat)
+{
+	float r2;
+	t_vec3 lightdir;
+	// t_col light_intensity;
+	double dist;
+	t_col lgt_col = {1,1,1,1};
+	t_vec3 lgt_pos = {0, 0, 0};
+
+
+	lightdir = ft_vec3vop_r(*p, lgt_pos, '-');
+	r2 =  ft_dotproduct(lightdir,lightdir) ; //scratchapixel vec3.norm()x * x + y * y + z * z
+	ft_vec3normalize(&lightdir);
+	dist = sqrt(r2);
+	// lightdir.x /= dist;
+  // //
+	// lightdir.y /= dist;
+	// lightdir.z /= dist;
+	// *lightIntensity = color * intensity / (4 * M_PI * r2);
+	// light_intensity.r = 255 / (4 * M_PI * r2);
+	// light_intensity.g = 255 / (4 * M_PI * r2);
+	// light_intensity.b = 255 / (4 * M_PI * r2);
+	// printf("col: 255 / (4 * M_PI * r2): %f\t", 255 / (4 * M_PI * r2));
+	double lambert =  max(0, ft_dotproduct(*hit_nrml, ft_vec3sop_r(lightdir, -1, '*')));
+	// https://github.com/Caradran/rtv1/blob/master/src/diffuse.c A RIEN COMPRIS
+	*hit_col = addcol(interpolcol(*hit_col,
+		mult_scale_col((4 * M_PI / dist), multcol(mat->col,
+		lgt_col)), lambert * lambert), *hit_col);
+	// ELIOT
+		// addcol(interpolcol(BACK_COLOR,
+		// 		mult_scale_col(env.expo / (dist * dist), multcol(col_obj,
+		// 		env.lights->lgt.col)), lmbrt * lmbrt), col)
+}
+
+// ELIOTT
+t_vec3	normal_cone(t_ray ray, t_cone cone)
+{
+	double height;
+	t_vec3 hit;
+	t_vec3 oc;
+	double k;
+	t_vec3 norm;
+
+	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
+	oc = vect_sub(hit, cone.org);
+	if (vect_mult_scale(cone.dir, oc) < 0)
+		cone.dir = vect_scale(-1.0, cone.dir);
+	k = 1 / cos(cone.theta / 2.0);
+	height = norme_vect(vect_scale(k, oc));
+	norm = normal_vect(vect_sub(oc, vect_scale(height, cone.dir)));
+	return (norm);
+}
+
+t_vec3	normal_cyl(t_ray ray, t_cldre cyl)
+{
+	t_vec3 hit;
+	t_vec3 oc;
+	double height;
+	t_vec3 norm;
+
+	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
+	oc = vect_sub(hit, cyl.pos);
+	height = vect_mult_scale(cyl.dir, oc);
+	norm = normal_vect(vect_sub(oc, vect_scale(height, cyl.dir)));
+	return (norm);
+}
+
+// fin ELIOT
+
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
 	t_col hit_col;
 	t_forms form;
+	t_vec3 hit_nrml;
 
 	hit_col = setup->background;
 	i = 0;
 	j = 0;
 	if (ft_trace(&ray, setup, &form))
 	{
-		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
+		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
-		//printf("form after %p\n", &form);
-		// printf("form type: %d\n", form.type);
 		if (form.type == SPH)
 		{
-			hit_col = form.sph.mat.col;
+			hit_nrml = ft_vec3vop_r(hit_point, form.sph.ctr, '-'); // pas besoin pour l instant ?
+			illuminate(&hit_point, &hit_nrml, &hit_col, &form.sph.mat);
 		}
 		else if (form.type == PLN)
 		{
-			// printf("plane intersect\n");
+			// hit_nrml = ft_dotproduct(ray.dir, form.plan.nrml) < 0 ? ft_vec3sop_r(form.plan.nrml, -1, '*'): form.plan.nrml;
+			// hit_nrml = form.plan.nrml;
 			hit_col = form.plan.mat.col;
-			// hit_col.r = 0.;
-			// hit_col.g = 1.;
-			// hit_col.b = 0.;
-			// hit_col.s = 1.;
+			// illuminate(&hit_point, &hit_nrml, &hit_col, &form.plan.mat);
 		}
 		else if (form.type == CON)
 		{
-			hit_col = form.cone.mat.col;
+			hit_nrml = normal_cone(ray, form.cone);
+			illuminate(&hit_point, &hit_nrml, &hit_col, &form.cone.mat);
+			// hit_col = form.cone.mat.col;
 		}
 		else if (form.type == CYL)
 		{
-			hit_col = form.cldre.mat.col;
+			hit_nrml = normal_cyl(ray, form.cldre);
+			illuminate(&hit_point, &hit_nrml, &hit_col, &form.cldre.mat);
+			// hit_col = form.cldre.mat.col;
 		}
 		else
 		{
