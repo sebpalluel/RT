@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/21 13:58:24 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 14:10:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 t_func_col		*intersection(void)
 {
-	static t_func_col func[3] = {&intersec_sphere, &intersec_plan, &intersec_cone};
+	static t_func_col func[NUM_FORM] = {&intersec_sphere, &intersec_plan, \
+		&intersec_cone, &intersec_cyl};
 
 	return (func);
 }
 
 t_func_dble	*hit_shape(void)
 {
-	static t_func_dble func[3] = {&hit_sphere, &hit_plan, &hit_cone};
+	static t_func_dble func[NUM_FORM] = {&hit_sphere, &hit_plan, \
+		&hit_cone, &hit_cyl};
 
 	return (func);
 }

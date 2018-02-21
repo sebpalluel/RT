@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:35:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:19:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int				ft_isspace(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_ishexa(int c);
+t_bool			ft_isfloat(char *s);
+t_bool			ft_issize_t(char *s);
 int				ft_checkint(char *str);
 int				ft_checkdigit(char *str);
 int				ft_checkhexa(char *str);

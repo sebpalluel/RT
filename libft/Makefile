@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/14 19:09:56 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/21 17:21:19 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -110,6 +110,8 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(CTYPEPATH)ft_isspace.c\
 			$(CTYPEPATH)ft_ishexa.c\
 			$(CTYPEPATH)ft_isint.c\
+			$(CTYPEPATH)ft_isfloat.c\
+			$(CTYPEPATH)ft_issize_t.c\
 			$(CTYPEPATH)ft_checkhexa.c\
 			$(CTYPEPATH)ft_checkdigit.c\
 			$(CTYPEPATH)ft_checkint.c\
