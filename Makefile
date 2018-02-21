@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/20 17:41:33 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/21 13:53:08 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -47,6 +47,7 @@ SRCNAME 	=	main.c \
 				plane.c \
 				sphere.c \
 				cone.c \
+				cylindre.c \
 				engine.c \
 				utils.c \
 				raytracing.c \

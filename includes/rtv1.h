@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 13:11:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:58:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ size_t		ft_light(t_list **list);
 size_t		ft_plane(t_list **list);
 size_t		ft_sphere(t_list **list);
 size_t		ft_cone(t_list **list);
+size_t		ft_cylindre(t_list **list);
 t_parse_obj	*parse_obj(void);
 void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
 int			ft_raytracing_thread(t_setup *setup);

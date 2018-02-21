@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 12:01:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:50:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,32 @@ void		ft_getcones(t_list **env, char *obj_str)
 	}
 }
 
+void		ft_getcylindres(t_list **env, char *obj_str)
+{
+	char	*cyl;
+	int		index;
+
+	index = 0;
+	while ((cyl = ft_getobjstr(obj_str, "cyl", index++)))
+	{
+		ft_lstaddend(env, ft_newenv(ft_strdup("cyl"), NULL));
+		ft_getvaluetoenv(env, cyl, "position");
+		ft_getvaluetoenv(env, cyl, "direction");
+		ft_getvaluetoenv(env, cyl, "radius");
+		ft_getmaterial(env, ft_getobjstr(cyl, "material", 0));
+	}
+}
+
 void		ft_getobjects(t_list **env, char *obj_str)
 {
 	ft_getspheres(env, obj_str);
 	ft_getplanes(env, obj_str);
 	ft_getcones(env, obj_str);
+	ft_getcylindres(env, obj_str);
 }
 
 void		ft_getengine(t_list **env, char *eng_str)
 {
-
 	ft_lstaddend(env, ft_newenv(ft_strdup("engine"), NULL));
 	ft_getvaluetoenv(env, eng_str, "width");
 	ft_getvaluetoenv(env, eng_str, "height");

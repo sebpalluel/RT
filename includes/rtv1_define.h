@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 18:46:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:57:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			4
-# define NUM_OBJS		6
+# define NUM_OBJS		7
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
@@ -46,6 +46,7 @@
 # define PLANE_ERROR_S	"error: plane struct is not in the correct format"
 # define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
 # define CONE_ERROR_S	"error: cone struct is not in the correct format"
+# define CYL_ERROR_S	"error: cylindre struct is not in the correct format"
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
@@ -57,9 +58,10 @@
 # define PLANE_ERROR	-5
 # define SPHERE_ERROR	-6
 # define CONE_ERROR		-7
-# define SCN_ERROR		-8
-# define OBJ_ERROR		-9
-# define DIM_ERROR		-10
+# define CYLINDRE_ERROR	-8
+# define SCN_ERROR		-9
+# define OBJ_ERROR		-10
+# define DIM_ERROR		-11
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]
@@ -75,6 +77,7 @@
 # define NVARSPHERE		5
 # define NVARPLANE		5
 # define NVARCONE		6
+# define NVARCYLINDRE	6
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_forms *)(*(x)).content)
@@ -87,6 +90,7 @@
 # define SPH			1
 # define PLN			2
 # define CON			3
+# define CYL			4
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
