@@ -41,20 +41,20 @@
 
 	<objects>
 
-		<sphere>
-			<center> 28.0, 3., 0.5 </center>
-			<radius> 1.9 </radius>
+		<plane>
+			<normale> 0.0, 0.0, 0.5 </normale>
+			<distance> 0.5 </distance>
 			<material>
-				<color> 1., 1., 1., 0. </color>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
-		</sphere>
+		</plane>
 		<sphere>
-			<center> 18.0, -6.2, 0.5 </center>
-			<radius> 4.9 </radius>
+			<center> 1.0, 0., 0. </center>
+			<radius> 0.2 </radius>
 			<material>
-				<color> 1., 0., 0., 0. </color>
+				<color> 1., 1., 1., 1. </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>

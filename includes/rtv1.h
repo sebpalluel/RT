@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 12:05:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:11:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ double		hit_cone(t_ray ray, t_forms *form);
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
 t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
 t_col		intersec_cone(t_ray ray, t_list *con, t_setup *setup);
-int			hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_setup *setup);
+int			hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
 
 
 ///////////////////////

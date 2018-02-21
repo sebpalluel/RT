@@ -6,19 +6,21 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/21 13:08:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:20:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_setup *setup)
+int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 {
 	double		dist;
 	t_vec3		dir;
 	t_ray		ray;
 	t_list		*ombre;
+	t_setup		*setup;
 
+	setup = get_st();
 	dir = vect_sub(vect_add(camray.org, vect_scale(camray.dist, camray.dir)), 
 			lgt->vect);
 	ray = init_ray(lgt->vect, normal_vect(dir));
@@ -34,7 +36,7 @@ int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_setup *setup)
 		}
 		form = form->next;
 	}
-	if (ombre && !ft_memcmp(ombre, SCN.forms, sizeof(t_forms)))
+	if (ombre && !ft_memcmp(FORM(ombre), FORM(obj), sizeof(t_forms)))
 		return (0);
 	return (1);
 }
@@ -45,18 +47,15 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 	t_vec3	phongdir;
 	t_vec3	lgtdir;
 	double	phongterm;
-	t_lgt	*lgt;
 
-	//TODO ici pas bon car liste chainee;
-	lgt = LGT(light);
-	lgtdir = normal_vect(vect_sub(lgt->vect,
+	lgtdir = normal_vect(vect_sub(LGT(light)->vect,
 				vect_add(ray.org, vect_scale(ray.dist, ray.dir))));
 	refl = 2.0 * vect_mult_scale(lgtdir, norm);
 	phongdir = vect_sub(lgtdir, vect_scale(refl, norm));
 	phongterm = vect_mult_scale(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
-	phongterm = (col.s * pow(phongterm, 50.0) * lgt->col.s);
+	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s);
 	return (phongterm);
 }
 
@@ -78,12 +77,8 @@ t_col	diffuse(t_setup *setup, t_list *form, t_ray ray, t_col col_obj)
 	lgt = SCN.lgts;
 	while (lgt)
 	{
-		if (hit_obj(LGT(lgt), ray, form, setup))
+		if (hit_obj(LGT(lgt), ray, SCN.forms, form))
 		{
-		if (SPHERE(form).ctr.x == 28.)
-				printf("first sphere\n"); 
-			//if (SPHERE(form).ctr.x == 18.)
-			//	printf("second sphere\n"); 
 			lgt = lgt->next;
 			continue ;
 		}
