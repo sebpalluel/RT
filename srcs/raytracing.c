@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 12:03:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 16:10:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ double max(double a, double b) {
 **		la forme la plus proche rencontrée dans form
 **		la distance a cette cette forme dans ray.dist
 */
-t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
+t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 {
 	double		dist;
-	t_bool		hit_once;
+	t_forms		*form;
 	double		t_near;
 	double		t;
 	t_list		*list;
 
 	t = MAX_INT;
 	t_near = MAX_INT;
-	hit_once = FALSE;
+	form = NULL;
 	dist = 0;
 	list = SCN.forms;
 	while (list) /* itere sur tous les objets de la scene */
@@ -47,15 +47,14 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 			{
 				// ICI CHECK SI L OBJET RENCONTRE DANS LE SHADOW RAY EST AVANT LA SOURCE DE LUMIERE (t < ray->dist)
 				// SAUF QUE CA MARCHE PAS IL TRAVERSE LA LUMIERE
-				hit_once = ray->hit;
 				t_near = t;
 				ray->dist = t;
-				*form = *FORM(list);
+				form = FORM(list);
 			}
 		}
 		list = list->next;
 	}
-	return (hit_once);
+	return (form);
 }
 
 /*
@@ -96,7 +95,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
 	t_col hit_col;
-	t_forms form;
+	t_forms *form;
 	/* en dur en attendant */
 	t_lgt light;
 	t_col lgt_col = {1,1,1,1};
@@ -108,24 +107,24 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	hit_col = setup->background;
 	i = 0;
 	j = 0;
-
-	if (ft_trace(&ray, setup, &form))
+	form = NULL;
+	if ((form = ft_trace(&ray, setup)))
 	{
-		if (form.type == SPH)
+		if (form->type == SPH)
 		{
-			hit_col = form.sph.mat.col;
+			hit_col = form->sph.mat.col;
 		}
-		else if (form.type == PLN)
+		else if (form->type == PLN)
 		{
-			hit_col = form.plan.mat.col;
+			hit_col = form->plan.mat.col;
 		}
-		else if (form.type == CON)
+		else if (form->type == CON)
 		{
-			hit_col = form.cone.mat.col;
+			hit_col = form->cone.mat.col;
 		}
-		else if (form.type == CYL)
+		else if (form->type == CYL)
 		{
-			hit_col = form.cldre.mat.col;
+			hit_col = form->cldre.mat.col;
 		}
 		else
 		{
@@ -152,7 +151,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
 		// if (form.type == PLN) {
 			t_bool vis;
-			vis = !ft_trace(&sdw_ray, setup, &form);
+			vis = !ft_trace(&sdw_ray, setup) ? TRUE : FALSE;
 			hit_col = mult_scale_col(vis, hit_col);
 		// }
 		/*
