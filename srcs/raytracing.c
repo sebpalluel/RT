@@ -13,28 +13,36 @@
 #include "../includes/rtv1.h"
 #include <math.h>
 
-// ft_trace(ray.orig, ray.dir, ray.size, setup /* stock les obj */, ray.hit)
+
+double max(double a, double b) {
+	return (a >= b ? a : b);
+}
+
+/*
+**	test les intersections rayon | forme
+**	au retour de la fonction on a:
+**		la forme la plus proche rencontrée dans form
+**		la distance a cette cette forme dans ray.dist
+*/
 t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 {
-	size_t		i; // correspond au type d'objet (par example SPH = 0 et PLN = 1), on tombera donc dans les fonctions d'intersections correspondantes
 	double		dist;
 	t_bool		hit_once;
 	double		t_near;
 	double		t;
 	t_list		*list;
 
-	i = 0;
 	t = MAX_INT;
 	t_near = MAX_INT;
 	hit_once = FALSE;
 	dist = 0;
 	list = SCN.forms;
-	while (list) // ce qui permet de savoir quel est l'objet rencontre et sa fonction d'intersection
+	while (list) /* itere sur tous les objets de la scene */
 	{
-		ray->hit = FALSE; // je part du principe que ca n'a pas hit
+		ray->hit = FALSE;
 		if (FORM(list)->type <= 3)
 		{
-			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t);
+			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t); /* test la routine d intersection correspondant a l objet */
 			if (ray->hit == TRUE && t < t_near)
 			{
 				hit_once = ray->hit;
@@ -49,17 +57,6 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 }
 
 /*
-   typedef struct		s_ray
-   {
-   double			size; // dist entre le point d'origine et l'objet touche le plus proche
-   t_bool			hit; //Nathan remplacer par l index de l objet pointé
-   size_t			obj; // de quel type de forme il s'agit
-   size_t			objn; // l'index de l'objet (par exemple sphere[objn])
-   t_vec3			orig; // pos de la camera
-   t_vec3			dir;
-   }					t_ray;
-   */
-/*
    void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
    {
  *
@@ -70,7 +67,7 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
  ** 			\param[out] Nhit is the normal at Phit
  ** 			\param[out] tex are the texture coordinates at Phit
  **************
- **      Nhit = Phit - center; () (calcul de la normale au point d'intersection)
+ **      Nhit = Phit - center; () (calcul de la normale au point d'intersection) pour la sphere
  **      Nhit.normalize();  On normalise le vecteur
  **************
  **      In this particular case, the normal is simular to a point on a unit sphere
@@ -84,22 +81,16 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
  **  }
  *
  }
- */
 
-double max(double a, double b) {
-	return (a >= b ? a : b);
-}
+   TODO Notes sur ft_cast_ray
 
-/* COMMENT 1
-**	t_vec2 hit_text; // pas besoin pour l'instant?
-**	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-**	// Use the normal and texture coordinates to shade the hit point.
-**	// The normal is used to compute a simple facing ratio and the texture coordinate
-**	// to compute a basic checker board pattern
-**	float scale = 4;
-**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+// retourne couleur de l'objet
+on doit :
+ ** trouver l'objet
+ ** set la hit_col a la couleur de l'objet rencontré
 */
+
+
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
@@ -115,8 +106,12 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		**	ici j ai ma forme rencontrée dans form
 		**	ma distance dans ray.dist
 		** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
+		**	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
+		**	hit_point -> besoin ray.org et ray.dist
 		** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
 		** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
+		**	shadow ray -> ray.origine = hit_point
+		**	shadow ray -> ray.origine = hit_point
 		** SI True : color = background
 		** SINON
 		** 	get_color()
@@ -153,15 +148,6 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	return (hit_col);
 }
 
-/*
-   TODO Notes sur ft_cast_ray
-
-// retourne couleur de l'objet
-on doit :
- ** trouver l'objet
- ** set la hit_col a la couleur de l'objet rencontré
-*/
-
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	double a;
 	double b;
@@ -193,17 +179,17 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 }
 
 // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
-// MAYA
-// float x = (2 * (pix.y + 0.5) / (float)SCN.width - 1) * scale;
-// float y = (1 - 2 * (pix.x + 0.5) / (float)SCN.height) * scale * 1 / imageAspectRatio;
 // TODO Refacto
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
+	/* on a trop de variable ici*/
+	/* isoler thread ? */
 	t_setup		*setup;
 	t_pix		pix;
 	t_ray		ray;
+	/* ici on doit init avec la position de la camera */
 	t_vec3 orig = {0.0, 0.0, 0.0};
-	t_col	col = {1., 0., 0., 0.};
+	t_col	col;
 	pthread_t	id;
 	int			i;
 	size_t		inc;
@@ -224,15 +210,16 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 		{
+			/* REFACTO dans sa propre fonction */
 			float scale = tan(DEG2RAD((FOV * 0.5)));
 			float imageAspectRatio = SCN.width / (float)SCN.height;
 			float x = (2 * (pix.x + 0.5) / (float)SCN.width - 1) * imageAspectRatio * scale;
 			float y = (1 - 2 * (pix.y + 0.5) / (float)SCN.height) * scale;
 			t_vec3 dir = {x, y, -1};
+			/* fin REFACTO */
 			multDirMatrix(&dir, &ray.dir, setup->camToWorld);
 			ft_vec3normalize(&ray.dir);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			// ft_put_pixel(setup, pix.x, pix.y, ft_coltohex(&col));
 			ft_put_pixel(setup, pix.x, pix.y, coltoi(col)); //TODO adapt here for scene
 		}
 	}
