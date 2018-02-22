@@ -1,8 +1,8 @@
 <scene>
 
 	<engine>
-		<width> 1280 </width>
-		<height> 720 </height>
+		<width> 1920 </width>
+		<height> 1080 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
@@ -11,7 +11,7 @@
 	<cameras>
 
 		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
+			<origin> 0.5, 0.0, 5.0 </origin>
 			<look_at> 1.0, 0.0, 0.0 </look_at>
 		</camera>
 		<camera>
