@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 16:10:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:17:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	t_col hit_col;
 	t_forms *form;
 	/* en dur en attendant */
-	t_lgt light;
-	t_col lgt_col = {1,1,1,1};
-	t_vec3 vect = {1.0, 0.0, -3.};
-	light.type = 0;
-	light.vect = vect;
-	light.col = lgt_col;
+	t_lgt *light = LGT(SCN.lgts);
 	/* FIN en dur en attendant */
 	hit_col = setup->background;
 	i = 0;
@@ -136,7 +131,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 
 		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		// lightDir = pos - P;
-		t_vec3 light_dir = ft_vec3vop_r(light.vect, hit_point, '-');
+		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		//     // compute the square distance
 		//     float r2 = lightDir.norm();
 		//     dist = sqrtf(r2);
