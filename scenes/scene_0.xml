@@ -1,8 +1,8 @@
 <scene>
 
 	<engine>
-		<width> 1920 </width>
-		<height> 1080 </height>
+		<width> 800 </width>
+		<height> 600 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
