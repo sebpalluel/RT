@@ -43,8 +43,10 @@ t_bool ft_trace(t_ray *ray,t_setup *setup, t_forms *form)
 		if (FORM(list)->type <= 3)
 		{
 			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t); /* test la routine d intersection correspondant a l objet */
-			if (ray->hit == TRUE && t < t_near)
+			if (ray->hit == TRUE && t < t_near && t < ray->dist)
 			{
+				// ICI CHECK SI L OBJET RENCONTRE DANS LE SHADOW RAY EST AVANT LA SOURCE DE LUMIERE (t < ray->dist)
+				// SAUF QUE CA MARCHE PAS IL TRAVERSE LA LUMIERE
 				hit_once = ray->hit;
 				t_near = t;
 				ray->dist = t;
@@ -90,38 +92,25 @@ on doit :
  ** set la hit_col a la couleur de l'objet rencontré
 */
 
-
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
 	t_col hit_col;
 	t_forms form;
-
+	/* en dur en attendant */
+	t_lgt light;
+	t_col lgt_col = {1,1,1,1};
+	t_vec3 vect = {1.0, 0.0, -3.};
+	light.type = 0;
+	light.vect = vect;
+	light.col = lgt_col;
+	/* FIN en dur en attendant */
 	hit_col = setup->background;
 	i = 0;
 	j = 0;
+
 	if (ft_trace(&ray, setup, &form))
 	{
-		/*
-		**	ici j ai ma forme rencontrée dans form
-		**	ma distance dans ray.dist
-		** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
-		**	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
-		**	hit_point -> besoin ray.org et ray.dist
-		** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
-		** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
-		**	shadow ray -> ray.origine = hit_point
-		**	shadow ray -> ray.origine = hit_point
-		** SI True : color = background
-		** SINON
-		** 	get_color()
-		**		a partir des surfaces data je calcul ma couleur,
-		**		besoin du rayon, de la couleur de l obj (ds surface data)
-		**
-		*/
-		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
-		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
 		if (form.type == SPH)
 		{
 			hit_col = form.sph.mat.col;
@@ -145,6 +134,48 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			hit_col.b = 0.;
 			hit_col.s = 1.;
 		}
+
+		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+		// lightDir = pos - P;
+		t_vec3 light_dir = ft_vec3vop_r(light.vect, hit_point, '-');
+		//     // compute the square distance
+		//     float r2 = lightDir.norm();
+		//     dist = sqrtf(r2);
+		double r2 = ft_dotproduct(light_dir,light_dir); // TODO IMPORTANT VERIFIER CE TRUC
+		double dist = sqrt(r2);
+		t_ray  sdw_ray;
+		sdw_ray.org = hit_point;
+		sdw_ray.dir = light_dir;
+		sdw_ray.dist = dist;
+			// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form.sph.ctr, '-');
+			// double bias = 0.0001;
+			// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
+		// if (form.type == PLN) {
+			t_bool vis;
+			vis = !ft_trace(&sdw_ray, setup, &form);
+			hit_col = mult_scale_col(vis, hit_col);
+		// }
+		/*
+		**	ici j ai ma forme rencontrée dans form
+		**	ma distance dans ray.dist
+		** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
+		**	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
+		**	hit_point -> besoin ray.org et ray.dist
+		** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
+		** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
+		**	shadow ray -> ray.origine = hit_point
+		**	shadow ray -> ray.dir = direction de la lumiere
+		** SI True : color = background
+		** SINON
+		** 	get_color()
+		**		a partir des surfaces data je calcul ma couleur,
+		**		besoin du rayon, de la couleur de l obj (ds surface data)
+		**
+		*/
+		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
+		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
+	}
 	return (hit_col);
 }
 
@@ -219,6 +250,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 			/* fin REFACTO */
 			multDirMatrix(&dir, &ray.dir, setup->camToWorld);
 			ft_vec3normalize(&ray.dir);
+			ray.dist = MAX_INT;
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			ft_put_pixel(setup, pix.x, pix.y, coltoi(col)); //TODO adapt here for scene
 		}
