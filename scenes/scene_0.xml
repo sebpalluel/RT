@@ -70,7 +70,7 @@
 		</plane>
 		<plane>
 			<normale> 1.0, -5.0, -5.0. </normale>
-			<position> 5., 3., -20. </position>
+			<position> 1., 0., -20. </position>
 			<material>
 				<color> 1.0, 1.0, 0.0, 1.0 </color>
 				<diffuse> 0.8 </diffuse>
