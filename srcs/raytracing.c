@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 17:17:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 18:06:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ double max(double a, double b) {
 }
 
 /*
-**	test les intersections rayon | forme
-**	au retour de la fonction on a:
-**		la forme la plus proche rencontrée dans form
-**		la distance a cette cette forme dans ray.dist
-*/
+ **	test les intersections rayon | forme
+ **	au retour de la fonction on a:
+ **		la forme la plus proche rencontrée dans form
+ **		la distance a cette cette forme dans ray.dist
+ */
 t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 {
 	double		dist;
@@ -57,6 +57,15 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 	return (form);
 }
 
+static t_bool	ft_trace_shadow(t_ray *ray, t_setup *setup, t_forms *obj)
+{
+	t_forms		*shadow;
+
+	shadow = ft_trace(ray, setup);
+	if (shadow && shadow != obj)
+		return (TRUE);
+	return (FALSE);
+}
 /*
    void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
    {
@@ -83,13 +92,13 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
  *
  }
 
-   TODO Notes sur ft_cast_ray
+ TODO Notes sur ft_cast_ray
 
 // retourne couleur de l'objet
 on doit :
  ** trouver l'objet
  ** set la hit_col a la couleur de l'objet rencontré
-*/
+ */
 
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
@@ -141,31 +150,34 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		sdw_ray.org = hit_point;
 		sdw_ray.dir = light_dir;
 		sdw_ray.dist = dist;
-			// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form.sph.ctr, '-');
-			// double bias = 0.0001;
-			// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
+		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form.sph.ctr, '-');
+		// double bias = 0.0001;
+		// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
 		// if (form.type == PLN) {
-			t_bool vis;
-			vis = !ft_trace(&sdw_ray, setup) ? TRUE : FALSE;
-			hit_col = mult_scale_col(vis, hit_col);
+		//if (ft_trace(&sdw_ray, setup))
+		//	hit_col = mult_scale_col(0., hit_col);
+		if (ft_trace_shadow(&sdw_ray, setup, form))
+			hit_col = mult_scale_col(0., hit_col);
+		//else
+		//	mult_scale_col(1., hit_col);
 		// }
 		/*
-		**	ici j ai ma forme rencontrée dans form
-		**	ma distance dans ray.dist
-		** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
-		**	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
-		**	hit_point -> besoin ray.org et ray.dist
-		** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
-		** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
-		**	shadow ray -> ray.origine = hit_point
-		**	shadow ray -> ray.dir = direction de la lumiere
-		** SI True : color = background
-		** SINON
-		** 	get_color()
-		**		a partir des surfaces data je calcul ma couleur,
-		**		besoin du rayon, de la couleur de l obj (ds surface data)
-		**
-		*/
+		 **	ici j ai ma forme rencontrée dans form
+		 **	ma distance dans ray.dist
+		 ** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
+		 **	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
+		 **	hit_point -> besoin ray.org et ray.dist
+		 ** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
+		 ** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
+		 **	shadow ray -> ray.origine = hit_point
+		 **	shadow ray -> ray.dir = direction de la lumiere
+		 ** SI True : color = background
+		 ** SINON
+		 ** 	get_color()
+		 **		a partir des surfaces data je calcul ma couleur,
+		 **		besoin du rayon, de la couleur de l obj (ds surface data)
+		 **
+		 */
 		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
 		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
