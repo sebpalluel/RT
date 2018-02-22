@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 17:15:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 12:03:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,13 @@ int			ft_raytracing_thread(t_setup *setup)
 {
 	int		i;
 	t_list *list;
+	t_cam	*cam;
 
 	list = SCN.forms;
+	cam = CAM(SCN.cams);
 	printf("sphere r %f\n", SPHERE(list).mat.col.r);
+	//ft_look_at(cam->camToWorld, cam->org, cam->look_at);
+	//setup->camToWorld = cam->camToWorld;
 	if (ft_initcamToWorld(setup) != OK)
 		return (setup->error = ERROR);
 	i = -1;

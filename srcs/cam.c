@@ -6,38 +6,53 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 12:02:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:59:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-/*
-Matrix44f lookAt(const Vec3f& from, const Vec3f& to, const Vec3f& tmp = Vec3f(0, 1, 0))
+
+void			ft_look_at(double **camToWorld, t_vec3 from, t_vec3 to)
 {
-    Vec3f forward = normalize(from - to);
-    Vec3f right = crossProduct(normalize(tmp), forward);
-    Vec3f up = crossProduct(forward, right);
+	t_vec3 tmp = ft_vec3_r(0, 1, 0);
+	t_vec3 forward = ft_vec3normalize_r(ft_vec3vop_r(from, to, '-'));
+	t_vec3 right = ft_vec3vop_r(ft_vec3normalize_r(tmp), forward, 'c');
+	t_vec3 up = ft_vec3vop_r(forward, right, 'c');
 
-    Matrix44f camToWorld;
+	camToWorld[0][0] = right.x; 
+	camToWorld[0][1] = right.y;
+	camToWorld[0][2] = right.z;
+	camToWorld[1][0] = up.x;
+	camToWorld[1][1] = up.y;
+	camToWorld[1][2] = up.z;
+	camToWorld[2][0] = forward.x;
+	camToWorld[2][1] = forward.y;
+	camToWorld[2][2] = forward.z;
 
-    camToWorld[0][0] = right.x; 
-    camToWorld[0][1] = right.y;
-    camToWorld[0][2] = right.z;
-    camToWorld[1][0] = up.x;
-    camToWorld[1][1] = up.y;
-    camToWorld[1][2] = up.z;
-    camToWorld[2][0] = forward.x;
-    camToWorld[2][1] = forward.y;
-    camToWorld[2][2] = forward.z;
+	camToWorld[3][0] = from.x;
+	camToWorld[3][1] = from.y;
+	camToWorld[3][2] = from.z;
+	camToWorld[3][3] = 1.;
 
-    camToWorld[3][0] = from.x;
-    camToWorld[3][1] = from.y;
-    camToWorld[3][2] = from.z;
 
-    return camToWorld;
+	camToWorld[0][0] = 0.945519;
+	camToWorld[0][1] = 0;
+	camToWorld[0][2] = -0.125569;
+	camToWorld[0][3] = 0;
+	camToWorld[1][0] = -0.179534;
+	camToWorld[1][1] = 0.834209;
+	camToWorld[1][2] = -0.521403;
+	camToWorld[1][3] = 0;
+	camToWorld[2][0] = 0.271593;
+	camToWorld[2][1] = 0.551447;
+	camToWorld[2][2] = 0.78876;
+	camToWorld[2][3] = 0;
+	camToWorld[3][0] = 4.208271;
+	camToWorld[3][1] = 8.374532;
+	camToWorld[3][2] = 17.932925;
+	camToWorld[3][3] = 1;
 }
-*/
 
 void			init_cam(t_cam *cam, t_vec3 org, t_vec3 look_at)
 {
@@ -63,6 +78,7 @@ static t_list	*ft_newcam(void)
 			!(cam->content = (t_cam*)ft_memalloc(sizeof(t_cam))))
 		return (NULL);
 	cam->content_size = sizeof(t_cam);
+	((t_cam *)(*(cam)).content)->camToWorld = ft_matrixzero(4);
 	cam->next = NULL;
 	return (cam);
 }

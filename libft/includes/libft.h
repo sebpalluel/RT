@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:35:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:48:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			ft_vec3sop(t_vec3 *to_vec3, t_vec3 from_vec3, double x, char c);
 t_vec3			ft_vec3sop_r(t_vec3 from_vec3, double x, char c);
 t_vec3			ft_vec3vop_r(t_vec3 a, t_vec3 b, char c);
 void			ft_vec3normalize(t_vec3 *to_vec3);
+t_vec3			ft_vec3normalize_r(t_vec3 from_vec3);
 double			ft_vec3dist(t_vec3 p1, t_vec3 p2);
 t_vec3			ft_vec3unit(t_vec3 from);
 t_vec3			ft_vec3add3(t_vec3 a, t_vec3 b, t_vec3 c);
