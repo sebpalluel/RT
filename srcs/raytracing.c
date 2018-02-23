@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 14:49:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:50:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			hit_col = form->cone.mat.col;
 		else if (form->type == CYL)
 			hit_col = form->cldre.mat.col;
-		// lightDir = pos - P;
+	// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		//     // compute the square distance
 		//     float r2 = lightDir.norm();

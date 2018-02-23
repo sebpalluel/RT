@@ -14,6 +14,10 @@
 			<origin> 0.0, -10.0, 10.0 </origin>
 			<look_at> 0.0, -6.0, -1.0 </look_at>
 		</camera>
+		<camera>
+			<origin> 0.0, -10.0, 10.0 </origin>
+			<look_at> 0.0, -1.0, -1.0 </look_at>
+		</camera>
 	</cameras>
 
 	<lights>
