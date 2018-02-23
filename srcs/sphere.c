@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:41:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 15:47:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,20 @@ size_t			ft_sphere(t_list **list)
 	return (OK);
 }
 
-t_bool solve_quadratic(double *abc, float *t0, float *t1) {
-	float discr;
-	float q;
-	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
+t_bool			solve_quadratic(double *abc, float *t0, float *t1)
+{
+	float		discr;
+	float		q;
 
+	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discr < 0)
+		return (FALSE);
+	else if (discr == 0)
+		*t0 = -0.05 * abc[1] / abc[0];
+	else
 	{
-		return FALSE;
-	}
-	else if ( discr == 0) {
-		*t0 =  -.05 * abc[1] / abc[0];
-	} else {
-		q = (abc[1] > 0) ? -0.5 * (abc[1] + sqrt(discr)) : -0.5 * (abc[1] - sqrt(discr));
+		q = (abc[1] > 0) ? -0.5 * (abc[1] + sqrt(discr)) : -0.5 * \
+			(abc[1] - sqrt(discr));
 		*t0 = q / abc[0];
 		*t1 = abc[2] / q;
 	}
@@ -76,25 +77,26 @@ t_bool solve_quadratic(double *abc, float *t0, float *t1) {
 	return (TRUE);
 }
 
-t_bool		ft_sphere_param(t_ray *ray, t_forms *form, double *t) {
-	float t0;
-	float t1;
-	t_vec3 L;
+t_bool			ft_sphere_param(t_ray *ray, t_forms *form, double *t)
+{
+	float		t0;
+	float		t1;
+	t_vec3		l;
 	double		abc[3];
 
-
-	L = ft_vec3vop_r(ray->org, form->sph.ctr, '-');
+	l = ft_vec3vop_r(ray->org, form->sph.ctr, '-');
 	abc[0] = ft_dotproduct(ray->dir, ray->dir);
-	abc[1] = 2. * ft_dotproduct(ray->dir, L);
-	abc[2] = ft_dotproduct(L, L) - SQUARE(form->sph.r);
+	abc[1] = 2. * ft_dotproduct(ray->dir, l);
+	abc[2] = ft_dotproduct(l, l) - SQUARE(form->sph.r);
 	if (!solve_quadratic(abc, &t0, &t1))
-		return FALSE;
+		return (FALSE);
 	if (t0 > t1)
 		ft_swap(&t0, &t1, sizeof(float));
-	if (t0 < 0) {
+	if (t0 < 0)
+	{
 		t0 = t1;
 		if (t0 < 0)
-			return FALSE;
+			return (FALSE);
 	}
 	*t = t0;
 	return (TRUE);

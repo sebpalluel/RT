@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/23 15:40:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 15:45:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_parse_obj				*parse_obj(void)
 
 t_param					*param(void)
 {
-	static t_param param_ret[4] = {&ft_sphere_param, &ft_plane_param, \
+	static t_param		param_ret[4] = {&ft_sphere_param, &ft_plane_param, \
 		&ft_cone_intersect, &ft_cldre_intersect};
 
 	return (param_ret);
