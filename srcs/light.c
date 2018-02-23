@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 20:04:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:28:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_list	*ft_newlgt(void)
 }
 
 void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
-{	
+{
 	if (ft_strcmp(ENVSTRUCT(env)->name, "type") == 0)
 		flag[0] = ft_getsize_tfromenv(&LGT(lgt)->type, \
 				ENVSTRUCT(env)->value);
@@ -33,11 +33,6 @@ void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
 		flag[1] = ft_getvectfromenv(&LGT(lgt)->vect, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
 		flag[2] = ft_getcolfromenv(&LGT(lgt)->col, ENVSTRUCT(env)->value);
-		//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "focal_len") == 0)
-	//	flag[6] = ft_getdoublefromenv(&LGT[NLIGHT].focal_len, \
-	//			ENVSTRUCT(env)->value);
-	//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
-	//	flag[7] = ft_getvectfromenv(&LGT[NLIGHT].dir, ENVSTRUCT(env)->value);
 	LGT(lgt)->num_arg++;
 }
 
@@ -59,7 +54,7 @@ size_t			ft_light(t_list **list)
 	while (lgt->next)
 		lgt = lgt->next;
 	while (LGT(lgt)->num_arg < (num_arg = (LGT(lgt)->type ? \
-				NVARLIGHT : NVARLIGHT - 1)) && env && (env = env->next))
+					NVARLIGHT : NVARLIGHT - 1)) && env && (env = env->next))
 		ft_light_struct_pop(lgt, env, flag);
 	if (ft_checkifallset(flag, num_arg) != OK)
 		return (setup->error = LIGHT_ERROR);

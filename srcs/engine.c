@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:40:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:24:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 
 static void		ft_create_new_window(t_setup *setup)
 {
-	//TODO adapt here for scene
 	if (!(SCN.win = (t_mlx *)ft_memalloc(sizeof(t_mlx))) || \
 			(!(SCN.win->win_ptr = mlx_new_window(setup->mlx_ptr, SCN.width, \
-												 SCN.height, setup->path)) || \
-			 !(SCN.img = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height))))
+												SCN.height, setup->path)) || \
+			!(SCN.img = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height))))
 		setup->error = ERROR;
 }
 
@@ -48,7 +47,6 @@ size_t			ft_engine(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARENG)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARENG);
-	//printf("scn_num %lu\n", setup->scn_num);
 	while (SCN.num_arg < NVARENG && env && (env = env->next))
 		ft_engine_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARENG) != OK)
