@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 18:06:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 18:28:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 		if (FORM(list)->type <= 3)
 		{
 			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t); /* test la routine d intersection correspondant a l objet */
-			if (ray->hit == TRUE && t < t_near && t < ray->dist)
+			if ((ray->hit == TRUE && (t < t_near || t < ray->dist)))
 			{
 				// ICI CHECK SI L OBJET RENCONTRE DANS LE SHADOW RAY EST AVANT LA SOURCE DE LUMIERE (t < ray->dist)
 				// SAUF QUE CA MARCHE PAS IL TRAVERSE LA LUMIERE
@@ -158,6 +158,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		//	hit_col = mult_scale_col(0., hit_col);
 		if (ft_trace_shadow(&sdw_ray, setup, form))
 			hit_col = mult_scale_col(0., hit_col);
+
 		//else
 		//	mult_scale_col(1., hit_col);
 		// }
