@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 19:55:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:57:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ typedef struct		s_mutex
 	pthread_mutex_t	mutex;
 }					t_mutex;
 
+typedef struct	s_matrix
+{
+	int		i;
+	int		j;
+	double	**mat;
+}				t_matrix;
 
 //////////TODO Eliot
 
@@ -142,12 +148,13 @@ typedef struct		s_mat
 
 typedef struct	s_cam
 {
-	t_vec3 org;
-	t_vec3 frt;
-	t_vec3 rgt;
-	t_vec3 dwn;
-	t_vec3 look_at;
-	size_t	num_arg;
+	t_vec3		org;
+	t_vec3		frt;
+	t_vec3		rgt;
+	t_vec3		dwn;
+	t_vec3		look_at;
+	double		**camToWorld;
+	size_t		num_arg;
 }				t_cam;
 
 typedef struct	s_lgt
@@ -199,13 +206,6 @@ typedef struct	s_forms
 	t_cldre				cldre;
 	t_vec3				norm;
 }						t_forms;
-
-typedef struct	s_matrix
-{
-	int		i;
-	int		j;
-	double	**mat;
-}				t_matrix;
 
 typedef struct	s_ray
 {

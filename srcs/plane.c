@@ -77,8 +77,8 @@ t_bool	ft_plane_param(t_ray *ray, t_forms *form, double *t)
 	{
 		// *t = ft_dotproduct(form->plan.nrml, ft_vec3vop_r(ray->org,
 		// 			ft_vec3sop_r(form->plan.nrml, form->plan.dst, '*'), '-'));
-		diff = ft_vec3vop_r(form->plan.pos, ray->org, '-');
-		*t = ft_dotproduct(diff, form->plan.nrml) / denom;
+		diff = ft_vec3vop_r(ray->org, form->plan.pos , '-');
+		*t = - ft_dotproduct(diff, form->plan.nrml) / denom;
 		return (t >= 0 ? TRUE : FALSE);
 	}
 	return (FALSE);

@@ -59,8 +59,9 @@ SRCNAME 	=	main.c \
 				forms.c \
 				singleton.c \
 				ray.c \
-				vect.c\
-				cylindre.c\
+				vect.c \
+				cylindre.c \
+				normals.c
 				#draw.c \
 				#raycaster.c \
 				#color.c \

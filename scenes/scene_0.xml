@@ -1,8 +1,8 @@
 <scene>
 
 	<engine>
-		<width> 1920 </width>
-		<height> 1080 </height>
+		<width> 800 </width>
+		<height> 600 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
@@ -11,12 +11,8 @@
 	<cameras>
 
 		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
-			<look_at> 0.0, 0.0, 1.0 </look_at>
-		</camera>
-		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
-			<look_at> 0.0, 0.0, 1.0 </look_at>
+			<origin> 0.0, -10.0, 10.0 </origin>
+			<look_at> 0.0, -6.0, -1.0 </look_at>
 		</camera>
 	</cameras>
 
@@ -24,34 +20,14 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, -0.5, 0. </position>
+			<position> -1.0, 0.0, 3. </position>
 			<color> 1., 0., 0., 1. </color>
-		</light>
-		<light>
-			<type> 0 </type>
-			<position> 0.0, 0.25, 0.433 </position>
-			<color> 0., 1., 0., 1. </color>
-		</light>
-		<light>
-			<type> 0 </type>
-			<position> 0.0, 0.25, -0.433 </position>
-			<color> 0., 0., 1., 1. </color>
 		</light>
 	</lights>
 
 	<objects>
-
 		<sphere>
-			<center> -10.9, 1.4, -6.2 </center>
-			<radius> 2 </radius>
-			<material>
-				<color> 1., 0., 0., 1. </color>
-				<diffuse> 0.8 </diffuse>
-				<specular> 1. </specular>
-			</material>
-		</sphere>
-		<sphere>
-			<center> 0.0, 0., -2. </center>
+			<center> 0.0, -3., -2. </center>
 			<radius> 1. </radius>
 			<material>
 				<color> 0., 0., 1., 0. </color>
@@ -59,8 +35,17 @@
 				<specular> 1. </specular>
 			</material>
 		</sphere>
+		<sphere>
+			<center> 1.0, -2.5, -8. </center>
+			<radius> 2. </radius>
+			<material>
+				<color> 1., 0., 1., 0. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
 		<plane>
-			<normale> 1.0, -5.0, -6.0. </normale>
+			<normale> 1.0, -5.0, -6.0 </normale>
 			<position> 5., 3., -20. </position>
 			<material>
 				<color> 1.0, 1.0, 1.0, 1.0 </color>
@@ -68,17 +53,8 @@
 				<specular> 1. </specular>
 			</material>
 		</plane>
-		<plane>
-			<normale> 1.0, -5.0, -5.0. </normale>
-			<position> 5., 3., -20. </position>
-			<material>
-				<color> 1.0, 1.0, 0.0, 1.0 </color>
-				<diffuse> 0.8 </diffuse>
-				<specular> 1. </specular>
-			</material>
-		</plane>
 		<cone>
-			<origin> 0., -7., -1. </origin>
+			<origin> 0., -7., -9. </origin>
 			<direction> 0., -1., 0. </direction>
 			<degres> 10 </degres>
 			<material>

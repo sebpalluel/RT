@@ -6,38 +6,37 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 12:02:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/22 15:44:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-/*
-Matrix44f lookAt(const Vec3f& from, const Vec3f& to, const Vec3f& tmp = Vec3f(0, 1, 0))
+
+void			ft_look_at(t_setup *setup, t_cam *cam)
 {
-    Vec3f forward = normalize(from - to);
-    Vec3f right = crossProduct(normalize(tmp), forward);
-    Vec3f up = crossProduct(forward, right);
+	t_vec3		forward;
+	t_vec3		right;
+	t_vec3		up;
 
-    Matrix44f camToWorld;
+	forward = ft_vec3normalize_r(ft_vec3vop_r(cam->org, cam->look_at, '-'));
+	right = ft_vec3vop_r(ft_vec3normalize_r(ft_vec3_r(0, 1, 0)), forward, 'c');
+	up = ft_vec3vop_r(forward, right, 'c');
+	setup->camToWorld[0][0] = right.x; 
+	setup->camToWorld[0][1] = right.y;
+	setup->camToWorld[0][2] = right.z;
+	setup->camToWorld[1][0] = up.x;
+	setup->camToWorld[1][1] = up.y;
+	setup->camToWorld[1][2] = up.z;
+	setup->camToWorld[2][0] = forward.x;
+	setup->camToWorld[2][1] = forward.y;
+	setup->camToWorld[2][2] = forward.z;
 
-    camToWorld[0][0] = right.x; 
-    camToWorld[0][1] = right.y;
-    camToWorld[0][2] = right.z;
-    camToWorld[1][0] = up.x;
-    camToWorld[1][1] = up.y;
-    camToWorld[1][2] = up.z;
-    camToWorld[2][0] = forward.x;
-    camToWorld[2][1] = forward.y;
-    camToWorld[2][2] = forward.z;
-
-    camToWorld[3][0] = from.x;
-    camToWorld[3][1] = from.y;
-    camToWorld[3][2] = from.z;
-
-    return camToWorld;
+	setup->camToWorld[3][0] = cam->org.x;
+	setup->camToWorld[3][1] = cam->org.y;
+	setup->camToWorld[3][2] = cam->org.z;
+	setup->camToWorld[3][3] = 1.;
 }
-*/
 
 void			init_cam(t_cam *cam, t_vec3 org, t_vec3 look_at)
 {
