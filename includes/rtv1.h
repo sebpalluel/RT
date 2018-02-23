@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 14:32:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 15:43:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,6 @@ void		add_mat(t_matrix *a, t_matrix *b);
 t_matrix	*mult_mat(t_matrix a, t_matrix b);
 void		scale_mat(double a, t_matrix *res);
 t_vec3		vect_dot(t_vec3 u, t_vec3 v);
-t_matrix	rot_mat(t_vec3 v, double theta);
-t_matrix	id_mat(void);
-t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
-t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
 t_vec3		init_vec3(double x, double y, double z);
 void		vect_mat_mult(t_matrix a, t_vec3 *u);
 t_vec3		vect_scale(double a, t_vec3 v);
