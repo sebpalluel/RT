@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:36:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:05:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int				ft_expose(t_setup *setup)
 	{
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			setup->error = ENG_ERROR;
-		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, SCN.img->image, 0, 0);
+		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
+				SCN.img->image, 0, 0);
 		setup->mode = STATE_STOP;
 		printf("drawn\n");
 	}

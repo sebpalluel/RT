@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracer_thread.c                                 :+:      :+:    :+:   */
+/*   parse_to_env_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:04:33 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/23 16:58:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int				ft_raytracing_thread(t_setup *setup)
+void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name)
 {
-	int			i;
-	t_list		*list;
-	t_cam		*cam;
-	size_t		cam_n;
+	char	*value;
 
-	list = SCN.cams;
-	cam_n = 0;
-	while (list && ++cam_n <= SCN.cam_n)
-		list = list->next;
-	cam = CAM(list);
-	ft_look_at(setup, cam);
-	i = -1;
-	while (++i < THREAD)
-		pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup);
-	i = -1;
-	while (++i < THREAD)
-		pthread_join(setup->thrd[i], NULL);
-	return (setup->error);
+	if (name && (value = ft_getobjstr(obj_str, (char *)name, 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup(name), value));
+}
+
+void		ft_getmaterial(t_list **env, char *mat_str)
+{
+	ft_getvaluetoenv(env, mat_str, "color");
+	ft_getvaluetoenv(env, mat_str, "diffuse");
+	ft_getvaluetoenv(env, mat_str, "specular");
 }

@@ -6,15 +6,15 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:01:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:59:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static char	*ft_extractobj(size_t len, char *from_begin, char *from_end)
+static char		*ft_extractobj(size_t len, char *from_begin, char *from_end)
 {
-	char	*objstr;
+	char		*objstr;
 
 	if (from_end - (from_begin + len + 1) > 0)
 	{
@@ -26,13 +26,13 @@ static char	*ft_extractobj(size_t len, char *from_begin, char *from_end)
 	return (NULL);
 }
 
-char		*ft_getobjstr(char *str, char *obj, int num)
+char			*ft_getobjstr(char *str, char *obj, int num)
 {
-	char	*objstart;
-	char	*objend;
-	char	*from_begin;
-	char	*from_end;
-	char	*objstr;
+	char		*objstart;
+	char		*objend;
+	char		*from_begin;
+	char		*from_end;
+	char		*objstr;
 
 	objstr = NULL;
 	from_begin = NULL;
@@ -63,10 +63,10 @@ static t_list	*ft_envlistfromparse(t_setup *setup, char **parsed)
 	return (env);
 }
 
-t_list		*ft_parse_scn(t_setup *setup, char *file)
+t_list			*ft_parse_scn(t_setup *setup, char *file)
 {
-	char	*scene;
-	char	**parsed;
+	char		*scene;
+	char		**parsed;
 
 	if (!(parsed = (char **)ft_memalloc(sizeof(char *) * 5)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:48:55 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:59:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_bool			ft_getsize_tfromenv(size_t *val, char *value)
 
 t_bool			ft_checkifallset(t_bool *flag, size_t numvar)
 {
-	while(numvar--)
+	while (numvar--)
 		if (flag[numvar] != OK)
 		{
 			free(flag);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:31:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:57:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ t_func_nrml	*get_nrml(void);
 
 // TODO SEB
 void			ft_look_at(t_setup *setup, t_cam *cam);
+void			ft_getvaluetoenv(t_list **env, char *obj_str, const char *name);
+void			ft_getmaterial(t_list **env, char *mat_str);
+void			ft_getspheres(t_list **env, char *obj_str);
+void			ft_getplanes(t_list **env, char *obj_str);
+void			ft_getcones(t_list **env, char *obj_str);
+void			ft_getcylindres(t_list **env, char *obj_str);
 ///////////////////////
 //int			ft_mouse_hook(int mousecode, int x, int y, t_setup *setup);
 //int			ft_mouse_moove(int x, int y, t_setup *setup);
