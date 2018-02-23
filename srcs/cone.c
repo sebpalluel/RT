@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:41:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:19:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 				ENVSTRUCT(env)->value);
 	FORM(form)->num_arg++;
 }
-
 
 size_t			ft_cone(t_list **list)
 {
@@ -58,33 +57,20 @@ size_t			ft_cone(t_list **list)
 	return (OK);
 }
 
-
-t_bool ft_cone_intersect(t_ray *ray, t_forms *form, double *t)
+t_bool			ft_cone_intersect(t_ray *ray, t_forms *form, double *t)
 {
-	float t0;
-	float t1;
-	float k;
-	double DV;
-	double distV;
-	double abc[3];
-	t_vec3 dist;
+	float		k;
+	double		dv;
+	double		distv;
+	double		abc[3];
+	t_vec3		dist;
 
 	k = tan(DEG2RAD(form->cone.theta) / 2);
 	dist = ft_vec3vop_r(ray->org, form->cone.org, '-');
-	DV = ft_dotproduct(ray->dir, form->cone.dir);
-	distV = ft_dotproduct(dist, form->cone.dir);
-	abc[0] = ft_dotproduct(ray->dir, ray->dir) - (1 + k * k) * (DV * DV);
-	abc[1] = 2 * (ft_dotproduct(ray->dir, dist) - (1 + k * k) * DV * distV);
-	abc[2] = ft_dotproduct(dist, dist) - (1 + k * k) * (distV * distV);
-	if (!solve_quadratic(abc, &t0, &t1)) // TODO DUPLICATE WITH sphere.c sphere_param
-		return FALSE;
-	if (t0 > t1)
-		ft_swap(&t0, &t1, sizeof(float));
-	if (t0 < 0) {
-		t0 = t1;
-		if (t0 < 0)
-			return FALSE;
-	}
-	*t = t0;
-	return (TRUE);
+	dv = ft_dotproduct(ray->dir, form->cone.dir);
+	distv = ft_dotproduct(dist, form->cone.dir);
+	abc[0] = ft_dotproduct(ray->dir, ray->dir) - (1 + k * k) * (dv * dv);
+	abc[1] = 2 * (ft_dotproduct(ray->dir, dist) - (1 + k * k) * dv * distv);
+	abc[2] = ft_dotproduct(dist, dist) - (1 + k * k) * (distv * distv);
+	return (ft_solve_quadra(abc, t));
 }

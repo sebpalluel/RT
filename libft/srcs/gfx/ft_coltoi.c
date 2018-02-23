@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dotproduct.c                                    :+:      :+:    :+:   */
+/*   ft_coltoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/31 16:30:24 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:01:42 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/23 16:00:35 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/23 16:02:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-double		ft_dotproduct(t_vec3 a, t_vec3 b)
+int			ft_coltoi(t_col col)
 {
-	double	sum;
-
-	sum = 0.;
-	sum += a.x * b.x;
-	sum += a.y * b.y;
-	sum += a.z * b.z;
-	return (sum);
+	return ((((int)(col.r * 0xff0000)) & 0xff0000) +
+			(((int)(col.g * 0xff00)) & 0xff00) +
+			(((int)(col.b * 0xff)) & 0xff));
 }

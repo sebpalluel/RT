@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:43:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:19:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_col		send_ray(t_ray ray, t_env *env);
 // TODO NATHAN
 t_param				*param(void);
 t_bool        solve_quadratic(double *abc, float *t0, float *t1);
+t_bool			ft_solve_quadra(double abc[3], double *t);
 t_bool ft_cone_intersect(t_ray *ray, t_forms *form, double *t);
 void			ft_cldre_struct_pop(t_list *form, t_list *env, t_bool *flag);
 size_t			ft_cldre(t_list **list);

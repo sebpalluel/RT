@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:47:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:19:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,6 @@ size_t			ft_sphere(t_list **list)
 		return (setup->error = SPHERE_ERROR);
 	*list = env;
 	return (OK);
-}
-
-t_bool			solve_quadratic(double *abc, float *t0, float *t1)
-{
-	float		discr;
-	float		q;
-
-	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
-	if (discr < 0)
-		return (FALSE);
-	else if (discr == 0)
-		*t0 = -0.05 * abc[1] / abc[0];
-	else
-	{
-		q = (abc[1] > 0) ? -0.5 * (abc[1] + sqrt(discr)) : -0.5 * \
-			(abc[1] - sqrt(discr));
-		*t0 = q / abc[0];
-		*t1 = abc[2] / q;
-	}
-	if (t0 > t1)
-		ft_swap(t0, t1, sizeof(float));
-	return (TRUE);
 }
 
 t_bool			ft_sphere_param(t_ray *ray, t_forms *form, double *t)
