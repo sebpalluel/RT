@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/23 10:54:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:01:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 		}
 		form = form->next;
 	}
-	if (ombre && !ft_memcmp(FORM(ombre), FORM(obj), sizeof(t_forms)))
+	//if (ombre && !ft_memcmp(FORM(ombre), FORM(obj), sizeof(t_forms)))
+	if (ombre && ombre == obj)
 		return (0);
 	return (1);
 }
