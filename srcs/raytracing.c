@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 14:35:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:49:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ on doit :
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
-	t_col hit_col = {0., 0., 0., 0.};
+	t_col hit_col;
 	t_forms *form;
 	/* en dur en attendant */
 	t_lgt *light = LGT(SCN.lgts);
@@ -159,8 +159,16 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	if ((form = ft_trace(&ray, setup)))
 	{
 		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		hit_nrml = get_nrml()[form->type](ray, form, &hit_col);
+		hit_nrml = get_nrml()[form->type](ray, form);
 
+		if (form->type == SPH)
+			hit_col = form->sph.mat.col;
+		else if (form->type == PLN)
+			hit_col = form->plan.mat.col;
+		else if (form->type == CON)
+			hit_col = form->cone.mat.col;
+		else if (form->type == CYL)
+			hit_col = form->cldre.mat.col;
 		// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		//     // compute the square distance

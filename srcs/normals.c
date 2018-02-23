@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 14:34:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:47:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static t_vec3	normal_cone(t_ray ray, t_forms *form, t_col *hit_col)
+static t_vec3	normal_cone(t_ray ray, t_forms *form)
 {
 	double height;
 	t_vec3 hit;
@@ -20,7 +20,6 @@ static t_vec3	normal_cone(t_ray ray, t_forms *form, t_col *hit_col)
 	double k;
 	t_vec3 norm;
 
-	*hit_col = form->cone.mat.col;
 	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
 	oc = vect_sub(hit, form->cone.org);
 	if (vect_mult_scale(form->cone.dir, oc) < 0)
@@ -31,14 +30,13 @@ static t_vec3	normal_cone(t_ray ray, t_forms *form, t_col *hit_col)
 	return (norm);
 }
 
-static t_vec3	normal_cyl(t_ray ray, t_forms *form, t_col *hit_col)
+static t_vec3	normal_cyl(t_ray ray, t_forms *form)
 {
 	t_vec3 hit;
 	t_vec3 oc;
 	double height;
 	t_vec3 norm;
 
-	*hit_col = form->cldre.mat.col;
 	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
 	oc = vect_sub(hit, form->cldre.pos);
 	height = vect_mult_scale(form->cldre.dir, oc);
@@ -46,21 +44,19 @@ static t_vec3	normal_cyl(t_ray ray, t_forms *form, t_col *hit_col)
 	return (norm);
 }
 
-static t_vec3 normal_sph(t_ray ray, t_forms *form, t_col *hit_col)
+static t_vec3 normal_sph(t_ray ray, t_forms *form)
 {
 	t_vec3 hit_point;
 
-	*hit_col = form->sph.mat.col;
 	hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	return (ft_vec3vop_r(hit_point, form->sph.ctr, '-'));
 }
 
-static t_vec3 normal_plan(t_ray ray, t_forms *form, t_col *hit_col)
+static t_vec3 normal_plan(t_ray ray, t_forms *form)
 {
 	t_ray dummy;
 
 	dummy = ray;
-	*hit_col = form->plan.mat.col;
 	return(form->plan.nrml);
 }
 
