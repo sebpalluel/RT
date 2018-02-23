@@ -57,15 +57,15 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 	return (form);
 }
 
-static t_bool	ft_trace_shadow(t_ray *ray, t_setup *setup, t_forms *obj)
-{
-	t_forms		*shadow;
-
-	shadow = ft_trace(ray, setup);
-	if (shadow && shadow != obj)
-		return (TRUE);
-	return (FALSE);
-}
+// static t_bool	ft_trace_shadow(t_ray *ray, t_setup *setup, t_forms *obj)
+// {
+// 	t_forms		*shadow;
+//
+// 	shadow = ft_trace(ray, setup);
+// 	if (shadow && shadow != obj)
+// 		return (TRUE);
+// 	return (FALSE);
+// }
 /*
    void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
    {
@@ -148,15 +148,22 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		double dist = sqrt(r2);
 		t_ray  sdw_ray;
 		sdw_ray.org = hit_point;
+		if (form->type == SPH)
+		{
+			t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form->sph.ctr, '-');
+			double bias = 0.0001;
+			sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
+		}
 		sdw_ray.dir = light_dir;
 		sdw_ray.dist = dist;
-		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form.sph.ctr, '-');
-		// double bias = 0.0001;
 		// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
 		// if (form.type == PLN) {
 		//if (ft_trace(&sdw_ray, setup))
 		//	hit_col = mult_scale_col(0., hit_col);
-		if (ft_trace_shadow(&sdw_ray, setup, form))
+		// bool vis = !trace(hitPoint + hitNormal * options.bias, L, objects, isectShad, kShadowRay);
+		// if (ft_trace_shadow(&sdw_ray, setup, form))
+		// ft_trace_shadow(&sdw_ray, setup, form);
+		if (ft_trace(&sdw_ray, setup))
 			hit_col = mult_scale_col(0., hit_col);
 
 		//else

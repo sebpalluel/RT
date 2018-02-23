@@ -27,10 +27,19 @@
 
 	<objects>
 		<sphere>
-			<center> 0.0, 0., -2. </center>
+			<center> 0.0, -3., -2. </center>
 			<radius> 1. </radius>
 			<material>
 				<color> 0., 0., 1., 0. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 1.0, -2.5, -8. </center>
+			<radius> 2. </radius>
+			<material>
+				<color> 1., 0., 1., 0. </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
