@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 15:44:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:32:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ size_t			ft_cldre(t_list **list);
 void		ft_getcylindres(t_list **env, char *obj_str);
 t_bool ft_cldre_intersect(t_ray *ray, t_forms *form, double *t);
 
-t_vec3	normal_cone(t_ray ray, t_forms form);
-t_vec3	normal_cyl(t_ray ray, t_forms form);
-t_vec3 normal_sph(t_ray ray, t_forms form);
-t_vec3 normal_cyl(t_ray ray, t_forms form);
+t_func_nrml	*get_nrml(void);
 
 // TODO SEB
 void			ft_look_at(t_setup *setup, t_cam *cam);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/22 11:57:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:24:06 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,8 +216,8 @@ typedef struct	s_ray
 	t_bool hit;
 }				t_ray;
 
-typedef t_col	(*t_func_col)();
-typedef double	(*t_func_double)();
+//typedef t_col	(*t_func_col)();
+typedef t_vec3	(*t_func_nrml)();
 typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
 typedef t_bool	(*t_param)();

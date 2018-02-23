@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 13:40:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:35:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,15 @@ on doit :
  */
 
 /* COMMENT 1
-**	t_vec2 hit_text; // pas besoin pour l'instant?
-**	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-**	// Use the normal and texture coordinates to shade the hit point.
-**	// The normal is used to compute a simple facing ratio and the texture coordinate
-**	// to compute a basic checker board pattern
-**	float scale = 4;
-**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
-*/
+ **	t_vec2 hit_text; // pas besoin pour l'instant?
+ **	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+ **	// Use the normal and texture coordinates to shade the hit point.
+ **	// The normal is used to compute a simple facing ratio and the texture coordinate
+ **	// to compute a basic checker board pattern
+ **	float scale = 4;
+ **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+ **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+ */
 
 // void illuminate(t_vec3 *p, t_vec3 *hit_nrml,t_col *hit_col, t_mat *mat)
 // {
@@ -146,7 +146,7 @@ on doit :
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
-	t_col hit_col;
+	t_col hit_col = {0., 0., 0., 0.};
 	t_forms *form;
 	/* en dur en attendant */
 	t_lgt *light = LGT(SCN.lgts);
@@ -159,33 +159,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	if ((form = ft_trace(&ray, setup)))
 	{
 		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		if (form->type == SPH)
-		{
-			hit_nrml = normal_sph(ray, *form);
-			hit_col = form->sph.mat.col;
-		}
-		else if (form->type == PLN)
-		{
-			hit_nrml = normal_cyl(ray, *form);
-			hit_col = form->plan.mat.col;
-		}
-		else if (form->type == CON)
-		{
-			hit_nrml = normal_cone(ray, *form);
-			hit_col = form->cone.mat.col;
-		}
-		else if (form->type == CYL)
-		{
-			hit_nrml = normal_cyl(ray, *form);
-			hit_col = form->cldre.mat.col;
-		}
-		else
-		{
-			hit_col.r = 1.;
-			hit_col.g = 0.;
-			hit_col.b = 0.;
-			hit_col.s = 1.;
-		}
+		hit_nrml = get_nrml()[form->type](ray, form, &hit_col);
 
 		// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
