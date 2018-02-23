@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/19 19:09:52 by psebasti         ###   ########.fr       */
+/*   Created: 2017/12/21 03:32:32 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/23 17:03:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_ray	init_ray(t_vec3 org, t_vec3 dir)
+t_ray		init_ray(t_vec3 org, t_vec3 dir)
 {
-	t_ray ray;
+	t_ray	ray;
 
 	ray.org = org;
 	ray.dir = normal_vect(dir);
@@ -22,7 +22,7 @@ t_ray	init_ray(t_vec3 org, t_vec3 dir)
 	return (ray);
 }
 
-t_vec3	vect_sub(t_vec3 u, t_vec3 v)
+t_vec3		vect_sub(t_vec3 u, t_vec3 v)
 {
 	u.x -= v.x;
 	u.y -= v.y;
@@ -30,14 +30,14 @@ t_vec3	vect_sub(t_vec3 u, t_vec3 v)
 	return (u);
 }
 
-double	norme_vect(t_vec3 u)
+double		norme_vect(t_vec3 u)
 {
 	return (sqrt(u.x * u.x + u.y * u.y + u.z * u.z));
 }
 
-t_vec3	normal_vect(t_vec3 u)
+t_vec3		normal_vect(t_vec3 u)
 {
-	double n;
+	double	n;
 
 	n = norme_vect(u);
 	if (n <= 0.0)
@@ -48,36 +48,7 @@ t_vec3	normal_vect(t_vec3 u)
 	return (u);
 }
 
-double	vect_mult_scale(t_vec3 u, t_vec3 v)
+double		vect_mult_scale(t_vec3 u, t_vec3 v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
-
-//t_col	send_ray(t_ray ray, t_env *env)
-//{
-//	t_formes	*ptr;
-//	double		dist;
-//	int			i;
-//	int			j;
-//
-//	i = 0;
-//	j = -1;
-//	ptr = env->formes;
-//	while (ptr)
-//	{
-//		if (((ptr->type != 0) && (dist = hit_shape()[ptr->type - 1](ray, ptr)) >= 0)
-//				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0)
-//				&& ((j = i) || 1))
-//			ray.dist = dist;
-//		ptr = ptr->next;
-//		i++;
-//	}
-//	ptr = env->formes;
-//	if (j == -1)
-//		return (BACK_COLOR);
-//	while (j--)
-//		ptr = ptr->next;
-//	if (ptr->type != 0)
-//		return (intersection()[ptr->type - 1](ray, ptr, *env));
-//	return (BACK_COLOR);
-//}

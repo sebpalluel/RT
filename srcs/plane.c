@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:38:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:19:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "normale") == 0)
-		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
-		flag[1] = ft_getvectfromenv(&PLAN(form).pos, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
+	if (ft_strcmp(ENV(env)->name, "normale") == 0)
+		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "position") == 0)
+		flag[1] = ft_getvectfromenv(&PLAN(form).pos, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "color") == 0)
+		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
+		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[4] = ft_getdoublefromenv(&PLAN(form).mat.specular, \
-				ENVSTRUCT(env)->value);
+				ENV(env)->value);
 	FORM(form)->num_arg++;
 }
-
 
 size_t			ft_plane(t_list **list)
 {
@@ -56,60 +53,17 @@ size_t			ft_plane(t_list **list)
 	return (OK);
 }
 
-// t_bool		ft_plane_param( t_ray *ray, void *a, double *t)
-// {
-// 	t_setup		*setup;
-//
-// 	setup = (t_setup *)a;
-// 	*dist = 0;
-// 	ray.size = 0;
-// 	PL_N++;
-// 	return (OK);
-// }
-
-t_bool	ft_plane_param(t_ray *ray, t_forms *form, double *t)
+t_bool			ft_plane_param(t_ray *ray, t_forms *form, double *t)
 {
 	double		denom;
-	t_vec3	diff;
+	t_vec3		diff;
 
 	denom = ft_dotproduct(form->plan.nrml, ray->dir);
 	if (denom > 0.000001)
 	{
-		// *t = ft_dotproduct(form->plan.nrml, ft_vec3vop_r(ray->org,
-		// 			ft_vec3sop_r(form->plan.nrml, form->plan.dst, '*'), '-'));
-		diff = ft_vec3vop_r(ray->org, form->plan.pos , '-');
-		*t = - ft_dotproduct(diff, form->plan.nrml) / denom;
+		diff = ft_vec3vop_r(ray->org, form->plan.pos, '-');
+		*t = -ft_dotproduct(diff, form->plan.nrml) / denom;
 		return (t >= 0 ? TRUE : FALSE);
 	}
 	return (FALSE);
 }
-
-/*
-**			typedef struct		s_plane
-**			{
-**				t_vec3			pos;
-**				t_vec3			norm;
-**				t_mat			mat;
-**				size_t			num_arg;
-**			}					t_plane;
-**
-**		bool intersectPlane(const Vec3f &n, const Vec3f &p0, const Vec3f &l0, const Vec3f &l, float &t)
-**		{
-**				A plane can be defined as a point (p0) representing how far the plane is from the world origin
-**				 and a normal (defining the orientation of the plane) (n)
-**
-**		    // assuming vectors are all normalized
-**				n = normale du plan permettant de ledef sa "direction"
-**				l = direction du rayon
-**				t = the parametric distance from the origin of the ray to the point of interest along the ray
-**				1e-6 => valeur tres faible 0.000001
-**		    float denom = dotProduct(n, l);
-**		    if (denom > 1e-6) {
-**		        Vec3f p0l0 = p0 - l0; (l0 -> origine du rayon)
-**		        t = dotProduct(p0l0, n) / denom;
-**		        return (t >= 0);
-**		    }
-**
-**		    return false;
-**		}
-*/

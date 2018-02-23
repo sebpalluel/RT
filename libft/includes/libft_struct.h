@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 19:31:09 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/19 16:27:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:02:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ typedef struct		s_color
 	unsigned char	g;
 	unsigned char	b;
 }					t_color;
+
+typedef struct		s_col
+{
+	double			r;
+	double			g;
+	double			b;
+	double			s;
+}					t_col;
 
 typedef struct		s_mlx
 {

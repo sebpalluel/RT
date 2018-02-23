@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 11:15:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:19:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_bool			ft_getsize_tfromenv(size_t *val, char *value)
 
 t_bool			ft_checkifallset(t_bool *flag, size_t numvar)
 {
-	while(numvar--)
+	while (numvar--)
 		if (flag[numvar] != OK)
 		{
 			free(flag);
@@ -67,17 +67,3 @@ t_bool			ft_checkifallset(t_bool *flag, size_t numvar)
 	free(flag);
 	return (OK);
 }
-
-void			ft_put_pixel(t_setup *setup, int x, int y, int color)
-{
-	int			*tmp;
-	size_t		index;
-
-	if (y >= (int)SCN.height || x >= (int)SCN.width || x < 0 || y < 0)
-		return ;
-	index = (y * SCN.width) * (SCN.img->bbp >> 3) \
-			+ x * (SCN.img->bbp >> 3);
-	tmp = (int *)&SCN.img->image_addr[index];
-	*tmp = color;
-}
-

@@ -6,24 +6,12 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/19 20:27:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 15:45:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-//t_func_col		*intersection(void)
-//{
-//	static t_func_col func[3] = {&intersec_sphere, &intersec_plan, &intersec_cone};
-//	return (func);
-//}
-//
-//t_func_double	*hit_shape(void)
-//{
-//	static t_func_double func[3] = {&hit_sphere, &hit_plan, &hit_cone};
-//	return (func);
-//}
-//
 t_setup					*get_st(void)
 {
 	static t_setup		setup;
@@ -33,20 +21,21 @@ t_setup					*get_st(void)
 
 t_parse_obj				*parse_obj(void)
 {
-	static t_parse_obj parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
-	, &ft_plane, &ft_sphere, &ft_cone, &ft_cldre};
+	static t_parse_obj	parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
+		, &ft_plane, &ft_sphere, &ft_cone, &ft_cldre};
 
 	return (parse);
 }
 
-t_param				*param(void)
+t_param					*param(void)
 {
-	static t_param param_ret[4] = {&ft_sphere_param, &ft_plane_param, &ft_cone_intersect, &ft_cldre_intersect};
+	static t_param		param_ret[4] = {&ft_sphere_param, &ft_plane_param, \
+		&ft_cone_intersect, &ft_cldre_intersect};
 
 	return (param_ret);
 }
 
-char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on gere pour le parsing
+char					**ft_validobjs(void)
 {
 	static char			*validobjs[NUM_OBJS];
 
