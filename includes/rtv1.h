@@ -104,6 +104,11 @@ size_t			ft_cldre(t_list **list);
 void		ft_getcylindres(t_list **env, char *obj_str);
 t_bool ft_cldre_intersect(t_ray *ray, t_forms *form, double *t);
 
+t_vec3	normal_cone(t_ray ray, t_forms form);
+t_vec3	normal_cyl(t_ray ray, t_forms form);
+t_vec3 normal_sph(t_ray ray, t_forms form);
+t_vec3 normal_cyl(t_ray ray, t_forms form);
+
 // TODO SEB
 void			ft_look_at(t_setup *setup, t_cam *cam);
 ///////////////////////

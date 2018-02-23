@@ -100,6 +100,49 @@ on doit :
  ** set la hit_col a la couleur de l'objet rencontré
  */
 
+/* COMMENT 1
+**	t_vec2 hit_text; // pas besoin pour l'instant?
+**	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+**	// Use the normal and texture coordinates to shade the hit point.
+**	// The normal is used to compute a simple facing ratio and the texture coordinate
+**	// to compute a basic checker board pattern
+**	float scale = 4;
+**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+*/
+
+// void illuminate(t_vec3 *p, t_vec3 *hit_nrml,t_col *hit_col, t_mat *mat)
+// {
+// 	float r2;
+// 	t_vec3 lightdir;
+// 	// t_col light_intensity;
+// 	double dist;
+//
+//
+// 	lightdir = ft_vec3vop_r(*p, lgt_pos, '-');
+// 	r2 =  ft_dotproduct(lightdir,lightdir) ; //scratchapixel vec3.norm()x * x + y * y + z * z
+// 	ft_vec3normalize(&lightdir);
+// 	dist = sqrt(r2);
+// 	// lightdir.x /= dist;
+//   // //
+// 	// lightdir.y /= dist;
+// 	// lightdir.z /= dist;
+// 	// *lightIntensity = color * intensity / (4 * M_PI * r2);
+// 	// light_intensity.r = 255 / (4 * M_PI * r2);
+// 	// light_intensity.g = 255 / (4 * M_PI * r2);
+// 	// light_intensity.b = 255 / (4 * M_PI * r2);
+// 	// printf("col: 255 / (4 * M_PI * r2): %f\t", 255 / (4 * M_PI * r2));
+// 	double lambert =  max(0, ft_dotproduct(*hit_nrml, ft_vec3sop_r(lightdir, -1, '*')));
+// 	// https://github.com/Caradran/rtv1/blob/master/src/diffuse.c A RIEN COMPRIS
+// 	*hit_col = addcol(interpolcol(*hit_col,
+// 		mult_scale_col((4 * M_PI / dist), multcol(mat->col,
+// 		lgt_col)), lambert * lambert), *hit_col);
+// 	// ELIOT
+// 		// addcol(interpolcol(BACK_COLOR,
+// 		// 		mult_scale_col(env.expo / (dist * dist), multcol(col_obj,
+// 		// 		env.lights->lgt.col)), lmbrt * lmbrt), col)
+// }
+
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
 	// double shade;
@@ -108,26 +151,32 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 	/* en dur en attendant */
 	t_lgt *light = LGT(SCN.lgts);
 	/* FIN en dur en attendant */
+	t_vec3 hit_nrml = {0,0,0};
 	hit_col = setup->background;
 	i = 0;
 	j = 0;
 	form = NULL;
 	if ((form = ft_trace(&ray, setup)))
 	{
+		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		if (form->type == SPH)
 		{
+			hit_nrml = normal_sph(ray, *form);
 			hit_col = form->sph.mat.col;
 		}
 		else if (form->type == PLN)
 		{
+			hit_nrml = normal_cyl(ray, *form);
 			hit_col = form->plan.mat.col;
 		}
 		else if (form->type == CON)
 		{
+			hit_nrml = normal_cone(ray, *form);
 			hit_col = form->cone.mat.col;
 		}
 		else if (form->type == CYL)
 		{
+			hit_nrml = normal_cyl(ray, *form);
 			hit_col = form->cldre.mat.col;
 		}
 		else
@@ -138,7 +187,6 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			hit_col.s = 1.;
 		}
 
-		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		//     // compute the square distance
@@ -147,13 +195,9 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		double r2 = ft_dotproduct(light_dir,light_dir); // TODO IMPORTANT VERIFIER CE TRUC
 		double dist = sqrt(r2);
 		t_ray  sdw_ray;
-		sdw_ray.org = hit_point;
-		if (form->type == SPH)
-		{
-			t_vec3 hit_nrml = ft_vec3vop_r(hit_point, form->sph.ctr, '-');
-			double bias = 0.0001;
-			sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
-		}
+		// sdw_ray.org = hit_point;
+		double bias = 0.0001;
+		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
 		sdw_ray.dist = dist;
 		// sdw_ray.org = ft_vec3vop_r(sdw_ray.org, ft_vec3sop_r(hit_nrml, bias, '*'), '+');
