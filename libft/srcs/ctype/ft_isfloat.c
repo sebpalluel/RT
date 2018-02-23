@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:16:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 17:27:06 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:28:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,9 @@ static char		*ft_checksignerr(char *s)
 	return (s);
 }
 
-static t_bool	ft_checknumerror(char *s)
+static t_bool	ft_checknumerror(char *s, t_bool dot, t_bool get_num, \
+		t_bool get_space)
 {
-	t_bool		dot;
-	t_bool		get_num;
-	t_bool		get_space;
-
-	dot = FALSE;
-	get_num = FALSE;
-	get_space = FALSE;
 	while (s && *s)
 	{
 		if ((*s != '.' && ft_isspace(*s) != OK) && (*s < '0' || *s > '9'))
@@ -62,10 +56,16 @@ static t_bool	ft_checknumerror(char *s)
 
 t_bool			ft_isfloat(char *s)
 {
+	t_bool		dot;
+	t_bool		get_num;
+	t_bool		get_space;
 
+	dot = FALSE;
+	get_num = FALSE;
+	get_space = FALSE;
 	if (!s || !*s)
 		return (ERROR);
 	if (!(s = ft_checksignerr(s)))
 		return (ERROR);
-	return (ft_checknumerror(s));
+	return (ft_checknumerror(s, dot, get_num, get_space));
 }
