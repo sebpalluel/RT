@@ -111,6 +111,20 @@ on doit :
 **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
 */
 
+t_col mult_scale_col_limited(double t, t_col col)
+{
+	col.r = col.r * t;
+	col.g = col.g * t;
+	col.b = col.b * t;
+	if (col.r > 1)
+		col.r = 1;
+	if (col.g > 1)
+		col.g = 1;
+	if (col.b > 1)
+		col.b = 1;
+	return (col);
+}
+
 t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 {
 	float r2;
@@ -118,7 +132,6 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 	// t_col light_intensity;
 	double dist;
 	// t_color col;
-
 
 	// lightdir = ft_vec3vop_r(light->vect, *p, '-');
 	lightdir = ft_vec3vop_r(light->vect, *p, '-');
@@ -132,13 +145,24 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 	// *lightIntensity = color * intensity / (4 * M_PI * r2);
 	// light_intensity.r = 255 / (4 * M_PI * r2);
 	// light_intensity.g = 255 / (4 * M_PI * r2);
-	// light_intensity.b = 255 / (4 * M_PI * r2);
+	// light_intensity.b = 255 / (4 * M_PI * r2);``
 	// printf("col: 255 / (4 * M_PI * r2): %f\t", 255 / (4 * M_PI * r2));
+	// if (form->type != PLN)
+	// {
+	// 	printf("light dir: x->%f, y->%f, z->%f\n", lightdir.x, lightdir.y, lightdir.z);
+	// 	printf("hit normal: x->%f, y->%f, z->%f\n", hit_nrml->x, hit_nrml->y, hit_nrml->z);
+	// }
 	double lambert =  max(0, ft_dotproduct(*hit_nrml, lightdir));
+	// if (form->type == PLN)
+	// 	printf("%f\n", lambert);
+	// double lambert = light.pos - (ray.org + (ray.dist * ray.dir))
+	// lambert = ft_dotproduct(*hit_nrml, lightdir);
+	// lambert(t_ray ray, t_vect norm, t_lights *lights)
+	// lmbrt = lambert(ray, forme->norm, env.lights);
 	// https://github.com/Caradran/rtv1/blob/master/src/diffuse.c A RIEN COMPRIS
 	// printf("lambert: %f\n", lambert);
 	// hitObject->albedo / M_PI * light->intensity * light->color * std::max(0.f, hitNormal.dotProduct(L))
-	t_col hit_col = mult_scale_col(lambert ,mult_scale_col(1/M_PI, mat->col));
+	t_col hit_col = mult_scale_col_limited(lambert ,mult_scale_col_limited(mat->diffuse/mat->specular, mat->col));
 	return (hit_col);
 	// ELIOT
 		// addcol(interpolcol(BACK_COLOR,
@@ -171,7 +195,9 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		else if (form->type == PLN)
 		{
 			hit_col = form->plan.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
+			// if (hit_nrml.z < 0)
+		  //    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
 		}
 		else if (form->type == CON)
 		{

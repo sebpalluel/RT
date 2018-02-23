@@ -48,6 +48,8 @@ size_t			ft_select_scene(t_setup *setup, int scene)
 		setup->path = ft_strdup(SCN_PATH_0);
 	else if (scene == 1)
 		setup->path = ft_strdup(SCN_PATH_1);
+	else if (scene == 2)
+		setup->path = ft_strdup(SCN_PATH_2);
 	if (setup->path != NULL)
 		return (OK);
 	else

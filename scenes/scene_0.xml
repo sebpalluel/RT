@@ -49,7 +49,7 @@
 			</material>
 		</sphere>
 		<plane>
-			<normale> 1.0, -5.0, -6.0 </normale>
+			<normale> 0.0, 0.0, -6.0 </normale>
 			<position> 5., 3., -20. </position>
 			<material>
 				<color> 1.0, 1.0, 1.0, 1.0 </color>

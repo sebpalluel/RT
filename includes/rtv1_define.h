@@ -93,7 +93,7 @@
 
 # define SCN_PATH_0		"scenes/scene_0.xml"
 # define SCN_PATH_1		"scenes/scene_1.xml"
-# define SCN_PATH_2		"scenes/"
+# define SCN_PATH_2		"scenes/scene_correct3.xml"
 # define SCN_PATH_3		"scenes/"
 # define SCN_PATH_4		"scenes/"
 # define SCN_PATH_5		"scenes/"
