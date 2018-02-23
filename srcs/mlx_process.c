@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 13:50:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 10:51:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int			ft_expose(t_setup *setup)
 {
 	int		ret;
+	float	delta_time;
+	float	begin_time;
 
 	ret = OK;
 	ft_imgclean(UI_IMG, setup->width, setup->height);
@@ -23,12 +25,14 @@ int			ft_expose(t_setup *setup)
 		ft_imgclean(SCN.img, SCN.width, SCN.height);
 	if (ret == OK && setup->mode == STATE_DRAW) // on rentre dans la fonction de raytracing
 	{
+		begin_time = clock();
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			setup->error = ENG_ERROR;
 	//TODO adapt here for scene
 		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, SCN.img->image, 0, 0);
 		setup->mode = STATE_STOP;
-		printf("drawn\n");
+		delta_time = (float)(clock() - begin_time) / CLOCKS_PER_SEC;
+		printf("drawn in %f sec\n", delta_time);
 	}
 	//if (!setup->ui)
 	ft_mlx_control_key(setup);
