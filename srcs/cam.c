@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:58:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:16:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static t_list	*ft_newcam(void)
 
 static void		ft_cam_struct_pop(t_list *cam, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "origin") == 0)
-		flag[0] = ft_getvectfromenv(&CAM(cam)->org, ENVSTRUCT(env)->value);
-	else if (ft_strcmp(ENVSTRUCT(env)->name, "look_at") == 0)
-		flag[1] = ft_getvectfromenv(&CAM(cam)->look_at, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENV(env)->name, "origin") == 0)
+		flag[0] = ft_getvectfromenv(&CAM(cam)->org, ENV(env)->value);
+	else if (ft_strcmp(ENV(env)->name, "look_at") == 0)
+		flag[1] = ft_getvectfromenv(&CAM(cam)->look_at, ENV(env)->value);
 	CAM(cam)->num_arg++;
 }
 

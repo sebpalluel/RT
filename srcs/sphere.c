@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:19:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:20:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "center") == 0)
-		flag[0] = ft_getvectfromenv(&SPHERE(form).ctr, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
+	if (ft_strcmp(ENV(env)->name, "center") == 0)
+		flag[0] = ft_getvectfromenv(&SPHERE(form).ctr, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "radius") == 0)
+		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "color") == 0)
+		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
 		flag[3] = ft_getdoublefromenv(&SPHERE(form).mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
+				ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[4] = ft_getdoublefromenv(&SPHERE(form).mat.specular, \
-				ENVSTRUCT(env)->value);
+				ENV(env)->value);
 	FORM(form)->num_arg++;
 }
 

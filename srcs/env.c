@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:25:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:18:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list			*ft_searchenv(t_list *env, char *name)
 	if (name)
 		while (list)
 		{
-			if (ENVSTRUCT(list) && ft_strcmp(name, ENVSTRUCT(list)->name) == OK)
+			if (ENV(list) && ft_strcmp(name, ENV(list)->name) == OK)
 				return (list);
 			list = list->next;
 		}
@@ -36,12 +36,12 @@ t_list			*ft_newenv(char *name, char *value)
 		return (NULL);
 	env->content_size = sizeof(t_env);
 	env->next = NULL;
-	ENVSTRUCT(env)->name = name;
+	ENV(env)->name = name;
 	if (value)
-		ENVSTRUCT(env)->value = value;
+		ENV(env)->value = value;
 	else
-		ENVSTRUCT(env)->value = ft_strdup("");
-	if (!ENVSTRUCT(env)->name || !ENVSTRUCT(env)->value)
+		ENV(env)->value = ft_strdup("");
+	if (!ENV(env)->name || !ENV(env)->value)
 		return (NULL);
 	return (env);
 }
@@ -59,9 +59,9 @@ char			**ft_getenv(t_setup *setup)
 	i = 0;
 	while (tmp)
 	{
-		str = ft_strdup(ENVSTRUCT(tmp)->name);
+		str = ft_strdup(ENV(tmp)->name);
 		str = ft_strjoinfree(str, "=", 1);
-		str = ft_strjoinfree(str, ENVSTRUCT(tmp)->value, 1);
+		str = ft_strjoinfree(str, ENV(tmp)->value, 1);
 		envtab[i++] = ft_strdup(str);
 		free(str);
 		tmp = tmp->next;
@@ -81,11 +81,11 @@ void			ft_editenv(t_list *env, char *name, char *value)
 			ft_lstaddend(&env, ft_newenv(name, value));
 		else
 		{
-			free(ENVSTRUCT(list)->value);
+			free(ENV(list)->value);
 			if (value)
-				ENVSTRUCT(list)->value = ft_strdup(value);
+				ENV(list)->value = ft_strdup(value);
 			else
-				ENVSTRUCT(list)->value = ft_strdup("");
+				ENV(list)->value = ft_strdup("");
 		}
 	}
 }

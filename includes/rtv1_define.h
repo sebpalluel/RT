@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1_define.h                                    :+:      :+:    :+:   */
+/*   rtv1_define.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 15:28:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:16:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 
 # include "../libft/includes/libft.h"
 
-#define TRUE 1
-#define FALSE 0 //parce que if FALSE -> pas execute
-
 # define WIDTH			1280
 # define HEIGHT			720
 # define RATIO			WIDTH / HEIGHT
-# define FOV        45
-# define DEG2RAD(x)    ((x * M_PI) / 180)
+# define FOV			45
+# define DEG2RAD(x)		((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			4
@@ -84,13 +81,12 @@
 # define PLAN(x)		FORM(x)->plan
 # define CONE(x)		FORM(x)->cone
 # define CLDRE(x)		FORM(x)->cldre
-//# define ENV(x)			((t_env *)(*(x)->env).content)
-# define ENVSTRUCT(x)	((t_env *)(*(x)).content)
+# define ENV(x)			((t_env *)(*(x)).content)
 
 # define SPH			0
 # define PLN			1
 # define CON			2
-# define CYL      3
+# define CYL			3
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
@@ -113,11 +109,5 @@
 # define GUI_M_STR		"|          GUI main menu          |"
 # define GUI_M_SCN_STR	"|To change or select scene  :  S  |"
 # define GUI_M_CAM_STR	"|To change or select cam    :  C  |"
-//# define RIGHT_STR		"Turn Right :  Right"
-//# define PLUS_STR		"Speed Up   :  +"
-//# define MINUS_STR		"Slow Down  :  -"
-//# define GUI_STR		"Hide GUI   :  G"
-//# define S_MODE_STR		"Change SKY :  1 2 3 4 5 6"
-//# define ESC_STR		"Quit Game  :  Esc"
 
 #endif

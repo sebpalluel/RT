@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:01:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:19:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "normale") == 0)
-		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
-		flag[1] = ft_getvectfromenv(&PLAN(form).pos, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
+	if (ft_strcmp(ENV(env)->name, "normale") == 0)
+		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "position") == 0)
+		flag[1] = ft_getvectfromenv(&PLAN(form).pos, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "color") == 0)
+		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
+		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[4] = ft_getdoublefromenv(&PLAN(form).mat.specular, \
-				ENVSTRUCT(env)->value);
+				ENV(env)->value);
 	FORM(form)->num_arg++;
 }
 

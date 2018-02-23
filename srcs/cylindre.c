@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:22:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:17:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 void			ft_cldre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "origin") == 0)
-		flag[0] = ft_getvectfromenv(&CLDRE(form).pos, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
-		flag[1] = ft_getvectfromenv(&CLDRE(form).dir, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
-		flag[2] = ft_getdoublefromenv(&CLDRE(form).r, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[3] = ft_getcolfromenv(&CLDRE(form).mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
+	if (ft_strcmp(ENV(env)->name, "origin") == 0)
+		flag[0] = ft_getvectfromenv(&CLDRE(form).pos, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "direction") == 0)
+		flag[1] = ft_getvectfromenv(&CLDRE(form).dir, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "radius") == 0)
+		flag[2] = ft_getdoublefromenv(&CLDRE(form).r, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "color") == 0)
+		flag[3] = ft_getcolfromenv(&CLDRE(form).mat.col, ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
 		flag[4] = ft_getdoublefromenv(&CLDRE(form).mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
+				ENV(env)->value);
+	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[5] = ft_getdoublefromenv(&CLDRE(form).mat.specular, \
-				ENVSTRUCT(env)->value);
+				ENV(env)->value);
 	FORM(form)->num_arg++;
 }
 

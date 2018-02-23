@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:47:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:19:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ size_t			ft_envtosetup(t_setup *setup)
 	t_bool		flag;
 
 	env = SCN.env;
-	while (env && ENVSTRUCT(env))
+	while (env && ENV(env))
 	{
 		i = -1;
 		flag = ERROR;
 		while (env && ++i < NUM_OBJS)
 		{
-			if (ft_strcmp(ENVSTRUCT(env)->name, ft_validobjs()[i]) == 0)
+			if (ft_strcmp(ENV(env)->name, ft_validobjs()[i]) == 0)
 			{
 				flag = OK;
 				if (parse_obj()[i](&env) != OK)
