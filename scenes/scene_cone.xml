@@ -20,14 +20,14 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 0.0, 0.0 </position>
+			<position> 2.0, 3.0, 0.0 </position>
 			<color> 1., 1., 1., 1. </color>
 		</light>
 	</lights>
 
 	<objects>
 		<cone>
-			<origin> 0., 0., 10. </origin>
+			<origin> 0., 3., 10. </origin>
 			<direction> 0., -1., 0. </direction>
 			<degres> 40 </degres>
 			<material>

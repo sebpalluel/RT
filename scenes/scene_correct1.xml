@@ -14,10 +14,6 @@
 			<origin> 0.0, 0.0, -1.0 </origin>
 			<look_at> 0.0, 0.0, 1.0 </look_at>
 		</camera>
-		<camera>
-			<origin> 0.0, -10.0, 10.0 </origin>
-			<look_at> 0.0, -1.0, -1.0 </look_at>
-		</camera>
 	</cameras>
 
 	<lights>
@@ -31,7 +27,7 @@
 
 	<objects>
 		<sphere>
-			<center> 0.0, 0.0, 2. </center>
+			<center> 0.0, 0.0, 5. </center>
 			<radius> 1. </radius>
 			<material>
 				<color> 1., 0., 0., 0. </color>
