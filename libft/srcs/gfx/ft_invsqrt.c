@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 17:19:57 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/01 17:33:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:28:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double				ft_invsqrt(double number)
 	i = *(long long*)&y;
 	i = 0x5fe6ec85e7de30daLL - (i >> 1);
 	y = *(double*)&i;
-	y = y * (threehalfs - (x2 * y * y)); // 1st iteration
-	y = y * (threehalfs - (x2 * y * y)); // 2nd iteration, this can be removed
+	y = y * (threehalfs - (x2 * y * y));
+	y = y * (threehalfs - (x2 * y * y));
 	return (y);
 }

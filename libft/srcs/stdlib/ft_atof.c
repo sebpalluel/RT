@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 18:15:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/14 18:35:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:31:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-double ft_atof(const char *str)
+double			ft_atof(const char *str)
 {
 	int			i;
 	int			x;
@@ -24,7 +24,7 @@ double ft_atof(const char *str)
 	res = 0;
 	while (str[i] == ' ')
 		i++;
-	sign = (str[i] == '-' ? -1 : 1 );
+	sign = (str[i] == '-' ? -1 : 1);
 	i += ((str[i] == '-' || str[i] == '+') ? 1 : 0);
 	while (str[i] && str[i] == ' ')
 		i++;

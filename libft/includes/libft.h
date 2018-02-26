@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 17:19:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:03:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_color			*ft_colorparse(char *arg);
 t_color			*ft_hexcolor(int hexvalue);
 void			ft_hextocolor(t_color *col, int hexvalue);
 int				ft_colortohex(t_color *col);
+int				ft_coltoi(t_col col);
 void			ft_mlxdelete(t_mlx *mlx, t_img *img);
 void			ft_imgclean(t_img *img, size_t width, size_t height);
 void			ft_imgdel(t_img *img, void *mlx);
@@ -72,6 +73,7 @@ void			ft_vec3sop(t_vec3 *to_vec3, t_vec3 from_vec3, double x, char c);
 t_vec3			ft_vec3sop_r(t_vec3 from_vec3, double x, char c);
 t_vec3			ft_vec3vop_r(t_vec3 a, t_vec3 b, char c);
 void			ft_vec3normalize(t_vec3 *to_vec3);
+t_vec3			ft_vec3normalize_r(t_vec3 from_vec3);
 double			ft_vec3dist(t_vec3 p1, t_vec3 p2);
 t_vec3			ft_vec3unit(t_vec3 from);
 t_vec3			ft_vec3add3(t_vec3 a, t_vec3 b, t_vec3 c);
