@@ -31,7 +31,7 @@ void		ft_delnode(void *content, size_t size)
 
 static void	ft_scene_free(t_setup *setup)
 {
-	ft_mlxdelete(SCN.win, SCN.img);
+	//ft_mlxdelete(SCN.win, SCN.img);
 	ft_lstdel(&SCN.env, ft_delenvnode);
 	ft_lstdel(&SCN.forms, ft_delnode);
 	ft_lstdel(&SCN.lgts, ft_delnode);

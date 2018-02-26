@@ -64,7 +64,7 @@ t_bool			ft_cone_intersect(t_ray *ray, t_forms *form, double *t)
 	double		abc[3];
 	t_vec3		dist;
 
-	ft_normalize(&form->cone.dir);
+	ft_vec3normalize(&form->cone.dir);
 	k = tan(DEG2RAD(form->cone.theta) / 2);
 	dist = ft_vec3vop_r(ray->org, form->cone.org, '-');
 	dv = ft_dotproduct(ray->dir, form->cone.dir);

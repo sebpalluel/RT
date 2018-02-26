@@ -147,24 +147,24 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		if (form->type == SPH)
 		{
 			hit_col = form->sph.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
 		}
 		else if (form->type == PLN)
 		{
 			hit_col = form->plan.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
 			// if (hit_nrml.z < 0)
 			//    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
 		}
 		else if (form->type == CON)
 		{
 			hit_col = form->cone.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
 		}
 		else if (form->type == CYL)
 		{
 			hit_col = form->cldre.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
 		}
 		else
 		{
@@ -178,8 +178,8 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		double bias = 0.0001;
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
-		// if (ft_trace(&sdw_ray, setup))
-		// 	hit_col = mult_scale_col(0., hit_col);
+		if (ft_trace(&sdw_ray, setup))
+			hit_col = mult_scale_col(0., hit_col);
 	}
 	return (hit_col);
 }
@@ -229,6 +229,7 @@ static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 	x = (2 * (pix.x + 0.5) / (double)SCN.width - 1) * imageAspectRatio * scale;
 	y = (1 - 2 * (pix.y + 0.5) / (double)SCN.height) * scale;
 	t_vec3 dir = {x, y, -1};
+	ft_vec3normalize(&dir);
 	multDirMatrix(&dir, &ray->dir, setup->camToWorld);
 	ft_vec3normalize(&ray->dir);
 	ray->dist = MAX_INT;
