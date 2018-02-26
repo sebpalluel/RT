@@ -26,16 +26,17 @@ double max(double a, double b) {
  */
 t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 {
-	double		dist;
+	// double		dist;
 	t_forms		*form;
 	double		t_near;
 	double		t;
 	t_list		*list;
 
 	t = MAX_INT;
+	// t = inf;
 	t_near = MAX_INT;
 	form = NULL;
-	dist = 0;
+	// dist = 0;
 	list = SCN.forms;
 	while (list) /* itere sur tous les objets de la scene */
 	{

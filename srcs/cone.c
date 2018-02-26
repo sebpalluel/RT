@@ -49,6 +49,7 @@ size_t			ft_cone(t_list **list)
 	FORM(form)->type = CON;
 	while (FORM(form)->num_arg < NVARCONE && env && (env = env->next))
 		ft_cone_struct_pop(form, env, flag);
+	// Normaliser ici pour l instant l67
 	if (ft_checkifallset(flag, NVARCONE) != OK)
 		return (setup->error = CONE_ERROR);
 	*list = env;
@@ -63,6 +64,7 @@ t_bool			ft_cone_intersect(t_ray *ray, t_forms *form, double *t)
 	double		abc[3];
 	t_vec3		dist;
 
+	ft_normalize(&form->cone.dir);
 	k = tan(DEG2RAD(form->cone.theta) / 2);
 	dist = ft_vec3vop_r(ray->org, form->cone.org, '-');
 	dv = ft_dotproduct(ray->dir, form->cone.dir);
