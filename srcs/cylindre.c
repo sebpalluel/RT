@@ -63,6 +63,7 @@ t_bool			ft_cldre_intersect(t_ray *ray, t_forms *form, double *t)
 	double		abc[3];
 	t_vec3		dist;
 
+	ft_vec3normalize(&form->cldre.dir);
 	dist = ft_vec3vop_r(ray->org, form->cldre.pos, '-');
 	dv = ft_dotproduct(ray->dir, form->cldre.dir);
 	distv = ft_dotproduct(dist, form->cldre.dir);

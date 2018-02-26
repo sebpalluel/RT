@@ -164,7 +164,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		else if (form->type == CYL)
 		{
 			hit_col = form->cldre.mat.col;
-			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
+			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
 		}
 		else
 		{
@@ -180,8 +180,8 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		sdw_ray.dir = light_dir;
 		ft_vec3normalize(&sdw_ray.dir);
 		sdw_ray.dist = ray.dist;
-		// if (ft_trace(&sdw_ray, setup))
-		// 	hit_col = mult_scale_col(0., hit_col);
+		if (ft_trace(&sdw_ray, setup))
+			hit_col = mult_scale_col(0., hit_col);
 	}
 	return (hit_col);
 }
