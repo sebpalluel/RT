@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:19:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:08:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static char		*ft_append_line_to_file(t_setup *setup)
 		tmp = file;
 		file = ft_strjoin(tmp, line);
 		free(tmp);
+		free(line);
 	}
 	return (file);
 }

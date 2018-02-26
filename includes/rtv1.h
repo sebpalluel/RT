@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 13:21:55 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:09:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
+void		ft_setup_free(t_setup *setup);
 void		ft_start(t_setup *setup);
 void		ft_mlx_control(t_setup *setup);
 void		ft_mlx_control_key(t_setup *setup);
