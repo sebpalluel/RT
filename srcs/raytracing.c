@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:05:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:00:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,15 @@ on doit :
  */
 
 /* COMMENT 1
-**	t_vec2 hit_text; // pas besoin pour l'instant?
-**	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
-**	// Use the normal and texture coordinates to shade the hit point.
-**	// The normal is used to compute a simple facing ratio and the texture coordinate
-**	// to compute a basic checker board pattern
-**	float scale = 4;
-**	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
-**	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
-*/
+ **	t_vec2 hit_text; // pas besoin pour l'instant?
+ **	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
+ **	// Use the normal and texture coordinates to shade the hit point.
+ **	// The normal is used to compute a simple facing ratio and the texture coordinate
+ **	// to compute a basic checker board pattern
+ **	float scale = 4;
+ **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+ **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
+ */
 
 t_col mult_scale_col_limited(double t, t_col col)
 {
@@ -139,7 +139,7 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 	ft_vec3normalize(&lightdir);
 	dist = sqrt(r2);
 	// lightdir.x /= dist;
-  // //
+	// //
 	// lightdir.y /= dist;
 	// lightdir.z /= dist;
 	// *lightIntensity = color * intensity / (4 * M_PI * r2);
@@ -165,9 +165,9 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 	t_col hit_col = mult_scale_col_limited(lambert ,mult_scale_col_limited(mat->diffuse/mat->specular, mat->col));
 	return (hit_col);
 	// ELIOT
-		// addcol(interpolcol(BACK_COLOR,
-		// 		mult_scale_col(env.expo / (dist * dist), multcol(col_obj,
-		// 		env.lights->lgt.col)), lmbrt * lmbrt), col)
+	// addcol(interpolcol(BACK_COLOR,
+	// 		mult_scale_col(env.expo / (dist * dist), multcol(col_obj,
+	// 		env.lights->lgt.col)), lmbrt * lmbrt), col)
 }
 
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
@@ -197,7 +197,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			hit_col = form->plan.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
 			// if (hit_nrml.z < 0)
-		  //    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
+			//    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
 		}
 		else if (form->type == CON)
 		{
@@ -239,9 +239,9 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		// bool vis = !trace(hitPoint + hitNormal * options.bias, L, objects, isectShad, kShadowRay);
 		// if (ft_trace(&sdw_ray, setup))
 		// 	hit_col = mult_scale_col(0., hit_col);
-// 		When we hit such a surface in our raytracer code, we will compute the cosine of the angle theta that the incoming ray does with the surface (via the normal) :
-// float lambert = (lightRay.dir * n) * coef;
-// Then we multiply that lambertian coeficient with the diffuse color property of the surface, that will give us the perceived lighting for the current viewing ray.
+		// 		When we hit such a surface in our raytracer code, we will compute the cosine of the angle theta that the incoming ray does with the surface (via the normal) :
+		// float lambert = (lightRay.dir * n) * coef;
+		// Then we multiply that lambertian coeficient with the diffuse color property of the surface, that will give us the perceived lighting for the current viewing ray.
 
 		//else
 		//	mult_scale_col(1., hit_col);
@@ -266,8 +266,8 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
 		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
-	}
-	return (hit_col);
+}
+return (hit_col);
 }
 
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
@@ -302,6 +302,32 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 
 // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 // TODO Refacto
+
+//static size_t	ft_get_y_draw_from_thread(size_t *i)
+//{
+//	size_t		inc;
+//	int			num_thread;
+//
+//
+//}
+
+static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
+{
+	double		scale;
+	double		imageAspectRatio;
+	double		x;
+	double		y;
+
+	scale = tan(DEG2RAD((FOV * 0.5)));
+	imageAspectRatio = SCN.width / (double)SCN.height;
+	x = (2 * (pix.x + 0.5) / (double)SCN.width - 1) * imageAspectRatio * scale;
+	y = (1 - 2 * (pix.y + 0.5) / (double)SCN.height) * scale;
+	t_vec3 dir = {x, y, -1};
+	multDirMatrix(&dir, &ray->dir, setup->camToWorld);
+	ft_vec3normalize(&ray->dir);
+	ray->dist = MAX_INT;
+}
+
 void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
 {
 	/* on a trop de variable ici*/
@@ -332,16 +358,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 		{
-			/* REFACTO dans sa propre fonction */
-			float scale = tan(DEG2RAD((FOV * 0.5)));
-			float imageAspectRatio = SCN.width / (float)SCN.height;
-			float x = (2 * (pix.x + 0.5) / (float)SCN.width - 1) * imageAspectRatio * scale;
-			float y = (1 - 2 * (pix.y + 0.5) / (float)SCN.height) * scale;
-			t_vec3 dir = {x, y, -1};
-			/* fin REFACTO */
-			multDirMatrix(&dir, &ray.dir, setup->camToWorld);
-			ft_vec3normalize(&ray.dir);
-			ray.dist = MAX_INT;
+			ft_init_primray(setup, pix, &ray);
 			col = ft_cast_ray(pix.x, pix.y, ray, setup);
 			ft_put_pixel(setup, pix.x, pix.y, ft_coltoi(col)); //TODO adapt here for scene
 		}

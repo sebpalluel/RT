@@ -15,7 +15,7 @@
 			<look_at> 1.0, -2.5, -1.0 </look_at>
 		</camera>
 		<camera>
-			<origin> 0.0, -10.0, 10.0 </origin>
+			<origin> 0.0, 0.0, 1.0 </origin>
 			<look_at> 0.0, -1.0, -1.0 </look_at>
 		</camera>
 	</cameras>
@@ -24,7 +24,7 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 1.0, -4 </position>
+			<position> 0.0, 5.0, 1. </position>
 			<color> 1., 0., 0., 1. </color>
 		</light>
 	</lights>
@@ -58,7 +58,7 @@
 			</material>
 		</plane>
 		<cone>
-			<origin> -3., -7., -1. </origin>
+			<origin> -3., -7., -10. </origin>
 			<direction> 0., -1., 0. </direction>
 			<degres> 10 </degres>
 			<material>
