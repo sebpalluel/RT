@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:03:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:29:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			ft_pixpopulate(t_pix *to_pix, int x, int y, int z);
 void			ft_vec3cpy(t_vec3 *vec_from, t_vec3 *vec_to);
 t_vec3			*ft_vec3new(double x, double y, double z);
 t_vec3			ft_vec3_r(double x, double y, double z);
+double			ft_vec3multscale(t_vec3 u, t_vec3 v);
 void			ft_vec3populate(t_vec3 *to_vec3, double x, double y, double z);
 void			ft_vec3vop(t_vec3 *to_vec3, t_vec3 a, t_vec3 b, char c);
 void			ft_vec3sop(t_vec3 *to_vec3, t_vec3 from_vec3, double x, char c);
@@ -77,6 +78,8 @@ t_vec3			ft_vec3normalize_r(t_vec3 from_vec3);
 double			ft_vec3dist(t_vec3 p1, t_vec3 p2);
 t_vec3			ft_vec3unit(t_vec3 from);
 t_vec3			ft_vec3add3(t_vec3 a, t_vec3 b, t_vec3 c);
+t_vec3			ft_vec3scale(t_vec3 v, double a);
+double			ft_vec3norm(t_vec3 u);
 double			ft_dotproduct(t_vec3 a, t_vec3 b);
 float			ft_sqrtf(float n);
 double			ft_invsqrt(double number);
