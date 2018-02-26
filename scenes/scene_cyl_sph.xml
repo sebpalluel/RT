@@ -20,7 +20,7 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 0.0, -1. </position>
+			<position> 0.55, 1.0, 5. </position>
 			<color> 1., 1., 1., 1. </color>
 		</light>
 	</lights>
@@ -45,5 +45,14 @@
 				<specular> 1. </specular>
 			</material>
 		</cylindre>
+		<plane>
+			<normale> 5.0, 0.0, 1 </normale>
+			<position> 0., 0.0, 10 </position>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 0.2 </specular>
+			</material>
+		</plane>
 	</objects>
 </scene>
