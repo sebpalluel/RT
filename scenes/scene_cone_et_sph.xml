@@ -37,7 +37,7 @@
 		</sphere>
 		<cone>
 			<origin> 0., 0., 5. </origin>
-			<direction> 0., 1., 0. </direction>
+			<direction> 0., 1., -1. </direction>
 			<degres> 10 </degres>
 			<material>
 				<color> 0.0, 1.0, 1.0, 1.0 </color>

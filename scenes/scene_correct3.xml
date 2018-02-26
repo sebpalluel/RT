@@ -11,8 +11,8 @@
 	<cameras>
 
 		<camera>
-			<origin> 0.0, 0.0, -1.0 </origin>
-			<look_at> 0.0, 0.0, 1.0 </look_at>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 0.0, 0.0, 0.1 </look_at>
 		</camera>
 	</cameras>
 
@@ -20,15 +20,15 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0., 0., -1.0 </position>
+			<position> 0., 0., 0.25 </position>
 			<color> 1., 1., 1., 1.3 </color>
 		</light>
 	</lights>
 
 	<objects>
 		<cone>
-			<origin> 0., -0.25, 2. </origin>
-			<direction> 0.0, -1, 0. </direction>
+			<origin> 0., 0., 0.5 </origin>
+			<direction> 0.0, 1.0, 0.0 </direction>
 			<degres> 60 </degres>
 			<material>
 				<color> 1.0, 1.0, 0.0, 1.0 </color>
@@ -37,10 +37,10 @@
 			</material>
 		</cone>
 		<plane>
-			<normale> 0.0, 1.0, 0 </normale>
-			<position> 0., 0.5, 6. </position>
+			<normale> 0, -1.0, 0 </normale>
+			<position> 0, -0.05, 0.0 </position>
 			<material>
-				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<color> 0, 0.25, 1.0, 1.0 </color>
 				<diffuse> 0.8 </diffuse>
 				<specular> 0.2 </specular>
 			</material>
