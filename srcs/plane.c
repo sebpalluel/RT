@@ -64,7 +64,7 @@ t_bool			ft_plane_param(t_ray *ray, t_forms *form, double *t)
 	if (denom != 0)
 	{
 		dist = ft_vec3vop_r(form->plan.pos, ray->org, '-');
-		*t = ft_dotproduct(pouet, form->plan.nrml) / denom;
+		*t = ft_dotproduct(dist, form->plan.nrml) / denom;
 		return (*t >= 0);
 	}
 	return (FALSE);
