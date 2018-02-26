@@ -34,7 +34,7 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 
 	t = MAX_INT;
 	// t = inf;
-	t_near = MAX_INT;
+	t_near = ray->dist == -1 ? MAX_INT : ray->dist;
 	form = NULL;
 	// dist = 0;
 	list = SCN.forms;
@@ -44,12 +44,12 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 		if (FORM(list)->type <= 3)
 		{
 			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t); /* test la routine d intersection correspondant a l objet */
-			if ((ray->hit == TRUE && (t < t_near || t < ray->dist)))
+			if ((ray->hit == TRUE && t < t_near))
 			{
 				// ICI CHECK SI L OBJET RENCONTRE DANS LE SHADOW RAY EST AVANT LA SOURCE DE LUMIERE (t < ray->dist)
 				// SAUF QUE CA MARCHE PAS IL TRAVERSE LA LUMIERE
 				t_near = t;
-				ray->dist = t;
+				ray->dist = t_near;
 				form = FORM(list);
 			}
 		}
@@ -164,7 +164,7 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		else if (form->type == CYL)
 		{
 			hit_col = form->cldre.mat.col;
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
+			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
 		}
 		else
 		{
@@ -175,11 +175,13 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		}
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		t_ray  sdw_ray;
-		double bias = 0.0001;
+		double bias = 0.000001;
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
-		if (ft_trace(&sdw_ray, setup))
-			hit_col = mult_scale_col(0., hit_col);
+		ft_vec3normalize(&sdw_ray.dir);
+		sdw_ray.dist = ray.dist;
+		// if (ft_trace(&sdw_ray, setup))
+		// 	hit_col = mult_scale_col(0., hit_col);
 	}
 	return (hit_col);
 }
@@ -232,7 +234,7 @@ static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 	ft_vec3normalize(&dir);
 	multDirMatrix(&dir, &ray->dir, setup->camToWorld);
 	ft_vec3normalize(&ray->dir);
-	ray->dist = MAX_INT;
+	ray->dist = -1;
 }
 
 void			*ft_raytracing(void *cam)
