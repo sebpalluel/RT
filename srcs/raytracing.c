@@ -153,8 +153,6 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		{
 			hit_col = form->plan.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
-			// if (hit_nrml.z < 0)
-			//    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
 		}
 		else if (form->type == CON)
 		{
