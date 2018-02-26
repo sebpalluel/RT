@@ -129,45 +129,15 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 {
 	float r2;
 	t_vec3 lightdir;
-	// t_col light_intensity;
 	double dist;
-	// t_color col;
 
-	// lightdir = ft_vec3vop_r(light->vect, *p, '-');
 	lightdir = ft_vec3vop_r(light->vect, *p, '-');
-	r2 =  ft_dotproduct(lightdir,lightdir) ; //scratchapixel vec3.norm()x * x + y * y + z * z
+	r2 =  ft_dotproduct(lightdir,lightdir) ;
 	ft_vec3normalize(&lightdir);
 	dist = sqrt(r2);
-	// lightdir.x /= dist;
-	// //
-	// lightdir.y /= dist;
-	// lightdir.z /= dist;
-	// *lightIntensity = color * intensity / (4 * M_PI * r2);
-	// light_intensity.r = 255 / (4 * M_PI * r2);
-	// light_intensity.g = 255 / (4 * M_PI * r2);
-	// light_intensity.b = 255 / (4 * M_PI * r2);``
-	// printf("col: 255 / (4 * M_PI * r2): %f\t", 255 / (4 * M_PI * r2));
-	// if (form->type != PLN)
-	// {
-	// 	printf("light dir: x->%f, y->%f, z->%f\n", lightdir.x, lightdir.y, lightdir.z);
-	// 	printf("hit normal: x->%f, y->%f, z->%f\n", hit_nrml->x, hit_nrml->y, hit_nrml->z);
-	// }
 	double lambert =  max(0, ft_dotproduct(*hit_nrml, lightdir));
-	// if (form->type == PLN)
-	// 	printf("%f\n", lambert);
-	// double lambert = light.pos - (ray.org + (ray.dist * ray.dir))
-	// lambert = ft_dotproduct(*hit_nrml, lightdir);
-	// lambert(t_ray ray, t_vect norm, t_lights *lights)
-	// lmbrt = lambert(ray, forme->norm, env.lights);
-	// https://github.com/Caradran/rtv1/blob/master/src/diffuse.c A RIEN COMPRIS
-	// printf("lambert: %f\n", lambert);
-	// hitObject->albedo / M_PI * light->intensity * light->color * std::max(0.f, hitNormal.dotProduct(L))
-	t_col hit_col = mult_scale_col_limited(lambert ,mult_scale_col_limited(mat->diffuse/mat->specular, mat->col));
+	t_col hit_col = mult_scale_col_limited(lambert * lambert *4 ,mult_scale_col_limited(mat->diffuse, mat->col));
 	return (hit_col);
-	// ELIOT
-	// addcol(interpolcol(BACK_COLOR,
-	// 		mult_scale_col(env.expo / (dist * dist), multcol(col_obj,
-	// 		env.lights->lgt.col)), lmbrt * lmbrt), col)
 }
 
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
@@ -190,24 +160,24 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		if (form->type == SPH)
 		{
 			hit_col = form->sph.mat.col;
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
+			// hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
 		}
 		else if (form->type == PLN)
 		{
 			hit_col = form->plan.mat.col;
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
+			// hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
 			// if (hit_nrml.z < 0)
 			//    hit_nrml = ft_vec3sop_r(form->plan.nrml, -1, '*');
 		}
 		else if (form->type == CON)
 		{
 			hit_col = form->cone.mat.col;
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
+			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
 		}
 		else if (form->type == CYL)
 		{
 			hit_col = form->cldre.mat.col;
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
+			// hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
 		}
 		else
 		{
@@ -219,53 +189,13 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 
 		// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
-		//     // compute the square distance
-		//     float r2 = lightDir.norm();
-		//     dist = sqrtf(r2);
-		double r2 = ft_dotproduct(light_dir,light_dir); // TODO IMPORTANT VERIFIER CE TRUC
-		double dist = sqrt(r2);
 		t_ray  sdw_ray;
-		// double lambert = ft_dotproduct(light_dir, hit_nrml) * 1;
-		// hit_col = mult_scale_col(lambert , hit_col);// Une magnyfaique texture toute moche
-		// float lambert = (lightRay.dir * n) * coef;
-		// 		 red += lambert * current.red * currentMat.red;
-		// 		 green += lambert * current.green * currentMat.green;
-		// 		 blue += lambert * current.blue * currentMat.blue;
 		// sdw_ray.org = hit_point;
 		double bias = 0.0001;
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
-		sdw_ray.dist = dist;
-		// bool vis = !trace(hitPoint + hitNormal * options.bias, L, objects, isectShad, kShadowRay);
 		// if (ft_trace(&sdw_ray, setup))
 		// 	hit_col = mult_scale_col(0., hit_col);
-		// 		When we hit such a surface in our raytracer code, we will compute the cosine of the angle theta that the incoming ray does with the surface (via the normal) :
-		// float lambert = (lightRay.dir * n) * coef;
-		// Then we multiply that lambertian coeficient with the diffuse color property of the surface, that will give us the perceived lighting for the current viewing ray.
-
-		//else
-		//	mult_scale_col(1., hit_col);
-		// }
-		/*
-		 **	ici j ai ma forme rencontrée dans form
-		 **	ma distance dans ray.dist
-		 ** Fonction get surface data (la normale au point d intersection, le hit point, la texture)
-		 **	normale au point d interection -> besoin de type d'obj, ray, form => singleton ?
-		 **	hit_point -> besoin ray.org et ray.dist
-		 ** je lance un shadow ray (car pour l instant toute nos surface sont diffuse)
-		 ** ft_trace(shadow_ray, setup, &form) voir si ok que je balance form la, pas forcement top
-		 **	shadow ray -> ray.origine = hit_point
-		 **	shadow ray -> ray.dir = direction de la lumiere
-		 ** SI True : color = background
-		 ** SINON
-		 ** 	get_color()
-		 **		a partir des surfaces data je calcul ma couleur,
-		 **		besoin du rayon, de la couleur de l obj (ds surface data)
-		 **
-		 */
-		// t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		// t_vec3 hit_nrml = ft_vec3vop_r(hit_point, OBJDEF.sphere[ray.objn].pos, '-'); // pas besoin pour l instant ?
-		// ft_vec3normalize(&hit_nrml); //add COMMENT 1 under
 }
 return (hit_col);
 }

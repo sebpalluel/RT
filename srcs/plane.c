@@ -56,13 +56,18 @@ size_t			ft_plane(t_list **list)
 t_bool			ft_plane_param(t_ray *ray, t_forms *form, double *t)
 {
 	double		denom;
-	t_vec3		diff;
+	t_vec3		pouet;
+	double 		truc;
 
+	ft_vec3normalize(&form->plan.nrml);
 	denom = ft_dotproduct(form->plan.nrml, ray->dir);
-	if (denom > 0.000001)
+	// if (denom > 0.000001)
+	if (denom != 0)
 	{
-		diff = ft_vec3vop_r(form->plan.pos, ray->org, '-');
-		*t = ft_dotproduct(diff, form->plan.nrml) / denom;
+		truc = sqrt(ft_dotproduct(form->plan.pos, form->plan.pos));
+		// *t = -ft_dotproduct(form->plan.pos, form->plan.nrml) / denom;
+		pouet = ft_vec3sop_r( form->plan.nrml, truc , '*');
+		*t = ft_dotproduct(pouet, form->plan.pos) / denom;
 		return (t >= 0 ? TRUE : FALSE);
 	}
 	return (FALSE);
