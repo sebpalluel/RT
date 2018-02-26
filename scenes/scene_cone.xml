@@ -27,7 +27,7 @@
 
 	<objects>
 		<cone>
-			<origin> 0., 3., 10. </origin>
+			<origin> 0., 3., 30. </origin>
 			<direction> 0., -1., 0. </direction>
 			<degres> 40 </degres>
 			<material>
