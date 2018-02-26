@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/23 11:03:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:42:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,15 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 						vect_add(ray.org, vect_scale(ray.dist, ray.dir)))), norm));
 }
 
-t_col	diffuse(t_setup *setup, t_list *form, t_ray ray, t_col col_obj)
+t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 {
 	double		lmbrt;
 	t_col		col;
 	t_col		spec;
 	t_list		*lgt;
+	t_setup		*setup;
 
+	setup = get_st();
 	col = setup->background;
 	spec = col;
 	lgt = SCN.lgts;
@@ -83,14 +85,13 @@ t_col	diffuse(t_setup *setup, t_list *form, t_ray ray, t_col col_obj)
 			lgt = lgt->next;
 			continue ;
 		}
-		lmbrt = lambert(ray, FORM(form)->norm, lgt);
+		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
 		col = addcol(interpolcol(setup->background, mult_scale_col(SCN.expo, multcol(
 							col_obj, LGT(lgt)->col)), lmbrt * lmbrt), col);
 		spec = addcol(spec, mult_scale_col(SCN.expo, interpolcol(setup->background,
-						LGT(lgt)->col, phong(ray, col_obj, FORM(form)->norm,
-							lgt))));
+						LGT(lgt)->col, phong(ray, col_obj, norm, lgt))));
 		lgt = lgt->next;
 	}
 	return (addcol(spec, col));

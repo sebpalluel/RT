@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 14:02:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:44:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,11 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 
 t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 {
+	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		FORM(con)->norm = normal_cone(ray, CONE(con));
-		return (diffuse(setup, con, ray, CONE(con).mat.col));
+		norm = normal_cone(ray, CONE(con));
+		return (diffuse(norm, con, ray, CONE(con).mat.col));
 	}
 	return (setup->background);
 }

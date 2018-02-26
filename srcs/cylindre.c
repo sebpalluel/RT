@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/21 14:28:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:44:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ t_vec3	normal_cyl(t_ray ray, t_cyl cyl)
 	return (norm);
 }
 
-t_col	intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
+t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 {
+	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		FORM(cyl)->norm = normal_cyl(ray, CYLI(cyl));
-		return (diffuse(setup, cyl, ray, CYLI(cyl).mat.col));
+		norm = normal_cyl(ray, CYLI(cyl));
+		return (diffuse(norm, cyl, ray, CYLI(cyl).mat.col));
 	}
 	return (setup->background);
 }

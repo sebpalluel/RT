@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 12:01:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:43:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ double	hit_plan(t_ray ray, t_forms *form)
 
 t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 {
+	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
-		FORM(pln)->norm = PLAN(pln).nrml;
-		return (diffuse(setup, pln, ray, PLAN(pln).mat.col));
+		norm = PLAN(pln).nrml;
+		return (diffuse(norm, pln, ray, PLAN(pln).mat.col));
 	}
 	return (setup->background);
 }
