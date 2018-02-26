@@ -59,7 +59,7 @@ static t_vec3	normal_plan(t_ray ray, t_forms *form)
 
 	dummy = ray;
   ft_vec3normalize(&form->plan.nrml);
-  if (ft_dotproduct(ft_vec3sop_r(ray.dir, -1, '*'), form->plan.nrml) < 0)
+  if (ft_dotproduct(ray.dir, form->plan.nrml) > 0)
     return (ft_vec3sop_r(form->plan.nrml, -1, '*'));
 	return (form->plan.nrml);
 }
