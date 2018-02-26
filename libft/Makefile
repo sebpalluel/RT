@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/26 19:29:41 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/26 19:58:26 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -166,6 +166,11 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(GFXPATH)ft_hexcolor.c\
 			$(GFXPATH)ft_colortohex.c\
 			$(GFXPATH)ft_coltoi.c\
+			$(GFXPATH)ft_coladd.c\
+			$(GFXPATH)ft_colmultscale.c\
+			$(GFXPATH)ft_colmult.c\
+			$(GFXPATH)ft_col_r.c\
+			$(GFXPATH)ft_colinterpol.c\
 			$(GFXPATH)ft_mlxdelete.c\
 			$(GFXPATH)ft_imgclean.c\
 			$(GFXPATH)ft_imgdel.c\

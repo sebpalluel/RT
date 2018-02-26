@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 15:44:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:05:06 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ double	hit_cone(t_ray ray, t_forms *form)
 
 	k = tan(form->cone.theta / 2);
 	k = k * k;
-	oc = vect_sub(ray.org, form->cone.org);
-	a = vect_mult_scale(ray.dir, ray.dir)
-		- (1 + k) * vect_mult_scale(ray.dir, form->cone.dir) *
-		vect_mult_scale(ray.dir, form->cone.dir);
-	b = 2 * (vect_mult_scale(ray.dir, oc) - (1 + k) *
-			vect_mult_scale(ray.dir, form->cone.dir) *
-			vect_mult_scale(oc, form->cone.dir));
-	k = vect_mult_scale(oc, oc) - (1 + k) *
-		vect_mult_scale(oc, form->cone.dir) *
-		vect_mult_scale(oc, form->cone.dir);
+	oc = ft_vec3vop_r(ray.org, form->cone.org, '-');
+	a = ft_vec3multscale(ray.dir, ray.dir)
+		- (1 + k) * ft_vec3multscale(ray.dir, form->cone.dir) *
+		ft_vec3multscale(ray.dir, form->cone.dir);
+	b = 2 * (ft_vec3multscale(ray.dir, oc) - (1 + k) *
+			ft_vec3multscale(ray.dir, form->cone.dir) *
+			ft_vec3multscale(oc, form->cone.dir));
+	k = ft_vec3multscale(oc, oc) - (1 + k) *
+		ft_vec3multscale(oc, form->cone.dir) *
+		ft_vec3multscale(oc, form->cone.dir);
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);
@@ -93,13 +93,14 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 	double k;
 	t_vec3 norm;
 
-	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
-	oc = vect_sub(hit, cone.org);
-	if (vect_mult_scale(cone.dir, oc) < 0)
-		cone.dir = vect_scale(-1.0, cone.dir);
+	hit = vect_add(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'));
+	oc = ft_vec3vop_r(hit, cone.org, '-');
+	if (ft_vec3multscale(cone.dir, oc) < 0)
+		cone.dir = ft_vec3sop_r(cone.dir, -1.0, '*');
 	k = 1 / cos(cone.theta / 2.0);
-	height = norme_vect(vect_scale(k, oc));
-	norm = normal_vect(vect_sub(oc, vect_scale(height, cone.dir)));
+	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
+	norm = normal_vect(ft_vec3vop_r(oc, \
+				ft_vec3sop_r(cone.dir, height, '*'), '-'));
 	return (norm);
 }
 
