@@ -1,0 +1,39 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.09 </amb_light>
+	</engine>
+
+	<cameras>
+
+		<camera>
+			<origin> 0.0, -10.0, 10.0 </origin>
+			<look_at> 0.0, -6.0, -1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.0, 4. </position>
+			<color> 1., 0., 0., 1. </color>
+		</light>
+	</lights>
+
+	<objects>
+		<sphere>
+			<center> 1.0, -2.5, -8. </center>
+			<radius> 2. </radius>
+			<material>
+				<color> 1., 0., 1., 0. </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
+	</objects>
+</scene>
