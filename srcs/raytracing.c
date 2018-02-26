@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 17:42:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 17:46:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 		if (pthread_equal(id, setup->thrd[i]))
 			break ;
 	pix.y = inc * i - 1;
-	pthread_mutex_lock(&setup->mutex.mutex);
+	//pthread_mutex_lock(&setup->mutex.mutex);
 	while (++pix.y <= (int)(inc * (i + 1) - 1))
 	{
 		pix.x = -1;
@@ -66,6 +66,6 @@ void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de rende
 					coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), setup)));
 		}
 	}
-	pthread_mutex_unlock(&setup->mutex.mutex);
+	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }
