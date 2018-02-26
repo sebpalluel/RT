@@ -100,17 +100,6 @@ on doit :
  ** set la hit_col a la couleur de l'objet rencontré
  */
 
-/* COMMENT 1
- **	t_vec2 hit_text; // pas besoin pour l'instant?
- **	ft_get_surface_data(&hit_point, &hit_nrml, &hit_text); set hit_nrml et hit_text, pour shader le point, permet meilleur calcul de la couleur
- **	// Use the normal and texture coordinates to shade the hit point.
- **	// The normal is used to compute a simple facing ratio and the texture coordinate
- **	// to compute a basic checker board pattern
- **	float scale = 4;
- **	float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
- **	hitColor = std::max(0.f, Nhit.dotProduct(-dir)) * mix(hitObject->color, hitObject->color * 0.8, pattern);
- */
-
 t_col mult_scale_col_limited(double t, t_col col)
 {
 	col.r = col.r * t;
@@ -142,12 +131,9 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 
 t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 {
-	// double shade;
 	t_col hit_col;
 	t_forms *form;
-	/* en dur en attendant */
 	t_lgt *light = LGT(SCN.lgts);
-	/* FIN en dur en attendant */
 	t_vec3 hit_nrml = {0,0,0};
 	hit_col = setup->background;
 	i = 0;
@@ -186,18 +172,15 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 			hit_col.b = 0.;
 			hit_col.s = 1.;
 		}
-
-		// lightDir = pos - P;
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		t_ray  sdw_ray;
-		// sdw_ray.org = hit_point;
 		double bias = 0.0001;
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
 		// if (ft_trace(&sdw_ray, setup))
 		// 	hit_col = mult_scale_col(0., hit_col);
-}
-return (hit_col);
+	}
+	return (hit_col);
 }
 
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
