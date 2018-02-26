@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 13:00:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:16:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,16 +284,16 @@ void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 	dst->z = c;
 }
 
-void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
+void multVecMatrix(t_vec3 src, t_vec3 *dst, double **x) {
 	double a;
 	double b;
 	double c;
 	double w;
 
-	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0] + x[3][0];
-	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1] + x[3][1];
-	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2] + x[3][2];
-	w = src->x * x[0][3] + src->y * x[1][3] + src->z * x[2][3] + x[3][3];
+	a = src.x * x[0][0] + src.y * x[1][0] + src.z * x[2][0] + x[3][0];
+	b = src.x * x[0][1] + src.y * x[1][1] + src.z * x[2][1] + x[3][1];
+	c = src.x * x[0][2] + src.y * x[1][2] + src.z * x[2][2] + x[3][2];
+	w = src.x * x[0][3] + src.y * x[1][3] + src.z * x[2][3] + x[3][3];
 
 	dst->x = a / w;
 	dst->y = b / w;
@@ -302,14 +302,6 @@ void multVecMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
 
 // TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
 // TODO Refacto
-
-//static size_t	ft_get_y_draw_from_thread(size_t *i)
-//{
-//	size_t		inc;
-//	int			num_thread;
-//
-//
-//}
 
 static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 {
@@ -328,39 +320,28 @@ static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 	ray->dist = MAX_INT;
 }
 
-void			*ft_raytracing(void *a) // Nathan: en fait ici c est la fonction de render
+void			*ft_raytracing(void *a)
 {
-	/* on a trop de variable ici*/
-	/* isoler thread ? */
 	t_setup		*setup;
 	t_pix		pix;
 	t_ray		ray;
-	/* ici on doit init avec la position de la camera */
-	t_vec3 orig = {0.0, 0.0, 0.0};
-	t_col	col;
-	pthread_t	id;
-	int			i;
+	size_t		thread_n;
 	size_t		inc;
 
 	setup = (t_setup *)a;
-	multVecMatrix(&orig, &ray.org, setup->camToWorld); // ft_setup_cam(setup); // fonction qui permet d'initialiser la camera suivant les donnee du parser
-	// ft_vec3normalize(&ray.org); TODO voir si besoin
-	id = pthread_self();
-	i = -1;
+	multVecMatrix(ft_vec3_r(0., 0., 0.), &ray.org, setup->camToWorld);
 	inc = SCN.height / THREAD;
-	while (++i < THREAD) // permet d'identifier dans quel thread on est
-		if (pthread_equal(id, setup->thrd[i]))
-			break ;
-	pix.y = inc * i - 1;
+	thread_n = ft_get_thread_n(setup);
+	pix.y = inc * thread_n - 1;
 	pthread_mutex_lock(&setup->mutex.mutex);
-	while (++pix.y <= (int)(inc * (i + 1) - 1))
+	while (++pix.y <= (int)(inc * (thread_n + 1) - 1))
 	{
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 		{
 			ft_init_primray(setup, pix, &ray);
-			col = ft_cast_ray(pix.x, pix.y, ray, setup);
-			ft_put_pixel(setup, pix.x, pix.y, ft_coltoi(col)); //TODO adapt here for scene
+			ft_put_pixel(setup, pix.x, pix.y, \
+					ft_coltoi(ft_cast_ray(pix.x, pix.y, ray, setup)));
 		}
 	}
 	pthread_mutex_unlock(&setup->mutex.mutex);
