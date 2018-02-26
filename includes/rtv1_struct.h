@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 17:53:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 18:24:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@ typedef struct		s_mutex
 	pthread_mutex_t	mutex;
 }					t_mutex;
 
-//////////TODO Eliot
-
-typedef struct	s_col
-{
-	double r;
-	double g;
-	double b;
-	double s;
-}				t_col;
 
 typedef struct		s_env
 {
