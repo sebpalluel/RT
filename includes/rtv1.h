@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 10:47:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 16:33:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../includes/rtv1_struct.h"
 # include "../includes/rtv1_define.h"
 # include <time.h>
+# include <sys/time.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
