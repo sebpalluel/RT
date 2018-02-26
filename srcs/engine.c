@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:18:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:14:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void		ft_create_new_window(t_setup *setup)
 												SCN.height, setup->path)) || \
 			!(SCN.img = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height))))
 		setup->error = ERROR;
+	else
+		SCN.win->mlx_ptr = setup->mlx_ptr;
 }
 
 size_t			ft_engine(t_list **list)

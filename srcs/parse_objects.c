@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:50:02 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:57:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:22:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		ft_getlights(t_setup *setup, t_list **env, char *light_str)
 		ft_getvaluetoenv(env, light, "position");
 		ft_getvaluetoenv(env, light, "color");
 		no_lght = OK;
+		free(light);
 	}
 	if (no_lght != OK)
 		setup->error = LIGHT_ERROR;
@@ -43,6 +44,7 @@ void		ft_getcams(t_list **env, char *cam_str)
 		ft_lstaddend(env, ft_newenv(ft_strdup("camera"), NULL));
 		ft_getvaluetoenv(env, cam, "origin");
 		ft_getvaluetoenv(env, cam, "look_at");
+		free(cam);
 	}
 }
 

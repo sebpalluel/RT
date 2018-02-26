@@ -6,11 +6,19 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:19:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:12:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+static void		ft_free(char *objstart, char *objend)
+{
+	if (objstart)
+		ft_strdel(&objstart);
+	if (objend)
+		ft_strdel(&objend);
+}
 
 static char		*ft_extractobj(size_t len, char *from_begin, char *from_end)
 {
@@ -36,17 +44,20 @@ char			*ft_getobjstr(char *str, char *obj, int num)
 
 	objstr = NULL;
 	from_begin = NULL;
+	from_end = NULL;
 	objstart = ft_strjoinfree(ft_strdup("<"), ft_strjoin(obj, ">"), 0);
 	objend = ft_strjoinfree(ft_strdup("</"), ft_strjoin(obj, ">"), 0);
 	if (objstart && objend)
 	{
 		if (!(from_begin = ft_strstrn(str, objstart, num)) || \
 				!(from_end = ft_strstr(from_begin, objend)))
+		{
+			ft_free(objstart, objend);
 			return (NULL);
+		}
 		objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
 	}
-	ft_strdel(&objstart);
-	ft_strdel(&objend);
+	ft_free(objstart, objend);
 	return (objstr);
 }
 
@@ -79,7 +90,13 @@ t_list			*ft_parse_scn(t_setup *setup, char *file)
 	LGT_S = ft_getobjstr(scene, "lights", 0);
 	if (setup->error == OK && !(OBJ_S = ft_getobjstr(scene, "objects", 0)))
 		setup->error = OBJ_ERROR;
+	if (scene)
+		free(scene);
+	free(file);
 	if (setup->error != OK)
+	{
+		ft_tabfree((void*)parsed);
 		return (NULL);
+	}
 	return (ft_envlistfromparse(setup, parsed));
 }
