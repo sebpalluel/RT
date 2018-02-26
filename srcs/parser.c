@@ -6,26 +6,18 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 14:57:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:12:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static void		ft_free(char *objstart, char *objend, char *from_begin, \
-		char *from_end)
+static void		ft_free(char *objstart, char *objend)
 {
-	printf("objstart %s\n", objstart);
 	if (objstart)
 		ft_strdel(&objstart);
 	if (objend)
 		ft_strdel(&objend);
-	if (from_begin)
-		ft_strdel(&from_begin);
-	printf("from_end %p\n", from_end);
-	if (from_end)
-		ft_strdel(&from_end);
-	printf("end free\n");
 }
 
 static char		*ft_extractobj(size_t len, char *from_begin, char *from_end)
@@ -60,12 +52,12 @@ char			*ft_getobjstr(char *str, char *obj, int num)
 		if (!(from_begin = ft_strstrn(str, objstart, num)) || \
 				!(from_end = ft_strstr(from_begin, objend)))
 		{
-			ft_free(objstart, objend, NULL, NULL);
+			ft_free(objstart, objend);
 			return (NULL);
 		}
 		objstr = ft_extractobj(ft_strlen(objstart), from_begin, from_end);
 	}
-	ft_free(objstart, objend, NULL, NULL);
+	ft_free(objstart, objend);
 	return (objstr);
 }
 

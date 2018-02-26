@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 14:23:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:10:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void		ft_getmaterial(t_list **env, char *mat_str)
 	ft_getvaluetoenv(env, mat_str, "color");
 	ft_getvaluetoenv(env, mat_str, "diffuse");
 	ft_getvaluetoenv(env, mat_str, "specular");
+	free(mat_str);
 }
