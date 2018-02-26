@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 13:16:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:26:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,7 +320,7 @@ static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 	ray->dist = MAX_INT;
 }
 
-void			*ft_raytracing(void *a)
+void			*ft_raytracing(void *cam)
 {
 	t_setup		*setup;
 	t_pix		pix;
@@ -328,8 +328,8 @@ void			*ft_raytracing(void *a)
 	size_t		thread_n;
 	size_t		inc;
 
-	setup = (t_setup *)a;
-	multVecMatrix(ft_vec3_r(0., 0., 0.), &ray.org, setup->camToWorld);
+	setup = get_st();
+	multVecMatrix(((t_cam *)cam)->org, &ray.org, setup->camToWorld);
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;

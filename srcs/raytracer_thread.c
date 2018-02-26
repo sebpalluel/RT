@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 13:16:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:22:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				ft_raytracing_thread(t_setup *setup)
 	ft_look_at(setup, cam);
 	i = -1;
 	while (++i < THREAD)
-		pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup);
+		pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)cam);
 	i = -1;
 	while (++i < THREAD)
 		pthread_join(setup->thrd[i], NULL);
