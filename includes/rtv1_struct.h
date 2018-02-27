@@ -68,14 +68,12 @@ typedef struct		s_sph
 {
 	t_vec3			ctr;
 	double			r;
-	t_mat			mat;
 }					t_sph;
 
 typedef struct		s_plan
 {
 	t_vec3			nrml;
 	t_vec3			pos;
-	t_mat			mat;
 }					t_plan;
 
 typedef struct		s_cone
@@ -83,7 +81,6 @@ typedef struct		s_cone
 	t_vec3			org;
 	t_vec3			dir;
 	double			theta;
-	t_mat			mat;
 }					t_cone;
 
 typedef struct		s_cldre
@@ -91,7 +88,6 @@ typedef struct		s_cldre
 	t_vec3			pos;
 	t_vec3			dir;
 	double			r;
-	t_mat			mat;
 }					t_cldre;
 
 typedef struct		s_forms
@@ -103,6 +99,7 @@ typedef struct		s_forms
 	t_cone			cone;
 	t_cldre			cldre;
 	t_vec3			norm;
+	t_mat mat;
 }					t_forms;
 
 typedef struct		s_ray

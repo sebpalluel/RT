@@ -19,12 +19,12 @@ void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENV(env)->name, "radius") == 0)
 		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, ENV(env)->value);
+		flag[2] = ft_getcolfromenv(&FORM(form)->mat.col, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&SPHERE(form).mat.diffuse, \
+		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
 				ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&SPHERE(form).mat.specular, \
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENV(env)->value);
 	FORM(form)->num_arg++;
 }

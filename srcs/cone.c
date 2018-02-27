@@ -21,11 +21,11 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENV(env)->name, "degres") == 0)
 		flag[2] = ft_getdoublefromenv(&CONE(form).theta, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "color") == 0)
-		flag[3] = ft_getcolfromenv(&CONE(form).mat.col, ENV(env)->value);
+		flag[3] = ft_getcolfromenv(&FORM(form)->mat.col, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
-		flag[4] = ft_getdoublefromenv(&CONE(form).mat.diffuse, ENV(env)->value);
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "specular") == 0)
-		flag[5] = ft_getdoublefromenv(&CONE(form).mat.specular, \
+		flag[5] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENV(env)->value);
 	FORM(form)->num_arg++;
 }
