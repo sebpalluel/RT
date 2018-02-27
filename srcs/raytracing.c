@@ -177,7 +177,9 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
 		ft_vec3normalize(&sdw_ray.dir);
-		sdw_ray.dist = ray.dist;
+		t_vec3 tmp;
+		tmp = ft_vec3vop_r(hit_point, light->vect, '-');
+		sdw_ray.dist = sqrt(ft_dotproduct(tmp, tmp));
 		if (ft_trace(&sdw_ray, setup))
 			hit_col = mult_scale_col(0., hit_col);
 	}
