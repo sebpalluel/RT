@@ -1,0 +1,76 @@
+<scene>
+
+	<engine>
+		<width> 800 </width>
+		<height> 600 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.09 </amb_light>
+	</engine>
+
+	<cameras>
+    <camera>
+      <origin> 0.0, 0.0, -1.0 </origin>
+      <look_at> 0.0, 0.0, 0.0 </look_at>
+    </camera>
+	</cameras>
+
+	<lights>
+
+		<light>
+			<type> 0 </type>
+			<position> -0.15, 0., 0.25 </position>
+			<color> 1., 1., 1., 1.3 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<cone>
+			<origin> -0.25, -0.15, 2.1 </origin>
+			<direction> 0.5, 1, 0. </direction>
+			<degres> 70 </degres>
+			<material>
+				<color> 1.0, 1.0, 0.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 0.2 </specular>
+			</material>
+		</cone>
+    <sphere>
+			<center> 0.065, -0.25, 2.15 </center>
+			<radius> 0.28 </radius>
+			<material>
+				<color> 1.0, 0.1, 0.0, 0. </color>
+				<diffuse> 2.5 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</sphere>
+    <cylindre>
+			<origin> 0.3, 0., 2.1 </origin>
+			<direction> -0.65, 0.7, 0. </direction>
+			<radius> 0.15 </radius>
+			<material>
+				<color> 0.19, 1., 0.0, 1.0 </color>
+				<diffuse> 0.7 </diffuse>
+				<specular> 1. </specular>
+			</material>
+		</cylindre>
+		<plane>
+			<normale> 0.0, 1.0, 0 </normale>
+			<position> 0., -0.5, 6. </position>
+			<material>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 0.2 </specular>
+			</material>
+		</plane>
+    <plane>
+			<normale> 0.0, 0.0, 1 </normale>
+			<position> 0., 0.0, 6. </position>
+			<material>
+				<color> 0.0, 0.5, 1.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
+				<specular> 0.2 </specular>
+			</material>
+		</plane>
+	</objects>
+</scene>
