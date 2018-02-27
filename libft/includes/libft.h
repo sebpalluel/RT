@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 15:57:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:53:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,13 @@ double			ft_vec3dist(t_vec3 p1, t_vec3 p2);
 t_vec3			ft_vec3unit(t_vec3 from);
 t_vec3			ft_vec3add3(t_vec3 a, t_vec3 b, t_vec3 c);
 t_vec3			ft_vec3multscale_r(t_vec3 v, double a);
+t_vec3			ft_vec3addscale_r(t_vec3 v, double a);
 double			ft_vec3norm(t_vec3 u);
+t_vec3			ft_vec3sub_r(t_vec3 a, t_vec3 b);
+t_vec3			ft_vec3add_r(t_vec3 a, t_vec3 b);
+t_vec3			ft_vec3mult_r(t_vec3 a, t_vec3 b);
+t_vec3			ft_vec3div_r(t_vec3 a, t_vec3 b);
+t_vec3			ft_vec3cross_r(t_vec3 a, t_vec3 b);
 double			ft_dotproduct(t_vec3 a, t_vec3 b);
 float			ft_sqrtf(float n);
 double			ft_invsqrt(double number);
