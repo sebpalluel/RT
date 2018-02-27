@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:19:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:18:48 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENV(env)->name, "color") == 0)
 		flag[2] = ft_getcolfromenv(&FORM(form)->mat.col, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, ENV(env)->value);
+		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
+				ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENV(env)->value);
