@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 19:03:34 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/27 19:18:51 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -56,7 +56,6 @@ SRCNAME 	=	main.c \
 				parse_forms.c \
 				parse_objects.c \
 				parse_to_env_utils.c \
-				color.c \
 				forms.c \
 				singleton.c \
 				ray.c \
@@ -66,7 +65,6 @@ SRCNAME 	=	main.c \
 				normals.c
 				#draw.c \
 				#raycaster.c \
-				#color.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))

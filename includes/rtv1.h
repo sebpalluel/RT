@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:11:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 19:18:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,6 @@ t_bool		ft_plane_param(t_ray *ray, t_forms *form, double *t);
 t_bool		ft_sphere_param(t_ray *ray, t_forms *form, double *t);
 /* TODO Eliot functions */
 t_setup		*get_st(void);
-t_col		addcol(t_col col1, t_col col2);
-t_col		mult_scale_col(double t, t_col col);
-t_col		multcol(t_col col1, t_col col2);
-t_col		init_col(double r, double g, double b, double s);
-t_col		interpolcol(t_col col1, t_col col2, double t);
 t_vec3		init_vec3(double x, double y, double z);
 t_vec3		vect_scale(double a, t_vec3 v);
 t_vec3		vect_mult(t_vec3 u, t_vec3 v);
