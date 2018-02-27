@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 20:05:06 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 11:45:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t			ft_cone(t_list **list)
 		ft_cone_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, NVARCONE) != OK)
 		return (setup->error = CONE_ERROR);
-	CONE(form).dir = normal_vect(CONE(form).dir);
+	CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);
 	*list = env;
 	return (OK);
 }
@@ -99,7 +99,7 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 		cone.dir = ft_vec3sop_r(cone.dir, -1.0, '*');
 	k = 1 / cos(cone.theta / 2.0);
 	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
-	norm = normal_vect(ft_vec3vop_r(oc, \
+	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
 				ft_vec3sop_r(cone.dir, height, '*'), '-'));
 	return (norm);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 13:15:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 11:46:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 
 static void		ft_create_new_window(t_setup *setup)
 {
-	//TODO adapt here for scene
 	if (!(SCN.win = (t_mlx *)ft_memalloc(sizeof(t_mlx))) || \
 			(!(SCN.win->win_ptr = mlx_new_window(setup->mlx_ptr, SCN.width, \
 												 SCN.height, setup->path)) || \
