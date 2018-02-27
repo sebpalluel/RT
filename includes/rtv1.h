@@ -93,17 +93,17 @@ double		hit_plan(t_ray ray, t_forms *form);
 double		hit_sphere(t_ray ray, t_forms *form);
 double		hit_cone(t_ray ray, t_forms *form);
 double		hit_cyl(t_ray ray, t_forms *form);
-int			hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
+double		hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
 
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
 t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
 t_col		intersec_cone(t_ray ray, t_list *con, t_setup *setup);
 t_col		intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup);
 
-t_vec3			normal_plane(t_ray ray, t_list *plane);
-t_vec3	normal_cyl(t_ray ray, t_list *cyl);
-t_vec3	normal_cone(t_ray ray, t_list *cone);
-t_vec3			normal_sphere(t_ray ray, t_list *sph);
+t_vec3		normal_plane(t_ray ray, t_list *plane);
+t_vec3		normal_cyl(t_ray ray, t_list *cyl);
+t_vec3		normal_cone(t_ray ray, t_list *cone);
+t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 

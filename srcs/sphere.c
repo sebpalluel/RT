@@ -83,6 +83,7 @@ double			hit_sphere(t_ray ray, t_forms *form)
 t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 {
 	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_sphere(ray, sph);

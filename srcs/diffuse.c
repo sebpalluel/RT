@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
+double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 {
 	double		dist;
 	t_vec3		dir;
@@ -37,8 +37,8 @@ int				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 		form = form->next;
 	}
 	if (ombre && ombre == obj)
-		return (0);
-	return (1);
+		return (ray.dist);
+	return (-1);
 }
 
 double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
@@ -55,7 +55,7 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 	phongterm = ft_vec3dot(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
-	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s);
+	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s); //pas tres physiquement possible une lumieère avec un specule
 	return (phongterm);
 }
 
@@ -68,6 +68,7 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 {
 	double		lmbrt;
+	double		dist;
 	t_col		col;
 	t_col		spec;
 	t_list		*lgt;
@@ -75,11 +76,11 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 
 	setup = get_st();
 	col = setup->background;
-	spec = col;
 	lgt = SCN.lgts;
+	spec = col;
 	while (lgt)
 	{
-		if (hit_obj(LGT(lgt), ray, SCN.forms, form))
+		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
 		{
 			lgt = lgt->next;
 			continue ;
@@ -87,10 +88,11 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
+		dist *= dist;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(ft_colmult(
-							col_obj, LGT(lgt)->col), SCN.expo), lmbrt * lmbrt), col);
+							col_obj, LGT(lgt)->col), SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						LGT(lgt)->col, phong(ray, col_obj, norm, lgt)), SCN.expo));
+						LGT(lgt)->col, phong(ray, col_obj, norm, lgt)), SCN.expo / dist));
 		lgt = lgt->next;
 	}
 	return (ft_coladd(spec, col));
