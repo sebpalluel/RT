@@ -73,7 +73,7 @@ void			illuminate(t_hit *hit, t_mat mat, t_lgt *light)
 	ft_vec3normalize(&lightdir);
 	dist = sqrt(r2);
 	lambert = max(0, ft_dotproduct(hit->nrml, lightdir));
-	hit->col = mult_scale_col_limited(lambert * lambert * 4, \
+	hit->col = mult_scale_col_limited(lambert, \
 			mult_scale_col_limited(mat.diffuse, mat.col));
 }
 
