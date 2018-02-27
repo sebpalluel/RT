@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/21 14:19:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 13:40:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ void		ft_getlights(t_setup *setup, t_list **env, char *light_str)
 		ft_getvaluetoenv(env, light, "type");
 		ft_getvaluetoenv(env, light, "position");
 		ft_getvaluetoenv(env, light, "color");
-		//ft_getvaluetoenv(env, light, "intensity");
-		//ft_getvaluetoenv(env, light, "radius");
-		//ft_getvaluetoenv(env, light, "fallof");
-		//ft_getvaluetoenv(env, light, "focal_len");
-		//ft_getvaluetoenv(env, light, "direction");
 		no_lght = OK;
 	}
 	if (no_lght != OK)

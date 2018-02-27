@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 17:44:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 13:55:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ size_t		ft_cylindre(t_list **list);
 t_parse_obj	*parse_obj(void);
 void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
 int			ft_raytracing_thread(t_setup *setup);
+size_t		ft_get_thread_n(t_setup *setup);
 void		ft_setup_cam(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 
