@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 14:07:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 19:13:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ typedef struct		s_mutex
 	int var;
 	pthread_mutex_t	mutex;
 }					t_mutex;
-
-typedef struct		s_matrix
-{
-	int				i;
-	int				j;
-	double			**mat;
-}					t_matrix;
 
 typedef struct		s_env
 {
