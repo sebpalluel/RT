@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 19:31:09 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:02:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:48:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ typedef struct		s_pix
 	int				y;
 	int				z;
 }					t_pix;
+
+typedef struct		s_matrix
+{
+	int				i;
+	int				j;
+	double			**mat;
+}					t_matrix;
 
 typedef struct		s_color
 {
