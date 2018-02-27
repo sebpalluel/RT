@@ -18,36 +18,25 @@ double max(double a, double b) {
 	return (a >= b ? a : b);
 }
 
-/*
- **	test les intersections rayon | forme
- **	au retour de la fonction on a:
- **		la forme la plus proche rencontrée dans form
- **		la distance a cette cette forme dans ray.dist
- */
 t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 {
-	// double		dist;
 	t_forms		*form;
 	double		t_near;
 	double		t;
 	t_list		*list;
 
 	t = MAX_INT;
-	// t = inf;
 	t_near = ray->dist == -1 ? MAX_INT : ray->dist;
 	form = NULL;
-	// dist = 0;
 	list = SCN.forms;
-	while (list) /* itere sur tous les objets de la scene */
+	while (list)
 	{
 		ray->hit = FALSE;
 		if (FORM(list)->type <= 3)
 		{
-			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t); /* test la routine d intersection correspondant a l objet */
+			ray->hit = param()[FORM(list)->type](ray, FORM(list), &t);
 			if ((ray->hit == TRUE && t < t_near))
 			{
-				// ICI CHECK SI L OBJET RENCONTRE DANS LE SHADOW RAY EST AVANT LA SOURCE DE LUMIERE (t < ray->dist)
-				// SAUF QUE CA MARCHE PAS IL TRAVERSE LA LUMIERE
 				t_near = t;
 				ray->dist = t_near;
 				form = FORM(list);
@@ -57,49 +46,6 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 	}
 	return (form);
 }
-
-// static t_bool	ft_trace_shadow(t_ray *ray, t_setup *setup, t_forms *obj)
-// {
-// 	t_forms		*shadow;
-//
-// 	shadow = ft_trace(ray, setup);
-// 	if (shadow && shadow != obj)
-// 		return (TRUE);
-// 	return (FALSE);
-// }
-/*
-   void ft_get_surface_data(t_vec3 *hit_point, t_vec3 *hit_nrml, t_vec3 *hit_text)
-   {
- *
- **	void getSurfaceData(const Vec3f &Phit, Vec3f &Nhit, Vec2f &tex) const
- **  {
- ** 			Set surface data such as normal and texture coordinates at a given point on the surface
- ** 			\param Phit is the point ont the surface we want to get data on
- ** 			\param[out] Nhit is the normal at Phit
- ** 			\param[out] tex are the texture coordinates at Phit
- **************
- **      Nhit = Phit - center; () (calcul de la normale au point d'intersection) pour la sphere
- **      Nhit.normalize();  On normalise le vecteur
- **************
- **      In this particular case, the normal is simular to a point on a unit sphere
- **      centred around the origin. We can thus use the normal coordinates to compute
- **      the spherical coordinates of Phit.
- **      atan2 returns a value in the range [-pi, pi] and we need to remap it to range [0, 1]
- **      acosf returns a value in the range [0, pi] and we also need to remap it to the range [0, 1]
- **************
- **      tex.x = (1 + atan2(Nhit.z, Nhit.x) / M_PI) * 0.5; -> a defini je suis pas mega au clair
- **      tex.y = acosf(Nhit.y) / M_PI;
- **  }
- *
- }
-
- TODO Notes sur ft_cast_ray
-
-// retourne couleur de l'objet
-on doit :
- ** trouver l'objet
- ** set la hit_col a la couleur de l'objet rencontré
- */
 
 t_col mult_scale_col_limited(double t, t_col col)
 {
@@ -145,35 +91,16 @@ t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
 		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		hit_nrml = get_nrml()[form->type](ray, form);
 		if (form->type == SPH)
-		{
-			hit_col = form->sph.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
-		}
 		else if (form->type == PLN)
-		{
-			hit_col = form->plan.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
-		}
 		else if (form->type == CON)
-		{
-			hit_col = form->cone.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
-		}
 		else if (form->type == CYL)
-		{
-			hit_col = form->cldre.mat.col;
 			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
-		}
-		else
-		{
-			hit_col.r = 1.;
-			hit_col.g = 0.;
-			hit_col.b = 0.;
-			hit_col.s = 1.;
-		}
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
 		t_ray  sdw_ray;
-		double bias = 0.000001;
+		double bias = 0.0001;
 		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
 		ft_vec3normalize(&sdw_ray.dir);
@@ -215,9 +142,6 @@ void multVecMatrix(t_vec3 src, t_vec3 *dst, double **x) {
 	dst->y = b / w;
 	dst->z = c / w;
 }
-
-// TODO CameraToWorld transfo https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays
-// TODO Refacto
 
 static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 {
