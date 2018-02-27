@@ -56,6 +56,16 @@ size_t			ft_plane(t_list **list)
 	return (OK);
 }
 
+t_vec3			normale_plane(t_ray ray, t_list *plane)
+{
+	t_vec3	norm;
+
+	norm = PLAN(plane).nrml;
+    if (ft_vec3dot(PLAN(plane).nrml, ray.dir) > 0)
+		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '+');
+	return (norm);
+}
+
 double	hit_plan(t_ray ray, t_forms *form)
 {
 	double a;
@@ -75,7 +85,7 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 
 	if (ray.dist >= 0.0)
 	{
-		norm = PLAN(pln).nrml;
+		norm = normale_plane(ray, pln);
 		return (diffuse(norm, pln, ray, PLAN(pln).mat.col));
 	}
 	return (setup->background);
