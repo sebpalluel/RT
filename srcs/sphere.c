@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 15:43:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:06:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ size_t			ft_sphere(t_list **list)
 	return (OK);
 }
 
-double	hit_sphere(t_ray ray, t_forms *form)
+double			hit_sphere(t_ray ray, t_forms *form)
 {
-	t_vec3 oc;
-	double a;
-	double b;
-	double c;
-	double delta;
+	t_vec3		oc;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
 
-	oc = vect_sub(ray.org, form->sph.ctr);
-	a = vect_mult_scale(ray.dir, ray.dir);
-	b = 2.0 * vect_mult_scale(ray.dir, oc);
-	c = vect_mult_scale(oc, oc) - (form->sph.r * form->sph.r);
+	oc = ft_vec3vop_r(ray.org, form->sph.ctr, '-');
+	a = ft_vec3multscale(ray.dir, ray.dir);
+	b = 2.0 * ft_vec3multscale(ray.dir, oc);
+	c = ft_vec3multscale(oc, oc) - (form->sph.r * form->sph.r);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
@@ -79,8 +79,8 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		norm = normal_vect(vect_sub(vect_add(ray.org, \
-						vect_scale(ray.dist, ray.dir)), SPHERE(sph).ctr));
+		norm = ft_vec3normalize_r(ft_vec3vop_r(vect_add(ray.org, \
+						ft_vec3sop_r(ray.dir, ray.dist, '*')), SPHERE(sph).ctr, '-'));
 		return (diffuse(norm, sph, ray, SPHERE(sph).mat.col));
 	}
 	return (setup->background);

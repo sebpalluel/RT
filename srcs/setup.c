@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/20 11:05:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:13:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static size_t	ft_init_mlx_img(t_setup *setup)
 	if (!(UI_WIN = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (ERROR);
 	setup->mlx_ptr = mlx_init();
+	UI_WIN->mlx_ptr = setup->mlx_ptr;
 	UI_WIN->win_ptr = mlx_new_window(setup->mlx_ptr, setup->width, setup->height, \
 			"rtv1 GUI");
 	if (!(UI_IMG = ft_imgnew(setup->mlx_ptr, setup->width, setup->height)))
@@ -80,32 +81,9 @@ t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des raco
 	return (setup);
 }
 
-static void		ft_setup_delete(t_setup *setup)
-{
-	if (setup)
-	{
-	//	// TODO do the right functions to free everything
-	//	//ft_mlxdelete(UI_WIN, UI_IMG);
-	//	if (OBJS)
-	//	{
-	//		if (PLANE)
-	//			free(PLANE);
-	//		if (SPHERE)
-	//			free(SPHERE);
-	//		if (OBJS->cam)
-	//			free(OBJS->cam);
-	//		if (OBJS->light)
-	//			free(OBJS->light);
-	//		free(OBJS);
-	//	}
-	//	if (SCN.fd)
-	//		ft_fd_delete(SCN.fd);
-	}
-}
-
 int				ft_quit(t_setup *setup)
 {
+		ft_setup_free(setup);
 		usage(setup->error);
-		ft_setup_delete(setup);
 		exit(0);
 }
