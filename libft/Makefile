@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/23 16:06:06 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/27 19:07:28 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -166,12 +166,18 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(GFXPATH)ft_hexcolor.c\
 			$(GFXPATH)ft_colortohex.c\
 			$(GFXPATH)ft_coltoi.c\
+			$(GFXPATH)ft_coladd.c\
+			$(GFXPATH)ft_colmultscale.c\
+			$(GFXPATH)ft_colmult.c\
+			$(GFXPATH)ft_col_r.c\
+			$(GFXPATH)ft_colinterpol.c\
 			$(GFXPATH)ft_mlxdelete.c\
 			$(GFXPATH)ft_imgclean.c\
 			$(GFXPATH)ft_imgdel.c\
 			$(GFXPATH)ft_imgnew.c\
 			$(GFXPATH)ft_xmpnew.c\
 			$(GFXPATH)ft_initwindow.c\
+			$(GFXPATH)ft_matrixzero.c\
 			$(GFXPATH)ft_matrixadd.c\
 			$(GFXPATH)ft_matrixhomothety.c\
 			$(GFXPATH)ft_matrixmult.c\
@@ -180,14 +186,23 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(GFXPATH)ft_matrixroty.c\
 			$(GFXPATH)ft_matrixrotz.c\
 			$(GFXPATH)ft_matrixtranslate.c\
-			$(GFXPATH)ft_matrixzero.c\
+			$(GFXPATH)ft_matrixinit.c\
 			$(GFXPATH)ft_pixcpy.c\
 			$(GFXPATH)ft_pixnew.c\
 			$(GFXPATH)ft_pixpopulate.c\
 			$(GFXPATH)ft_vec3cpy.c\
 			$(GFXPATH)ft_vec3new.c\
 			$(GFXPATH)ft_vec3_r.c\
+			$(GFXPATH)ft_vec3dot.c\
+			$(GFXPATH)ft_vec3sub_r.c\
+			$(GFXPATH)ft_vec3add_r.c\
+			$(GFXPATH)ft_vec3mult_r.c\
+			$(GFXPATH)ft_vec3div_r.c\
+			$(GFXPATH)ft_vec3cross_r.c\
+			$(GFXPATH)ft_vec3multscale_r.c\
+			$(GFXPATH)ft_vec3addscale_r.c\
 			$(GFXPATH)ft_vec3populate.c\
+			$(GFXPATH)ft_vec3norm.c\
 			$(GFXPATH)ft_vec3normalize.c\
 			$(GFXPATH)ft_vec3normalize_r.c\
 			$(GFXPATH)ft_vec3dist.c\

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_coladd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 19:04:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:04:38 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/26 19:50:45 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/26 19:55:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+t_col		ft_coladd(t_col col1, t_col col2)
 {
-	double	**mat;
-	int		x;
-	int		y;
+	t_col	col;
 
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	col.r = col1.r + col2.r;
+	if (col.r > 1)
+		col.r = 1;
+	col.g = col1.g + col2.g;
+	if (col.g > 1)
+		col.g = 1;
+	col.b = col1.b + col2.b;
+	if (col.b > 1)
+		col.b = 1;
+	return (col);
 }
