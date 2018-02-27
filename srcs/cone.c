@@ -96,11 +96,19 @@ t_vec3	normal_cone(t_ray ray, t_list *cone)
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	oc = ft_vec3vop_r(hit, CONE(cone).org, '-');
 	if (ft_vec3dot(CONE(cone).dir, oc) < 0)
-		CONE(cone).dir = ft_vec3sop_r(CONE(cone).dir, -1.0, '*');
-	k = 1 / cos(CONE(cone).theta / 2.0);
-	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
-	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
+	{
+			k = 1 / cos(CONE(cone).theta / 2.0);
+		height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
+		norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
+				ft_vec3sop_r(CONE(cone).dir, -height, '*'), '-'));
+	}
+	else
+	{
+		k = 1 / cos(CONE(cone).theta / 2.0);
+		height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
+		norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
 				ft_vec3sop_r(CONE(cone).dir, height, '*'), '-'));
+	}
 	return (norm);
 }
 
