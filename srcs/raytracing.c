@@ -76,15 +76,13 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 	return (hit_col);
 }
 
-t_col ft_cast_ray(int i, int j, t_ray ray, t_setup *setup)
+t_col ft_cast_ray(t_ray ray, t_setup *setup)
 {
 	t_col hit_col;
 	t_forms *form;
 	t_lgt *light = LGT(SCN.lgts);
 	t_vec3 hit_nrml = {0,0,0};
 	hit_col = setup->background;
-	i = 0;
-	j = 0;
 	form = NULL;
 	if ((form = ft_trace(&ray, setup)))
 	{
@@ -182,7 +180,7 @@ void			*ft_raytracing(void *cam)
 		{
 			ft_init_primray(setup, pix, &ray);
 			ft_put_pixel(setup, pix.x, pix.y, \
-					ft_coltoi(ft_cast_ray(pix.x, pix.y, ray, setup)));
+					ft_coltoi(ft_cast_ray(ray, setup)));
 		}
 	}
 	pthread_mutex_unlock(&setup->mutex.mutex);
