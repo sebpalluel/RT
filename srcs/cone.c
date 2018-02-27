@@ -85,7 +85,7 @@ double	hit_cone(t_ray ray, t_forms *form)
 	return ((-b - sqrt(delta)) / (2.0 * a));
 }
 
-t_vec3	normal_cone(t_ray ray, t_cone cone)
+t_vec3	normal_cone(t_ray ray, t_list *cone)
 {
 	double height;
 	t_vec3 hit;
@@ -94,13 +94,13 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 	t_vec3 norm;
 
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-	oc = ft_vec3vop_r(hit, cone.org, '-');
-	if (ft_vec3dot(cone.dir, oc) < 0)
-		cone.dir = ft_vec3sop_r(cone.dir, -1.0, '*');
-	k = 1 / cos(cone.theta / 2.0);
+	oc = ft_vec3vop_r(hit, CONE(cone).org, '-');
+	if (ft_vec3dot(CONE(cone).dir, oc) < 0)
+		CONE(cone).dir = ft_vec3sop_r(CONE(cone).dir, -1.0, '*');
+	k = 1 / cos(CONE(cone).theta / 2.0);
 	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
 	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
-				ft_vec3sop_r(cone.dir, height, '*'), '-'));
+				ft_vec3sop_r(CONE(cone).dir, height, '*'), '-'));
 	return (norm);
 }
 
@@ -109,7 +109,7 @@ t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		norm = normal_cone(ray, CONE(con));
+		norm = normal_cone(ray, con);
 		return (diffuse(norm, con, ray, CONE(con).mat.col));
 	}
 	return (setup->background);

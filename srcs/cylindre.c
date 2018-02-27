@@ -33,7 +33,7 @@ double	hit_cyl(t_ray ray, t_forms *form)
 	return ((-b - sqrt(delta)) / (2.0 * a));
 }
 
-t_vec3	normal_cyl(t_ray ray, t_cyl cyl)
+t_vec3	normal_cyl(t_ray ray, t_list *cyl)
 {
 	t_vec3 hit;
 	t_vec3 oc;
@@ -41,10 +41,10 @@ t_vec3	normal_cyl(t_ray ray, t_cyl cyl)
 	t_vec3 norm;
 
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-	oc = ft_vec3vop_r(hit, cyl.pos, '-');
-	height = ft_vec3dot(cyl.dir, oc);
+	oc = ft_vec3vop_r(hit, CYLI(cyl).pos, '-');
+	height = ft_vec3dot(CYLI(cyl).dir, oc);
 	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
-				ft_vec3sop_r(cyl.dir, height, '*'), '-'));
+				ft_vec3sop_r(CYLI(cyl).dir, height, '*'), '-'));
 	return (norm);
 }
 
@@ -53,7 +53,7 @@ t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		norm = normal_cyl(ray, CYLI(cyl));
+		norm = normal_cyl(ray, cyl);
 		return (diffuse(norm, cyl, ray, CYLI(cyl).mat.col));
 	}
 	return (setup->background);

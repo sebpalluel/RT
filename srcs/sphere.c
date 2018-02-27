@@ -56,6 +56,12 @@ size_t			ft_sphere(t_list **list)
 	return (OK);
 }
 
+t_vec3			normal_sphere(t_ray ray, t_list *sph)
+{
+	return (ft_vec3normalize_r(ft_vec3vop_r(ft_vec3vop_r(ray.org, \
+						ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), SPHERE(sph).ctr, '-')));
+}
+
 double			hit_sphere(t_ray ray, t_forms *form)
 {
 	t_vec3		oc;
@@ -79,8 +85,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	t_vec3		norm;
 	if (ray.dist >= 0.0)
 	{
-		norm = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3vop_r(ray.org, \
-						ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), SPHERE(sph).ctr, '-'));
+		norm = normal_sphere(ray, sph);
 		return (diffuse(norm, sph, ray, SPHERE(sph).mat.col));
 	}
 	return (setup->background);
