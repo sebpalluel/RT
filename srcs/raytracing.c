@@ -80,8 +80,11 @@ t_col ft_cast_ray(t_ray ray, t_setup *setup)
 {
 	t_col hit_col;
 	t_forms *form;
-	t_lgt *light = LGT(SCN.lgts);
-	t_vec3 hit_nrml = {0,0,0};
+	t_lgt *light;
+	t_vec3 hit_nrml;
+
+	// hit_nrml = {0,0,0};
+	light = LGT(SCN.lgts);
 	hit_col = setup->background;
 	form = NULL;
 	if ((form = ft_trace(&ray, setup)))
