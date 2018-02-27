@@ -6,19 +6,19 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 13:41:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:42:56 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 #include <math.h>
 
-
-double max(double a, double b) {
+double			max(double a, double b)
+{
 	return (a >= b ? a : b);
 }
 
-t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
+t_forms			*ft_trace(t_ray *ray, t_setup *setup)
 {
 	t_forms		*form;
 	double		t_near;
@@ -47,7 +47,7 @@ t_forms 		*ft_trace(t_ray *ray, t_setup *setup)
 	return (form);
 }
 
-t_col mult_scale_col_limited(double t, t_col col)
+t_col			mult_scale_col_limited(double t, t_col col)
 {
 	col.r = col.r * t;
 	col.g = col.g * t;
@@ -61,21 +61,23 @@ t_col mult_scale_col_limited(double t, t_col col)
 	return (col);
 }
 
-void illuminate(t_hit *hit, t_mat mat, t_lgt *light)
+void			illuminate(t_hit *hit, t_mat mat, t_lgt *light)
 {
-	float r2;
-	t_vec3 lightdir;
-	double dist;
+	float		r2;
+	t_vec3		lightdir;
+	double		dist;
+	double		lambert;
 
 	lightdir = ft_vec3vop_r(light->vect, hit->pos, '-');
-	r2 =  ft_dotproduct(lightdir,lightdir) ;
+	r2 = ft_dotproduct(lightdir, lightdir);
 	ft_vec3normalize(&lightdir);
 	dist = sqrt(r2);
-	double lambert =  max(0, ft_dotproduct(hit->nrml, lightdir));
-	hit->col = mult_scale_col_limited(lambert * lambert *4 ,mult_scale_col_limited(mat.diffuse, mat.col));
+	lambert = max(0, ft_dotproduct(hit->nrml, lightdir));
+	hit->col = mult_scale_col_limited(lambert * lambert * 4, \
+			mult_scale_col_limited(mat.diffuse, mat.col));
 }
 
-void init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit)
+void			init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit)
 {
 	double bias;
 	t_vec3 lightdir;
@@ -83,25 +85,27 @@ void init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit)
 
 	bias = 0.0001;
 	lightdir = ft_vec3vop_r(light->vect, hit->pos, '-');
-	sdw_ray->org = ft_vec3vop_r(hit->pos, ft_vec3sop_r(hit->nrml, bias,'*'), '+');
+	sdw_ray->org = ft_vec3vop_r(hit->pos, \
+			ft_vec3sop_r(hit->nrml, bias, '*'), '+');
 	sdw_ray->dir = ft_vec3normalize_r(lightdir);
 	tmp = ft_vec3vop_r(hit->pos, light->vect, '-');
 	sdw_ray->dist = sqrt(ft_dotproduct(tmp, tmp));
 }
 
-t_col ft_cast_ray(t_ray ray, t_setup *setup)
+t_col			ft_cast_ray(t_ray ray, t_setup *setup)
 {
-	t_forms *form;
-	t_lgt *light;
-	t_hit	hit;
-	t_ray sdw_ray;
+	t_forms		*form;
+	t_lgt		*light;
+	t_hit		hit;
+	t_ray		sdw_ray;
 
 	light = LGT(SCN.lgts);
 	hit.col = setup->background;
 	form = NULL;
 	if ((form = ft_trace(&ray, setup)))
 	{
-		hit.pos = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+		hit.pos = ft_vec3vop_r(ray.org, \
+				ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		hit.nrml = get_nrml()[form->type](ray, form);
 		illuminate(&hit, form->mat, light);
 		init_sdw_ray(&sdw_ray, light, &hit);
@@ -111,50 +115,49 @@ t_col ft_cast_ray(t_ray ray, t_setup *setup)
 	return (hit.col);
 }
 
-void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {
-	double a;
-	double b;
-	double c;
+void			mult_dir_matrix(t_vec3 *src, t_vec3 *dst, double **x)
+{
+	double		a;
+	double		b;
+	double		c;
 
 	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0];
 	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1];
 	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2];
-
 	dst->x = a;
 	dst->y = b;
 	dst->z = c;
 }
 
-void multVecMatrix(t_vec3 src, t_vec3 *dst, double **x) {
-	double a;
-	double b;
-	double c;
-	double w;
+void			mult_vec3_matrix(t_vec3 src, t_vec3 *dst, double **x)
+{
+	double		a;
+	double		b;
+	double		c;
+	double		w;
 
 	a = src.x * x[0][0] + src.y * x[1][0] + src.z * x[2][0] + x[3][0];
 	b = src.x * x[0][1] + src.y * x[1][1] + src.z * x[2][1] + x[3][1];
 	c = src.x * x[0][2] + src.y * x[1][2] + src.z * x[2][2] + x[3][2];
 	w = src.x * x[0][3] + src.y * x[1][3] + src.z * x[2][3] + x[3][3];
-
 	dst->x = a / w;
 	dst->y = b / w;
 	dst->z = c / w;
 }
 
-static void		ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
+static	void	ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 {
 	double		scale;
-	double		imageAspectRatio;
-	double		x;
-	double		y;
+	double		aspect_ratio;
+	t_vec3		dir;
 
 	scale = tan(DEG2RAD((FOV * 0.5)));
-	imageAspectRatio = SCN.width / (double)SCN.height;
-	x = (2 * (pix.x + 0.5) / (double)SCN.width - 1) * imageAspectRatio * scale;
-	y = (1 - 2 * (pix.y + 0.5) / (double)SCN.height) * scale;
-	t_vec3 dir = {x, y, -1};
+	aspect_ratio = SCN.width / (double)SCN.height;
+	dir.x = (2 * (pix.x + 0.5) / (double)SCN.width - 1) * aspect_ratio * scale;
+	dir.y = (1 - 2 * (pix.y + 0.5) / (double)SCN.height) * scale;
+	dir.z = -1;
 	ft_vec3normalize(&dir);
-	multDirMatrix(&dir, &ray->dir, setup->camToWorld);
+	mult_dir_matrix(&dir, &ray->dir, setup->camToWorld);
 	ft_vec3normalize(&ray->dir);
 	ray->dist = -1;
 }
@@ -168,7 +171,7 @@ void			*ft_raytracing(void *cam)
 	size_t		inc;
 
 	setup = get_st();
-	multVecMatrix(((t_cam *)cam)->org, &ray.org, setup->camToWorld);
+	mult_vec3_matrix(((t_cam *)cam)->org, &ray.org, setup->camToWorld);
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;
