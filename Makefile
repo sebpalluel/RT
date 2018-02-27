@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/26 14:10:03 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/27 19:29:45 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -56,17 +56,13 @@ SRCNAME 	=	main.c \
 				parse_forms.c \
 				parse_objects.c \
 				parse_to_env_utils.c \
-				color.c \
 				forms.c \
 				singleton.c \
-				ray.c \
-				vect.c \
 				cylindre.c \
 				math.c \
 				normals.c
 				#draw.c \
 				#raycaster.c \
-				#color.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))
@@ -88,6 +84,7 @@ ifneq (,$(filter debug,$(MAKECMDGOALS)))
 	@$(CMP) $(FLAGS) $(DEBUG_F) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 else
 	@make -C $(LFTDIR)
+	@make -C $(MLXDIR)
 	@$(CMP) $(FLAGS) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 	@echo "$(OKC)$(NAME):\t\t$(NAME) READY$(NOC)"
 	@echo "$(OKC)¯\_ツ_/¯$(NOC)"
@@ -106,6 +103,7 @@ endif
 
 clean:
 	@make -C $(LFTDIR) clean
+	@make -C $(MLXDIR) clean
 	@rm -rf $(OBJDIR)
 	@echo "$(WAC)$(NAME):\t\tRemoving OBJ dir: ./obj/$(NOC)"
 

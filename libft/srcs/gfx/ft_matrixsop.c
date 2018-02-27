@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_matrixsop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 19:04:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:04:38 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/27 14:37:13 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/27 19:08:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+void		ft_matrixscale(double **mat, int size, double a)
 {
-	double	**mat;
-	int		x;
-	int		y;
+	int		xy[2];
 
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	xy[0] = -1;
+	while (++xy[0] < size && (xy[1] = -1))
+		while (++xy[1] < size)
+			mat[xy[0]][xy[1]] *= a;
 }

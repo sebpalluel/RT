@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_colinterpol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 19:04:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:04:38 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/26 19:57:31 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/26 19:58:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+t_col		ft_colinterpol(t_col col1, t_col col2, double t)
 {
-	double	**mat;
-	int		x;
-	int		y;
+	t_col	col;
 
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	col.r = col1.r * (1 - t) + col2.r * t;
+	col.g = col1.g * (1 - t) + col2.g * t;
+	col.b = col1.b * (1 - t) + col2.b * t;
+	return (col);
 }

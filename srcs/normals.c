@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 17:17:31 by nchalot          ###   ########.fr       */
+/*   Updated: 2018/02/27 19:25:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static t_vec3	normal_cone(t_ray ray, t_forms *form)
 	double		k;
 	t_vec3		norm;
 
-	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
-	oc = vect_sub(hit, form->cone.org);
-	if (vect_mult_scale(form->cone.dir, oc) < 0)
-		form->cone.dir = vect_scale(-1.0, form->cone.dir);
+	hit = ft_vec3add_r(ray.org, ft_vec3multscale_r(ray.dir, ray.dist));
+	oc = ft_vec3sub_r(hit, form->cone.org);
+	if (ft_vec3dot(form->cone.dir, oc) < 0)
+		form->cone.dir = ft_vec3multscale_r(form->cone.dir, -1.);
 	k = 1 / cos(form->cone.theta / 2.0);
-	height = norme_vect(vect_scale(k, oc));
-	norm = normal_vect(vect_sub(oc, vect_scale(height, form->cone.dir)));
+	height = ft_vec3norm(ft_vec3multscale_r(oc, k));
+	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, ft_vec3multscale_r(form->cone.dir, height)));
 	return (norm);
 }
 
@@ -37,10 +37,10 @@ static t_vec3	normal_cyl(t_ray ray, t_forms *form)
 	double		height;
 	t_vec3		norm;
 
-	hit = vect_add(ray.org, vect_scale(ray.dist, ray.dir));
-	oc = vect_sub(hit, form->cldre.pos);
-	height = vect_mult_scale(form->cldre.dir, oc);
-	norm = normal_vect(vect_sub(oc, vect_scale(height, form->cldre.dir)));
+	hit = ft_vec3add_r(ray.org, ft_vec3multscale_r(ray.dir, ray.dist));
+	oc = ft_vec3sub_r(hit, form->cldre.pos);
+	height = ft_vec3dot(form->cldre.dir, oc);
+	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, ft_vec3multscale_r(form->cldre.dir, height)));
 	return (norm);
 }
 

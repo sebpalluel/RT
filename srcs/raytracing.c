@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 17:42:56 by nchalot          ###   ########.fr       */
+/*   Updated: 2018/02/27 19:16:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_col			ft_cast_ray(t_ray ray, t_setup *setup)
 		illuminate(&hit, form->mat, light);
 		init_sdw_ray(&sdw_ray, light, &hit);
 		if (ft_trace(&sdw_ray, setup))
-			hit.col = mult_scale_col(0., hit.col);
+			hit.col = ft_colmultscale(hit.col, 0.);
 	}
 	return (hit.col);
 }
