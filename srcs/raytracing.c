@@ -75,11 +75,26 @@ void illuminate(t_hit *hit, t_mat mat, t_lgt *light)
 	hit->col = mult_scale_col_limited(lambert * lambert *4 ,mult_scale_col_limited(mat.diffuse, mat.col));
 }
 
+void init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit)
+{
+	double bias;
+	t_vec3 lightdir;
+	t_vec3 tmp;
+
+	bias = 0.0001;
+	lightdir = ft_vec3vop_r(light->vect, hit->pos, '-');
+	sdw_ray->org = ft_vec3vop_r(hit->pos, ft_vec3sop_r(hit->nrml, bias,'*'), '+');
+	sdw_ray->dir = ft_vec3normalize_r(lightdir);
+	tmp = ft_vec3vop_r(hit->pos, light->vect, '-');
+	sdw_ray->dist = sqrt(ft_dotproduct(tmp, tmp));
+}
+
 t_col ft_cast_ray(t_ray ray, t_setup *setup)
 {
 	t_forms *form;
 	t_lgt *light;
 	t_hit	hit;
+	t_ray sdw_ray;
 
 	light = LGT(SCN.lgts);
 	hit.col = setup->background;
@@ -89,18 +104,7 @@ t_col ft_cast_ray(t_ray ray, t_setup *setup)
 		hit.pos = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		hit.nrml = get_nrml()[form->type](ray, form);
 		illuminate(&hit, form->mat, light);
-
-		// dclae shadow ray
-		t_ray  sdw_ray;
-		double bias = 0.0001;
-		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit.pos, '-');
-		sdw_ray.org = ft_vec3vop_r(hit.pos, ft_vec3sop_r(hit.nrml, bias,'*'), '+');
-		sdw_ray.dir = light_dir;
-		ft_vec3normalize(&sdw_ray.dir);
-		t_vec3 tmp;
-		tmp = ft_vec3vop_r(hit.pos, light->vect, '-');
-		sdw_ray.dist = sqrt(ft_dotproduct(tmp, tmp));
-		// launch sdw_ray
+		init_sdw_ray(&sdw_ray, light, &hit);
 		if (ft_trace(&sdw_ray, setup))
 			hit.col = mult_scale_col(0., hit.col);
 	}
