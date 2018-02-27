@@ -82,6 +82,7 @@ t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
 t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
 
 t_col		send_ray(t_ray ray, t_setup *setup);
+t_ray		reflexion(t_ray ray, t_vec3 norm);
 
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);

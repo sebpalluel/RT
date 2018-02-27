@@ -23,7 +23,8 @@
 # define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
-# define THREAD			32
+# define MAX_REFL		128
+# define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
 # define MAX_WINDOW		5
