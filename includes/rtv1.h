@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:18:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 19:31:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,7 @@ void		ft_setup_cam(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 t_bool		ft_plane_param(t_ray *ray, t_forms *form, double *t);
 t_bool		ft_sphere_param(t_ray *ray, t_forms *form, double *t);
-/* TODO Eliot functions */
 t_setup		*get_st(void);
-t_vec3		init_vec3(double x, double y, double z);
-t_vec3		vect_scale(double a, t_vec3 v);
-t_vec3		vect_mult(t_vec3 u, t_vec3 v);
-t_vec3		vect_add(t_vec3 u, t_vec3 v);
-t_vec3		vect_sub(t_vec3 u, t_vec3 v);
-double		norme_vect(t_vec3 u);
-t_vec3		normal_vect(t_vec3 u);
-double		vect_mult_scale(t_vec3 u, t_vec3 v);
-/* TODO NATHAN */
 t_param		*param(void);
 t_bool		solve_quadratic(double *abc, float *t0, float *t1);
 t_bool		ft_solve_quadra(double abc[3], double *t);
