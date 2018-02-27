@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:16:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 19:28:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void			ft_look_at(t_setup *setup, t_cam *cam)
 void			init_cam(t_cam *cam, t_vec3 org, t_vec3 look_at)
 {
 	cam->org = org;
-	cam->frt = normal_vect(vect_sub(look_at, org));
-	cam->dwn = normal_vect(vect_mult(init_vec3(0.0, 1.0, 0.0), cam->frt));
-	if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
-		cam->dwn = vect_scale(-1.0, cam->dwn);
-	if (norme_vect(cam->dwn) == 0.0)
+	cam->frt = ft_vec3normalize_r(ft_vec3sub_r(look_at, org));
+	cam->dwn = ft_vec3normalize_r(ft_vec3mult_r(ft_vec3_r(0.0, 1.0, 0.0), cam->frt));
+	if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
+		cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
+	if (ft_vec3norm(cam->dwn) == 0.0)
 	{
-		cam->dwn = normal_vect(vect_mult(init_vec3(1.0, 0.0, 0.0), cam->frt));
-		if (vect_mult_scale(cam->dwn, init_vec3(0.0, 0.0, 1.0)) > 0.0)
-			cam->dwn = vect_scale(-1.0, cam->dwn);
+		cam->dwn = ft_vec3normalize_r(ft_vec3mult_r(ft_vec3_r(1.0, 0.0, 0.0), cam->frt));
+		if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
+			cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
 	}
-	cam->rgt = normal_vect(vect_mult(cam->frt, cam->dwn));
+	cam->rgt = ft_vec3normalize_r(ft_vec3mult_r(cam->frt, cam->dwn));
 }
 
 static t_list	*ft_newcam(void)
