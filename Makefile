@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 14:08:17 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/27 14:27:02 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -55,17 +55,14 @@ SRCNAME 	=	main.c \
 				raytracer_thread.c \
 				parser.c \
 				parse_to_env.c \
-				color.c \
 				sp_mat.c \
 				matrices.c \
 				forms.c \
 				singleton.c \
 				ray.c \
 				diffuse.c \
-				vect.c
 				#draw.c \
 				#raycaster.c \
-				#color.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:13:06 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:25:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				main(int ac, char **av)
 		return (EXIT_FAILURE);
 	setup->mode = STATE_START;
 	setup->ac = ac;
-	setup->background = init_col(0, 0, 0, 0);
+	setup->background = ft_col_r(0, 0, 0, 0);
 	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
 	if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
 		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START

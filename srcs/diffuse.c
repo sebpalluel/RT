@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 13:36:55 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:25:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
-		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(multcol(
+		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(ft_colmult(
 							col_obj, LGT(lgt)->col), SCN.expo), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
 						LGT(lgt)->col, phong(ray, col_obj, norm, lgt)), SCN.expo));

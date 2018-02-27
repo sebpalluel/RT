@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 13:39:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:23:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ size_t			ft_plane(t_list **list)
 		ft_plane_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, NVARPLANE) != OK)
 		return (setup->error = PLANE_ERROR);
-	PLAN(form).nrml = normal_vect(PLAN(form).nrml);
+	PLAN(form).nrml = ft_vec3normalize_r(PLAN(form).nrml);
 	*list = env;
 	return (OK);
 }

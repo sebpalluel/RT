@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 11:45:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:24:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 	double k;
 	t_vec3 norm;
 
-	hit = vect_add(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'));
+	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	oc = ft_vec3vop_r(hit, cone.org, '-');
 	if (ft_vec3multscale(cone.dir, oc) < 0)
 		cone.dir = ft_vec3sop_r(cone.dir, -1.0, '*');

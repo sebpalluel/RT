@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:06:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:27:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			*ft_raytracing(void *a)
 		while (++pix.x < (int)SCN.width)
 		{
 			ft_put_pixel(setup, pix.x, pix.y, \
-					coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
+					ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
 							setup)));
 		}
 	}
