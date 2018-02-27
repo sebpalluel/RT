@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:38:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:17:31 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static t_vec3	normal_plan(t_ray ray, t_forms *form)
 	t_ray		dummy;
 
 	dummy = ray;
-  ft_vec3normalize(&form->plan.nrml);
-  if (ft_dotproduct(ray.dir, form->plan.nrml) > 0)
-    return (ft_vec3sop_r(form->plan.nrml, -1, '*'));
+	ft_vec3normalize(&form->plan.nrml);
+	if (ft_dotproduct(ray.dir, form->plan.nrml) > 0)
+		return (ft_vec3sop_r(form->plan.nrml, -1, '*'));
 	return (form->plan.nrml);
 }
 
