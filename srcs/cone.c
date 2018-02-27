@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:17:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:15:20 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENV(env)->name, "color") == 0)
 		flag[3] = ft_getcolfromenv(&FORM(form)->mat.col, ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "diffuse") == 0)
-		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, ENV(env)->value);
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
+		ENV(env)->value);
 	if (ft_strcmp(ENV(env)->name, "specular") == 0)
 		flag[5] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENV(env)->value);
@@ -49,7 +50,6 @@ size_t			ft_cone(t_list **list)
 	FORM(form)->type = CON;
 	while (FORM(form)->num_arg < NVARCONE && env && (env = env->next))
 		ft_cone_struct_pop(form, env, flag);
-	// Normaliser ici pour l instant l67
 	if (ft_checkifallset(flag, NVARCONE) != OK)
 		return (setup->error = CONE_ERROR);
 	*list = env;
