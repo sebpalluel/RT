@@ -6,31 +6,28 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 13:45:15 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 15:24:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 18:13:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-void		ft_matrixmult(double **mat, double **m, double **n, int size)
+t_matrix		*ft_matrixmult(t_matrix a, t_matrix b)
 {
-	double	temp;
-	int		xyz[3];
+	int			x;
+	int			y;
+	int			k;
+	t_matrix	*res;
 
-	if (mat && m && n)
-	{
-		xyz[0] = -1;
-		while (++xyz[0] < size)
-		{
-			xyz[1] = -1;
-			while (++xyz[1] < size)
-			{
-				temp = 0;
-				xyz[2] = -1;
-				while (++xyz[2] < size)
-					temp = temp + m[xyz[0]][xyz[2]] * n[xyz[2]][xyz[1]];
-				mat[xyz[0]][xyz[1]] = temp;
-			}
-		}
-	}
+	res = NULL;
+	if (a.j != b.i)
+		return (NULL);
+	if (!(ft_matrixinit(res, a.i, b.j)))
+		return (NULL);
+	x = -1;
+	while (++x < a.i && (y = -1))
+		while (++y < b.j && (k = -1))
+			while (++k < a.j)
+				res->mat[x][y] += a.mat[x][k] * b.mat[k][y];
+	return (res);
 }

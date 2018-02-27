@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 16:53:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 18:13:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ void			ft_imgdel(t_img *img, void *mlx);
 t_img			*ft_imgnew(void *mlx, size_t x, size_t y);
 t_img			*ft_xmpnew(void *mlx, char *xmp, size_t x, size_t y);
 t_mlx			*ft_initwindow(char *name, size_t width, size_t height);
-void			ft_matrixadd(double **mat, double **m, double **n, int size);
+void			ft_matrixadd(t_matrix *a, t_matrix *b);
 void			ft_matrixhomothety(double **mat, int factor);
-void			ft_matrixmult(double **mat, double **m, double **n, int size);
+t_matrix		*ft_matrixmult(t_matrix a, t_matrix b);
 void			ft_matrixonpoint(double **mat, t_vec3 *vec3);
 void			ft_matrixrotx(double **mat, double deg);
 void			ft_matrixroty(double **mat, double deg);
 void			ft_matrixrotz(double **mat, double deg);
 void			ft_matrixtranslate(double **mat, t_vec3 *vec);
-double			**ft_matrixzero(int size);
+int				ft_matrixinit(t_matrix *mat, int i, int j);
 void			ft_pixcpy(t_pix *pix_from, t_pix *pix_to);
 t_pix			*ft_pixnew(int x, int y, int z);
 void			ft_pixpopulate(t_pix *to_pix, int x, int y, int z);

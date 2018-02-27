@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_matrixinit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/11 13:40:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:34:47 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/27 18:11:46 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/27 18:12:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+int		ft_matrixinit(t_matrix *mat, int i, int j)
 {
-	double	**mat;
-	int		x;
-	int		y;
+	int		a;
 
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	mat->i = i;
+	mat->j = j;
+	if (!(mat->mat = malloc(sizeof(double*) * i)))
+		return (0);
+	a = -1;
+	while (++a < i)
+		if (!(mat->mat[a] = ft_memalloc(sizeof(double) * j)))
+			return (0);
+	return (1);
 }
