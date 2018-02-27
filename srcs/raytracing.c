@@ -78,40 +78,41 @@ t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
 
 t_col ft_cast_ray(t_ray ray, t_setup *setup)
 {
-	t_col hit_col;
 	t_forms *form;
 	t_lgt *light;
-	t_vec3 hit_nrml;
+	t_hit	hit;
 
-	// hit_nrml = {0,0,0};
 	light = LGT(SCN.lgts);
-	hit_col = setup->background;
+	hit.col = setup->background;
 	form = NULL;
 	if ((form = ft_trace(&ray, setup)))
 	{
-		t_vec3 hit_point = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-		hit_nrml = get_nrml()[form->type](ray, form);
+		hit.pos = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+		hit.nrml = get_nrml()[form->type](ray, form);
 		if (form->type == SPH)
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->sph.mat, light);
+			hit.col = illuminate(&hit.pos, &hit.nrml, &form->sph.mat, light);
 		else if (form->type == PLN)
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->plan.mat, light);
+			hit.col = illuminate(&hit.pos, &hit.nrml, &form->plan.mat, light);
 		else if (form->type == CON)
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->cone.mat, light);
+			hit.col = illuminate(&hit.pos, &hit.nrml, &form->cone.mat, light);
 		else if (form->type == CYL)
-			hit_col = illuminate(&hit_point, &hit_nrml, &form->cldre.mat, light);
-		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit_point, '-');
+			hit.col = illuminate(&hit.pos, &hit.nrml, &form->cldre.mat, light);
+		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit.pos, '-');
+
+		// dclae shadow ray
 		t_ray  sdw_ray;
 		double bias = 0.0001;
-		sdw_ray.org = ft_vec3vop_r(hit_point, ft_vec3sop_r(hit_nrml, bias,'*'), '+');
+		sdw_ray.org = ft_vec3vop_r(hit.pos, ft_vec3sop_r(hit.nrml, bias,'*'), '+');
 		sdw_ray.dir = light_dir;
 		ft_vec3normalize(&sdw_ray.dir);
 		t_vec3 tmp;
-		tmp = ft_vec3vop_r(hit_point, light->vect, '-');
+		tmp = ft_vec3vop_r(hit.pos, light->vect, '-');
 		sdw_ray.dist = sqrt(ft_dotproduct(tmp, tmp));
+		// launch sdw_ray
 		if (ft_trace(&sdw_ray, setup))
-			hit_col = mult_scale_col(0., hit_col);
+			hit.col = mult_scale_col(0., hit.col);
 	}
-	return (hit_col);
+	return (hit.col);
 }
 
 void multDirMatrix(t_vec3 *src, t_vec3 *dst, double **x) {

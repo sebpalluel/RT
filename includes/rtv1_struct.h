@@ -114,6 +114,13 @@ typedef struct		s_ray
 	t_bool			hit;
 }					t_ray;
 
+typedef	struct	s_hit
+{
+	t_vec3	pos;
+	t_vec3	nrml;
+	t_col		col;
+}	t_hit;
+
 typedef t_vec3		(*t_func_nrml)();
 typedef char		*(*t_name_obj)();
 typedef size_t		(*t_parse_obj)();
