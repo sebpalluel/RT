@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_vec3add_r.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 19:04:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:04:38 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/27 16:46:04 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/27 19:08:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+t_vec3		ft_vec3add_r(t_vec3 a, t_vec3 b)
 {
-	double	**mat;
-	int		x;
-	int		y;
+	t_vec3	to_vec3;
 
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	ft_bzero(&to_vec3, sizeof(t_vec3));
+	to_vec3.x = a.x + b.x;
+	to_vec3.y = a.y + b.y;
+	to_vec3.z = a.z + b.z;
+	return (to_vec3);
 }

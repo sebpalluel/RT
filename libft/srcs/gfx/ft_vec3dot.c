@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrixzero.c                                    :+:      :+:    :+:   */
+/*   ft_vec3dot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 19:04:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:04:38 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/26 19:10:56 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/27 14:30:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-double		**ft_matrixzero(int size)
+double	ft_vec3dot(t_vec3 u, t_vec3 v)
 {
-	double	**mat;
-	int		x;
-	int		y;
-
-	mat = (double**)malloc(sizeof(double*) * (size + 1));
-	if (mat == NULL)
-		return (NULL);
-	x = -1;
-	while (++x < size)
-	{
-		y = -1;
-		mat[x] = (double*)malloc(sizeof(double) * size);
-		if (mat[x] == NULL)
-			return (NULL);
-		while (++y < size)
-			mat[x][y] = 0;
-	}
-	mat[size] = NULL;
-	return (mat);
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
