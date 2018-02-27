@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 14:32:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:09:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cyl(ray, cyl);
-		return (diffuse(norm, cyl, ray, CYLI(cyl).mat.col));
+		return (diffuse(norm, cyl, ray, FORM(cyl)->mat.col));
 	}
 	return (setup->background);
 }
@@ -68,13 +68,13 @@ void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
 		flag[2] = ft_getdoublefromenv(&CYLI(form).r, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[3] = ft_getcolfromenv(&CYLI(form).mat.col, \
+		flag[3] = ft_getcolfromenv(&FORM(form)->mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[4] = ft_getdoublefromenv(&CYLI(form).mat.diffuse, \
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[5] = ft_getdoublefromenv(&CYLI(form).mat.specular, \
+		flag[5] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENVSTRUCT(env)->value);
 	FORM(form)->num_arg++;
 }

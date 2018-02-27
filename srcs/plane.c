@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:31:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:11:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "distance") == 0)
 		flag[1] = ft_getdoublefromenv(&PLAN(form).dst, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&PLAN(form).mat.col, \
+		flag[2] = ft_getcolfromenv(&FORM(form)->mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&PLAN(form).mat.diffuse, \
+		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&PLAN(form).mat.specular, \
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENVSTRUCT(env)->value);
 	FORM(form)->num_arg++;
 }
@@ -86,7 +86,7 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normale_plane(ray, pln);
-		return (diffuse(norm, pln, ray, PLAN(pln).mat.col));
+		return (diffuse(norm, pln, ray, FORM(pln)->mat.col));
 	}
 	return (setup->background);
 }

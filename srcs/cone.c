@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:32:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:10:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "degres") == 0)
 		flag[2] = ft_getdoublefromenv(&CONE(form).theta, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[3] = ft_getcolfromenv(&CONE(form).mat.col, \
+		flag[3] = ft_getcolfromenv(&FORM(form)->mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[4] = ft_getdoublefromenv(&CONE(form).mat.diffuse, \
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[5] = ft_getdoublefromenv(&CONE(form).mat.specular, \
+		flag[5] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENVSTRUCT(env)->value);
 	FORM(form)->num_arg++;
 }
@@ -96,11 +96,19 @@ t_vec3	normal_cone(t_ray ray, t_list *cone)
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	oc = ft_vec3vop_r(hit, CONE(cone).org, '-');
 	if (ft_vec3dot(CONE(cone).dir, oc) < 0)
-		CONE(cone).dir = ft_vec3sop_r(CONE(cone).dir, -1.0, '*');
-	k = 1 / cos(CONE(cone).theta / 2.0);
-	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
-	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
+	{
+			k = 1 / cos(CONE(cone).theta / 2.0);
+		height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
+		norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
+				ft_vec3sop_r(CONE(cone).dir, -height, '*'), '-'));
+	}
+	else
+	{
+		k = 1 / cos(CONE(cone).theta / 2.0);
+		height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));
+		norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
 				ft_vec3sop_r(CONE(cone).dir, height, '*'), '-'));
+	}
 	return (norm);
 }
 
@@ -110,7 +118,7 @@ t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cone(ray, con);
-		return (diffuse(norm, con, ray, CONE(con).mat.col));
+		return (diffuse(norm, con, ray, FORM(con)->mat.col));
 	}
 	return (setup->background);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 16:39:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:11:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
 		flag[1] = ft_getdoublefromenv(&SPHERE(form).r, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&SPHERE(form).mat.col, \
+		flag[2] = ft_getcolfromenv(&FORM(form)->mat.col, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&SPHERE(form).mat.diffuse, \
+		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
 				ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&SPHERE(form).mat.specular, \
+		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
 				ENVSTRUCT(env)->value);
 	FORM(form)->num_arg++;
 }
@@ -86,7 +86,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_sphere(ray, sph);
-		return (diffuse(norm, sph, ray, SPHERE(sph).mat.col));
+		return (diffuse(norm, sph, ray, FORM(sph)->mat.col));
 	}
 	return (setup->background);
 }

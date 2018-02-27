@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:28:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:11:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			*ft_raytracing(void *a)
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;
+	//pthread_mutex_lock(&setup->mutex.mutex);
 	while (++pix.y <= (int)(inc * (thread_n + 1) - 1))
 	{
 		pix.x = -1;
@@ -61,5 +62,6 @@ void			*ft_raytracing(void *a)
 							setup)));
 		}
 	}
+	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }
