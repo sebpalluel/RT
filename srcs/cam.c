@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:31:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:54:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void			init_cam(t_cam *cam)
 	cam->dwn = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(0., 1., 0.), \
 				cam->frt, 'c'));
 	if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
-		cam->dwn = ft_vec3scale(cam->dwn, -1.);
+		cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
 	if (ft_vec3norm(cam->dwn) == 0.0)
 	{
 		cam->dwn = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(1.0, 0.0, 0.0), \
 					cam->frt, 'c'));
 		if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
-			cam->dwn = ft_vec3scale(cam->dwn, -1.);
+			cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
 	}
 	cam->rgt = ft_vec3normalize_r(ft_vec3vop_r(cam->frt, cam->dwn, 'c'));
 }

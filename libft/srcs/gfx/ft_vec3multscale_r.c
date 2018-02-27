@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec3scale.c                                     :+:      :+:    :+:   */
+/*   ft_vec3multscale.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:17:14 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 19:19:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:58:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_vec3	ft_vec3scale(t_vec3 v, double a)
+t_vec3	ft_vec3multscale_r(t_vec3 v, double a)
 {
 	v.x *= a;
 	v.y *= a;
