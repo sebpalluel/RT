@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 14:27:02 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/27 18:25:09 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -84,6 +84,7 @@ ifneq (,$(filter debug,$(MAKECMDGOALS)))
 	@$(CMP) $(FLAGS) $(DEBUG_F) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 else
 	@make -C $(LFTDIR)
+	@make -C $(MLXDIR)
 	@$(CMP) $(FLAGS) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 	@echo "$(OKC)$(NAME):\t\t$(NAME) READY$(NOC)"
 	@echo "$(OKC)¯\_ツ_/¯$(NOC)"
@@ -102,6 +103,7 @@ endif
 
 clean:
 	@make -C $(LFTDIR) clean
+	@make -C $(MLXDIR) clean
 	@rm -rf $(OBJDIR)
 	@echo "$(WAC)$(NAME):\t\tRemoving OBJ dir: ./obj/$(NOC)"
 
