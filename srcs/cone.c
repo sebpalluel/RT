@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:24:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:32:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ double	hit_cone(t_ray ray, t_forms *form)
 	k = tan(form->cone.theta / 2);
 	k = k * k;
 	oc = ft_vec3vop_r(ray.org, form->cone.org, '-');
-	a = ft_vec3multscale(ray.dir, ray.dir)
-		- (1 + k) * ft_vec3multscale(ray.dir, form->cone.dir) *
-		ft_vec3multscale(ray.dir, form->cone.dir);
-	b = 2 * (ft_vec3multscale(ray.dir, oc) - (1 + k) *
-			ft_vec3multscale(ray.dir, form->cone.dir) *
-			ft_vec3multscale(oc, form->cone.dir));
-	k = ft_vec3multscale(oc, oc) - (1 + k) *
-		ft_vec3multscale(oc, form->cone.dir) *
-		ft_vec3multscale(oc, form->cone.dir);
+	a = ft_vec3dot(ray.dir, ray.dir)
+		- (1 + k) * ft_vec3dot(ray.dir, form->cone.dir) *
+		ft_vec3dot(ray.dir, form->cone.dir);
+	b = 2 * (ft_vec3dot(ray.dir, oc) - (1 + k) *
+			ft_vec3dot(ray.dir, form->cone.dir) *
+			ft_vec3dot(oc, form->cone.dir));
+	k = ft_vec3dot(oc, oc) - (1 + k) *
+		ft_vec3dot(oc, form->cone.dir) *
+		ft_vec3dot(oc, form->cone.dir);
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);
@@ -95,7 +95,7 @@ t_vec3	normal_cone(t_ray ray, t_cone cone)
 
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	oc = ft_vec3vop_r(hit, cone.org, '-');
-	if (ft_vec3multscale(cone.dir, oc) < 0)
+	if (ft_vec3dot(cone.dir, oc) < 0)
 		cone.dir = ft_vec3sop_r(cone.dir, -1.0, '*');
 	k = 1 / cos(cone.theta / 2.0);
 	height = ft_vec3norm(ft_vec3sop_r(oc, k, '*'));

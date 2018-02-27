@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 14:25:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:32:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 
 	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
 				ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
-	refl = 2.0 * ft_vec3multscale(lgtdir, norm);
+	refl = 2.0 * ft_vec3dot(lgtdir, norm);
 	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refl, '*'), '-');
-	phongterm = ft_vec3multscale(phongdir, ray.dir);
+	phongterm = ft_vec3dot(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
 	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s);
@@ -61,7 +61,7 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 
 double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 {
-	return (ft_vec3multscale(ft_vec3normalize_r(ft_vec3vop_r(LGT(lgt)->vect,
+	return (ft_vec3dot(ft_vec3normalize_r(ft_vec3vop_r(LGT(lgt)->vect,
 						ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-')), norm));
 }
 

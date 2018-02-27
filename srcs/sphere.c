@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:21:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:31:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ double			hit_sphere(t_ray ray, t_forms *form)
 	double		delta;
 
 	oc = ft_vec3vop_r(ray.org, form->sph.ctr, '-');
-	a = ft_vec3multscale(ray.dir, ray.dir);
-	b = 2.0 * ft_vec3multscale(ray.dir, oc);
-	c = ft_vec3multscale(oc, oc) - (form->sph.r * form->sph.r);
+	a = ft_vec3dot(ray.dir, ray.dir);
+	b = 2.0 * ft_vec3dot(ray.dir, oc);
+	c = ft_vec3dot(oc, oc) - (form->sph.r * form->sph.r);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);

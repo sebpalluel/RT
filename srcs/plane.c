@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:23:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:31:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ double	hit_plan(t_ray ray, t_forms *form)
 	double a;
 	double b;
 
-	a = ft_vec3multscale(ray.dir, form->plan.nrml);
+	a = ft_vec3dot(ray.dir, form->plan.nrml);
 	if (a == 0)
 		return (-1);
-	b = ft_vec3multscale(form->plan.nrml, ft_vec3vop_r(ray.org,
+	b = ft_vec3dot(form->plan.nrml, ft_vec3vop_r(ray.org,
 				ft_vec3sop_r(form->plan.nrml, form->plan.dst, '*'), '+'));
 	return (-b / a);
 }

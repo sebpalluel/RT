@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 11:46:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:32:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ double	hit_cyl(t_ray ray, t_forms *form)
 	t_vec3 tmp;
 
 	tmp = ft_vec3vop_r(form->cyl.dir, ray.dir, 'c');
-	a = ft_vec3multscale(tmp, tmp);
-	b = 2.0 * ft_vec3multscale(tmp, ft_vec3vop_r(form->cyl.dir, \
+	a = ft_vec3dot(tmp, tmp);
+	b = 2.0 * ft_vec3dot(tmp, ft_vec3vop_r(form->cyl.dir, \
 				ft_vec3vop_r(ray.org, form->cyl.pos, '-'), 'c'));
 	tmp = ft_vec3vop_r(form->cyl.dir, \
 			ft_vec3vop_r(ray.org, form->cyl.pos, '-'), 'c');
-	c = ft_vec3multscale(tmp, tmp) - form->cyl.r * form->cyl.r;
+	c = ft_vec3dot(tmp, tmp) - form->cyl.r * form->cyl.r;
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
@@ -42,7 +42,7 @@ t_vec3	normal_cyl(t_ray ray, t_cyl cyl)
 
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	oc = ft_vec3vop_r(hit, cyl.pos, '-');
-	height = ft_vec3multscale(cyl.dir, oc);
+	height = ft_vec3dot(cyl.dir, oc);
 	norm = ft_vec3normalize_r(ft_vec3vop_r(oc, \
 				ft_vec3sop_r(cyl.dir, height, '*'), '-'));
 	return (norm);
