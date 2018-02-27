@@ -108,6 +108,7 @@ typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
 typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
+typedef	t_vec3	(*t_func_vec3)();
 //////////TODO Eliot
 
 typedef struct		s_scene
