@@ -11,8 +11,8 @@
 	<cameras>
 
 		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
-			<look_at> 0.0, 0.0, 0.1 </look_at>
+			<origin> 0.0, 0.0, -1.0 </origin>
+			<look_at> 0.0, 0.0, 1. </look_at>
 		</camera>
 	</cameras>
 
@@ -20,15 +20,15 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0., 2., 1 </position>
+			<position> 0., 0, 3.52 </position>
 			<color> 1., 1., 1., 1.3 </color>
 		</light>
 	</lights>
 
 	<objects>
     <sphere>
-      <center> 0.50, 0.5, 2 </center>
-      <radius> 0.25 </radius>
+      <center> 0., 0, 3 </center>
+      <radius> 0.15 </radius>
       <material>
         <color> 1., 1., 1., 1. </color>
         <diffuse> 0.8 </diffuse>
@@ -36,8 +36,8 @@
       </material>
     </sphere>
     <plane>
-			<normale> 0, -1.0, 0 </normale>
-			<position> 0, -0.50, 0.0 </position>
+			<normale> 0, -1, 9 </normale>
+			<position> 0, 0., 9. </position>
 			<material>
 				<color> 1., 0.25, 0.0, 1.0 </color>
 				<diffuse> 0.8 </diffuse>
