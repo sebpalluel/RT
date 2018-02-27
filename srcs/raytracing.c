@@ -61,19 +61,18 @@ t_col mult_scale_col_limited(double t, t_col col)
 	return (col);
 }
 
-t_col illuminate(t_vec3 *p, t_vec3 *hit_nrml, t_mat *mat, t_lgt *light)
+void illuminate(t_hit *hit, t_mat *mat, t_lgt *light)
 {
 	float r2;
 	t_vec3 lightdir;
 	double dist;
 
-	lightdir = ft_vec3vop_r(light->vect, *p, '-');
+	lightdir = ft_vec3vop_r(light->vect, hit->pos, '-');
 	r2 =  ft_dotproduct(lightdir,lightdir) ;
 	ft_vec3normalize(&lightdir);
 	dist = sqrt(r2);
-	double lambert =  max(0, ft_dotproduct(*hit_nrml, lightdir));
-	t_col hit_col = mult_scale_col_limited(lambert * lambert *4 ,mult_scale_col_limited(mat->diffuse, mat->col));
-	return (hit_col);
+	double lambert =  max(0, ft_dotproduct(hit->nrml, lightdir));
+	hit->col = mult_scale_col_limited(lambert * lambert *4 ,mult_scale_col_limited(mat->diffuse, mat->col));
 }
 
 t_col ft_cast_ray(t_ray ray, t_setup *setup)
@@ -90,13 +89,13 @@ t_col ft_cast_ray(t_ray ray, t_setup *setup)
 		hit.pos = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 		hit.nrml = get_nrml()[form->type](ray, form);
 		if (form->type == SPH)
-			hit.col = illuminate(&hit.pos, &hit.nrml, &form->sph.mat, light);
+			illuminate(&hit, &form->sph.mat, light);
 		else if (form->type == PLN)
-			hit.col = illuminate(&hit.pos, &hit.nrml, &form->plan.mat, light);
+			illuminate(&hit, &form->plan.mat, light);
 		else if (form->type == CON)
-			hit.col = illuminate(&hit.pos, &hit.nrml, &form->cone.mat, light);
+			illuminate(&hit, &form->cone.mat, light);
 		else if (form->type == CYL)
-			hit.col = illuminate(&hit.pos, &hit.nrml, &form->cldre.mat, light);
+			illuminate(&hit, &form->cldre.mat, light);
 		t_vec3 light_dir = ft_vec3vop_r(light->vect, hit.pos, '-');
 
 		// dclae shadow ray
