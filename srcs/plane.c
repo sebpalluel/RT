@@ -56,7 +56,7 @@ size_t			ft_plane(t_list **list)
 	return (OK);
 }
 
-t_vec3			normale_plane(t_ray ray, t_list *plane)
+t_vec3			normal_plane(t_ray ray, t_list *plane)
 {
 	t_vec3	norm;
 
@@ -85,7 +85,7 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 
 	if (ray.dist >= 0.0)
 	{
-		norm = normale_plane(ray, pln);
+		norm = normal_plane(ray, pln);
 		return (diffuse(norm, pln, ray, FORM(pln)->mat.col));
 	}
 	return (setup->background);

@@ -28,6 +28,14 @@ t_func_dble	*hit_shape(void)
 	return (func);
 }
 
+t_func_vec3	*normal_shape(void)
+{
+	static t_func_vec3 func[NUM_FORM] = {&normal_sphere, &normal_plane, \
+		&normal_cone, &normal_cyl};
+	
+	return (func);
+}
+
 t_setup					*get_st(void)
 {
 	static t_setup		setup;

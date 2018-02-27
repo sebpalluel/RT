@@ -47,11 +47,13 @@ size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
+
 t_bool		ft_getvectfromenv(t_vec3 *vect, char *value);
 t_bool		ft_getcolfromenv(t_col *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
+
 size_t		ft_engine(t_list **list);
 size_t		ft_cam(t_list **list);
 size_t		ft_light(t_list **list);
@@ -59,6 +61,7 @@ size_t		ft_plane(t_list **list);
 size_t		ft_sphere(t_list **list);
 size_t		ft_cone(t_list **list);
 size_t		ft_cylindre(t_list **list);
+
 t_parse_obj	*parse_obj(void);
 void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
 int			ft_raytracing_thread(t_setup *setup);
@@ -66,7 +69,7 @@ size_t		ft_get_thread_n(t_setup *setup);
 void		ft_setup_cam(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 
-// TODO Eliot functions
+// TODO Eliott functions
 t_setup		*get_st(void);
 int			coltoi(t_col col);
 int			init_mat(t_matrix *mat, int i, int j);
@@ -77,19 +80,31 @@ t_matrix	rot_mat(t_vec3 v, double theta);
 t_matrix	id_mat(void);
 t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
 t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
+
 t_col		send_ray(t_ray ray, t_setup *setup);
+
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
+t_func_vec3	*normal_shape(void);
+
 t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj);
+
 double		hit_plan(t_ray ray, t_forms *form);
 double		hit_sphere(t_ray ray, t_forms *form);
 double		hit_cone(t_ray ray, t_forms *form);
 double		hit_cyl(t_ray ray, t_forms *form);
+int			hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
+
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
 t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
 t_col		intersec_cone(t_ray ray, t_list *con, t_setup *setup);
 t_col		intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup);
-int			hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
+
+t_vec3			normal_plane(t_ray ray, t_list *plane);
+t_vec3	normal_cyl(t_ray ray, t_list *cyl);
+t_vec3	normal_cone(t_ray ray, t_list *cone);
+t_vec3			normal_sphere(t_ray ray, t_list *sph);
+
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
 #endif
