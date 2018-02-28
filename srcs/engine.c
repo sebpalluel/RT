@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 17:10:10 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:06:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void		ft_create_new_window(t_setup *setup)
 		setup->error = ERROR;
 	else
 		SCN.win->mlx_ptr = setup->mlx_ptr;
+	mlx_hook(SCN.win->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
+			ft_quit, setup);
 }
 
 size_t			ft_engine(t_list **list)
