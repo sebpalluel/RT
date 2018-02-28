@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:53:19 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:34:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:32:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,4 @@ void		ft_setup_free(t_setup *setup)
 		free(setup->path);
 	if (setup->scene)
 		free(setup->scene);
-	while(42);
 }

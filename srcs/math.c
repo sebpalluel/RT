@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:17:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:19:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:23:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,48 @@ t_bool			ft_solve_quadra(double abc[3], double *t)
 	}
 	*t = t0;
 	return (TRUE);
+}
+
+void			mult_dir_matrix(t_vec3 *src, t_vec3 *dst, double **x)
+{
+	double		a;
+	double		b;
+	double		c;
+
+	a = src->x * x[0][0] + src->y * x[1][0] + src->z * x[2][0];
+	b = src->x * x[0][1] + src->y * x[1][1] + src->z * x[2][1];
+	c = src->x * x[0][2] + src->y * x[1][2] + src->z * x[2][2];
+	dst->x = a;
+	dst->y = b;
+	dst->z = c;
+}
+
+void			mult_vec3_matrix(t_vec3 src, t_vec3 *dst, double **x)
+{
+	double		a;
+	double		b;
+	double		c;
+	double		w;
+
+	a = src.x * x[0][0] + src.y * x[1][0] + src.z * x[2][0] + x[3][0];
+	b = src.x * x[0][1] + src.y * x[1][1] + src.z * x[2][1] + x[3][1];
+	c = src.x * x[0][2] + src.y * x[1][2] + src.z * x[2][2] + x[3][2];
+	w = src.x * x[0][3] + src.y * x[1][3] + src.z * x[2][3] + x[3][3];
+	dst->x = a / w;
+	dst->y = b / w;
+	dst->z = c / w;
+}
+
+t_col			mult_scale_col_limited(double t, t_col col)
+{
+	col.r = col.r * t;
+	col.g = col.g * t;
+	col.b = col.b * t;
+	if (col.r > 1)
+		col.r = 1;
+	if (col.g > 1)
+		col.g = 1;
+	if (col.b > 1)
+		col.b = 1;
+	return (col);
 }

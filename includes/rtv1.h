@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:31:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:26:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int			usage(int mode);
 int			ft_quit(t_setup *setup);
 void		ft_setup_free(t_setup *setup);
 void		ft_start(t_setup *setup);
-void		ft_mlx_control(t_setup *setup);
 void		ft_mlx_control_key(t_setup *setup);
 t_setup		*ft_setup_alloc(t_setup *setup);
 char		**ft_validobjs(void);
@@ -73,6 +72,11 @@ size_t		ft_cldre(t_list **list);
 void		ft_getcylindres(t_list **env, char *obj_str);
 t_bool		ft_cldre_intersect(t_ray *ray, t_forms *form, double *t);
 t_func_nrml	*get_nrml(void);
+t_col		mult_scale_col_limited(double t, t_col col);
+void		mult_dir_matrix(t_vec3 *src, t_vec3 *dst, double **x);
+void		mult_vec3_matrix(t_vec3 src, t_vec3 *dst, double **x);
+void		illuminate(t_hit *hit, t_mat mat, t_lgt *light);
+void		init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit);
 /* TODO SEB */
 void		ft_look_at(t_setup *setup, t_cam *cam);
 void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name);

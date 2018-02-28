@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 19:07:28 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/28 11:18:07 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -132,6 +132,7 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(STDLIBPATH)ft_stoul.c\
 			$(MATHPATH)ft_sqrt.c\
 			$(MATHPATH)ft_pow.c\
+			$(MATHPATH)ft_max.c\
 			$(MATHPATH)ft_abs.c\
 			$(MATHPATH)ft_range_num.c\
 			$(LISTPATH)ft_lstnew.c\

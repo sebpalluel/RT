@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:28:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:28:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ void			ft_look_at(t_setup *setup, t_cam *cam)
 	setup->camToWorld[3][1] = cam->org.y;
 	setup->camToWorld[3][2] = cam->org.z;
 	setup->camToWorld[3][3] = 1.;
-}
-
-void			init_cam(t_cam *cam, t_vec3 org, t_vec3 look_at)
-{
-	cam->org = org;
-	cam->frt = ft_vec3normalize_r(ft_vec3sub_r(look_at, org));
-	cam->dwn = ft_vec3normalize_r(ft_vec3mult_r(ft_vec3_r(0.0, 1.0, 0.0), cam->frt));
-	if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
-		cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
-	if (ft_vec3norm(cam->dwn) == 0.0)
-	{
-		cam->dwn = ft_vec3normalize_r(ft_vec3mult_r(ft_vec3_r(1.0, 0.0, 0.0), cam->frt));
-		if (ft_vec3dot(cam->dwn, ft_vec3_r(0.0, 0.0, 1.0)) > 0.0)
-			cam->dwn = ft_vec3multscale_r(cam->dwn, -1.);
-	}
-	cam->rgt = ft_vec3normalize_r(ft_vec3mult_r(cam->frt, cam->dwn));
 }
 
 static t_list	*ft_newcam(void)
