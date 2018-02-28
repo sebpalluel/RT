@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 12:05:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 13:28:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void		ft_create_new_window(t_setup *setup)
 {
 	if (!(SCN.win = (t_mlx *)ft_memalloc(sizeof(t_mlx))) || \
 			(!(SCN.win->win_ptr = mlx_new_window(setup->mlx_ptr, SCN.width, \
-												 SCN.height, setup->path)) || \
-			 !(SCN.img = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height))))
+				SCN.height, setup->path)) || !(SCN.img = \
+				ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height))))
 		setup->error = ERROR;
 	else
 		SCN.win->mlx_ptr = setup->mlx_ptr;
