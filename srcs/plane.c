@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 13:44:27 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:00:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 		flag[0] = ft_getvectfromenv(&PLAN(form).nrml, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "distance") == 0)
 		flag[1] = ft_getdoublefromenv(&PLAN(form).dst, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[2] = ft_getcolfromenv(&FORM(form)->mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[3] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
-				ENVSTRUCT(env)->value);
+	flag = ft_mat_struct_pop(form, env, flag, 2);
 	FORM(form)->num_arg++;
 }
 
@@ -61,7 +53,7 @@ t_vec3			normal_plane(t_ray ray, t_list *plane)
 	t_vec3	norm;
 
 	norm = PLAN(plane).nrml;
-    if (ft_vec3dot(PLAN(plane).nrml, ray.dir) > 0)
+	if (ft_vec3dot(PLAN(plane).nrml, ray.dir) > 0)
 		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '+');
 	return (norm);
 }

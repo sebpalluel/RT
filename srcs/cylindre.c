@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/28 14:04:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:56:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,7 @@ void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 		flag[1] = ft_getvectfromenv(&CYLI(form).dir, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "radius") == 0)
 		flag[2] = ft_getdoublefromenv(&CYLI(form).r, ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[3] = ft_getcolfromenv(&FORM(form)->mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "diffuse") == 0)
-		flag[4] = ft_getdoublefromenv(&FORM(form)->mat.diffuse, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "specular") == 0)
-		flag[5] = ft_getdoublefromenv(&FORM(form)->mat.specular, \
-				ENVSTRUCT(env)->value);
+	flag = ft_mat_struct_pop(form, env, flag, 3);
 	FORM(form)->num_arg++;
 }
 

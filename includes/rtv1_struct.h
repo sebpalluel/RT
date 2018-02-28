@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:46:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:46:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ typedef struct		s_env
 typedef struct		s_mat
 {
 	t_col			col;
-	double			diffuse;
-	double			specular;
+	double			refl;
+	double			n;
+	double			trsp;
 }					t_mat;
 
 typedef struct	s_cam

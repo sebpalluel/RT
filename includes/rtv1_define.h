@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:12:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:48:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
-# define MAX_REFL		32
 # define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
@@ -74,10 +73,10 @@
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
 # define NVARLIGHT		4
-# define NVARSPHERE		5
-# define NVARPLANE		5
-# define NVARCONE		6
-# define NVARCYLINDRE	6
+# define NVARSPHERE		6
+# define NVARPLANE		6
+# define NVARCONE		7
+# define NVARCYLINDRE	7
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_forms *)(*(x)).content)

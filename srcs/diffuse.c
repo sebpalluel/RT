@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 17:10:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:20:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 	lgt = SCN.lgts;
 	refl = col;
 	spec = col;
-	if (ray.nbrefl < MAX_REFL && col_obj.s != 0)
+	if (ray.nbrefl < (int)SCN.refl_max && col_obj.s != 0)
 	{
 		reflray = reflexion(ray, norm);
 		refl = send_ray(reflray, setup); 

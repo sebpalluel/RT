@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:53:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:55:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void		ft_getspheres(t_list **env, char *obj_str);
 void		ft_getplanes(t_list **env, char *obj_str);
 void		ft_getcones(t_list **env, char *obj_str);
 void		ft_getcylindres(t_list **env, char *obj_str);
+t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
+		size_t n_flag);
 
 size_t		ft_engine(t_list **list);
 size_t		ft_cam(t_list **list);
