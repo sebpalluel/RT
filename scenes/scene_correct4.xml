@@ -9,10 +9,22 @@
 	</engine>
 
 	<cameras>
-    <camera>
-      <origin> 0.0, 0.0, -1.0 </origin>
-      <look_at> 0.0, 0.0, 0.0 </look_at>
-    </camera>
+		<camera>
+			<origin> 0., 0.0, -1.0 </origin>
+			<look_at> 0.0, 0.0, 0.0 </look_at>
+		</camera>
+		<camera>
+			<origin> -1.5, -0.25, 2.15 </origin>
+			<look_at> 0.065, -0.25, 2.15 </look_at>
+		</camera>
+		<camera>
+			<origin> 1.5, -0.25, 2.15 </origin>
+			<look_at> 0.065, -0.25, 2.15 </look_at>
+		</camera>
+		<camera>
+			<origin> -1.5, -0.0, 2.4 </origin>
+			<look_at> 0.065, -0.25, 2.15 </look_at>
+		</camera>
 	</cameras>
 
 	<lights>
