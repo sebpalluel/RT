@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 11:44:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:19:05 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void			*ft_raytracing(void *cam)
 	size_t		inc;
 
 	setup = get_st();
-	mult_vec3_matrix(((t_cam *)cam)->org, &ray.org, setup->camtoworld);
+	(void)(cam);
+	mult_vec3_matrix(ft_vec3_r(0., 0., 0.), &ray.org, setup->camtoworld);
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;
