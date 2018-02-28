@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 14:18:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 13:02:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ t_setup			*ft_setup_alloc(t_setup *setup)
 	setup->mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	ft_init_mlx_img(setup);
 	setup->scene = (t_scene *)ft_memalloc(sizeof(t_scene) * MAX_WINDOW);
-	setup->camToWorld = ft_matrixzero(4);
+	setup->camtoworld = ft_matrixzero(4);
 	if (!UI_WIN || !UI_IMG || !setup->thrd || !setup->scene || \
-			!setup->camToWorld)
+			!setup->camtoworld)
 		return (NULL);
 	return (setup);
 }
