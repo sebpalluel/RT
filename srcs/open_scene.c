@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:13:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:03:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ size_t			ft_open_scene(t_setup *setup)
 		return (ERROR);
 	if (SCN.num_cam == 0)
 		return (setup->error = CAM_ERROR);
+	SCN.cur_cam = CAM(SCN.cams);
 	if (!setup->num_scn)
 		setup->num_scn = 1;
 	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, \

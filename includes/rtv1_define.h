@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 12:20:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:54:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@
 
 # define GUI_M_STR		"|          GUI main menu          |"
 # define GUI_M_SCN_STR	"|To change or select scene  :  S  |"
+# define GUI_M_CAM_STR	"|To change or select cam    :  C  |"
 //# define RIGHT_STR		"Turn Right :  Right"
 //# define PLUS_STR		"Speed Up   :  +"
 //# define MINUS_STR		"Slow Down  :  -"

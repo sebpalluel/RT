@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 18:30:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:09:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,18 @@ size_t			ft_cam(t_list **list)
 	SCN.num_cam++;
 	*list = env;
 	return (OK);
+}
+
+void			ft_cam_change(t_setup *setup)
+{
+	t_list		*list;
+	size_t		cam_n;
+
+	list = SCN.cams;
+	cam_n = 0;
+	SCN.cur_cam = CAM(list);
+	if (SCN.cam_n < SCN.num_cam)
+		while (list && ++cam_n <= SCN.cam_n)
+			list = list->next;
+	SCN.cur_cam = CAM(list);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 17:11:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:09:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@
 static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
 	t_ray			ray;
-	t_cam			*cam;
-	t_list			*cams;
+	t_cam			cam;
 	t_vec3			org;
 	t_vec3			dir;
 
-	cams = SCN.cams;
-	cam = CAM(cams);
-	org = ft_vec3vop_r( ft_vec3vop_r(ft_vec3sop_r(cam->rgt, \
+	cam = *SCN.cur_cam;
+	org = ft_vec3vop_r( ft_vec3vop_r(ft_vec3sop_r(cam.rgt, \
 					(x - (SCN.width/ 2.0)) / SCN.height, '*'), \
-				ft_vec3sop_r(cam->dwn, (y - (SCN.height / 2.0)) \
-					/ SCN.height, '*'), '+'), cam->org, '+');
-	dir = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3sop_r(cam->frt, SCN.pers, '*')\
-				, ft_vec3vop_r(cam->org, ft_vec3vop_r(ft_vec3vop_r(\
-							ft_vec3sop_r(cam->rgt, (x - (SCN.width / 2.0)) \
+				ft_vec3sop_r(cam.dwn, (y - (SCN.height / 2.0)) \
+					/ SCN.height, '*'), '+'), cam.org, '+');
+	dir = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3sop_r(cam.frt, SCN.pers, '*')\
+				, ft_vec3vop_r(cam.org, ft_vec3vop_r(ft_vec3vop_r(\
+							ft_vec3sop_r(cam.rgt, (x - (SCN.width / 2.0)) \
 								/ SCN.height, '*'), \
-							ft_vec3sop_r(cam->dwn, (y - SCN.height / 2.0) \
-								/ SCN.height, '*'), '+'), cam->org, '+'), '-'),\
+							ft_vec3sop_r(cam.dwn, (y - SCN.height / 2.0) \
+								/ SCN.height, '*'), '+'), cam.org, '+'), '-'),\
 				'-'));
 	ray = init_ray(org, dir);
 	return (ray);

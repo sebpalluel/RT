@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 13:40:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:53:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
 void		ft_start(t_setup *setup);
-void		ft_mlx_control(t_setup *setup);
 void		ft_mlx_control_key(t_setup *setup);
 t_setup		*ft_setup_alloc(t_setup *setup); // tous les define sont juste des racourcis sur la structure setup
 char		**ft_validobjs(void); // ce qui contient tous les types d'objet qu'on gere pour le parsing
@@ -38,6 +37,7 @@ char		*ft_getobjstr(char *str, char *obj, int num);
 t_list		*ft_parse_scn(t_setup *setup, char *file);
 void		ft_getengine(t_list **env, char *eng_str);
 void		ft_getcams(t_list **env, char *cam_str);
+void		ft_cam_change(t_setup *setup);
 void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_setup *setup, t_list **env, char *light_str);
 int			ft_setup_menu(t_setup *setup);
