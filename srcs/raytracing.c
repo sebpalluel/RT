@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 11:31:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:44:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static	void	ft_init_primray(t_setup *setup, t_pix pix, t_ray *ray)
 	dir.y = (1 - 2 * (pix.y + 0.5) / (double)SCN.height) * scale;
 	dir.z = -1;
 	ft_vec3normalize(&dir);
-	mult_dir_matrix(&dir, &ray->dir, setup->camToWorld);
+	mult_dir_matrix(&dir, &ray->dir, setup->camtoworld);
 	ft_vec3normalize(&ray->dir);
 	ray->dist = -1;
 }
@@ -91,7 +91,7 @@ void			*ft_raytracing(void *cam)
 	size_t		inc;
 
 	setup = get_st();
-	mult_vec3_matrix(((t_cam *)cam)->org, &ray.org, setup->camToWorld);
+	mult_vec3_matrix(((t_cam *)cam)->org, &ray.org, setup->camtoworld);
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;

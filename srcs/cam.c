@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 11:28:55 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:44:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void			ft_look_at(t_setup *setup, t_cam *cam)
 	forward = ft_vec3normalize_r(ft_vec3vop_r(cam->org, cam->look_at, '-'));
 	right = ft_vec3vop_r(ft_vec3normalize_r(ft_vec3_r(0, 1, 0)), forward, 'c');
 	up = ft_vec3vop_r(forward, right, 'c');
-	setup->camToWorld[0][0] = right.x;
-	setup->camToWorld[0][1] = right.y;
-	setup->camToWorld[0][2] = right.z;
-	setup->camToWorld[1][0] = up.x;
-	setup->camToWorld[1][1] = up.y;
-	setup->camToWorld[1][2] = up.z;
-	setup->camToWorld[2][0] = forward.x;
-	setup->camToWorld[2][1] = forward.y;
-	setup->camToWorld[2][2] = forward.z;
-	setup->camToWorld[3][0] = cam->org.x;
-	setup->camToWorld[3][1] = cam->org.y;
-	setup->camToWorld[3][2] = cam->org.z;
-	setup->camToWorld[3][3] = 1.;
+	setup->camtoworld[0][0] = right.x;
+	setup->camtoworld[0][1] = right.y;
+	setup->camtoworld[0][2] = right.z;
+	setup->camtoworld[1][0] = up.x;
+	setup->camtoworld[1][1] = up.y;
+	setup->camtoworld[1][2] = up.z;
+	setup->camtoworld[2][0] = forward.x;
+	setup->camtoworld[2][1] = forward.y;
+	setup->camtoworld[2][2] = forward.z;
+	setup->camtoworld[3][0] = cam->org.x;
+	setup->camtoworld[3][1] = cam->org.y;
+	setup->camtoworld[3][2] = cam->org.z;
+	setup->camtoworld[3][3] = 1.;
 }
 
 static t_list	*ft_newcam(void)

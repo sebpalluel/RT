@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 11:26:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:42:06 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void		mult_dir_matrix(t_vec3 *src, t_vec3 *dst, double **x);
 void		mult_vec3_matrix(t_vec3 src, t_vec3 *dst, double **x);
 void		illuminate(t_hit *hit, t_mat mat, t_lgt *light);
 void		init_sdw_ray(t_ray *sdw_ray, t_lgt *light, t_hit *hit);
-/* TODO SEB */
 void		ft_look_at(t_setup *setup, t_cam *cam);
 void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name);
 void		ft_getmaterial(t_list **env, char *mat_str);
