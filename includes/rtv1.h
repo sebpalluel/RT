@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:24:23 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 13:40:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ t_bool		ft_getcolfromenv(t_col *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
+void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name);
+void		ft_getmaterial(t_list **env, char *mat_str);
+void		ft_getspheres(t_list **env, char *obj_str);
+void		ft_getplanes(t_list **env, char *obj_str);
+void		ft_getcones(t_list **env, char *obj_str);
+void		ft_getcylindres(t_list **env, char *obj_str);
 
 size_t		ft_engine(t_list **list);
 size_t		ft_cam(t_list **list);

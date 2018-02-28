@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parse_to_env_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 13:59:56 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/28 13:58:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void			ft_put_pixel(t_setup *setup, int x, int y, int color)
+void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name)
 {
-	int			*tmp;
-	size_t		index;
+	char	*value;
 
-	if (y >= (int)SCN.height || x >= (int)SCN.width || x < 0 || y < 0)
-		return ;
-	index = (y * SCN.width) * (SCN.img->bbp >> 3) \
-			+ x * (SCN.img->bbp >> 3);
-	tmp = (int *)&SCN.img->image_addr[index];
-	*tmp = color;
+	if (name && (value = ft_getobjstr(obj_str, (char *)name, 0)))
+		ft_lstaddend(env, ft_newenv(ft_strdup(name), value));
+}
+
+void		ft_getmaterial(t_list **env, char *mat_str)
+{
+	ft_getvaluetoenv(env, mat_str, "color");
+	ft_getvaluetoenv(env, mat_str, "diffuse");
+	ft_getvaluetoenv(env, mat_str, "specular");
+	free(mat_str);
 }
