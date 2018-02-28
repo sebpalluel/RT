@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 19:25:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:13:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static t_vec3	normal_cone(t_ray ray, t_forms *form)
 		form->cone.dir = ft_vec3multscale_r(form->cone.dir, -1.);
 	k = 1 / cos(form->cone.theta / 2.0);
 	height = ft_vec3norm(ft_vec3multscale_r(oc, k));
-	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, ft_vec3multscale_r(form->cone.dir, height)));
+	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, \
+				ft_vec3multscale_r(form->cone.dir, height)));
 	return (norm);
 }
 
@@ -40,7 +41,8 @@ static t_vec3	normal_cyl(t_ray ray, t_forms *form)
 	hit = ft_vec3add_r(ray.org, ft_vec3multscale_r(ray.dir, ray.dist));
 	oc = ft_vec3sub_r(hit, form->cldre.pos);
 	height = ft_vec3dot(form->cldre.dir, oc);
-	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, ft_vec3multscale_r(form->cldre.dir, height)));
+	norm = ft_vec3normalize_r(ft_vec3sub_r(oc, \
+				ft_vec3multscale_r(form->cldre.dir, height)));
 	return (norm);
 }
 

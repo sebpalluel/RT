@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 16:35:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 11:27:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void		ft_change_cam(t_setup *setup)
+static void	ft_change_cam(t_setup *setup)
 {
 	int		x;
 	char	*nbr;
@@ -41,17 +41,7 @@ void		ft_change_cam(t_setup *setup)
 				STATE_DRAW : STATE_CAM;
 }
 
-void		ft_mlx_control_key(t_setup *setup)
-{
-	if (setup->mode == STATE_STOP)
-		ft_mlx_control(setup);
-	if (setup->key == C_KEY || setup->mode == STATE_CAM)
-		ft_change_cam(setup);
-	if (setup->key == S_KEY)
-		setup->mode = STATE_SELECT;
-}
-
-void		ft_mlx_control(t_setup *setup)
+static void	ft_mlx_control(t_setup *setup)
 {
 	int		x;
 
@@ -64,4 +54,14 @@ void		ft_mlx_control(t_setup *setup)
 			GUI_M_SCN_STR);
 	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, x, 64, 0x0000FF, \
 			GUI_M_CAM_STR);
+}
+
+void		ft_mlx_control_key(t_setup *setup)
+{
+	if (setup->mode == STATE_STOP)
+		ft_mlx_control(setup);
+	if (setup->key == C_KEY || setup->mode == STATE_CAM)
+		ft_change_cam(setup);
+	if (setup->key == S_KEY)
+		setup->mode = STATE_SELECT;
 }

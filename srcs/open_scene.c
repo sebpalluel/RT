@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/26 15:08:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 12:03:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ size_t			ft_select_scene(t_setup *setup, int scene)
 		setup->path = ft_strdup(SCN_PATH_1);
 	else if (scene == 2)
 		setup->path = ft_strdup(SCN_PATH_2);
+	else if (scene == 3)
+		setup->path = ft_strdup(SCN_PATH_3);
 	if (setup->path != NULL)
 		return (OK);
 	else

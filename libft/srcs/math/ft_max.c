@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec3normalize.c                                 :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/31 16:37:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 12:17:13 by psebasti         ###   ########.fr       */
+/*   Created: 2018/02/28 11:15:58 by psebasti          #+#    #+#             */
+/*   Updated: 2018/02/28 11:16:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
-void		ft_vec3normalize(t_vec3 *to_vec3)
+double			ft_max(double a, double b)
 {
-	double	n;
-
-	if (to_vec3)
-	{
-		n = ft_vec3norm(*to_vec3);
-		if (n >= 0.0)
-		{
-			to_vec3->x /= n;
-			to_vec3->y /= n;
-			to_vec3->z /= n;
-		}
-	}
+	return (a >= b ? a : b);
 }
