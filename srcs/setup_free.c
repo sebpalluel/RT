@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:42:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:13:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:14:12 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void		ft_setup_free(t_setup *setup)
 		ft_scene_free(setup);
 		setup->scn_num++;
 	}
-	free(setup->scene);
 	ft_mlxdelete(UI_WIN, UI_IMG);
+	if (setup->scene)
+	free(setup->scene);
+	if (setup->thrd)
 	free(setup->thrd);
 	if (setup->path)
 		free(setup->path);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 13:40:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:13:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ size_t			ft_init_new_scene(t_setup *setup)
 	return (OK);
 }
 
-size_t			ft_open_scene(t_setup *setup)
+static char		*ft_append_line_to_file(t_setup *setup)
 {
 	char		*file;
 	char		*line;
@@ -75,17 +75,27 @@ size_t			ft_open_scene(t_setup *setup)
 
 	file = NULL;
 	line = NULL;
-	if (ft_init_new_scene(setup) != OK || \
-			ft_open(&SCN.fd, O_RDONLY, O_APPEND) != OK)
-		return (setup->error = FILE_ERROR);
 	while (get_next_line(SCN.fd.fd, &line))
 	{
 		if (!line)
-			return (setup->error = FILE_ERROR);
+			return (NULL);
 		tmp = file;
 		file = ft_strjoin(tmp, line);
 		free(tmp);
+		free(line);
 	}
+	return (file);
+}
+
+size_t			ft_open_scene(t_setup *setup)
+{
+	char		*file;
+
+	if (ft_init_new_scene(setup) != OK || \
+			ft_open(&SCN.fd, O_RDONLY, O_APPEND) != OK)
+		return (setup->error = FILE_ERROR);
+	if (!(file = ft_append_line_to_file(setup)))
+		return (setup->error = FILE_ERROR);
 	if (!(SCN.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
 			|| setup->error != OK)
 		return (ERROR);
@@ -93,7 +103,8 @@ size_t			ft_open_scene(t_setup *setup)
 		return (setup->error = CAM_ERROR);
 	if (!setup->num_scn)
 		setup->num_scn = 1;
-	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
+	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, \
+			UI_IMG->image, 0, 0);
 	setup->mode = STATE_DRAW;
 	return (OK);
 }
