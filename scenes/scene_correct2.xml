@@ -24,18 +24,18 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 1.0, -4 </position>
+			<position> -0.75, 1.0, 0.75 </position>
 			<color> 1., 1., 1., 1. </color>
 		</light>
 	</lights>
 
 	<objects>
     <cylindre>
-			<origin> 0., 0., 10. </origin>
+			<origin> 0., 0., 2. </origin>
 			<direction> 0., -1, 0. </direction>
-			<radius> 2 </radius>
+			<radius> 0.25 </radius>
 			<material>
-				<color> 0.5, 0.5, 1.0, 1.0 </color>
+				<color> 0.25, 1.0, 0.35, 1.0 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
