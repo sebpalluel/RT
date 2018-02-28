@@ -1,4 +1,6 @@
 libft/libft.a
 libft/objs/*
 obj/*
+**/*.o
+**/*.a
 rtv1
