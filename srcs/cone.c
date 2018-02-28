@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 17:10:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 12:18:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ size_t			ft_cone(t_list **list)
 	if (ft_checkifallset(flag, NVARCONE) != OK)
 		return (setup->error = CONE_ERROR);
 	CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);
+	ft_vec3normalize
 	*list = env;
 	return (OK);
 }
