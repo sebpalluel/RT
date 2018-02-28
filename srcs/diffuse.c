@@ -81,14 +81,13 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 	lgt = SCN.lgts;
 	refl = col;
 	spec = col;
-
+	if (ray.nbrefl < MAX_REFL && col_obj.s != 0)
+	{
+		reflray = reflexion(ray, norm);
+		refl = send_ray(reflray, setup); 
+	}
 	while (lgt)
 	{
-		if (ray.nbrefl < MAX_REFL && col_obj.s != 0)
-		{
-			reflray = reflexion(ray, norm);
-			refl = send_ray(reflray, setup); 
-		}
 		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
 		{
 			lgt = lgt->next;
