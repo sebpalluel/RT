@@ -100,8 +100,9 @@ typedef struct	s_ray
 	t_vec3		org;
 	t_vec3		dir;
 	double		dist;
-	int			forme;
-	t_bool		hit;
+//	int			forme;
+	int			nbrefl;
+//	t_bool		hit;
 }				t_ray;
 
 typedef t_col	(*t_func_col)();

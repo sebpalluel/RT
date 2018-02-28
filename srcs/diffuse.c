@@ -71,20 +71,30 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 	double		dist;
 	t_col		col;
 	t_col		spec;
+	t_col		refl;
 	t_list		*lgt;
+	t_ray		reflray;
 	t_setup		*setup;
 
 	setup = get_st();
 	col = setup->background;
 	lgt = SCN.lgts;
+	refl = col;
 	spec = col;
+
 	while (lgt)
 	{
+		if (ray.nbrefl < MAX_REFL && col_obj.s != 0)
+		{
+			reflray = reflexion(ray, norm);
+			refl = send_ray(reflray, setup); 
+		}
 		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
 		{
 			lgt = lgt->next;
 			continue ;
 		}
+		(void)form;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
@@ -95,5 +105,5 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 						LGT(lgt)->col, phong(ray, col_obj, norm, lgt)), SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_coladd(spec, col));
+	return (ft_colinterpol(ft_coladd(spec, col), refl, col_obj.s));
 }

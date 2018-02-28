@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:54:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:12:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
-# define THREAD			32
+# define MAX_REFL		32
+# define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
 # define MAX_WINDOW		5
