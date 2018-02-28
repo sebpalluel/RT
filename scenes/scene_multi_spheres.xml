@@ -19,7 +19,7 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 0.0, 0.0 </position>
+			<position> -0.5, 0.0, 0.0 </position>
 			<color> 1., 1., 1., 1. </color>
 		</light>
 
@@ -27,7 +27,7 @@
 
 	<objects>
 		<sphere>
-			<center> 1.0, 0.19, 0.0 </center>
+			<center> 1.0, 0.17, 0.0 </center>
 			<radius> 0.2 </radius>
 			<material>
 				<color> 1., 1., 0., 0.0 </color>
@@ -36,7 +36,7 @@
 			</material>
 		</sphere>
 		<sphere>
-			<center> 1.0, -0.19, 0.0 </center>
+			<center> 1.0, -0.17, 0.0 </center>
 			<radius> 0.2 </radius>
 			<material>
 				<color> 0., 1., 1., 0.0 </color>
@@ -48,7 +48,7 @@
 			<normale> 0, 1, 0 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0., 1., 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
@@ -57,7 +57,7 @@
 			<normale> 0, -1, 0 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0., 1., 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
@@ -66,7 +66,7 @@
 			<normale> -1, 0, 0 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0.0, 1.0, 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
@@ -75,7 +75,7 @@
 			<normale> 1, 0, 0 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0., 1., 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
@@ -84,7 +84,7 @@
 			<normale> 0, 0, 1 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0., 1., 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
@@ -93,7 +93,7 @@
 			<normale> 0, 0, -1 </normale>
 			<distance> 1 </distance>
 			<material>
-				<color> 1., 1., 1., 0.9 </color>
+				<color> 0., 1., 0.7, 0.95 </color>
 				<diffuse> 1. </diffuse>
 				<specular> 1. </specular>
 			</material>
