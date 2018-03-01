@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 18:47:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/01 13:05:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:13:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define OK							0
 # define ERROR						1
+# define TRUE						1
+# define FALSE						0
 
 # define ESC						53
 # define ENTER						36

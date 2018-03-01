@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/15 16:55:22 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/02/28 14:00:21 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -38,7 +38,7 @@ INCNAME		=	rtv1.h \
 				rtv1_struct.h
 SRCNAME 	=	main.c \
 				setup.c \
-				objs.c \
+				setup_free.c \
 				mlx_process.c \
 				mlx_control.c \
 				open_scene.c \
@@ -47,15 +47,26 @@ SRCNAME 	=	main.c \
 				light.c \
 				plane.c \
 				sphere.c \
+				cone.c \
+				cylindre.c \
 				engine.c \
 				utils.c \
 				raytracing.c \
 				raytracer_thread.c \
+				parse_to_env_utils.c \
 				parser.c \
-				parse_to_env.c
+				parser_error.c \
+				parse_shape.c \
+				parse_objects.c \
+				sp_mat.c \
+				matrices.c \
+				shape.c \
+				singleton.c \
+				ray.c \
+				diffuse.c \
+				reflexion.c \
 				#draw.c \
 				#raycaster.c \
-				#color.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))
@@ -77,6 +88,7 @@ ifneq (,$(filter debug,$(MAKECMDGOALS)))
 	@$(CMP) $(FLAGS) $(DEBUG_F) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 else
 	@make -C $(LFTDIR)
+	@make -C $(MLXDIR)
 	@$(CMP) $(FLAGS) -o $(NAME) -L $(LFTDIR) -L $(MLXDIR) $(LIBS) $^ -o $@
 	@echo "$(OKC)$(NAME):\t\t$(NAME) READY$(NOC)"
 	@echo "$(OKC)¯\_ツ_/¯$(NOC)"
@@ -95,6 +107,7 @@ endif
 
 clean:
 	@make -C $(LFTDIR) clean
+	@make -C $(MLXDIR) clean
 	@rm -rf $(OBJDIR)
 	@echo "$(WAC)$(NAME):\t\tRemoving OBJ dir: ./obj/$(NOC)"
 

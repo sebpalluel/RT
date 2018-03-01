@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:49:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:13:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int				ft_setup_menu(t_setup *setup)
 	size_t		xy[2];
 	int			ret;
 
-	xy[0] = SETUP.width / 2 - SETUP.width / 14;
-	xy[1] = SETUP.height / 2 - SETUP.height / 10;
-	mlx_put_image_to_window(SETUP.mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
-	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1]\
+	xy[0] = setup->width / 2 - setup->width / 14;
+	xy[1] = setup->height / 2 - setup->height / 10;
+	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
+	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1]\
 			, 0x00611DE9, CHOOSE_STR);
-	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30\
+	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30\
 			, 0x009999FF, SELECT_STR);
-	ret = ft_mlx_keytoint(SETUP.key); // permet de selectioner le numero de map
-	if (ret >= 0 && SETUP.num_scn < MAX_WINDOW)
+	ret = ft_mlx_keytoint(setup->key); // permet de selectioner le numero de map
+	if (ret >= 0 && setup->num_scn < MAX_WINDOW)
 	{
 		if (ft_select_scene(setup, ret) != OK) // stocke le path vers la map correspondant
-			return (SETUP.error = FILE_ERROR); //  dans le cas ou fichier inexistant
-		SETUP.scn_num = SETUP.num_scn;
-		SETUP.num_scn++;
-		SETUP.mode = STATE_OPEN; // rentre dans le mode qui va permettre d'open la map et de parser
+			return (setup->error = FILE_ERROR); //  dans le cas ou fichier inexistant
+		setup->scn_num = setup->num_scn;
+		setup->num_scn++;
+		setup->mode = STATE_OPEN; // rentre dans le mode qui va permettre d'open la map et de parser
 	}
 	//TODO marquer ici un message au cas ou depase le max window, du type nombre de rendu max atteint
 	return (OK);
@@ -41,11 +41,11 @@ void			ft_start(t_setup *setup)
 {
 	size_t		xy[2];
 
-	xy[0] = SETUP.width / 2 - SETUP.width / 14;
-	xy[1] = SETUP.height / 2 - SETUP.height / 10;
-	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1], \
+	xy[0] = setup->width / 2 - setup->width / 14;
+	xy[1] = setup->height / 2 - setup->height / 10;
+	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1], \
 			0xFFFFFF, START_STR);
-	mlx_string_put(SETUP.mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30, \
+	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30, \
 			0xFFFFFF, ENTER_STR);
 }
 
@@ -53,68 +53,37 @@ static size_t	ft_init_mlx_img(t_setup *setup)
 {
 	if (!(UI_WIN = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (ERROR);
-	SETUP.mlx_ptr = mlx_init();
-	UI_WIN->win_ptr = mlx_new_window(SETUP.mlx_ptr, SETUP.width, SETUP.height, \
+	setup->mlx_ptr = mlx_init();
+	UI_WIN->mlx_ptr = setup->mlx_ptr;
+	UI_WIN->win_ptr = mlx_new_window(setup->mlx_ptr, setup->width, setup->height, \
 			"rtv1 GUI");
-	if (!(UI_IMG = ft_imgnew(SETUP.mlx_ptr, SETUP.width, SETUP.height)))
+	if (!(UI_IMG = ft_imgnew(setup->mlx_ptr, setup->width, setup->height)))
 		return (ERROR);
 	return (OK);	
 }
 
-static size_t	ft_setup_alloc(t_setup *setup) // tous les define sont juste des racourcis sur la structure setup
+t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des racourcis sur la structure setup
 {
-	SETUP.width = WIDTH;
-	SETUP.height = HEIGHT;
-	if (SETUP.width < 100 || SETUP.width > 4000 || \
-			SETUP.height < 100 || SETUP.height > 4000)
-		return (SETUP.error = DIM_ERROR);
-	SETUP.thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
-	SETUP.mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	SETUP.validobjs = ft_validobjs(); // stocke le type des objets (sous le forme de string) a comparer avec le fichier de config ensuite
-	SETUP.builtin = ft_validfuncsptr(); // stocke les pointeurs sur fonction qui correspondent au different type d'objet pour chaque objet (peuple les structures permet verifier erreur de parsing) 
-	SETUP.param = ft_objsparam(); // stocke les fonctions parametriques pour chaque formes
+	setup->width = WIDTH;
+	setup->height = HEIGHT;
+	if (setup->width < 100 || setup->width > 4000 || \
+			setup->height < 100 || setup->height > 4000)
+	{
+		setup->error = DIM_ERROR;
+		return (NULL);
+	}
+	setup->thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
+	setup->mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	ft_init_mlx_img(setup);
-	if (!SETUP.validobjs || !SETUP.builtin || !SETUP.param || !UI_WIN || \
-			!UI_IMG || !SETUP.thrd) // verifie les mallocs precedent et va initialiser tous les objets
-		return (ERROR);
-	return (OK);
+	setup->scene = (t_scene *)ft_memalloc(sizeof(t_scene) * MAX_WINDOW);
+	if (!UI_WIN || !UI_IMG || !setup->thrd || !setup->scene) // verifie les mallocs precedent et va initialiser tous les objets
+		return (NULL);
+	return (setup);
 }
 
-static void		ft_setup_delete(t_setup *setup)
+int				ft_quit(t_setup *setup)
 {
-	if (setup)
-	{
-		// TODO do the right functions to free everything
-		//ft_mlxdelete(UI_WIN, UI_IMG);
-		if (OBJS)
-		{
-			if (PLANE)
-				free(PLANE);
-			if (SPHERE)
-				free(SPHERE);
-			if (OBJS->cam)
-				free(OBJS->cam);
-			if (OBJS->light)
-				free(OBJS->light);
-			free(OBJS);
-		}
-		if (SCN.fd)
-			ft_fd_delete(SCN.fd);
-	}
-}
-
-size_t			ft_setup_mode(t_setup *setup, size_t mode)
-{
-	int			i;
-
-	i = -1;
-	if (mode)
-		return (ft_setup_alloc(setup));
-	else
-	{
+		ft_setup_free(setup);
 		usage(setup->error);
-		ft_setup_delete(setup);
-		free(setup);
 		exit(0);
-	}
 }

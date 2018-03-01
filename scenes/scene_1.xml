@@ -1,8 +1,8 @@
 <scene>
 
 	<engine>
-		<width> 1280 </width>
-		<height> 720 </height>
+		<width> 1920 </width>
+		<height> 1080 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
@@ -11,14 +11,12 @@
 	<cameras>
 
 		<camera>
-			<position> 0.0, 0.0, 10.0 </position>
-			<direction> 0.0, 0.0, 10.0 </direction>
-			<focal_len> 300.0 </focal_len>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 1.0, 0.0, 0.0 </look_at>
 		</camera>
 		<camera>
-			<position> -8.0, 0.3, 1.0 </position>
-			<direction> 0.4, 0.0, -1.0 </direction>
-			<focal_len> 280.0 </focal_len>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 1.3, 0.0, 0.0 </look_at>
 		</camera>
 	</cameras>
 
@@ -26,50 +24,38 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 0.0, 3., 0.0 </position>
-			<color> 255, 255, 255 </color>
-			<intensity> 1. </intensity>
-			<radius> 20. </radius>
-			<fallof> 3. </fallof>
+			<position> 0.0, -0.5, 0. </position>
+			<color> 1., 0., 0., 1. </color>
 		</light>
 		<light>
-			<type> 1 </type>
-			<position> 0.0, 3., 0.0 </position>
-			<color> 255, 255, 255 </color>
-			<intensity> 1. </intensity>
-			<radius> 20. </radius>
-			<fallof> 3. </fallof>
-			<focal_len> 1. </focal_len>
-			<direction> 0.0, 0.0, 1.0 </direction>
+			<type> 0 </type>
+			<position> 0.0, 0.25, 0.433 </position>
+			<color> 0., 1., 0., 1. </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.25, -0.433 </position>
+			<color> 0., 0., 1., 1. </color>
 		</light>
 	</lights>
 
 	<objects>
 
-		<plane>
-			<position> 4., -10.4, -6.2 </position>
-			<norm> 0.8, 0.01, 0.0 </normx>
-			<material>
-				<color> 0, 255, 255 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
-			</material>
-		</plane>
 		<sphere>
-			<position> 0.9, 1.4, -6.2 </position>
-			<radius> 3.12 </radius>
+			<center> 20.0, 0.2, 0.5 </center>
+			<radius> 0.9 </radius>
 			<material>
-				<color> 255, 0, 0 </color>
-				<diffuse> 1. </diffuse>
+				<color> 1., 1., 1., 0. </color>
+				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
 		</sphere>
 		<plane>
-			<position> 4., -10.4, -6.2 </position>
-			<norm> 0.8, 0.01, 0.0 </normx>
+			<normale> 0.0, 0.0, 0.5 </normale>
+			<distance> 0.5 </distance>
 			<material>
-				<color> 0, 255, 255 </color>
-				<diffuse> 1. </diffuse>
+				<color> 1.0, 1.0, 1.0, 1.0 </color>
+				<diffuse> 0.8 </diffuse>
 				<specular> 1. </specular>
 			</material>
 		</plane>

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/16 16:51:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:48:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 # include "../libft/includes/libft.h"
 
-#define TRUE 1
-#define FALSE 0 //parce que if FALSE -> pas execute
 
 # define WIDTH			1280
 # define HEIGHT			720
 # define RATIO			WIDTH / HEIGHT
-# define FOV        45
+# define FOV			45
 # define DEG2RAD(x)    ((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
-# define THREAD			4
-# define NUM_OBJS		5
+# define THREAD			128
+# define NUM_FORM		4
+# define NUM_OBJS		7
 # define MAX_WINDOW		5
+# define MAX_CAM		10
 # define AMP			1.3
 
 # define STATE_RUN		0
@@ -44,6 +44,8 @@
 # define LIGHT_ERROR_S	"error: light struct is not in the correct format"
 # define PLANE_ERROR_S	"error: plane struct is not in the correct format"
 # define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
+# define CONE_ERROR_S	"error: cone struct is not in the correct format"
+# define CYL_ERROR_S	"error: cylindre struct is not in the correct format"
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
@@ -54,42 +56,41 @@
 # define CAM_ERROR		-4
 # define PLANE_ERROR	-5
 # define SPHERE_ERROR	-6
-# define SCN_ERROR		-7
-# define OBJ_ERROR		-8
-# define DIM_ERROR		-9
+# define CONE_ERROR		-7
+# define CYLINDRE_ERROR	-8
+# define SCN_ERROR		-9
+# define OBJ_ERROR		-10
+# define DIM_ERROR		-11
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]
 # define LGT_S			parsed[2]
 # define OBJ_S			parsed[3]
 
-# define SETUP			setup[0] // structure mere qui permet de stocker toutes les infos en commun sur chaque thread
-# define UI_WIN			SETUP.ui_win
-# define UI_IMG			SETUP.ui_img
+# define UI_WIN			setup->ui_win
+# define UI_IMG			setup->ui_img
 # define NVARENG		5
-# define SCN			SETUP.scene[SETUP.scn_num]
-# define OBJS			SCN.objs
-# define CAM			OBJS->cam
-# define NCAM			OBJS->ncam
-# define CAM_N			SCN.cam_num
-# define NVARCAM		3
-# define LIGHT			OBJS->light
-# define NLIGHT			OBJS->nlight
-# define NVARLIGHT		8
-# define OBJDEF			OBJS->objdef
-# define PLANE			OBJS->objdef.plane
-# define NPLANE			OBJS->objdef.nplane
-# define PL_N			OBJS->objdef.pl_n
-# define NVARPLANE		5
-# define SPHERE			OBJS->objdef.sphere
-# define NSPHERE		OBJS->objdef.nsphere
-# define SPH_N			OBJS->objdef.sph_n
-# define NVARSPHERE		5
-# define ENV(x)			((t_env *)(*(x)->env).content)
+# define SCN			setup->scene[setup->scn_num]
+# define NVARCAM		2
+# define NVARLIGHT		4
+# define NVARSPHERE		6
+# define NVARPLANE		6
+# define NVARCONE		7
+# define NVARCYLINDRE	7
+# define CAM(x)			((t_cam *)(*(x)).content)
+# define LGT(x)			((t_lgt *)(*(x)).content)
+# define FORM(x)		((t_shape *)(*(x)).content)
+# define SPHERE(x)		FORM(x)->sph
+# define PLAN(x)		FORM(x)->plan
+# define CONE(x)		FORM(x)->cone
+# define CYLI(x)		FORM(x)->cyl
+//# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
-# define SPH			0
-# define PLN			1
+# define SPH			1
+# define PLN			2
+# define CON			3
+# define CYL			4
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
@@ -109,13 +110,14 @@
 # define CAM_AV_STR		"Number of Camera available :"
 # define CAM_CH_STR		"Choose the cam with number and press ENTER :"
 
-# define DOWN_STR		"Backward   :  Down"
-# define LEFT_STR		"Turn Left  :  Left"
-# define RIGHT_STR		"Turn Right :  Right"
-# define PLUS_STR		"Speed Up   :  +"
-# define MINUS_STR		"Slow Down  :  -"
-# define GUI_STR		"Hide GUI   :  G"
-# define S_MODE_STR		"Change SKY :  1 2 3 4 5 6"
-# define ESC_STR		"Quit Game  :  Esc"
+# define GUI_M_STR		"|          GUI main menu          |"
+# define GUI_M_SCN_STR	"|To change or select scene  :  S  |"
+# define GUI_M_CAM_STR	"|To change or select cam    :  C  |"
+//# define RIGHT_STR		"Turn Right :  Right"
+//# define PLUS_STR		"Speed Up   :  +"
+//# define MINUS_STR		"Slow Down  :  -"
+//# define GUI_STR		"Hide GUI   :  G"
+//# define S_MODE_STR		"Change SKY :  1 2 3 4 5 6"
+//# define ESC_STR		"Quit Game  :  Esc"
 
 #endif
