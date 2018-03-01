@@ -18,6 +18,7 @@
 # include "../includes/rtv1_define.h"
 # include <time.h>
 # include <sys/time.h>
+#include <SDL2/SDL.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
@@ -115,5 +116,9 @@ t_vec3		normal_cone(t_ray ray, t_list *cone);
 t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
+
+
+// Nathan
+void img_manipulation(void);
 
 #endif
