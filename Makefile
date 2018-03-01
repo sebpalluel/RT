@@ -30,7 +30,7 @@ SRCDIR		=	./srcs/
 
 LFTDIR		=	./libft/
 MLXDIR		=	./minilibx/
-LIBS		=	-lft -lmlx -framework OpenGL -framework AppKit
+LIBS		=	-lft -lmlx -framework OpenGL -framework AppKit `sdl2-config --cflags --libs`
 
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
@@ -65,6 +65,7 @@ SRCNAME 	=	main.c \
 				ray.c \
 				diffuse.c \
 				reflexion.c \
+				texture.c \
 				#draw.c \
 				#raycaster.c \
 
