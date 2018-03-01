@@ -6,12 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 18:13:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:08:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <stdint.h>
 # include <strings.h>
 # include <math.h>
 # include <errno.h>
@@ -241,5 +242,35 @@ size_t			ft_create_file(t_fd *fd, int chmod);
 size_t			ft_open(t_fd *fd, int flags, int rights);
 int				ft_close(t_fd *fd);
 void			ft_fd_delete(t_fd *fd);
+
+/*
+** --- Memblock manipulation ---
+*/
+
+void			*create_block(size_t *size, const size_t limit);
+t_mem_block		*create_mem_block(size_t size);
+t_mem_block		*expand_mem_block(t_mem_block *block, size_t blocks);
+void			*push_to_mem_block(t_mem_block *block, void *data, size_t size);
+void			*store_to_mem_block(t_mem_block *block, void *d, size_t size);
+void			*allocate_elem_on_mem_block(t_mem_block *block, uint32_t size);
+void			*force_allocate_elem_on_mem_block(t_mem_block *b, uint32_t s);
+void			remove_elem_of_mem_block(t_mem_block *b, void *d, uint32_t s);
+
+/*
+** --- String manipulation ---
+*/
+
+t_string		*ft_t_string_new(uint32_t capacity);
+t_string		*ft_t_string_concat(t_string *string, char *str);
+t_string		*ft_t_string_concat_len(t_string *string, char *str
+		, uint32_t str_len);
+void			ft_t_string_expand(t_string *string);
+
+/*
+** --- Utils ---
+*/
+
+int32_t			ft_error(uint32_t n, char **str, int32_t return_status);
+NORETURN		ft_error_exit(uint32_t n, char **str, int32_t exit_status);
 
 #endif

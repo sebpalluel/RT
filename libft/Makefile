@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 18:11:57 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/01 16:27:31 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -36,6 +36,9 @@ PRINTPATH = print/
 GFXPATH = gfx/
 RANDPATH = rand/
 FDPATH = fd/
+ERRPATH = error/
+MEMBLKPATH = memblock/
+STRINGPATH = string/
 
 SRC		=	$(MEMPATH)ft_memset.c\
 			$(MEMPATH)ft_bzero.c\
@@ -230,6 +233,15 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(FDPATH)ft_open.c\
 			$(FDPATH)ft_close.c\
 			$(FDPATH)ft_fd_delete.c\
+			$(ERRPATH)ft_error.c\
+			$(ERRPATH)ft_error_exit.c\
+			$(MEMBLKPATH)ft_mem_block.c\
+			$(MEMBLKPATH)ft_mem_block_extension.c\
+			$(MEMBLKPATH)ft_realloc.c\
+			$(STRINGPATH)ft_t_string_concat.c\
+			$(STRINGPATH)ft_t_string_concat_len.c\
+			$(STRINGPATH)ft_t_string_expand.c\
+			$(STRINGPATH)ft_t_string_new.c\
 
 .PHONY: all build clean fclean re
 
