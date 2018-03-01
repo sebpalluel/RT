@@ -54,7 +54,7 @@ t_vec3			normal_sphere(t_ray ray, t_list *sph)
 						ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), SPHERE(sph).ctr, '-')));
 }
 
-double			hit_sphere(t_ray ray, t_forms *form)
+double			hit_sphere(t_ray ray, t_shape *form)
 {
 	t_vec3		oc;
 	double		a;

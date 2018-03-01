@@ -51,7 +51,7 @@ size_t			ft_cone(t_list **list)
 	return (OK);
 }
 
-double	hit_cone(t_ray ray, t_forms *form)
+double	hit_cone(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;
