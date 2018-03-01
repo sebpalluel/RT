@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/28 15:56:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:42:33 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ size_t			ft_cylindre(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCYLINDRE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;

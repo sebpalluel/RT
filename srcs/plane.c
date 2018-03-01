@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 16:00:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:42:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t			ft_plane(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARPLANE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
