@@ -171,12 +171,6 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(GFXPATH)ft_colmult.c\
 			$(GFXPATH)ft_col_r.c\
 			$(GFXPATH)ft_colinterpol.c\
-			$(GFXPATH)ft_mlxdelete.c\
-			$(GFXPATH)ft_imgclean.c\
-			$(GFXPATH)ft_imgdel.c\
-			$(GFXPATH)ft_imgnew.c\
-			$(GFXPATH)ft_xmpnew.c\
-			$(GFXPATH)ft_initwindow.c\
 			$(GFXPATH)ft_matrixadd.c\
 			$(GFXPATH)ft_matrixhomothety.c\
 			$(GFXPATH)ft_matrixmult.c\
@@ -214,10 +208,6 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(GFXPATH)ft_dotproduct.c\
 			$(GFXPATH)ft_sqrtf.c\
 			$(GFXPATH)ft_invsqrt.c\
-			$(GFXPATH)ft_mlx_keytoint.c\
-			$(GFXPATH)ft_mlx_keytonumchar.c\
-			$(GFXPATH)ft_mlx_keytoletterchar.c\
-			$(GFXPATH)ft_mlx_printkeytochar.c\
 			$(RANDPATH)ft_hash.c\
 			$(RANDPATH)ft_hash32.c\
 			$(RANDPATH)ft_rand.c\
