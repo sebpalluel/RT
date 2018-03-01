@@ -98,10 +98,10 @@ t_func_vec3	*normal_shape(void);
 
 t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj);
 
-double		hit_plan(t_ray ray, t_forms *form);
-double		hit_sphere(t_ray ray, t_forms *form);
-double		hit_cone(t_ray ray, t_forms *form);
-double		hit_cyl(t_ray ray, t_forms *form);
+double		hit_plan(t_ray ray, t_shape *form);
+double		hit_sphere(t_ray ray, t_shape *form);
+double		hit_cone(t_ray ray, t_shape *form);
+double		hit_cyl(t_ray ray, t_shape *form);
 double		hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
 
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);

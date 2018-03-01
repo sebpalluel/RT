@@ -56,11 +56,11 @@ SRCNAME 	=	main.c \
 				parse_to_env_utils.c \
 				parser.c \
 				parser_error.c \
-				parse_forms.c \
+				parse_shape.c \
 				parse_objects.c \
 				sp_mat.c \
 				matrices.c \
-				forms.c \
+				shape.c \
 				singleton.c \
 				ray.c \
 				diffuse.c \

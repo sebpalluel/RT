@@ -94,16 +94,15 @@ typedef struct	s_forms
 	t_plan		plan;
 	t_cone		cone;
 	t_cyl		cyl;
-}				t_forms;
+}				t_shape;
 
 typedef struct	s_ray
 {
 	t_vec3		org;
 	t_vec3		dir;
 	double		dist;
-//	int			forme;
+	double		n;      
 	int			nbrefl;
-//	t_bool		hit;
 }				t_ray;
 
 typedef t_col	(*t_func_col)();

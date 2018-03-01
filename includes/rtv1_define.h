@@ -79,7 +79,7 @@
 # define NVARCYLINDRE	7
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
-# define FORM(x)		((t_forms *)(*(x)).content)
+# define FORM(x)		((t_shape *)(*(x)).content)
 # define SPHERE(x)		FORM(x)->sph
 # define PLAN(x)		FORM(x)->plan
 # define CONE(x)		FORM(x)->cone

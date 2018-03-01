@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-double	hit_cyl(t_ray ray, t_forms *form)
+double	hit_cyl(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;
