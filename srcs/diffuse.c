@@ -82,8 +82,8 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	lgt = SCN.lgts;
 	refl = col;
 	spec = col;
-	refract = col;
-	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max /*&& mat_obj.col.s != 0*/))
+	refract = mat_obj.col;
+	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(norm, ray.dir) > 0)
 		{
@@ -91,7 +91,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 			if (ft_vec3norm(refract_ray.dir) != 0)
 				refract = send_ray(refract_ray, setup);
 			else
-				refract = send_ray(reflexion(ray, norm), setup);
+				refract = send_ray(reflexion(ray, ft_vec3sop_r(norm, -1, '*')), setup);
 		}
 		else
 		{
@@ -102,7 +102,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 				refract = send_ray(reflexion(ray, norm), setup);
 		}
 	}
-	if (ray.nbrefl < (int)SCN.refl_max && mat_obj.col.s != 0)
+	if (ray.nbrefl < (int)SCN.refl_max && mat_obj.refl != 0)
 		refl = send_ray(reflexion(ray, norm), setup); 
 	while (lgt)
 	{
@@ -115,6 +115,8 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
+//		dist = hit_obj(LGT(lgt), ray, SCN.forms, form);
+//		dist *= dist;
 		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(ft_colmult(
 							mat_obj.col, LGT(lgt)->col), SCN.expo / dist), lmbrt * lmbrt), col);
@@ -122,5 +124,5 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 						LGT(lgt)->col, phong(ray, mat_obj.col, norm, lgt)), SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(refract, ft_colinterpol(ft_coladd(spec, col), refl, mat_obj.col.s), 1 - mat_obj.trsp));
+	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, col), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl));
 }

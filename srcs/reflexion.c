@@ -51,13 +51,8 @@ t_ray		refraction(t_ray ray, t_vec3 norm, double n2)
 	newray.n = n2;
 	newray.dist = -1;
 	newray.nbrefl = ray.nbrefl;
-
 	cosi2 = sqrt(1 - sini2 * sini2);
-
-//	newray.dir = ft_vec3vop_r(ft_vec3sop_r(ray.dir, (ray.n / (double)n2), '*'), ft_vec3sop_r(ray.dir, ((ray.n / (double)n2) * cosi1) - cosi2, '*'),'+');
-//	newray.dir = ft_vec3normalize_r(ft_vec3sop_r(newray.dir, -1, '*'));
 	dir = ft_vec3normalize_r(ft_vec3vop_r(ray.dir, ft_vec3sop_r(norm, ft_dotproduct(ray.dir, norm), '*'), '-'));
 	newray.dir = ft_vec3vop_r(ft_vec3sop_r(norm, -cosi2,'*'), ft_vec3sop_r(dir, sini2,'*'), '+');
-//	printf("%f, %f, %f, %f, %f, %f, %f\n", dir.x, dir.y, dir.z, norm.x, norm.y, norm.z, ft_dotproduct(norm, dir));
 	return (newray);
 }
