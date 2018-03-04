@@ -54,7 +54,7 @@ t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cyl(ray, cyl);
-		return (diffuse(norm, cyl, ray, FORM(cyl)->mat.col));
+		return (diffuse(norm, cyl, ray, FORM(cyl)->mat));
 	}
 	return (setup->background);
 }

@@ -110,7 +110,7 @@ t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cone(ray, con);
-		return (diffuse(norm, con, ray, FORM(con)->mat.col));
+		return (diffuse(norm, con, ray, FORM(con)->mat));
 	}
 	return (setup->background);
 }

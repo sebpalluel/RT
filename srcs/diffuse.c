@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:20:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,16 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 						ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-')), norm));
 }
 
-t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
+t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 {
 	double		lmbrt;
 	double		dist;
 	t_col		col;
 	t_col		spec;
 	t_col		refl;
+	t_col		refract;
+	t_ray		refract_ray;
 	t_list		*lgt;
-	t_ray		reflray;
 	t_setup		*setup;
 
 	setup = get_st();
@@ -81,28 +82,45 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj)
 	lgt = SCN.lgts;
 	refl = col;
 	spec = col;
-	if (ray.nbrefl < (int)SCN.refl_max && col_obj.s != 0)
+	refract = col;
+	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max /*&& mat_obj.col.s != 0*/))
 	{
-		reflray = reflexion(ray, norm);
-		refl = send_ray(reflray, setup); 
+		if (ft_vec3dot(norm, ray.dir) > 0)
+		{
+			refract_ray = refraction(ray, ft_vec3sop_r(norm, -1, '*'), 1);
+			if (ft_vec3norm(refract_ray.dir) != 0)
+				refract = send_ray(refract_ray, setup);
+			else
+				refract = send_ray(reflexion(ray, norm), setup);
+		}
+		else
+		{
+			refract_ray = refraction(ray, norm, mat_obj.n);
+			if (ft_vec3norm(refract_ray.dir) != 0)
+				refract = send_ray(refract_ray, setup);
+			else
+				refract = send_ray(reflexion(ray, norm), setup);
+		}
 	}
+	if (ray.nbrefl < (int)SCN.refl_max && mat_obj.col.s != 0)
+		refl = send_ray(reflexion(ray, norm), setup); 
 	while (lgt)
 	{
-		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
-		{
-			lgt = lgt->next;
-			continue ;
-		}
+//		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
+//		{
+//			lgt = lgt->next;
+//			continue ;
+//		}
 		(void)form;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
-		dist *= dist;
+		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(ft_colmult(
-							col_obj, LGT(lgt)->col), SCN.expo / dist), lmbrt * lmbrt), col);
+							mat_obj.col, LGT(lgt)->col), SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						LGT(lgt)->col, phong(ray, col_obj, norm, lgt)), SCN.expo / dist));
+						LGT(lgt)->col, phong(ray, mat_obj.col, norm, lgt)), SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_coladd(spec, col), refl, col_obj.s));
+	return (ft_colinterpol(refract, ft_colinterpol(ft_coladd(spec, col), refl, mat_obj.col.s), 1 - mat_obj.trsp));
 }
