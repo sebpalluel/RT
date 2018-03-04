@@ -74,8 +74,8 @@ double	hit_cone(t_ray ray, t_shape *form)
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);
-	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
-		return (c);
+	if ((k = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (k);
 	else
 		return ((-b + sqrt(delta)) / (2.0 * a));
 }
