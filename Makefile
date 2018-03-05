@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/28 14:00:21 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/05 16:05:57 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -65,7 +65,7 @@ SRCNAME 	=	main.c \
 				ray.c \
 				diffuse.c \
 				reflexion.c \
-				#draw.c \
+				noise.c \
 				#raycaster.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))

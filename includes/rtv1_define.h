@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:48:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:23:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
+
+# define P_TABLESIZE	256
 
 # define STATE_RUN		0
 # define STATE_START	1

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 17:08:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:12:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,9 +234,14 @@ unsigned int	ft_ror(const unsigned int value, int shift);
 unsigned int	ft_rol(const unsigned int value, int shift);
 uint32_t		ft_hash32(uint32_t val);
 unsigned long	ft_hash(unsigned char *str);
+float			ft_lerp(float low, float high, float t);
 uintmax_t		ft_rand(void);
 uintmax_t		ft_randint(size_t length);
 uintmax_t		ft_random(uintmax_t min, uintmax_t max, uintmax_t res);
+float			ft_quintic(float t);
+float			ft_lerp(float low, float high, float t);
+float			ft_randf();
+float			ft_quinticderiv(float t);
 
 size_t			ft_create_file(t_fd *fd, int chmod);
 size_t			ft_open(t_fd *fd, int flags, int rights);

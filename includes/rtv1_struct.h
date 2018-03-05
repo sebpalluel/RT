@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:46:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:27:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RTV1_STRUCT_H
 
 # include "../libft/includes/libft.h"
+# include "../includes/rtv1_define.h"
 
 typedef struct		s_objsfunc
 {
@@ -104,6 +105,14 @@ typedef struct	s_ray
 	double		n;      
 	int			nbrefl;
 }				t_ray;
+
+typedef struct	s_perlin
+{
+	t_bool		init;
+	uint8_t		tablesizemask;
+	uint32_t	permtable[P_TABLESIZE * 2];
+	t_vec3		gradient[P_TABLESIZE];
+}				t_perlin;
 
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
