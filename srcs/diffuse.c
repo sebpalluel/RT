@@ -73,6 +73,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_col		spec;
 	t_col		refl;
 	t_col		refract;
+	t_col		shad;
 	t_ray		refract_ray;
 	t_list		*lgt;
 	t_setup		*setup;
@@ -111,6 +112,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 //			lgt = lgt->next;
 //			continue ;
 //		}
+		shad = shadow(LGT(lgt), SCN.forms, ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'));
 		(void)form;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
@@ -119,9 +121,9 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 //		dist *= dist;
 		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(ft_colmult(
-							mat_obj.col, LGT(lgt)->col), SCN.expo / dist), lmbrt * lmbrt), col);
+							mat_obj.col, shad), SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						LGT(lgt)->col, phong(ray, mat_obj.col, norm, lgt)), SCN.expo / dist));
+						shad, phong(ray, mat_obj.col, norm, lgt)), SCN.expo / dist));
 		lgt = lgt->next;
 	}
 	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, col), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl));

@@ -104,6 +104,7 @@ double		hit_sphere(t_ray ray, t_shape *form);
 double		hit_cone(t_ray ray, t_shape *form);
 double		hit_cyl(t_ray ray, t_shape *form);
 double		hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj);
+t_col		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint);
 
 t_col		intersec_sphere(t_ray ray, t_list *sph, t_setup *setup);
 t_col		intersec_plan(t_ray ray, t_list *pln, t_setup *setup);
