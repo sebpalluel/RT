@@ -1,3 +1,9 @@
 Doc instructions RT : https://docs.google.com/document/d/1jQa8zUrLEP3iVD4coJtkNS7gyGYfXZmB_E_yFEWitA8/edit?ts=5a57754f
 
 Doc RT master : https://docs.google.com/document/d/1B8InFJr8jReYCYWXZ15orC2-vW-_XeUcgIQw1uaB6Qw/edit
+
+# method to generate 256 value for the lattice of perlin noise
+for i in `seq 255`;
+do echo -n $(( $RANDOM % 256 )), && echo -n ' '
+done
+
