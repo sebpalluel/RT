@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:03:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define RTV1_H
 
 # include "../libft/includes/libft.h"
-# include "../includes/rtv1_struct.h"
 # include "../includes/rtv1_define.h"
+# include "../includes/rtv1_struct.h"
 # include <time.h>
 # include <sys/time.h>
 
@@ -115,5 +115,8 @@ t_vec3		normal_cone(t_ray ray, t_list *cone);
 t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
+
+void		ft_perlin_init(t_perlin *p, uint32_t seed);
+float		ft_perlin_noise(t_perlin p, double x, double y, double z);
 
 #endif
