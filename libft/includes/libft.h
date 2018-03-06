@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/05 18:12:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/06 15:29:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <float.h>
 # include <time.h>
 # include <signal.h>
 # include <dirent.h>
@@ -133,6 +134,7 @@ char			*ft_ftoa(float f);
 int				ft_sqrt(int nb);
 int				ft_pow(int n, int p);
 int				ft_abs(int a);
+int				ft_floor(double fp);
 double			ft_range_num(double input, double i[2], double o[2]);
 
 size_t			ft_tablen(char **tab);

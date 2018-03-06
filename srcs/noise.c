@@ -6,42 +6,28 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 14:34:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:23:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
 
-//static const char grad3[][3] = {
-//	{ 1, 1, 0 }, { -1, 1, 0 }, { 1, -1, 0 }, { -1, -1, 0 },
-//	{ 1, 0, 1 }, { -1, 0, 1 }, { 1, 0, -1 }, { -1, 0, -1 },
-//	{ 0, 1, 1 }, { 0, -1, 1 }, { 0, 1, -1 }, { 0, -1, -1 }
-//};
+static const short grad3[16][3] = {
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 1, -1, 0 }, { -1, -1, 0 },
+	{ 1, 0, 1 }, { -1, 0, 1 }, { 1, 0, -1 }, { -1, 0, -1 },
+	{ 0, 1, 1 }, { 0, -1, 1 }, { 0, 1, -1 }, { 0, -1, -1 },
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 0, -1, 1 }, { 0, -1, -1 },
+};
 
 float gradientDotV(
 		uint8_t perm, // a value between 0 and 255
 		float x, float y, float z)
 {
-	switch (perm & 15) {
-		case  0: return  x + y; // (1,1,0)
-		case  1: return -x + y; // (-1,1,0)
-		case  2: return  x - y; // (1,-1,0)
-		case  3: return -x - y; // (-1,-1,0)
-		case  4: return  x + z; // (1,0,1)
-		case  5: return -x + z; // (-1,0,1)
-		case  6: return  x - z; // (1,0,-1)
-		case  7: return -x - z; // (-1,0,-1)
-		case  8: return  y + z; // (0,1,1),
-		case  9: return -y + z; // (0,-1,1),
-		case 10: return  y - z; // (0,1,-1),
-		case 11: return -y - z; // (0,-1,-1)
-		case 12: return  y + x; // (1,1,0)
-		case 13: return -x + y; // (-1,1,0)
-		case 14: return -y + z; // (0,-1,1)
-		case 15: return -y - z; // (0,-1,-1)
-	}
-	return (0);
+	uint8_t i;
+
+	i = perm & 15;
+	return (x * grad3[i][0] + y * grad3[i][1] + z * grad3[i][2]);
 }
 
 uint8_t		hashtab(t_perlin p, const int x, const int y, const int z)
@@ -88,44 +74,46 @@ void		ft_perlin_init(t_perlin *p, uint32_t seed)
 
 float			ft_perlin_noise(t_perlin p, double x, double y, double z)
 {
-	int xi0 = ((int)floor(x)) & p.tablesizemask;
-	int yi0 = ((int)floor(y)) & p.tablesizemask;
-	int zi0 = ((int)floor(z)) & p.tablesizemask;
+	//printf("ft_floor (x) %d\n", ft_floor(x));
+	float		gr[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+	float		k[8];
+	float		uvw[3];
+	int		xyz0[3];
+	int		xyz1[3];
 
-	int xi1 = (xi0 + 1) & p.tablesizemask;
-	int yi1 = (yi0 + 1) & p.tablesizemask;
-	int zi1 = (zi0 + 1) & p.tablesizemask;
+	xyz0[0] = ft_floor(x) & p.tablesizemask;
+	xyz0[1] = ft_floor(y) & p.tablesizemask;
+	xyz0[2] = ft_floor(z) & p.tablesizemask;
 
-	float tx = x - ((int)floor(x));
-	float ty = y - ((int)floor(y));
-	float tz = z - ((int)floor(z));
+	xyz1[0] = (xyz0[0] + 1) & p.tablesizemask;
+	xyz1[1] = (xyz0[1] + 1) & p.tablesizemask;
+	xyz1[2] = (xyz0[2] + 1) & p.tablesizemask;
 
-	float u = ft_quintic(tx);
-	float v = ft_quintic(ty);
-	float w = ft_quintic(tz);
+	float tx = x - ft_floor(x);
+	float ty = y - ft_floor(y);
+	float tz = z - ft_floor(z);
 
-	// generate vectors going from the grid points to p
-	float x0 = tx, x1 = tx - 1;
-	float y0 = ty, y1 = ty - 1;
-	float z0 = tz, z1 = tz - 1;
+	uvw[0] = ft_quintic(tx);
+	uvw[1] = ft_quintic(ty);
+	uvw[2] = ft_quintic(tz);
 
-	float a = gradientDotV(hashtab(p, xi0, yi0, zi0), x0, y0, z0);
-	float b = gradientDotV(hashtab(p, xi1, yi0, zi0), x1, y0, z0);
-	float c = gradientDotV(hashtab(p, xi0, yi1, zi0), x0, y1, z0);
-	float d = gradientDotV(hashtab(p, xi1, yi1, zi0), x1, y1, z0);
-	float e = gradientDotV(hashtab(p, xi0, yi0, zi1), x0, y0, z1);
-	float f = gradientDotV(hashtab(p, xi1, yi0, zi1), x1, y0, z1);
-	float g = gradientDotV(hashtab(p, xi0, yi1, zi1), x0, y1, z1);
-	float h = gradientDotV(hashtab(p, xi1, yi1, zi1), x1, y1, z1);
+	//gr[0] = gradientDotV(hashtab(p, xyz0[0], xyz0[1], xyz0[2]), tx, ty, tz);
+	//gr[1] = gradientDotV(hashtab(p, xyz1[0], xyz0[1], xyz0[2]), tx - 1, ty, tz);
+	//gr[2] = gradientDotV(hashtab(p, xyz0[0], xyz1[1], xyz0[2]), tx, ty - 1, tz);
+	//gr[3] = gradientDotV(hashtab(p, xyz1[0], xyz1[1], xyz0[2]), tx - 1, ty - 1, tz);
+	//gr[4] = gradientDotV(hashtab(p, xyz0[0], xyz0[1], xyz1[2]), tx, ty, tz - 1);
+	//gr[5] = gradientDotV(hashtab(p, xyz1[0], xyz0[1], xyz1[2]), tx - 1, ty, tz - 1);
+	//gr[6] = gradientDotV(hashtab(p, xyz0[0], xyz1[1], xyz1[2]), tx, ty - 1, tz - 1);
+	//gr[7] = gradientDotV(hashtab(p, xyz1[0], xyz1[1], xyz1[2]), tx - 1, ty - 1, tz - 1);
 
-	float k0 = a;
-	float k1 = (b - a);
-	float k2 = (c - a);
-	float k3 = (e - a);
-	float k4 = (a + d - b - c);
-	float k5 = (a + f - b - e);
-	float k6 = (a + g - c - e);
-	float k7 = (b + c + e + h - a - d - f - g);
+	k[0] = gr[0];
+	k[1] = (gr[1] - gr[0]);
+	k[2] = (gr[2] - gr[0]);
+	k[3] = (gr[4] - gr[0]);
+	k[4] = (gr[0] + gr[3] - gr[1] - gr[2]);
+	k[5] = (gr[0] + gr[5] - gr[1] - gr[4]);
+	k[6] = (gr[0] + gr[6] - gr[2] - gr[4]);
+	k[7] = (gr[1] + gr[2] + gr[4] + gr[7] - gr[0] - gr[3] - gr[5] - gr[6]);
 
-	return k0 + k1 * u + k2 * v + k3 * w + k4 * u * v + k5 * u * w + k6 * v * w + k7 * u * v * w;
+	return k[0] + k[1] * uvw[0] + k[2] * uvw[1] + k[3] * uvw[2] + k[4] * uvw[0] * uvw[1] + k[5] * uvw[0] * uvw[2] + k[6] * uvw[1] * uvw[2] + k[7] * uvw[0] * uvw[1] * uvw[2];
 }
