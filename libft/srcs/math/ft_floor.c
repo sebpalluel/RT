@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quintic.c                                       :+:      :+:    :+:   */
+/*   ft_floor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 16:13:09 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 18:09:37 by psebasti         ###   ########.fr       */
+/*   Created: 2018/03/06 15:13:33 by psebasti          #+#    #+#             */
+/*   Updated: 2018/03/06 15:40:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include	"../../includes/libft.h"
 
-float	ft_quintic(float t)
+int				ft_floor(double fp)
 {
-    return (t * t * t * (t * (t * 6 - 15) + 10));
+	int			ret;
+
+	ret = (int)fp;
+	return(ret - (ret > fp));
 }
