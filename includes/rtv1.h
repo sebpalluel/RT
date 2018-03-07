@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 14:38:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:30:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,14 @@ t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
+t_effects	*effects(void);
+void		perlin_draw_test(t_setup *setup, t_pix pix);
 float		ft_perlin_noise(double x, double y, double z);
 double		ft_perlin(double x, double y, double z);
-void		perlin_draw_test(t_setup *setup, t_pix pix);
+t_col		ft_marble(double x, double y, double z);
+t_col		ft_zebra(double x, double y, double z);
+t_col		ft_wood(double x, double y, double z);
+t_col		ft_cloud(double x, double y, double z);
+t_col		ft_checker(double x, double y, double z);
 
 #endif

@@ -6,11 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 14:36:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:32:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+# define EFFECT		1
+# define EFFECT_N	2
 
 static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
@@ -54,9 +57,14 @@ void			*ft_raytracing(void *a)
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 		{
-			ft_put_pixel(setup, pix.x, pix.y, \
-					ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
-							setup)));
+			if (!EFFECT)
+				ft_put_pixel(setup, pix.x, pix.y, \
+						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
+								setup)));
+			else
+				ft_put_pixel(setup, pix.x, pix.y, \
+						ft_coltoi(effects()[EFFECT_N]((double)pix.x, (double)\
+								pix.y, (double)pix.z)));
 		}
 	}
 	//pthread_mutex_unlock(&setup->mutex.mutex);

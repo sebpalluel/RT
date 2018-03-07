@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 14:14:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:30:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,15 @@ t_parse_obj				*parse_obj(void)
 	return (parse);
 }
 
-char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on gere pour le parsing
+t_effects				*effects(void)
+{
+	static t_effects parse[5] = {&ft_marble, &ft_zebra\
+	, &ft_wood, &ft_cloud, &ft_checker};
+
+	return (parse);
+}
+
+char					**ft_validobjs(void)
 {
 	static char			*validobjs[NUM_OBJS];
 
