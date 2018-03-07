@@ -6,20 +6,20 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 14:34:05 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 14:34:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 19:03:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static inline float 	getgradformvec(uint8_t perm2, t_vec3 vec3)
+static inline float 	getgradformvec(uint8_t perm, t_vec3 vec3)
 {
-	return(ft_dotproduct(vec3, gradtab[perm2 & 15]));
+	return(ft_dotproduct(vec3, gradtab[perm & 15]));
 }
 
 static inline uint8_t	hashtab(const int x, const int y, const int z)
 {
-    return (perm2[perm2[perm2[x] + y] + z]);
+    return (perm[perm[perm[x] + y] + z]);
 }
 
 static float			dotprodfrom4unitcube_0(int ixyz0[3], int ixyz1[3], \
