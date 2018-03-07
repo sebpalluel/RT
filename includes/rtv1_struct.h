@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 14:11:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 13:45:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,6 @@ typedef struct	s_ray
 	int			nbrefl;
 }				t_ray;
 
-typedef struct	s_perlin
-{
-	t_bool		init;
-	uint8_t		tablesizemask;
-	uint32_t	permtable[P_TABLESIZE * 2];
-	t_vec3		gradient[P_TABLESIZE];
-}				t_perlin;
-
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
 typedef char	*(*t_name_obj)();
@@ -165,7 +157,6 @@ typedef struct		s_setup
 	size_t			scn_num;
 	pthread_t		*thrd;
 	t_mutex			mutex;
-	t_perlin		p;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
 }					t_setup;
 

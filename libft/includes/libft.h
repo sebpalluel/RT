@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 15:29:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 11:18:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int				ft_sqrt(int nb);
 int				ft_pow(int n, int p);
 int				ft_abs(int a);
 int				ft_floor(double fp);
+float			ft_lerp(float t, float a, float b);
 double			ft_range_num(double input, double i[2], double o[2]);
 
 size_t			ft_tablen(char **tab);
