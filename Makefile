@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/05 16:05:57 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/07 14:39:17 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -35,6 +35,7 @@ LIBS		=	-lft -lmlx -framework OpenGL -framework AppKit
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
 				rtv1_define.h \
+				rtv1_global.h \
 				rtv1_struct.h
 SRCNAME 	=	main.c \
 				setup.c \
@@ -66,7 +67,7 @@ SRCNAME 	=	main.c \
 				diffuse.c \
 				reflexion.c \
 				noise.c \
-				#raycaster.c \
+				perlin_calc.c
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 13:47:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:38:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/includes/libft.h"
 # include "../includes/rtv1_define.h"
 # include "../includes/rtv1_struct.h"
+# include "../includes/rtv1_global.h"
 # include <time.h>
 # include <sys/time.h>
 
@@ -117,5 +118,7 @@ t_vec3		normal_sphere(t_ray ray, t_list *sph);
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
 float		ft_perlin_noise(double x, double y, double z);
+double		ft_perlin(double x, double y, double z);
+void		perlin_draw_test(t_setup *setup, t_pix pix);
 
 #endif

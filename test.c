@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 18:22:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 13:30:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:09:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,82 @@ static float	dotprodfrom4unitcube_1(int ixyz0[3], int ixyz1[3], t_vec3 frac, flo
 			ft_vec3mult_r(frac, unitcube[6]));
 	nxy1 = getgradformvec(hashtab(ixyz1[0], ixyz1[1], ixyz1[2]), \
 			ft_vec3mult_r(frac, unitcube[7]));
+	nx1 = ft_lerp(uvw[0], nxy0, nxy1);
+	return (ft_lerp(uvw[1], nx0, nx1));
+}
+
+
+
+
+
+
+
+
+
+/////////////////////////
+
+static const t_vec3 gradtab[16][3] = {
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 1, -1, 0 }, { -1, -1, 0 },
+	{ 1, 0, 1 }, { -1, 0, 1 }, { 1, 0, -1 }, { -1, 0, -1 },
+	{ 0, 1, 1 }, { 0, -1, 1 }, { 0, 1, -1 }, { 0, -1, -1 },
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 0, -1, 1 }, { 0, -1, -1 },
+};
+
+static const short unitcube[8][3] = {
+	{ 0, 0, 0 }, { -1, 0, 0 }, { 0, -1, 0 }, { -1, -1, 0 },
+	{ 0, 0, -1 }, { 0, -1, -1 }, { 0, -1, -1 }, { -1, -1, -1 }
+};
+
+float getgradformvec(uint8_t perm2, t_vec3 vec3)
+{
+	uint8_t i;
+
+	i = perm2 & 15;
+	//return(ft_dotproduct(vec3, gradtab[i]));
+	return (vec3.x * gradtab[i][0] + vec3.y * gradtab[i][1] + vec3.z * gradtab[i][2]);
+}
+
+uint8_t		hashtab(const int x, const int y, const int z)
+{
+    return (perm2[perm2[perm2[x] + y] + z]);
+}
+
+static float	dotprodfrom4unitcube_0(int ixyz0[3], int ixyz1[3], t_vec3 frac, float uvw[3])
+{
+	float		nxy0;
+	float 		nxy1;
+	float		nx0;
+	float		nx1;
+
+	nxy0 = getgradformvec(hashtab(ixyz0[0], ixyz0[1], ixyz0[2]), \
+			ft_vec3_r(frac.x + unitcube[0][0], frac.y + unitcube[0][1], frac.z + unitcube[0][2]));
+	nxy1 = getgradformvec(hashtab(ixyz1[0], ixyz0[1], ixyz0[2]), \
+			ft_vec3_r(frac.x + unitcube[1][0], frac.y + unitcube[1][1], frac.z + unitcube[1][2]));
+	nx0 = ft_lerp(uvw[0], nxy0, nxy1);
+	nxy0 = getgradformvec(hashtab(ixyz0[0], ixyz1[1], ixyz0[2]), \
+			ft_vec3_r(frac.x + unitcube[2][0], frac.y + unitcube[2][1], frac.z + unitcube[2][2]));
+	nxy1 = getgradformvec(hashtab(ixyz1[0], ixyz1[1], ixyz0[2]), \
+			ft_vec3_r(frac.x + unitcube[3][0], frac.y + unitcube[3][1], frac.z + unitcube[3][2]));
+	nx1 = ft_lerp(uvw[0], nxy0, nxy1);
+	return (ft_lerp(uvw[1], nx0, nx1));
+}
+
+static float	dotprodfrom4unitcube_1(int ixyz0[3], int ixyz1[3], t_vec3 frac, float uvw[3])
+{
+	float		nxy0;
+	float 		nxy1;
+	float		nx0;
+	float		nx1;
+
+	nxy0 = getgradformvec(hashtab(ixyz0[0], ixyz0[1], ixyz1[2]), \
+			ft_vec3_r(frac.x + unitcube[4][0], frac.y + unitcube[4][1], frac.z + unitcube[4][2]));
+	nxy1 = getgradformvec(hashtab(ixyz1[0], ixyz0[1], ixyz1[2]), \
+			ft_vec3_r(frac.x + unitcube[5][0], frac.y + unitcube[5][1], frac.z + unitcube[5][2]));
+	nx0 = ft_lerp(uvw[0], nxy0, nxy1);
+	nxy0 = getgradformvec(hashtab(ixyz0[0], ixyz1[1], ixyz1[2]), \
+			ft_vec3_r(frac.x + unitcube[6][0], frac.y + unitcube[6][1], frac.z + unitcube[6][2]));
+	nxy1 = getgradformvec(hashtab(ixyz1[0], ixyz1[1], ixyz1[2]), \
+			ft_vec3_r(frac.x + unitcube[7][0], frac.y + unitcube[7][1], frac.z + unitcube[7][2]));
 	nx1 = ft_lerp(uvw[0], nxy0, nxy1);
 	return (ft_lerp(uvw[1], nx0, nx1));
 }
