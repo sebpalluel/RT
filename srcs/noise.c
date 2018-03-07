@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 18:32:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:06:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,15 @@ t_col			ft_wood(double x, double y, double z)
 
 t_col			ft_cloud(double x, double y, double z)
 {
-	double		zebra;
+	double		cloud;
 	t_col		col;
 	double		amp;
 
 	amp = 3.;
 	col = ft_col_r(1, 1, 1, 1);
-	zebra = ft_perlin(x, y, z);
-	zebra = cos(((x * y * z) / (x * 2)) + zebra * amp);
-	return (ft_colmultscale(col, zebra));
+	cloud = ft_perlin(x, y, z);
+	cloud = cos(((x * y * z) / (x * 2)) + cloud * amp);
+	return (ft_colmultscale(col, cloud));
 }
 
 t_col			ft_checker(double x, double y, double z)
