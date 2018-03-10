@@ -12,6 +12,14 @@ void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text)
   tmp = ft_vec3sop_r(tmp, FORM(form)->sph.r, '/');
   v = 0.5 - asin(tmp.y) / M_PI;
   v *= text->img_h;
+  // u/=4;
+  // v/=4; GROSSI
+  u = (int)u % 400;
+  v = (int)v % 400;
+  if (u < 0)
+    u = u + 400;
+  if (v < 0)
+    v = v + 400;
   *col = text->map[(int)u + (int)v * text->img_w];
 }
 
@@ -31,6 +39,8 @@ void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text)
   v_axes = ft_vec3normalize_r(ft_vec3vop_r(nrml, u_axes, 'c'));
   u = ft_vec3dot(hit, u_axes) * text->img_w;
   v = ft_vec3dot(hit, v_axes) * text->img_h;
+  // u*=4;
+  // v*=4; RAPETISSI
   u = (int)u % 400;
   v = (int)v % 400;
   if (u < 0)
