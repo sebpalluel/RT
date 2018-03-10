@@ -41,10 +41,10 @@ t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin)
 	newray.dist = -1;
 	newray.nbrefl = ray.nbrefl;
 	newray.flag = ray.flag + 1;
-	while (i++ <= 20)
+	while (i++ <= 100)
 	{
 		newray.dir = rand_directed_vec(norm);
-		glob = ft_coladd(ft_colmultscale(send_ray(newray, setup), 0.05), glob);
+		glob = ft_coladd(ft_colmultscale(send_ray(newray, setup), 0.01), glob);
 	}
 //	printf("%f, %f, %f\n", glob.r, glob.g, glob.b);
 	return (glob);

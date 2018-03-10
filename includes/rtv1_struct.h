@@ -55,6 +55,7 @@ typedef struct	s_lgt
 {
 	size_t	type;
 	t_vec3	vect;
+	t_vec3 	dir;
 	t_col	col;
 	size_t	num_arg;
 }				t_lgt;
