@@ -44,5 +44,8 @@ t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
 	if (ft_strcmp(ENVSTRUCT(env)->name, "transparency") == 0)
 		flag[n_flag + 3] = ft_getdoublefromenv(&FORM(form)->mat.trsp, \
 				ENVSTRUCT(env)->value);
+				// ICI SHOPER LA TEXTURE CORRESPONDANTE
+				// TODO AAJOUTER DEFINES POUR LES TEXTURES
+	FORM(form)->mat.text = 0;
 	return (flag);
 }

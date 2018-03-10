@@ -39,6 +39,7 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
+	char				text;
 }					t_mat;
 
 typedef struct	s_cam
@@ -101,7 +102,7 @@ typedef struct	s_ray
 	t_vec3		org;
 	t_vec3		dir;
 	double		dist;
-	double		n;      
+	double		n;
 	int			nbrefl;
 	int			flag;
 }				t_ray;
@@ -158,6 +159,7 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
+	t_col **textures;
 }					t_setup;
 
 #endif

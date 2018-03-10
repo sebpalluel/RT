@@ -32,7 +32,7 @@ t_func_vec3	*normal_shape(void)
 {
 	static t_func_vec3 func[NUM_FORM] = {&normal_sphere, &normal_plane, \
 		&normal_cone, &normal_cyl};
-	
+
 	return (func);
 }
 
@@ -63,4 +63,13 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 	validobjs[5] = "cone";
 	validobjs[6] = "cylindre";
 	return (validobjs);
+}
+
+#define NUM_TEXT 2
+t_col **get_texture(void)
+{
+		static t_col *textures[NUM_TEXT];
+		textures[1] = get_texture_datas("./textures/green400x400.bmp");
+		textures[0] = get_texture_datas("./textures/tile4.bmp");
+		return (textures);
 }

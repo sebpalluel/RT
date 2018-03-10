@@ -9,19 +9,19 @@ t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
   temp = pixel & fmt->Rmask;  /* Isolate red component */
   temp = temp >> fmt->Rshift; /* Shift it down to 8-bit */
   temp = temp << fmt->Rloss;  /* Expand to a full 8-bit number */
-  color.r = (Uint8)temp / 255;
+  color.r = (Uint8)temp / 255.0;
 
   /* Get Green component */
   temp = pixel & fmt->Gmask;  /* Isolate green component */
   temp = temp >> fmt->Gshift; /* Shift it down to 8-bit */
   temp = temp << fmt->Gloss;  /* Expand to a full 8-bit number */
-  color.g = (Uint8)temp / 255;
+  color.g = (Uint8)temp / 255.0;
 
   /* Get Blue component */
   temp = pixel & fmt->Bmask;  /* Isolate blue component */
   temp = temp >> fmt->Bshift; /* Shift it down to 8-bit */
   temp = temp << fmt->Bloss;  /* Expand to a full 8-bit number */
-  color.b = (Uint8)temp / 255;
+  color.b = (Uint8)temp / 255.0;
 
   /* Get Alpha component */
   // temp = pixel & fmt->Amask;  /* Isolate alpha component */
@@ -66,13 +66,16 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y)
 }
 
 
-void img_manipulation(void)
+t_col *get_texture_datas(char *path)
 {
   SDL_Surface *img;
-  t_col color;
+  t_col *map;
   img = NULL;
-  if (!(img = SDL_LoadBMP("./textures/green400x400.bmp")))
+  if (!(img = SDL_LoadBMP(path)))
+  {
     printf("load failed\n");
+    exit (1);
+  }
   else
   {
     // SDL_PixelFormat* pixelFormat = img->format;
@@ -82,18 +85,19 @@ void img_manipulation(void)
     // SDL_Log("The surface's pixelformat is %s", surfacePixelFormatName);
 
     /* Check the bitdepth of the surface */
-    printf("%d bits pxl\n", img->format->BitsPerPixel);
+    // printf("%d bits pxl\n", img->format->BitsPerPixel);
+    map = malloc(sizeof(t_col) * (img->w * img->h));
     SDL_LockSurface(img);
     Uint32 pixel;
 
     for(int x =0; x < img->w; x++){
       for(int y = 0; y < img->h; y++){
         pixel = getpixel(img, x, y);
-        color = get_px_color(img->format, pixel);
+        map[x + y * img->w] = get_px_color(img->format, pixel);
       }
     }
     SDL_UnlockSurface(img);
     SDL_FreeSurface(img);
   }
-  exit(0);
+  return (map);
 }
