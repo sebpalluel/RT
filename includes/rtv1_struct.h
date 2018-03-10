@@ -85,7 +85,7 @@ typedef struct	s_cyl
 	double	r;
 }				t_cyl;
 
-typedef struct	s_forms
+typedef struct	s_shape
 {
 	int			type;
 	size_t		num_arg;
@@ -103,6 +103,7 @@ typedef struct	s_ray
 	double		dist;
 	double		n;      
 	int			nbrefl;
+	int			flag;
 }				t_ray;
 
 typedef t_col	(*t_func_col)();

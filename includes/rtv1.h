@@ -91,13 +91,16 @@ t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
 t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
 
 t_col		send_ray(t_ray ray, t_setup *setup);
-t_ray		reflexion(t_ray ray, t_vec3 norm);
 
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
 t_func_vec3	*normal_shape(void);
 
-t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj);
+t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj);
+t_col		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint);
+t_col		global_illum(t_ray ray, t_vec3 norm, t_vec3 origin);
+t_ray		reflexion(t_ray ray, t_vec3 norm);
+t_ray		refraction(t_ray ray, t_vec3 norm, double n2);
 
 double		hit_plan(t_ray ray, t_shape *form);
 double		hit_sphere(t_ray ray, t_shape *form);

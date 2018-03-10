@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:00:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ double			hit_sphere(t_ray ray, t_shape *form)
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (c);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
@@ -79,7 +82,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_sphere(ray, sph);
-		return (diffuse(norm, sph, ray, FORM(sph)->mat.col));
+		return (diffuse(norm, sph, ray, FORM(sph)->mat));
 	}
 	return (setup->background);
 }

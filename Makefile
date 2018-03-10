@@ -22,7 +22,7 @@ CMP			=	gcc
 
 DEBUG_F		=	-g3 -fsanitize=address
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -O2
 
 OBJDIR		=	./obj/
 INCDIR		=	./includes/
@@ -65,6 +65,8 @@ SRCNAME 	=	main.c \
 				ray.c \
 				diffuse.c \
 				reflexion.c \
+				shadow.c \
+				illumination.c \
 				texture.c \
 				#draw.c \
 				#raycaster.c \
