@@ -74,10 +74,10 @@ int				main(int ac, char **av)
 	setup->ac = ac;
 	setup->background = ft_col_r(0, 0, 0, 0);
 	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
-  // JUSTE POUR TESTER MES MANIPULATION
-	img_manipulation();
-  // CEST ICI QUE CA SE PASSE
-	// if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
-	// 	ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
+  // // JUSTE POUR TESTER MES MANIPULATION
+	// img_manipulation();
+  // // CEST ICI QUE CA SE PASSE
+	if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
+		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
 	return (ft_quit(setup));
 }
