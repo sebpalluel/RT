@@ -77,7 +77,7 @@ t_text **get_texture(void)
 t_func_uv_map	*uv_map(void)
 {
 	// valeur en dur a remplacé par num_form
-	static	t_func_uv_map func[2] = {&uv_map_sph, &uv_map_pln};
+	static	t_func_uv_map func[4] = {&uv_map_sph, &uv_map_pln, NULL, &uv_map_cyl};
 
 	return (func);
 }
