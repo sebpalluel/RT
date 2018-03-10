@@ -27,9 +27,7 @@ double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 	ombre = NULL;
 	while (form)
 	{
-		if ((((FORM(form)->mat.trsp == 0) &&
-					(dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0) &&
-				((ray.dist > dist || ray.dist == -1) && dist >= 0)))
+		if ((/*!FORM(form)->mat.trsp &&*/ (dist = hit_shape()[FORM(form)->type - 1](ray, FORM(form))) >= 0) && ((ray.dist > dist || ray.dist == -1) && dist >= 0))
 		{
 			ray.dist = dist;
 			ombre = form;
@@ -48,8 +46,12 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 	t_vec3	lgtdir;
 	double	phongterm;
 
-	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
+	//if (LGT(light)->type == 0)
+		lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
 				ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
+	//else
+		//lgtdir = LGT(light)->dir;
+//	printf("%zu\n", LGT(light)->type);
 	refl = 2.0 * ft_vec3dot(lgtdir, norm);
 	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refl, '*'), '-');
 	phongterm = ft_vec3dot(phongdir, ray.dir);
@@ -119,27 +121,20 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 		refl = send_ray(reflexion(ray, norm), setup);
 	while (lgt)
 	{
-//		shad = LGT(lgt)->col;
-/*		if ((dist = (hit_obj(LGT(lgt), ray, SCN.forms, form))) < 0)
-		{
-			shad = setup->background;
-//			lgt = lgt->next;
-//			continue ;
-		}*/
 		shad = shadow(LGT(lgt), SCN.forms, hit);
+	//	shad = LGT(lgt)->col;
 //		(void)form;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
-//		dist = hit_obj(LGT(lgt), ray, SCN.forms, form);
-//		dist *= dist;
-		dist = 2;
+		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
+		dist *= dist;
 		hit_mat = get_mat_at(hit, form, mat_obj);
+//		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
 							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
 						shad, phong(ray, hit_mat.col, norm, lgt)), 4 * SCN.expo / dist));
-	//	spec = setup->background;
 		lgt = lgt->next;
 	}
 	return (ft_coladd(ft_colinterpol(ft_colinterpol(ft_coladd(spec, col), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl), glob));//, 0.5));

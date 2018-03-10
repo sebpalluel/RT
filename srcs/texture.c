@@ -1,5 +1,4 @@
 #include "../includes/rtv1.h"
-#include <stdio.h>
 
 t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 {
@@ -129,23 +128,15 @@ t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 {
   t_mat hit_mat;
   t_text *text;
-  double u;
-  double v;
-  t_vec3 tmp;
+
 
   hit_mat = mat_obj;
   if (mat_obj.text >= 0)
   {
     text = get_st()->textures[(int)mat_obj.text];
-    if (FORM(form)->type == SPH)
+    if (FORM(form)->type == PLN)
     {
-      tmp = ft_vec3vop_r(hit, FORM(form)->sph.ctr, '-');
-      u = 0.5 + atan2(tmp.z, tmp.x) / (2 * M_PI);
-      u *= text->img_w;
-      tmp = ft_vec3sop_r(tmp, FORM(form)->sph.r, '/');
-      v = 0.5 - asin(tmp.y) / M_PI;
-      v *= text->img_h;
-      hit_mat.col = text->map[(int)u + (int)v * text->img_w];
+      uv_map()[FORM(form)->type - 1](hit, form, &hit_mat.col, text);
     }
   }
   return (hit_mat);

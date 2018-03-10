@@ -73,3 +73,11 @@ t_text **get_texture(void)
 		textures[0] = get_texture_datas("./textures/tile4.bmp");
 		return (textures);
 }
+
+t_func_uv_map	*uv_map(void)
+{
+	// valeur en dur a remplacé par num_form
+	static	t_func_uv_map func[2] = {&uv_map_sph, &uv_map_pln};
+
+	return (func);
+}

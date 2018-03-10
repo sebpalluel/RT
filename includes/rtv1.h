@@ -125,5 +125,9 @@ t_ray		init_ray(t_vec3 org, t_vec3 dir);
 t_text **get_texture(void);
 t_text *get_texture_datas(char *path);
 t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj);
+t_func_uv_map	*uv_map(void);
+void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+
 
 #endif

@@ -56,6 +56,7 @@ typedef struct	s_lgt
 {
 	size_t	type;
 	t_vec3	vect;
+	t_vec3 	dir;
 	t_col	col;
 	size_t	num_arg;
 }				t_lgt;
@@ -119,6 +120,7 @@ typedef double	(*t_func_dble)();
 typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
 typedef	t_vec3	(*t_func_vec3)();
+typedef void (*t_func_uv_map)();
 //////////TODO Eliot
 
 typedef struct		s_scene

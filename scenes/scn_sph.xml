@@ -19,7 +19,7 @@
 
 		<light>
 			<type> 0 </type>
-			<position> 1, 0.0, 0. </position>
+			<position> 1.1, 0.0, 0. </position>
 			<color> 1., 1., 1., 1 </color>
 		</light>
 	</lights>
@@ -30,20 +30,20 @@
 			<radius> 0.5 </radius>
 			<material>
 				<color> 0., 1., 0., 0. </color>
-				<reflexion> 0.2 </reflexion>
+				<reflexion> 0 </reflexion>
 				<refractive_index> 1. </refractive_index>
-				<transparency> 0 </transparency>
+				<transparency> 0.5 </transparency>
 			</material>
 		</sphere>
-		<!-- <plane>
+		<plane>
 			<normale> -1.0, 0.0, 0.5 </normale>
 			<distance> 5 </distance>
 			<material>
-				<color> 0.0, 1.0, 1.0, 0.5 </color>
+				<color> 1.0, 1.0, 1.0, 0.5 </color>
 				<reflexion> 0. </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>
-		</plane> -->
+		</plane>
 	</objects>
 </scene>
