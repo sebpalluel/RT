@@ -103,6 +103,7 @@ typedef struct	s_ray
 	double		dist;
 	double		n;      
 	int			nbrefl;
+	int			flag;
 }				t_ray;
 
 typedef t_col	(*t_func_col)();

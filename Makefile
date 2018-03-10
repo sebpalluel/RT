@@ -66,6 +66,7 @@ SRCNAME 	=	main.c \
 				diffuse.c \
 				reflexion.c \
 				shadow.c \
+				illumination.c \
 				#draw.c \
 				#raycaster.c \
 

@@ -23,6 +23,7 @@ t_ray		reflexion(t_ray ray, t_vec3 norm)
 	newray.dist = -1;
 	newray.nbrefl = ray.nbrefl + 1;
 	newray.n = ray.n;
+	newray.flag = ray.flag;
 	return (newray);
 }
 
@@ -50,7 +51,8 @@ t_ray		refraction(t_ray ray, t_vec3 norm, double n2)
 	newray.org = ft_vec3vop_r(ft_vec3sop_r(ray.dir, (ray.dist + 0.000001), '*'), ray.org, '+');
 	newray.n = n2;
 	newray.dist = -1;
-	newray.nbrefl = ray.nbrefl;
+	newray.nbrefl = ray.nbrefl + 1;
+	newray.flag = ray.flag;
 	cosi2 = sqrt(1 - sini2 * sini2);
 	dir = ft_vec3normalize_r(ft_vec3vop_r(ray.dir, ft_vec3sop_r(norm, ft_dotproduct(ray.dir, norm), '*'), '-'));
 	newray.dir = ft_vec3vop_r(ft_vec3sop_r(norm, -cosi2,'*'), ft_vec3sop_r(dir, sini2,'*'), '+');
