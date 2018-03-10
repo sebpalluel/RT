@@ -36,7 +36,7 @@ t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
  * Return the pixel value at (x, y)
  * NOTE: The surface must be locked before calling this!
  * https://www.libsdl.org/release/SDL-1.2.15/docs/html/guidevideo.html#AEN90
- *
+ * TODO voir si on vire pas ca etant donné qu on peut imposer un type d img
  */
 Uint32 getpixel(SDL_Surface *surface, int x, int y)
 {
@@ -65,64 +65,87 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y)
     }
 }
 
+void cpy_px_map(t_text *texture, SDL_Surface *img)
+{
+  Uint32 pixel;
+  int x;
+  int y;
 
-t_col *get_texture_datas(char *path)
+  y = 0;
+  x = 0;
+  pixel = 0;
+  while (x < img->w)
+  {
+    while (y < img->h)
+    {
+      pixel = getpixel(img, x, y);
+      texture->map[x + y * img->w] = get_px_color(img->format, pixel);
+      y++;
+    }
+    y = 0;
+    x++;
+  }
+}
+/*
+** potentiellement utile
+** SDL_PixelFormat* pixelFormat = img->format;
+** Uint32 pixelFormatEnum = pixelFormat->format;
+** read_img(img);
+** const char* surfacePixelFormatName = SDL_GetPixelFormatName(pixelFormatEnum);
+** SDL_Log("The surface's pixelformat is %s", surfacePixelFormatName);
+**
+** Check the bitdepth of the surface
+** printf("%d bits pxl\n", img->format->BitsPerPixel);
+*/
+t_text *get_texture_datas(char *path)
 {
   SDL_Surface *img;
-  t_col *map;
+  t_text  *texture;
+
   img = NULL;
+  if (!(texture = malloc(sizeof(t_text))))
+    exit(1);
   if (!(img = SDL_LoadBMP(path)))
   {
     printf("load failed\n");
+    free(texture);
     exit (1);
   }
   else
   {
-    // SDL_PixelFormat* pixelFormat = img->format;
-    // Uint32 pixelFormatEnum = pixelFormat->format;
-    // read_img(img);
-    // const char* surfacePixelFormatName = SDL_GetPixelFormatName(pixelFormatEnum);
-    // SDL_Log("The surface's pixelformat is %s", surfacePixelFormatName);
-
-    /* Check the bitdepth of the surface */
-    // printf("%d bits pxl\n", img->format->BitsPerPixel);
-    map = malloc(sizeof(t_col) * (img->w * img->h));
+    texture->img_w = img->w;
+    texture->img_h = img->h;
+    if(!(texture->map = malloc(sizeof(t_col) * (img->w * img->h))))
+      exit(1);
     SDL_LockSurface(img);
-    Uint32 pixel;
-
-    for(int x =0; x < img->w; x++){
-      for(int y = 0; y < img->h; y++){
-        pixel = getpixel(img, x, y);
-        map[x + y * img->w] = get_px_color(img->format, pixel);
-      }
-    }
+    cpy_px_map(texture, img);
     SDL_UnlockSurface(img);
     SDL_FreeSurface(img);
   }
-  return (map);
+  return (texture);
 }
 
 t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 {
   t_mat hit_mat;
-  t_col **textures;
+  t_text *text;
   double u;
   double v;
   t_vec3 tmp;
 
   hit_mat = mat_obj;
-  if (mat_obj.text >=0)
+  if (mat_obj.text >= 0)
   {
-    textures = get_st()->textures;
+    text = get_st()->textures[(int)mat_obj.text];
     if (FORM(form)->type == SPH)
     {
       tmp = ft_vec3vop_r(hit, FORM(form)->sph.ctr, '-');
       u = 0.5 + atan2(tmp.z, tmp.x) / (2 * M_PI);
-      u *= 400;
+      u *= text->img_w;
       tmp = ft_vec3sop_r(tmp, FORM(form)->sph.r, '/');
       v = 0.5 - asin(tmp.y) / M_PI;
-      v *= 400;
-      hit_mat.col = textures[0][(int)u + (int)v * 400];
+      v *= text->img_h;
+      hit_mat.col = text->map[(int)u + (int)v * text->img_w];
     }
   }
   return (hit_mat);

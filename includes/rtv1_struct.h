@@ -107,6 +107,13 @@ typedef struct	s_ray
 	int			flag;
 }				t_ray;
 
+typedef	struct	s_text
+{
+	t_col *map;
+	int	img_w;
+	int	img_h;
+}	t_text;
+
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
 typedef char	*(*t_name_obj)();
@@ -159,7 +166,7 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_col **textures;
+	t_text **textures;
 }					t_setup;
 
 #endif

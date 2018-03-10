@@ -122,8 +122,8 @@ t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
 
 // Nathan
-t_col **get_texture(void);
-t_col *get_texture_datas(char *path);
+t_text **get_texture(void);
+t_text *get_texture_datas(char *path);
 t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj);
 
 #endif

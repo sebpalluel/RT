@@ -66,9 +66,9 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 }
 
 #define NUM_TEXT 2
-t_col **get_texture(void)
+t_text **get_texture(void)
 {
-		static t_col *textures[NUM_TEXT];
+		static t_text *textures[NUM_TEXT];
 		textures[1] = get_texture_datas("./textures/green400x400.bmp");
 		textures[0] = get_texture_datas("./textures/tile4.bmp");
 		return (textures);
