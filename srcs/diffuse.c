@@ -79,6 +79,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_list		*lgt;
 	t_setup		*setup;
 	t_vec3		hit;
+	t_mat hit_mat;
 
 	setup = get_st();
 	col = setup->background;
@@ -133,39 +134,11 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 //		dist = hit_obj(LGT(lgt), ray, SCN.forms, form);
 //		dist *= dist;
 		dist = 2;
-		// ICI VARIABLE POUR RECUP LA COULEUR SUR LA MAP UV
-		t_col text_col = mat_obj.col;
-		t_col **textures;
-		if (mat_obj.text >=0)
-		{
-			textures = get_st()->textures;
-			text_col = mat_obj.col;
-			if (FORM(form)->type == SPH)
-			{
-				t_vec3 pouet = ft_vec3vop_r(hit, FORM(form)->sph.ctr, '-');
-				double u;
-				double v;
-				// printf("x: %f, y: %f, z: %f\n", pouet.x, pouet.y, pouet.z);
-				u = 0.5 + atan2(pouet.z, pouet.x) / (2 * M_PI);
-				u *= 400;
-				pouet = ft_vec3sop_r(pouet, FORM(form)->sph.r, '/');
-				v = 0.5 - asin(pouet.y) / M_PI;
-				v *= 400;
-				// printf("u: %f, v: %f\n", u, v);
-				// for (int i = 0; i < 400 * 400; i++)
-				// {
-				// 	printf("%f, %f, %f\n", textures[0][i].r, textures[0][i].g, textures[0][i].b);
-				// }
-				// exit(0);
-				text_col = textures[0][(int)u + (int)v * 400];
-			}
-		}
-	// 	u = 0.5 + atan2(z, x) / 2π
- // v = 0.5 - asin(y) / π
+		hit_mat = get_mat_at(hit, form, mat_obj);
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
-							ft_colmult(text_col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
+							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						shad, phong(ray, text_col, norm, lgt)), 4 * SCN.expo / dist));
+						shad, phong(ray, hit_mat.col, norm, lgt)), 4 * SCN.expo / dist));
 	//	spec = setup->background;
 		lgt = lgt->next;
 	}

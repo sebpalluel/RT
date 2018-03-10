@@ -101,3 +101,29 @@ t_col *get_texture_datas(char *path)
   }
   return (map);
 }
+
+t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
+{
+  t_mat hit_mat;
+  t_col **textures;
+  double u;
+  double v;
+  t_vec3 tmp;
+
+  hit_mat = mat_obj;
+  if (mat_obj.text >=0)
+  {
+    textures = get_st()->textures;
+    if (FORM(form)->type == SPH)
+    {
+      tmp = ft_vec3vop_r(hit, FORM(form)->sph.ctr, '-');
+      u = 0.5 + atan2(tmp.z, tmp.x) / (2 * M_PI);
+      u *= 400;
+      tmp = ft_vec3sop_r(tmp, FORM(form)->sph.r, '/');
+      v = 0.5 - asin(tmp.y) / M_PI;
+      v *= 400;
+      hit_mat.col = textures[0][(int)u + (int)v * 400];
+    }
+  }
+  return (hit_mat);
+}
