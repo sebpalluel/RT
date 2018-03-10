@@ -30,7 +30,7 @@ SRCDIR		=	./srcs/
 
 LFTDIR		=	./libft/
 MLXDIR		=	./minilibx/
-LIBS		=	-lft -lmlx -framework OpenGL -framework AppKit `sdl2-config --cflags --libs`
+LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F /Users/nchalot/Library/Frameworks/ -framework SDL2
 
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
@@ -71,7 +71,7 @@ SRCNAME 	=	main.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))
-INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME))
+INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME)) -I /Users/nchalot/Library/Frameworks/SDL2.framework/Versions/A/Headers
 
 EXT			=	Makefile
 

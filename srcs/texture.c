@@ -82,7 +82,7 @@ void img_manipulation(void)
     // SDL_Log("The surface's pixelformat is %s", surfacePixelFormatName);
 
     /* Check the bitdepth of the surface */
-    // printf("%d bits pxl\n", img->format->BitsPerPixel);
+    printf("%d bits pxl\n", img->format->BitsPerPixel);
     SDL_LockSurface(img);
     Uint32 pixel;
 
