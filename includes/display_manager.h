@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/01 17:37:35 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/03 16:29:09 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ typedef struct			s_display_manager
 	t_window			*win;
 	t_window			*cli;
 	uint32_t			windows_managed;
+	t_window			scene_focused;
 }						t_display_manager;
 
 void					init_cam_buffers(t_cam *cam, uint32_t frames);
 t_display_manager		*create_display_manager(void);
+
+typedef void		(*t_update_dm_func)(t_dm_data);
 
 #endif

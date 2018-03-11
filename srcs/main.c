@@ -6,13 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 17:30:45 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:45:48 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
-#include "display_manager.h"
 #include "rt.h"
+#include "keys.h"
+#include "display_manager.h"
+#include "graphical_manager.h"
 
 size_t			ft_args_to_fd(t_setup *setup)
 {
@@ -69,4 +70,5 @@ int				usage(int mode)
 
 int				main(int ac, char **av)
 {
+	
 }
