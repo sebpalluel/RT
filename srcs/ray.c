@@ -40,7 +40,6 @@ t_col	send_ray(t_ray ray, t_setup *setup)
 		{
 			nearest = ptr;
 			ray.dist = dist;
-
 		}
 	ptr = ptr->next;
 	}
