@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 13:24:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:33:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,21 @@ t_col			ft_cloud(double x, double y, double z)
 
 t_col			ft_checker(double x, double y, double z)
 {
-	int			x_pos;
-	int			y_pos;
+	int			xy_pos[2];
 	int			freq;
+	int			ixy[2];
 	t_col		col[2];
 
 	(void)z;
 	col[0] = ft_col_r(0, 0, 0, 1);
 	col[1] = ft_col_r(1, 1, 1, 1);
+	ixy[0] = x;
+	ixy[1] = y;
 	freq = 10;
-	x_pos = (x > 0) ? ((int)fabs(x)) % (freq * 2) : ((int)fabs(x - freq)) % (freq * 2);
-	y_pos = (y > 0) ? ((int)fabs(y)) % (freq * 2) : ((int)fabs(y)) % (freq * 2);
-	if (((x_pos < freq) && (y_pos < freq)) || (!(x_pos < freq) && !(y_pos < freq)))
+	xy_pos[0] = (x > 0) ? abs(ixy[0]) % (freq * 2) : abs(ixy[0] - freq) % (freq * 2);
+	xy_pos[1] = (y > 0) ? abs(ixy[1]) % (freq * 2) : abs(ixy[1]) % (freq * 2);
+	if (((xy_pos[0] < freq) && (xy_pos[1] < freq)) ||\
+			((xy_pos[0] > freq) && (xy_pos[1] > freq)))
 		return (col[0]);
 	else
 		return (col[1]);
