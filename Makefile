@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/07 14:47:32 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/12 13:17:21 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -67,6 +67,7 @@ SRCNAME 	=	main.c \
 				diffuse.c \
 				reflexion.c \
 				noise.c \
+				postprocess.c \
 				perlin_calc.c
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))

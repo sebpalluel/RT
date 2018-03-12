@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 13:07:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:24:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ double			ft_perlin(double x, double y, double z)
 	double		f;
 	double		amp;
 	int			i;
-	int			t;
 
 	perlin = 0;
 	f = FREQUENCY;
@@ -30,8 +29,7 @@ double			ft_perlin(double x, double y, double z)
 	i = -1;
 	while (++i < LAYERS)
 	{
-		t = i * 2048;
-		perlin += ft_perlin_noise(x * f + t, y * f + t, z * f + t) * amp;
+		perlin += ft_perlin_noise(x * f + i, y * f + i, z * f + i) * amp;
 		amp *= PERSISTANCE;
 		f *= 2;
 	}
