@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/12 13:24:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:08:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,18 @@ t_parse_obj				*parse_obj(void)
 
 t_effects				*effects(void)
 {
-	static t_effects parse[5] = {&ft_marble, &ft_zebra\
+	static t_effects effect[5] = {&ft_marble, &ft_zebra\
 	, &ft_wood, &ft_cloud, &ft_checker};
 
-	return (parse);
+	return (effect);
+}
+
+t_postproc				*postprocess(void)
+{
+	static t_postproc postp[NUM_EFFECTS] = {&ft_sepia, &ft_cel_shading\
+	, &ft_negative, &ft_blackandwhite, &ft_blur};
+
+	return (postp);
 }
 
 char					**ft_validobjs(void)

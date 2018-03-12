@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 20:44:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:11:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			ft_expose(t_setup *setup)
 	{
 		ft_imgclean(SCN.img[0], SCN.width, SCN.height);
 		clock_gettime(CLOCK_REALTIME, &start);
-		if (!SCN.effect && (ret = ft_raytracing_thread(setup)) != OK)
+		if ((ret = ft_raytracing_thread(setup)) != OK)
 			setup->error = ENG_ERROR;
 		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
 				SCN.img[SCN.effect]->image, 0, 0);

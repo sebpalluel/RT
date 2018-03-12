@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 14:49:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 21:47:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
 typedef	t_vec3	(*t_func_vec3)();
 typedef	t_col	(*t_effects)();
+typedef	t_col	(*t_postproc)();
 //////////TODO Eliot
 
 typedef struct		s_scene

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 20:17:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:09:06 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
-# define NUM_EFFECTS	3
+# define NUM_EFFECTS	5
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
@@ -112,7 +112,7 @@
 # define CAM_AV_STR		"Number of Camera available :"
 # define CAM_CH_STR		"Choose the cam with number and press ENTER :"
 
-# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon (2)"
+# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon (2) | Negative (3) | B&W (4) | Blur (5)"
 # define EFF_CH_STR		"Choose the effect with number and press ENTER :"
 
 # define GUI_M_STR		"|             GUI main menu          |"
