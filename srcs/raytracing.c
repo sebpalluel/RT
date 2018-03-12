@@ -6,14 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 13:28:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:27:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-# define EFFECT		1
-# define EFFECT_N	4
+# define PROCEDURAL		0
+# define PROCEDURAL_N	4
 
 static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
@@ -57,13 +57,13 @@ void			*ft_raytracing(void *a)
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 		{
-			if (!EFFECT)
+			if (!PROCEDURAL)
 				ft_put_pixel(setup, pix.x, pix.y, \
 						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
 								setup)));
 			else
 				ft_put_pixel(setup, pix.x, pix.y, \
-						ft_coltoi(effects()[EFFECT_N]((double)pix.x, (double)\
+						ft_coltoi(effects()[PROCEDURAL_N]((double)pix.x, (double)\
 								pix.y, (double)pix.z)));
 		}
 	}

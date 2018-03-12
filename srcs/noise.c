@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 13:33:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:17:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,10 @@ t_col			ft_checker(double x, double y, double z)
 	ixy[0] = x;
 	ixy[1] = y;
 	freq = 10;
-	xy_pos[0] = (x > 0) ? abs(ixy[0]) % (freq * 2) : abs(ixy[0] - freq) % (freq * 2);
-	xy_pos[1] = (y > 0) ? abs(ixy[1]) % (freq * 2) : abs(ixy[1]) % (freq * 2);
+	xy_pos[0] = (x > 0) ? abs(ixy[0]) % (freq * 2) : \
+				abs(ixy[0] - freq) % (freq * 2);
+	xy_pos[1] = (y > 0) ? abs(ixy[1]) % (freq * 2) : \
+				abs(ixy[1]) % (freq * 2);
 	if (((xy_pos[0] < freq) && (xy_pos[1] < freq)) ||\
 			((xy_pos[0] > freq) && (xy_pos[1] > freq)))
 		return (col[0]);

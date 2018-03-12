@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 13:45:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:17:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
+# define NUM_EFFECTS	3
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
@@ -37,7 +38,8 @@
 # define STATE_OPEN		4
 # define STATE_DRAW		5
 # define STATE_CAM		6
-# define STATE_STOP		7
+# define STATE_EFF		7
+# define STATE_STOP		8
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
 # define ENG_ERROR_S	"error: engine is not in the correct format"
@@ -110,9 +112,13 @@
 # define CAM_AV_STR		"Number of Camera available :"
 # define CAM_CH_STR		"Choose the cam with number and press ENTER :"
 
-# define GUI_M_STR		"|          GUI main menu          |"
-# define GUI_M_SCN_STR	"|To change or select scene  :  S  |"
-# define GUI_M_CAM_STR	"|To change or select cam    :  C  |"
+# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon (2)"
+# define EFF_CH_STR		"Choose the effect with number and press ENTER :"
+
+# define GUI_M_STR		"|             GUI main menu          |"
+# define GUI_M_SCN_STR	"|To change or select scene     :  S  |"
+# define GUI_M_CAM_STR	"|To change or select cam       :  C  |"
+# define GUI_M_EFF_STR	"|To choose an effect to apply  :  E  |"
 //# define RIGHT_STR		"Turn Right :  Right"
 //# define PLUS_STR		"Speed Up   :  +"
 //# define MINUS_STR		"Slow Down  :  -"

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 14:33:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:17:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void			ft_put_pixel(t_setup *setup, int x, int y, int color)
 
 	if (y >= (int)SCN.height || x >= (int)SCN.width || x < 0 || y < 0)
 		return ;
-	index = (y * SCN.width) * (SCN.img->bbp >> 3) \
-			+ x * (SCN.img->bbp >> 3);
-	tmp = (int *)&SCN.img->image_addr[index];
+	index = (y * SCN.width) * (SCN.img[SCN.effect]->bbp >> 3) \
+			+ x * (SCN.img[SCN.effect]->bbp >> 3);
+	tmp = (int *)&SCN.img[SCN.effect]->image_addr[index];
 	*tmp = color;
 }

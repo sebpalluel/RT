@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:42:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:41:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 21:16:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		ft_dellistelem(void *content, size_t size)
 
 static void	ft_scene_free(t_setup *setup)
 {
-	ft_mlxdelete(SCN.win, SCN.img);
+	//mlx_destroy_image(SCN.win, SCN.img[1]);
+	//ft_mlxdelete(SCN.win, SCN.img[0]);
 	ft_lstdel(&SCN.env, ft_delenvnode);
 	ft_lstdel(&SCN.forms, ft_dellistelem);
 	ft_lstdel(&SCN.lgts, ft_dellistelem);
