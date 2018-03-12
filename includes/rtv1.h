@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:08:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:44:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../includes/rtv1_global.h"
 # include <time.h>
 # include <sys/time.h>
+#include <SDL.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
@@ -91,13 +92,17 @@ t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
 t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
 
 t_col		send_ray(t_ray ray, t_setup *setup);
-t_ray		reflexion(t_ray ray, t_vec3 norm);
 
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
 t_func_vec3	*normal_shape(void);
 
-t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_col col_obj);
+t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj);
+t_col		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint);
+t_col		global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj);
+t_col		amb_light(t_col col, t_vec3 norm, t_vec3 dir, double amb_light);
+t_ray		reflexion(t_ray ray, t_vec3 norm);
+t_ray		refraction(t_ray ray, t_vec3 norm, double n2);
 
 double		hit_plan(t_ray ray, t_shape *form);
 double		hit_sphere(t_ray ray, t_shape *form);
@@ -134,5 +139,15 @@ t_col		ft_blackandwhite(t_setup *setup, int x, int y);
 t_col		ft_negative(t_setup *setup, int x, int y);
 void		ft_effect_change(t_setup *setup, int effect);
 t_postproc	*postprocess(void);
+
+// Nathan
+t_text **get_texture(void);
+t_text *get_texture_datas(char *path);
+t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj);
+t_func_uv_map	*uv_map(void);
+void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 21:47:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:44:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
+	char				text;
 }					t_mat;
 
 typedef struct	s_cam
@@ -56,6 +57,7 @@ typedef struct	s_lgt
 {
 	size_t	type;
 	t_vec3	vect;
+	t_vec3 	dir;
 	t_col	col;
 	size_t	num_arg;
 }				t_lgt;
@@ -86,7 +88,7 @@ typedef struct	s_cyl
 	double	r;
 }				t_cyl;
 
-typedef struct	s_forms
+typedef struct	s_shape
 {
 	int			type;
 	size_t		num_arg;
@@ -102,9 +104,17 @@ typedef struct	s_ray
 	t_vec3		org;
 	t_vec3		dir;
 	double		dist;
-	double		n;      
+	double		n;
 	int			nbrefl;
+	int			flag;
 }				t_ray;
+
+typedef	struct	s_text
+{
+	t_col *map;
+	int	img_w;
+	int	img_h;
+}	t_text;
 
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
@@ -113,6 +123,7 @@ typedef size_t	(*t_parse_obj)();
 typedef	t_vec3	(*t_func_vec3)();
 typedef	t_col	(*t_effects)();
 typedef	t_col	(*t_postproc)();
+typedef void (*t_func_uv_map)();
 //////////TODO Eliot
 
 typedef struct		s_scene
@@ -161,6 +172,7 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
+	t_text **textures;
 }					t_setup;
 
 #endif

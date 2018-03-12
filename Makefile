@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/12 13:17:21 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/12 22:45:20 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -22,7 +22,7 @@ CMP			=	gcc
 
 DEBUG_F		=	-g3 -fsanitize=address
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -O2
 
 OBJDIR		=	./obj/
 INCDIR		=	./includes/
@@ -30,7 +30,7 @@ SRCDIR		=	./srcs/
 
 LFTDIR		=	./libft/
 MLXDIR		=	./minilibx/
-LIBS		=	-lft -lmlx -framework OpenGL -framework AppKit
+LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F ~/Library/Frameworks/ -framework SDL2
 
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
@@ -68,11 +68,17 @@ SRCNAME 	=	main.c \
 				reflexion.c \
 				noise.c \
 				postprocess.c \
-				perlin_calc.c
+				perlin_calc.c \
+				shadow.c \
+				illumination.c \
+				texture.c \
+				uv_maps.c
+				#draw.c \
+				#raycaster.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))
-INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME))
+INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME)) -I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers
 
 EXT			=	Makefile
 

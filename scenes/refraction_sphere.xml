@@ -1,0 +1,100 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.2 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 1.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<sphere>
+			<center> -0.2, 0., 10. </center>
+			<radius> 0.4 </radius>
+			<material>
+				<color> 0, 0, 0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+			</material>
+		</sphere>
+		<sphere>
+			<center> -0.2, 0., 2.0 </center>
+			<radius> 0.3 </radius>
+			<material>
+				<color> 1., 1., 0., 1. </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0.8 </transparency>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 0, 1, 1. </center>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 0., 1., 0., 0.5 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0.7 </transparency>
+			</material>
+		</sphere>
+		<cone>
+			<origin> 0.0, 0., 3. </origin>
+			<direction> 1., 0.1, 0.6 </direction>
+			<degres> 1 </degres>
+			<material>
+				<color> 0.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0</transparency>
+			</material>
+		</cone>
+		<cylindre>
+			<position> 0.4, 0., 2. </position>
+			<direction> 0., 1.0, 0.0 </direction>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+			</material>
+		</cylindre>
+		<plane>
+			<normale> -1.0, 0, 0.0 </normale>
+			<distance> 1 </distance>
+			<material>
+				<color> 1.0, 1.0, 0.0, 0.0 </color>
+				<reflexion> 1.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0.0, 0, -1.0 </normale>
+			<distance> 5 </distance>
+			<material>
+				<color> 1.0, 1.0, 1, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+			</material>
+		</plane>
+	</objects>
+</scene>

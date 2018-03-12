@@ -74,7 +74,10 @@ double	hit_cone(t_ray ray, t_shape *form)
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((k = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (k);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_vec3	normal_cone(t_ray ray, t_list *cone)
@@ -110,7 +113,7 @@ t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cone(ray, con);
-		return (diffuse(norm, con, ray, FORM(con)->mat.col));
+		return (diffuse(norm, con, ray, FORM(con)->mat));
 	}
 	return (setup->background);
 }
