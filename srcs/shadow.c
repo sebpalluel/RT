@@ -28,13 +28,10 @@ t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint)
 	dist = ft_vec3norm(ft_vec3vop_r(hitpoint, lgt->vect, '-'));
 	while (objects)
 	{
-	//	if (FORM(objects)->mat.trsp)
-	//	{
 			hit = hit_shape()[FORM(objects)->type - 1](ray, FORM(objects));
 			if (hit < (dist - 0.0000001) && hit > 0)
 				shadow = ft_colmult(ft_colmultscale(FORM(objects)->mat.col,
 					FORM(objects)->mat.trsp), shadow);
-	//	}
 		objects  = objects->next;
 	}
 	return (shadow);
