@@ -130,6 +130,7 @@ t_func_uv_map	*uv_map(void);
 void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text);
 void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text);
 void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text);
 
 
 #endif

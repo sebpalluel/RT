@@ -69,15 +69,15 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 t_text **get_texture(void)
 {
 		static t_text *textures[NUM_TEXT];
-		textures[1] = get_texture_datas("./textures/green400x400.bmp");
-		textures[0] = get_texture_datas("./textures/tile4.bmp");
+		textures[0] = get_texture_datas("./textures/green400x400.bmp");
+		textures[1] = get_texture_datas("./textures/tile4.bmp");
 		return (textures);
 }
 
 t_func_uv_map	*uv_map(void)
 {
 	// valeur en dur a remplacé par num_form
-	static	t_func_uv_map func[4] = {&uv_map_sph, &uv_map_pln, NULL, &uv_map_cyl};
+	static	t_func_uv_map func[4] = {&uv_map_sph, &uv_map_pln, &uv_map_cone, &uv_map_cyl};
 
 	return (func);
 }

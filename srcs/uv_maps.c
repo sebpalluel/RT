@@ -62,13 +62,52 @@ void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text)
   double u;
   double v;
 
+  hit = ft_vec3vop_r(FORM(form)->cyl.pos, hit, '-');
   coord.z = ft_vec3dot(hit, FORM(form)->cyl.dir);
-  coord.z -= (ft_vec3dot(FORM(form)->cyl.dir, FORM(form)->cyl.pos));
   x_axe = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(0., 1., 0.), \
 				FORM(form)->cyl.dir, 'c'));
+  if (ft_vec3norm(x_axe) == 0.0)
+    x_axe = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(1., 0., 0.), \
+        FORM(form)->cyl.dir, 'c'));
   hit = ft_vec3vop_r(hit, ft_vec3sop_r(FORM(form)->cyl.dir, coord.z, '*'), '-');
-  hit = ft_vec3vop_r(FORM(form)->cyl.pos, hit, '-');
   y_axe = ft_vec3vop_r(x_axe, FORM(form)->cyl.dir, 'c');
+  coord.x = ft_vec3dot(hit, x_axe);
+  coord.y = ft_vec3dot(hit, y_axe);
+  u = atan2(coord.y, coord.x) / (2 * M_PI);
+  v = coord.z;
+  u *= text->img_w;
+  v *= text->img_h;
+  // u *=2;
+  // v *= 2;
+  u = (int)u % 400;
+  v = (int)v % 400;
+  if (u < 0)
+    u = u + 400;
+  if (v < 0)
+    v = v + 400;
+  *col = text->map[(int)u + (int)v * text->img_w];
+}
+
+void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text)
+{
+  t_vec3 coord;
+  t_vec3 x_axe;
+  t_vec3 y_axe;
+  double u;
+  double v;
+
+  hit = ft_vec3vop_r(FORM(form)->cone.org, hit, '-');
+  coord.z =ft_vec3dot(FORM(form)->cone.dir, hit);
+  // tmp = ft_vec3normalize_r(tmp);
+  // tmp = tmp * 1; //wouhahou
+  // tmp = ft_vec3dot(hit, )
+  x_axe = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(0., 1., 0.), \
+				FORM(form)->cone.dir, 'c'));
+  if (ft_vec3norm(x_axe) == 0.0)
+    x_axe = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3_r(1., 0., 0.), \
+        FORM(form)->cone.dir, 'c'));
+  hit = ft_vec3vop_r(hit, ft_vec3sop_r(FORM(form)->cone.dir, coord.z, '*'), '-');
+  y_axe = ft_vec3vop_r(x_axe, FORM(form)->cone.dir, 'c');
   coord.x = ft_vec3dot(hit, x_axe);
   coord.y = ft_vec3dot(hit, y_axe);
   u = atan2(coord.y, coord.x) / (2 * M_PI);
