@@ -73,3 +73,14 @@ t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj)
 //	printf("%f, %f, %f\n", glob.r, glob.g, glob.b);
 	return (glob);
 }
+
+t_col	amb_light(t_col col, t_vec3 norm, t_vec3 dir, double amb_light)
+{
+	t_col amb;
+	double scale;
+
+	scale = fabs(ft_dotproduct(norm, dir));
+	scale *= amb_light;
+	amb = ft_colmultscale(col, scale);
+	return (amb);
+}

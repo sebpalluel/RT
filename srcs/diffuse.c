@@ -80,14 +80,13 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_vec3		hit;
 
 	setup = get_st();
-	col = setup->background;
-	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-	glob = col;
-
 	lgt = SCN.lgts;
-	refl = col;
-	spec = col;
+	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+	glob = setup->background;
+	refl = setup->background;
+	spec = setup->background;
 	refract = mat_obj.col;
+	col = amb_light(mat_obj.col, norm, ray.dir, SCN.amb_light);
 	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(norm, ray.dir) > 0)
@@ -110,7 +109,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	if (ray.nbrefl < (int)SCN.refl_max && mat_obj.refl != 0)
 		refl = send_ray(reflexion(ray, norm), setup);
 	if (ray.flag < 0)
-			glob = global_illum(ray, norm, hit, form);
+		glob = global_illum(ray, norm, hit, form);
 	while (lgt)
 	{
 		shad = shadow(LGT(lgt), SCN.forms, hit);
@@ -128,3 +127,14 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	}
 	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl));
 }
+
+
+
+
+
+
+
+
+
+
+
