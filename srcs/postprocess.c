@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:16:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:06:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:56:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,12 @@ t_col		ft_sepia(t_setup *setup, int x, int y)
 	t_col	col;
 
 	col = ft_get_pixel_col(setup, x, y);
-	red = (col.r * 0.393) + (col.g * 0.769) + (col.b * 0.189);
-	green = (col.r * 0.349) + (col.g * 0.686) + (col.b * 0.168);
-	blue = (col.r * 0.272) + (col.g * 0.534) + (col.b * 0.131);
+	if ((red = (col.r * 0.393) + (col.g * 0.769) + (col.b * 0.189)) > 1.)
+		red = 1.;
+	if ((green = (col.r * 0.349) + (col.g * 0.686) + (col.b * 0.168)) > 1.)
+		green = 1.;
+	if ((blue = (col.r * 0.272) + (col.g * 0.534) + (col.b * 0.131)) > 1.)
+		blue = 1.;
 	return (ft_col_r(red, green, blue, 1.));
 }
 
