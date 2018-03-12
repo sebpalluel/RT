@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:43 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:00:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_vec3			normal_plane(t_ray ray, t_list *plane)
 
 	norm = PLAN(plane).nrml;
 	if (ft_vec3dot(PLAN(plane).nrml, ray.dir) > 0)
-		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '+');
+		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '*');
 	return (norm);
 }
 
@@ -78,7 +78,7 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_plane(ray, pln);
-		return (diffuse(norm, pln, ray, FORM(pln)->mat.col));
+		return (diffuse(norm, pln, ray, FORM(pln)->mat));
 	}
 	return (setup->background);
 }

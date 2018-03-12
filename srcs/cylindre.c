@@ -30,7 +30,10 @@ double	hit_cyl(t_ray ray, t_shape *form)
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (c);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_vec3	normal_cyl(t_ray ray, t_list *cyl)
@@ -54,7 +57,7 @@ t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cyl(ray, cyl);
-		return (diffuse(norm, cyl, ray, FORM(cyl)->mat.col));
+		return (diffuse(norm, cyl, ray, FORM(cyl)->mat));
 	}
 	return (setup->background);
 }

@@ -79,7 +79,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_sphere(ray, sph);
-		return (diffuse(norm, sph, ray, FORM(sph)->mat.col));
+		return (diffuse(norm, sph, ray, FORM(sph)->mat));
 	}
 	return (setup->background);
 }
