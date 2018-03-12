@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 14:34:05 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 19:04:12 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:03:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ float					ft_perlin_noise(double x, double y, double z)
 	n[0] = dotprodfrom4unitcube_0(ixyz0, ixyz1, frac, uvw);
 	n[1] = dotprodfrom4unitcube_1(ixyz0, ixyz1, frac, uvw);
 	return (ft_lerp(uvw[2], n[0], n[1]) * 0.98);
-	//return ((ft_lerp(uvw[2], n[0], n[1]) + 1) / 2); this one is a lot smoother
 }

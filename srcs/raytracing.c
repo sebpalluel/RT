@@ -6,14 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 19:27:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:08:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
 # define EFFECT		1
-# define EFFECT_N	2
+# define EFFECT_N	1
 
 static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
