@@ -134,7 +134,7 @@ t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
   if (mat_obj.text >= 0)
   {
     text = get_st()->textures[(int)mat_obj.text];
-    if (FORM(form)->type == CYL)
+    if (FORM(form)->type == CON || FORM(form)->type == CYL)
     {
       uv_map()[FORM(form)->type - 1](hit, form, &hit_mat.col, text);
     }
