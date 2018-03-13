@@ -25,7 +25,7 @@ t_vec3 get_x_axe(t_vec3 dir)
   return (x_axe);
 }
 
-void get_obj_space_coords(t_vec3 hit, t_vec3 *coord, t_vec3 orig, t_vec3 dir)
+void get_local_coords(t_vec3 hit, t_vec3 *coord, t_vec3 orig, t_vec3 dir)
 {
   t_vec3 x_axe;
   t_vec3 y_axe;

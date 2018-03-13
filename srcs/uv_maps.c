@@ -38,7 +38,7 @@ void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text)
   double v;
   t_vec3 coord;
 
-  get_obj_space_coords(hit, &coord, FORM(form)->cyl.pos, FORM(form)->cyl.dir);
+  get_local_coords(hit, &coord, FORM(form)->cyl.pos, FORM(form)->cyl.dir);
   u = atan2(coord.y, coord.x) / (2 * M_PI);
   v = coord.z;
   fit_and_scale(&u, &v, text);
@@ -51,7 +51,7 @@ void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text)
   double u;
   double v;
 
-  get_obj_space_coords(hit, &coord, FORM(form)->cone.org, FORM(form)->cone.dir);
+  get_local_coords(hit, &coord, FORM(form)->cone.org, FORM(form)->cone.dir);
   u = atan2(coord.y, coord.x) / (2 * M_PI);
   v = coord.z;
   fit_and_scale(&u, &v, text);
