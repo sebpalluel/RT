@@ -135,5 +135,7 @@ t_mat		get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 		text = get_st()->textures[mat_obj.text - 1];
 		uv_map()[FORM(form)->type - 1](hit, form, &hit_mat.col, text);
 	}
+	if (mat_obj.text > NUM_TEXT && mat_obj.text <= (NUM_TEXT + NUM_PROC))
+		effects()[mat_obj.text - 1](hit, &hit_mat.col);
 	return (hit_mat);
 }

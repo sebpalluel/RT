@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:44:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:47:46 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,12 @@ t_ray		init_ray(t_vec3 org, t_vec3 dir);
 t_effects	*effects(void);
 void		perlin_draw_test(t_setup *setup, t_pix pix);
 float		ft_perlin_noise(double x, double y, double z);
-double		ft_perlin(double x, double y, double z);
-t_col		ft_marble(double x, double y, double z);
-t_col		ft_zebra(double x, double y, double z);
-t_col		ft_wood(double x, double y, double z);
-t_col		ft_cloud(double x, double y, double z);
-t_col		ft_checker(double x, double y, double z);
+double		ft_perlin(t_vec3 vec3);
+void		ft_marble(t_vec3 vec3, t_col *to_col);
+void		ft_zebra(t_vec3 vec3, t_col *to_col);
+void		ft_wood(t_vec3 vec3, t_col *to_col);
+void		ft_cloud(t_vec3 vec3, t_col *to_col);
+void		ft_checker(t_vec3 vec3, t_col *to_col);
 
 t_col		ft_sepia(t_setup *setup, int x, int y);
 t_col		ft_blur(t_setup *setup, int x, int y);
