@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/13 12:12:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:20:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_setup					*get_st(void)
 t_parse_obj				*parse_obj(void)
 {
 	static t_parse_obj parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
-	, &ft_plane, &ft_sphere, &ft_cone, &ft_cylindre};
+		, &ft_plane, &ft_sphere, &ft_cone, &ft_cylindre};
 
 	return (parse);
 }
@@ -54,7 +54,7 @@ t_parse_obj				*parse_obj(void)
 t_effects				*effects(void)
 {
 	static t_effects effect[5] = {&ft_marble, &ft_zebra\
-	, &ft_wood, &ft_cloud, &ft_checker};
+		, &ft_wood, &ft_cloud, &ft_checker};
 
 	return (effect);
 }
@@ -62,7 +62,7 @@ t_effects				*effects(void)
 t_postproc				*postprocess(void)
 {
 	static t_postproc postp[NUM_EFFECTS] = {&ft_sepia, &ft_cel_shading\
-	, &ft_negative, &ft_blackandwhite, &ft_blur};
+		, &ft_negative, &ft_blackandwhite, &ft_blur};
 
 	return (postp);
 }
@@ -83,10 +83,11 @@ char					**ft_validobjs(void)
 
 t_text **get_texture(void)
 {
-		static t_text *textures[NUM_TEXT];
-		textures[0] = get_texture_datas("./textures/green400x400.bmp");
-		textures[1] = get_texture_datas("./textures/tile4.bmp");
-		return (textures);
+	static t_text *textures[NUM_TEXT];
+
+	textures[0] = get_texture_datas("./textures/green400x400.bmp");
+	textures[1] = get_texture_datas("./textures/tile4.bmp");
+	return (textures);
 }
 
 t_func_uv_map	*uv_map(void)

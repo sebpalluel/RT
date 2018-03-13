@@ -32,6 +32,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.333 </refractive_index>
 				<transparency> 0 </transparency>
+				<texture> 1 </texture>
 			</material>
 		</sphere>
 		<sphere>
@@ -42,6 +43,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.333 </refractive_index>
 				<transparency> 0.8 </transparency>
+				<texture> 1 </texture>
 			</material>
 		</sphere>
 		<sphere>
@@ -52,6 +54,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.333 </refractive_index>
 				<transparency> 0.7 </transparency>
+				<texture> 2 </texture>
 			</material>
 		</sphere>
 		<cone>
@@ -63,6 +66,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0</transparency>
+				<texture> 0 </texture>
 			</material>
 		</cone>
 		<cylindre>
@@ -74,6 +78,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0 </transparency>
+				<texture> 1 </texture>
 			</material>
 		</cylindre>
 		<plane>
@@ -84,6 +89,7 @@
 				<reflexion> 1.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0. </transparency>
+				<texture> 2 </texture>
 			</material>
 		</plane>
 		<plane>
@@ -94,6 +100,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0. </transparency>
+				<texture> 2 </texture>
 			</material>
 		</plane>
 	</objects>
