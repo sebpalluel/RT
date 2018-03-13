@@ -69,6 +69,7 @@ SRCNAME 	=	main.c \
 				illumination.c \
 				texture.c \
 				uv_maps.c \
+				uv_maps_helpers.c \
 				#draw.c \
 				#raycaster.c \
 
