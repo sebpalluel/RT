@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/12 22:08:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:12:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char					**ft_validobjs(void)
 	return (validobjs);
 }
 
-#define NUM_TEXT 2
 t_text **get_texture(void)
 {
 		static t_text *textures[NUM_TEXT];

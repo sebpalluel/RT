@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:44:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:08:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
-	char				text;
+	size_t			text;
 }					t_mat;
 
 typedef struct	s_cam
@@ -172,7 +172,7 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_text **textures;
+	t_text			**textures;
 }					t_setup;
 
 #endif
