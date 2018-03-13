@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 13:35:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:23:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define NUM_FORM		4
 # define NUM_OBJS		7
 # define NUM_EFFECTS	5
-# define NUM_PROC		5
+# define NUM_PROC		6
 # define NUM_TEXT		2
 # define MAX_WINDOW		5
 # define MAX_CAM		10

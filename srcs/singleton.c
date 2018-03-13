@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/13 14:15:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:23:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_parse_obj				*parse_obj(void)
 t_effects				*effects(void)
 {
 	static t_effects effect[NUM_PROC] = {&ft_marble, &ft_zebra\
-		, &ft_wood, &ft_cloud, &ft_checker};
+		, &ft_wood, &ft_cloud, &ft_perlin, &ft_checker};
 
 	return (effect);
 }

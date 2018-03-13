@@ -6,14 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 16:56:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 19:09:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
 # define PERSISTANCE	0.75
-# define FREQUENCY		0.02
+# define FREQUENCY		25.
 # define LAYERS			5
 
 double			ft_perlin(t_vec3 vec3)
@@ -25,7 +25,7 @@ double			ft_perlin(t_vec3 vec3)
 
 	perlin = 0;
 	f = FREQUENCY;
-	amp = 1;
+	amp = 1.;
 	i = -1;
 	while (++i < LAYERS)
 	{
@@ -37,94 +37,64 @@ double			ft_perlin(t_vec3 vec3)
 	return (perlin);
 }
 
-void			ft_marble(t_vec3 vec3, t_col *to_col)
+double			ft_marble(t_vec3 vec3)
 {
 	double		perlin;
 	double		marble;
-	t_col		col[2];
 
-	col[0] = ft_col_r(0.1, 0.1, 0.1, 1.);
-	col[1] = ft_col_r(0.9, 0.9, 0.9, 1.);
 	perlin = ft_perlin(vec3);
 	marble = sqrt(fabs(sin(2 * M_PI * perlin)));
-	*to_col = ft_colinterpol(col[1], col[0], marble);
-	//*to_col = ft_coladd(ft_colmultscale(col[0], 1 - marble), \
-	//		ft_colmultscale(col[1], marble));
+	return (marble);
 }
 
-void			ft_zebra(t_vec3 vec3, t_col *to_col)
+double			ft_zebra(t_vec3 vec3)
 {
 	double		perlin;
 	double		amp;
 	double		zebra;
-	t_col		col[2];
 
 	amp = 200.;
-	col[0] = ft_col_r(0.1, 0.1, 0.1, 1.);
-	col[1] = ft_col_r(0.9, 0.9, 0.9, 1.);
 	perlin = ft_perlin(vec3);
 	zebra = (sin((vec3.x + perlin * amp) * 2 * M_PI / 200.f) + 1) / 2.f;
-	*to_col = ft_col_r(zebra, zebra, zebra, 1.);
+	return (zebra);
 }
 
-void			ft_wood(t_vec3 vec3, t_col *to_col)
+double			ft_wood(t_vec3 vec3)
 {
 	double		step;
 	double		freq;
 	double		perlin;
 	double		wood;
-	t_col		col[2];
 
 	perlin = ft_perlin(vec3);
 	step = 0.2;
-	col[0] = ft_col_r(0.1, 0.1, 0.1, 1.);
-	col[1] = ft_col_r(0.9, 0.9, 0.9, 1.);
 	wood = fmod(perlin, step);
 	if (wood > step / 2)
 		wood = step - wood;
-	freq = (1 - cos(M_PI * wood / (step / 2))) / 2;
-//	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - freq), \
-//			ft_colmultscale(col[1], freq));
-	*to_col = ft_colinterpol(col[1], col[0], freq);
+	freq = (1 - cos(M_PI * wood / (step / 2.0))) / 2.0;
+	return (freq);
 }
 
-void			ft_cloud(t_vec3 vec3, t_col *to_col)
+double			ft_cloud(t_vec3 vec3)
 {
 	double		cloud;
-	t_col		col;
 	double		amp;
 
 	amp = 20.;
-	col = ft_col_r(1, 1., 1., 1.);
 	cloud = ft_perlin(vec3);
 	cloud = cos(((vec3.x * vec3.y * vec3.z) / (vec3.x * 2)) + cloud * amp) / 2. + 0.5;
-	*to_col = ft_colmultscale(col, cloud);
+	return (cloud);
 }
 
-void			ft_checker(t_vec3 vec3, t_col *to_col)
+double			ft_checker(t_vec3 vec3)
 {
-	int			xy_pos[2];
-	int			freq;
-	int			ixy[2];
-	t_col		col[2];
+	int size;
 
-	(void)vec3.z;
-	col[0] = ft_col_r(0, 0, 0, 1);
-	col[1] = ft_col_r(1, 1, 1, 1);
-	ixy[0] = vec3.x;
-	ixy[1] = vec3.y;
-	freq = 100;
-	xy_pos[0] = (vec3.x > 0) ? ixy[0] % (freq * 2) : \
-				ixy[0] % (freq * 2);
-	xy_pos[1] = (vec3.y > 0) ? ixy[1] % (freq * 2) : \
-				ixy[1] % (freq * 2);
-	if (xy_pos[0] < 0)
-		xy_pos[0] += (freq * 2);
-	if (xy_pos[1] < 0)
-		xy_pos[1] += (freq * 2);
-	if (((xy_pos[0] < freq) && (xy_pos[1] < freq)) ||\
-			((xy_pos[0] > freq) && (xy_pos[1] > freq)))
-		*to_col = col[0];
+	size = 5;
+	vec3 = ft_vec3multscale_r(vec3, 100.);
+	if (((int)floor(vec3.x / size)
+				+ (int)floor(vec3.y / size)) % 2 != 0)
+		return (1.);
 	else
-		*to_col = col[1];
+		return (0.);
 }

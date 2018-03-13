@@ -142,8 +142,7 @@ t_mat		get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 		hit = uv_map()[FORM(form)->type - 1](hit, form, &hit_mat, text);
 		//if (FORM(form)->type == PLN)
 		//	printf("x %f y %f\n", hit.x, hit.y);
-		effects()[mat_obj.text - NUM_TEXT - 1](hit, &hit_mat.col);
-		hit_mat.col = ft_colmult(prev_col, hit_mat.col);
+		hit_mat.col = ft_colinterpol(hit_mat.col, ft_col_r(0., 0., 0., 1.), effects()[mat_obj.text - NUM_TEXT - 1](hit));
 	}
 	return (hit_mat);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 16:02:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:03:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,11 @@ t_effects	*effects(void);
 void		perlin_draw_test(t_setup *setup, t_pix pix);
 float		ft_perlin_noise(double x, double y, double z);
 double		ft_perlin(t_vec3 vec3);
-void		ft_marble(t_vec3 vec3, t_col *to_col);
-void		ft_zebra(t_vec3 vec3, t_col *to_col);
-void		ft_wood(t_vec3 vec3, t_col *to_col);
-void		ft_cloud(t_vec3 vec3, t_col *to_col);
-void		ft_checker(t_vec3 vec3, t_col *to_col);
+double		ft_marble(t_vec3 vec3);
+double		ft_zebra(t_vec3 vec3);
+double		ft_wood(t_vec3 vec3);
+double		ft_cloud(t_vec3 vec3);
+double		ft_checker(t_vec3 vec3);
 
 t_col		ft_sepia(t_setup *setup, int x, int y);
 t_col		ft_blur(t_setup *setup, int x, int y);
