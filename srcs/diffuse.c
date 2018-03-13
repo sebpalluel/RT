@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/13 13:55:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 14:29:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	refl = setup->background;
 	spec = setup->background;
 	refract = mat_obj.col;
-	col = amb_light(mat_obj.col, norm, ray.dir, SCN.amb_light);
+	hit_mat = get_mat_at(hit, form, mat_obj);
+	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
 	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(norm, ray.dir) > 0)
@@ -120,7 +121,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 			lmbrt = 0;
 		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
 		dist *= dist;
-		hit_mat = get_mat_at(hit, form, mat_obj);
+		
 //		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
 							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);

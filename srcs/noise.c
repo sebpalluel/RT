@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 13:52:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 15:25:46 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			ft_marble(t_vec3 vec3, t_col *to_col)
 	perlin = ft_perlin(vec3);
 	marble = sqrt(fabs(sin(2 * M_PI * perlin)));
 	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - marble), \
-				ft_colmultscale(col[1], marble));
+			ft_colmultscale(col[1], marble));
 }
 
 void			ft_zebra(t_vec3 vec3, t_col *to_col)
@@ -83,7 +83,7 @@ void			ft_wood(t_vec3 vec3, t_col *to_col)
 		wood = step - wood;
 	freq = (1 - cos(M_PI * wood / (step / 2))) / 2;
 	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - freq), \
-				ft_colmultscale(col[1], freq));
+			ft_colmultscale(col[1], freq));
 }
 
 void			ft_cloud(t_vec3 vec3, t_col *to_col)
@@ -111,7 +111,7 @@ void			ft_checker(t_vec3 vec3, t_col *to_col)
 	col[1] = ft_col_r(1, 1, 1, 1);
 	ixy[0] = vec3.x;
 	ixy[1] = vec3.y;
-	freq = 10;
+	freq = 100;
 	xy_pos[0] = (vec3.x > 0) ? abs(ixy[0]) % (freq * 2) : \
 				abs(ixy[0] - freq) % (freq * 2);
 	xy_pos[1] = (vec3.y > 0) ? abs(ixy[1]) % (freq * 2) : \
