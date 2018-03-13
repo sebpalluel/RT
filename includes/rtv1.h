@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 13:47:46 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:02:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,13 @@ t_postproc	*postprocess(void);
 t_text **get_texture(void);
 t_text *get_texture_datas(char *path);
 t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj);
+void fit_and_scale(double *u, double *v, t_text *text);
+t_vec3 get_x_axe(t_vec3 dir);
+void get_local_coords(t_vec3 hit, t_vec3 *coord, t_vec3 orig, t_vec3 dir);
 t_func_uv_map	*uv_map(void);
-void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text);
+t_vec3		uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 
 #endif

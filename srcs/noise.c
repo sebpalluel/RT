@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 15:41:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:56:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void			ft_marble(t_vec3 vec3, t_col *to_col)
 	col[1] = ft_col_r(0.9, 0.9, 0.9, 1.);
 	perlin = ft_perlin(vec3);
 	marble = sqrt(fabs(sin(2 * M_PI * perlin)));
-	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - marble), \
-			ft_colmultscale(col[1], marble));
+	*to_col = ft_colinterpol(col[1], col[0], marble);
+	//*to_col = ft_coladd(ft_colmultscale(col[0], 1 - marble), \
+	//		ft_colmultscale(col[1], marble));
 }
 
 void			ft_zebra(t_vec3 vec3, t_col *to_col)
@@ -82,8 +83,9 @@ void			ft_wood(t_vec3 vec3, t_col *to_col)
 	if (wood > step / 2)
 		wood = step - wood;
 	freq = (1 - cos(M_PI * wood / (step / 2))) / 2;
-	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - freq), \
-			ft_colmultscale(col[1], freq));
+//	*to_col = ft_coladd(ft_colmultscale(col[0], 1 - freq), \
+//			ft_colmultscale(col[1], freq));
+	*to_col = ft_colinterpol(col[1], col[0], freq);
 }
 
 void			ft_cloud(t_vec3 vec3, t_col *to_col)
@@ -92,10 +94,10 @@ void			ft_cloud(t_vec3 vec3, t_col *to_col)
 	t_col		col;
 	double		amp;
 
-	amp = 3.;
-	col = ft_col_r(1, 1, 1, 1);
+	amp = 20.;
+	col = ft_col_r(1, 1., 1., 1.);
 	cloud = ft_perlin(vec3);
-	cloud = cos(((vec3.x * vec3.y * vec3.z) / (vec3.x * 2)) + cloud * amp);
+	cloud = cos(((vec3.x * vec3.y * vec3.z) / (vec3.x * 2)) + cloud * amp) / 2. + 0.5;
 	*to_col = ft_colmultscale(col, cloud);
 }
 

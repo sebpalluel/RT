@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/12 22:45:20 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/13 15:51:26 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -72,7 +72,8 @@ SRCNAME 	=	main.c \
 				shadow.c \
 				illumination.c \
 				texture.c \
-				uv_maps.c
+				uv_maps.c \
+				uv_maps_helpers.c \
 				#draw.c \
 				#raycaster.c \
 
