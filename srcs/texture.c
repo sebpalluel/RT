@@ -3,31 +3,18 @@
 t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 {
   t_col color;
-  Uint32 temp;
-  /* Get Red component */
-  temp = pixel & fmt->Rmask;  /* Isolate red component */
-  temp = temp >> fmt->Rshift; /* Shift it down to 8-bit */
-  temp = temp << fmt->Rloss;  /* Expand to a full 8-bit number */
-  color.r = (Uint8)temp / 255.0;
+  Uint8 r;
+  Uint8 g;
+  Uint8 b;
+  Uint8 s;
 
-  /* Get Green component */
-  temp = pixel & fmt->Gmask;  /* Isolate green component */
-  temp = temp >> fmt->Gshift; /* Shift it down to 8-bit */
-  temp = temp << fmt->Gloss;  /* Expand to a full 8-bit number */
-  color.g = (Uint8)temp / 255.0;
-
-  /* Get Blue component */
-  temp = pixel & fmt->Bmask;  /* Isolate blue component */
-  temp = temp >> fmt->Bshift; /* Shift it down to 8-bit */
-  temp = temp << fmt->Bloss;  /* Expand to a full 8-bit number */
-  color.b = (Uint8)temp / 255.0;
-
-  /* Get Alpha component */
-  // temp = pixel & fmt->Amask;  /* Isolate alpha component */
-  // temp = temp >> fmt->Ashift; /* Shift it down to 8-bit */
-  // temp = temp << fmt->Aloss;  /* Expand to a full 8-bit number */
-  // alpha = (Uint8)temp;
-  // printf("Pixel Color -> R: %f,  G: %f,  B: %f", color.r, color.g, color.b);
+  SDL_GetRGBA(pixel, fmt, &r, &g, &b, &s);
+  color.r = r / 255.0;
+  color.g = g / 255.0;
+  color.b = b / 255.0;
+  color.s = s / 255.0;
+  // if (color.s != 0)
+  //   printf("Pixel Color -> R: %f,  G: %f,  B: %f, A: %f\n", color.r, color.g, color.b, color.s);
   return color;
 }
 
@@ -46,18 +33,21 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y)
     switch(bpp) {
     case 1:
         return *p;
-
+        break;
     case 2:
         return *(Uint16 *)p;
+        break;
 
     case 3:
         if(SDL_BYTEORDER == SDL_BIG_ENDIAN)
             return p[0] << 16 | p[1] << 8 | p[2];
         else
             return p[0] | p[1] << 8 | p[2] << 16;
+        break;
 
     case 4:
         return *(Uint32 *)p;
+        break;
 
     default:
         return 0;       /* shouldn't happen, but avoids warnings */
@@ -70,6 +60,7 @@ void cpy_px_map(t_text *texture, SDL_Surface *img)
   int x;
   int y;
 
+  (void)texture;
   y = 0;
   x = 0;
   pixel = 0;
@@ -86,7 +77,7 @@ void cpy_px_map(t_text *texture, SDL_Surface *img)
   }
 }
 /*
-** potentiellement utile
+potentiellement utile
 ** SDL_PixelFormat* pixelFormat = img->format;
 ** Uint32 pixelFormatEnum = pixelFormat->format;
 ** read_img(img);
@@ -104,7 +95,7 @@ t_text *get_texture_datas(char *path)
   img = NULL;
   if (!(texture = malloc(sizeof(t_text))))
     exit(1);
-  if (!(img = SDL_LoadBMP(path)))
+  if (!(img = IMG_Load(path)))
   {
     printf("load failed\n");
     free(texture);
