@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 15:25:46 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 15:41:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,14 @@ void			ft_checker(t_vec3 vec3, t_col *to_col)
 	ixy[0] = vec3.x;
 	ixy[1] = vec3.y;
 	freq = 100;
-	xy_pos[0] = (vec3.x > 0) ? abs(ixy[0]) % (freq * 2) : \
-				abs(ixy[0] - freq) % (freq * 2);
-	xy_pos[1] = (vec3.y > 0) ? abs(ixy[1]) % (freq * 2) : \
-				abs(ixy[1]) % (freq * 2);
+	xy_pos[0] = (vec3.x > 0) ? ixy[0] % (freq * 2) : \
+				ixy[0] % (freq * 2);
+	xy_pos[1] = (vec3.y > 0) ? ixy[1] % (freq * 2) : \
+				ixy[1] % (freq * 2);
+	if (xy_pos[0] < 0)
+		xy_pos[0] += (freq * 2);
+	if (xy_pos[1] < 0)
+		xy_pos[1] += (freq * 2);
 	if (((xy_pos[0] < freq) && (xy_pos[1] < freq)) ||\
 			((xy_pos[0] > freq) && (xy_pos[1] > freq)))
 		*to_col = col[0];

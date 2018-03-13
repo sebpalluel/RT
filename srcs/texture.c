@@ -137,7 +137,7 @@ t_mat		get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 	}
 	if (mat_obj.text > NUM_TEXT && mat_obj.text <= (NUM_TEXT + NUM_PROC))
 	{
-	hit = ft_vec3multscale_r(hit, 100.);
+		hit = ft_vec3multscale_r(hit, 100.);
 		effects()[mat_obj.text - NUM_TEXT - 1](hit, &hit_mat.col);
 	}
 	return (hit_mat);
