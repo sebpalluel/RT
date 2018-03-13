@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 14:25:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:21:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,6 @@ int				main(int ac, char **av)
 	setup->ac = ac;
 	setup->background = ft_col_r(0, 0, 0, 0);
 	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
-	setup->textures = get_texture();
-  // // JUSTE POUR TESTER MES MANIPULATION
-	// get_texture_datas("./textures/green400x400.bmp");
-  // // CEST ICI QUE CA SE PASSE
 	if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
 		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
 	return (ft_quit(setup));

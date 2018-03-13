@@ -26,9 +26,9 @@ t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
  */
 Uint32 getpixel(SDL_Surface *surface, int x, int y)
 {
-    int bpp = surface->format->BytesPerPixel;
-    /* Here p is the address to the pixel we want to retrieve */
-    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
+	int bpp = surface->format->BytesPerPixel;
+	/* Here p is the address to the pixel we want to retrieve */
+	Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
 
     switch(bpp) {
     case 1:
@@ -49,9 +49,9 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y)
         return *(Uint32 *)p;
         break;
 
-    default:
-        return 0;       /* shouldn't happen, but avoids warnings */
-    }
+		default:
+			return 0;       /* shouldn't happen, but avoids warnings */
+	}
 }
 
 void cpy_px_map(t_text *texture, SDL_Surface *img)
@@ -115,20 +115,25 @@ t_text *get_texture_datas(char *path)
   return (texture);
 }
 
-t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
+t_mat		get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 {
-  t_mat hit_mat;
-  t_text *text;
+	t_mat	hit_mat;
+	t_text	*text;
+	t_col	prev_col;
 
-
-  hit_mat = mat_obj;
-  if (mat_obj.text >= 0)
-  {
-    text = get_st()->textures[(int)mat_obj.text];
-    // if (FORM(form)->type == CON || FORM(form)->type == CYL)
-    // {
-      uv_map()[FORM(form)->type - 1](hit, form, &hit_mat.col, text);
-    // }
-  }
-  return (hit_mat);
+	hit_mat = mat_obj;
+	if (mat_obj.text > 0 && mat_obj.text <= NUM_TEXT)
+	{
+		text = get_st()->textures[mat_obj.text - 1];
+		uv_map()[FORM(form)->type - 1](hit, form, &hit_mat, text);
+	}
+	if (mat_obj.text > NUM_TEXT && mat_obj.text <= (NUM_TEXT + NUM_PROC))
+	{
+		prev_col = hit_mat.col;
+		hit = uv_map()[FORM(form)->type - 1](hit, form, &hit_mat, text);
+		//if (FORM(form)->type == PLN)
+		//	printf("x %f y %f\n", hit.x, hit.y);
+		hit_mat.col = ft_colinterpol(hit_mat.col, ft_col_r(0., 0., 0., 1.), effects()[mat_obj.text - NUM_TEXT - 1](hit));
+	}
+	return (hit_mat);
 }

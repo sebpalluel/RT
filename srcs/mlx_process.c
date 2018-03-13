@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 18:31:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:11:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,20 @@ int			ft_expose(t_setup *setup)
 
 	ret = OK;
 	ft_imgclean(UI_IMG, setup->width, setup->height);
-	if (setup->mode != STATE_STOP && setup->num_scn)
-		ft_imgclean(SCN.img, SCN.width, SCN.height);
 	if (ret == OK && setup->mode == STATE_DRAW)
 	{
+		ft_imgclean(SCN.img[0], SCN.width, SCN.height);
 		clock_gettime(CLOCK_REALTIME, &start);
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			setup->error = ENG_ERROR;
 		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
-				SCN.img->image, 0, 0);
+				SCN.img[SCN.effect]->image, 0, 0);
 		clock_gettime(CLOCK_REALTIME, &end);
 		delta_time = ( end.tv_sec - start.tv_sec ) \
 					 + ( end.tv_nsec - start.tv_nsec ) / 1E9;
 		printf( "%lf sec\n", delta_time);
 		setup->mode = STATE_STOP;
 	}
-	//if (!setup->ui)
 	ft_mlx_control_key(setup);
 	if (ret != OK)
 		ft_quit(setup);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 13:13:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:20:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des raco
 	setup->thrd = (pthread_t*)malloc(sizeof(pthread_t) * THREAD);
 	setup->mutex.mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	ft_init_mlx_img(setup);
+	setup->textures = get_texture();
 	setup->scene = (t_scene *)ft_memalloc(sizeof(t_scene) * MAX_WINDOW);
 	if (!UI_WIN || !UI_IMG || !setup->thrd || !setup->scene) // verifie les mallocs precedent et va initialiser tous les objets
 		return (NULL);

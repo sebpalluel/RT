@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rand.c                                          :+:      :+:    :+:   */
+/*   ft_floor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/16 18:48:38 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/05 17:55:33 by psebasti         ###   ########.fr       */
+/*   Created: 2018/03/06 15:13:33 by psebasti          #+#    #+#             */
+/*   Updated: 2018/03/06 15:40:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"../../includes/libft.h"
 
-uintmax_t		ft_rand(void)
+int				ft_floor(double fp)
 {
-	uintmax_t	rand_num;
+	int			ret;
 
-	rand_num = rand();
-	return (rand_num);
+	ret = (int)fp;
+	return(ret - (ret > fp));
 }

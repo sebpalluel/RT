@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/12 22:38:12 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/13 15:51:26 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -35,6 +35,7 @@ LIBS		=	 -lft -lmlx `sdl2-config --libs` -lSDL2_image -framework OpenGL -framewo
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
 				rtv1_define.h \
+				rtv1_global.h \
 				rtv1_struct.h
 SRCNAME 	=	main.c \
 				setup.c \
@@ -65,6 +66,9 @@ SRCNAME 	=	main.c \
 				ray.c \
 				diffuse.c \
 				reflexion.c \
+				noise.c \
+				postprocess.c \
+				perlin_calc.c \
 				shadow.c \
 				illumination.c \
 				texture.c \

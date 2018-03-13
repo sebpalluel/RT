@@ -39,6 +39,7 @@
 				<reflexion> 0. </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0. </transparency>
+				<texture> 1 </texture>
 			</material>
 		</cone>
 		<cylindre>
@@ -50,6 +51,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0 </transparency>
+				<texture> 0 </texture>
 			</material>
 		</cylindre>
 		<sphere>
@@ -60,6 +62,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0.5 </transparency>
+				<texture> 0 </texture>
 			</material>
 		</sphere>
 		<plane>
@@ -70,6 +73,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0. </transparency>
+				<texture> 0 </texture>
 			</material>
 		</plane>
 	</objects>

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:03:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define RTV1_H
 
 # include "../libft/includes/libft.h"
-# include "../includes/rtv1_struct.h"
 # include "../includes/rtv1_define.h"
+# include "../includes/rtv1_struct.h"
+# include "../includes/rtv1_global.h"
 # include <time.h>
 # include <sys/time.h>
 // #include <SDL.h>
@@ -122,6 +123,23 @@ t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
+t_effects	*effects(void);
+void		perlin_draw_test(t_setup *setup, t_pix pix);
+float		ft_perlin_noise(double x, double y, double z);
+double		ft_perlin(t_vec3 vec3);
+double		ft_marble(t_vec3 vec3);
+double		ft_zebra(t_vec3 vec3);
+double		ft_wood(t_vec3 vec3);
+double		ft_cloud(t_vec3 vec3);
+double		ft_checker(t_vec3 vec3);
+
+t_col		ft_sepia(t_setup *setup, int x, int y);
+t_col		ft_blur(t_setup *setup, int x, int y);
+t_col		ft_cel_shading(t_setup *setup, int x, int y);
+t_col		ft_blackandwhite(t_setup *setup, int x, int y);
+t_col		ft_negative(t_setup *setup, int x, int y);
+void		ft_effect_change(t_setup *setup, int effect);
+t_postproc	*postprocess(void);
 
 // Nathan
 t_text **get_texture(void);
@@ -131,10 +149,9 @@ void fit_and_scale(double *u, double *v, t_text *text);
 t_vec3 get_x_axe(t_vec3 dir);
 void get_local_coords(t_vec3 hit, t_vec3 *coord, t_vec3 orig, t_vec3 dir);
 t_func_uv_map	*uv_map(void);
-void uv_map_sph(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_pln(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_cyl(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-void uv_map_cone(t_vec3 hit, t_list *form, t_col *col, t_text *text);
-
+t_vec3		uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
+t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 
 #endif
