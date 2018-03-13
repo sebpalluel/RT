@@ -18,7 +18,8 @@
 # include "../includes/rtv1_define.h"
 # include <time.h>
 # include <sys/time.h>
-#include <SDL.h>
+// #include <SDL.h>
+#include <SDL_image.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
