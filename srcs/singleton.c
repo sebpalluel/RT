@@ -69,8 +69,8 @@ char					**ft_validobjs(void) // ce qui contient tous les types d'objet qu'on ge
 t_text **get_texture(void)
 {
 		static t_text *textures[NUM_TEXT];
-		textures[0] = get_texture_datas("./textures/green400x400.bmp");
-		textures[1] = get_texture_datas("./textures/tile4.bmp");
+		textures[0] = get_texture_datas("./textures/grillage.png");
+		// textures[0] = get_texture_datas("./textures/bricks.png");
 		return (textures);
 }
 
