@@ -39,7 +39,7 @@
 			<center> -0.2, 0., 2.0 </center>
 			<radius> 0.3 </radius>
 			<material>
-				<color> 1., 1., 1., 1. </color>
+				<color> 1., 0., 0.222, 1. </color>
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.333 </refractive_index>
 				<transparency> 0. </transparency>
@@ -67,18 +67,18 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0 </transparency>
-				<texture> 1 </texture>
+				<texture> 5 </texture>
 			</material>
 		</cylindre>
 		<plane>
-			<normale> 0, -0.5, -1.0 </normale>
+			<normale> -0.2, -0.5, -1.0 </normale>
 			<distance> 5.5 </distance>
 			<material>
-				<color> 0.87058823529, 0.72156, 0.5294, 1.0 </color>
+				<color> 0.1, 0.7, 0.9, 1.0 </color>
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
-				<transparency> 0.5 </transparency>
-				<texture> 8 </texture>
+				<transparency> 0.7 </transparency>
+				<texture> 4 </texture>
 			</material>
 		</plane>
 	</objects>
