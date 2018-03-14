@@ -39,9 +39,9 @@ double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 	return (-1);
 }
 
-double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
+double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_list *light)
 {
-	double	refl;
+	double	refle;
 	t_vec3	phongdir;
 	t_vec3	lgtdir;
 	double	phongterm;
@@ -49,12 +49,12 @@ double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
 
 	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
 			ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
-	refl = 2.0 * ft_vec3dot(lgtdir, norm);
-	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refl, '*'), '-');
+	refle = 2.0 * ft_vec3dot(lgtdir, norm);
+	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refle, '*'), '-');
 	phongterm = ft_vec3dot(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
-	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s); //pas tres physiquement possible une lumieère avec un specule
+	phongterm = (mat.refl * pow(phongterm, 50.0)); //pas tres physiquement possible une lumieère avec un specule
 	return (phongterm);
 }
 
@@ -81,6 +81,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_mat hit_mat;
 
 	setup = get_st();
+//	norm = rand_directed_vec(norm);
 	lgt = SCN.lgts;
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	glob = setup->background;
@@ -124,10 +125,10 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 		
 //		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
-							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
+							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						shad, phong(ray, hit_mat.col, norm, lgt)), 4 * SCN.expo / dist));
+						shad, phong(ray, hit_mat, norm, lgt)), 4 * SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl));
+	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)),refl, mat_obj.refl),ft_colmult(refract, mat_obj.col), mat_obj.trsp));
 }

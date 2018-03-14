@@ -20,13 +20,13 @@ t_vec3	rand_directed_vec(t_vec3 dir)
 	ranvect = ft_vec3_r(rand() * 2.0 - RAND_MAX, 
 		rand() * 2.0 - RAND_MAX, 
 		rand() * 2.0 - RAND_MAX);
+
 	ranvect = ft_vec3normalize_r(ranvect);
+	//ranvect = ft_vec3normalize_r(ft_vec3vop_r(ranvect, ft_vec3sop_r(dir, 500, '*'), '+'));
 	if (ft_dotproduct(dir, ranvect) < 0)
 	{
 		ranvect = ft_vec3sop_r(ranvect, -1, '*');
-	//	printf("test\n");
 	}
-//	printf("%f, %f, %f\n", ranvect.x, ranvect.y, ranvect.z);
 	return (ranvect);
 }
 
