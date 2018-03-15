@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rand.c                                          :+:      :+:    :+:   */
+/*   ft_quinticderiv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/16 18:48:38 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/05 17:55:33 by psebasti         ###   ########.fr       */
+/*   Created: 2018/03/05 16:16:28 by psebasti          #+#    #+#             */
+/*   Updated: 2018/03/05 18:12:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-uintmax_t		ft_rand(void)
+float	ft_quinticderiv(float t)
 {
-	uintmax_t	rand_num;
-
-	rand_num = rand();
-	return (rand_num);
+	return (30 * t * t * (t * (t - 2) + 1));
 }

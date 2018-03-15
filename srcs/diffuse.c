@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/28 15:20:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 14:29:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_list *light)
 	phongterm = ft_vec3dot(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
-	phongterm = (mat.refl * pow(phongterm, 50.0)); //pas tres physiquement possible une lumieère avec un specule
+	phongterm = (mat.refl * pow(phongterm, 50.0));
 	return (phongterm);
 }
 
@@ -90,7 +90,9 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	refract = mat_obj.col;
 	hit_mat = get_mat_at(hit, form, mat_obj);
 	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
-	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
+	if (mat_obj.trsp != 0)
+		hit_mat.trsp = mat_obj.trsp;
+	if ((hit_mat.trsp != 0) && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(norm, ray.dir) > 0)
 		{
@@ -116,19 +118,16 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	while (lgt)
 	{
 		shad = shadow(LGT(lgt), SCN.forms, hit);
-		//shad = LGT(lgt)->col;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
 		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
 		dist *= dist;
-		
-//		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
 							ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
 						shad, phong(ray, hit_mat, norm, lgt)), 4 * SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)),refl, mat_obj.refl),ft_colmult(refract, mat_obj.col), mat_obj.trsp));
+	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, hit_mat.col), hit_mat.trsp), refl, hit_mat.refl));
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:46:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:01:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RTV1_STRUCT_H
 
 # include "../libft/includes/libft.h"
+# include "../includes/rtv1_define.h"
 
 typedef struct		s_objsfunc
 {
@@ -39,7 +40,7 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
-	char				text;
+	size_t			text;
 }					t_mat;
 
 typedef struct	s_cam
@@ -120,7 +121,9 @@ typedef double	(*t_func_dble)();
 typedef char	*(*t_name_obj)();
 typedef size_t	(*t_parse_obj)();
 typedef	t_vec3	(*t_func_vec3)();
-typedef void (*t_func_uv_map)();
+typedef	double	(*t_effects)();
+typedef	t_col	(*t_postproc)();
+typedef t_vec3	(*t_func_uv_map)();
 //////////TODO Eliot
 
 typedef struct		s_scene
@@ -137,7 +140,7 @@ typedef struct		s_scene
 	size_t			num_cam;
 	size_t			num_lgt;
 	t_mlx			*win;
-	t_img			*img;
+	t_img			**img;
 	t_fd			fd;
 	double			move_step;
 	double			rot_step;
@@ -146,6 +149,7 @@ typedef struct		s_scene
 	double			amb_light;
 	double			pers;
 	double			expo;
+	size_t			effect;
 }					t_scene;
 
 typedef struct		s_setup
@@ -168,7 +172,7 @@ typedef struct		s_setup
 	pthread_t		*thrd;
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
-	t_text **textures;
+	t_text			**textures;
 }					t_setup;
 
 #endif

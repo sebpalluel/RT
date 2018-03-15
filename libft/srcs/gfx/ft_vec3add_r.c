@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 16:46:04 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/27 16:48:29 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/07 13:58:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_vec3		ft_vec3add_r(t_vec3 a, t_vec3 b)
 {
 	t_vec3	to_vec3;
 
-	ft_bzero(&to_vec3, sizeof(t_vec3));
 		to_vec3.x = a.x + b.x;
 		to_vec3.y = a.y + b.y;
 		to_vec3.z = a.z + b.z;

@@ -69,7 +69,10 @@ double			hit_sphere(t_ray ray, t_shape *form)
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (c);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)

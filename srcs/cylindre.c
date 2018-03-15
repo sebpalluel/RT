@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:15:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ double	hit_cyl(t_ray ray, t_shape *form)
 	tmp = ft_vec3vop_r(form->cyl.dir, \
 			ft_vec3vop_r(ray.org, form->cyl.pos, '-'), 'c');
 	c = ft_vec3dot(tmp, tmp) - form->cyl.r * form->cyl.r;
+	if (a == 0 && b != 0)
+		return (-1.0);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);

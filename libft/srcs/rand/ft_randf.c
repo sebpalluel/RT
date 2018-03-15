@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rand.c                                          :+:      :+:    :+:   */
+/*   ft_randf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/16 18:48:38 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/05 17:55:33 by psebasti         ###   ########.fr       */
+/*   Created: 2018/03/05 17:55:46 by psebasti          #+#    #+#             */
+/*   Updated: 2018/03/07 11:04:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
-uintmax_t		ft_rand(void)
+float			ft_randf()
 {
-	uintmax_t	rand_num;
-
-	rand_num = rand();
-	return (rand_num);
+	return ((float)rand()/RAND_MAX);
 }

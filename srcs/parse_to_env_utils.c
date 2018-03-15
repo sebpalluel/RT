@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 16:06:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:15:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		ft_getmaterial(t_list **env, char *mat_str)
 	ft_getvaluetoenv(env, mat_str, "reflexion");
 	ft_getvaluetoenv(env, mat_str, "refractive_index");
 	ft_getvaluetoenv(env, mat_str, "transparency");
+	ft_getvaluetoenv(env, mat_str, "texture");
 	free(mat_str);
 }
 
@@ -44,8 +45,8 @@ t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
 	if (ft_strcmp(ENVSTRUCT(env)->name, "transparency") == 0)
 		flag[n_flag + 3] = ft_getdoublefromenv(&FORM(form)->mat.trsp, \
 				ENVSTRUCT(env)->value);
-				// ICI SHOPER LA TEXTURE CORRESPONDANTE
-				// TODO AAJOUTER DEFINES POUR LES TEXTURES
-	FORM(form)->mat.text = 0;
+	if (ft_strcmp(ENVSTRUCT(env)->name, "texture") == 0)
+		flag[n_flag + 4] = ft_getsize_tfromenv(&FORM(form)->mat.text, \
+				ENVSTRUCT(env)->value);
 	return (flag);
 }

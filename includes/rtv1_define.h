@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:48:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:23:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define THREAD			128
 # define NUM_FORM		4
 # define NUM_OBJS		7
+# define NUM_EFFECTS	5
+# define NUM_PROC		6
+# define NUM_TEXT		2
 # define MAX_WINDOW		5
 # define MAX_CAM		10
 # define AMP			1.3
@@ -37,7 +40,8 @@
 # define STATE_OPEN		4
 # define STATE_DRAW		5
 # define STATE_CAM		6
-# define STATE_STOP		7
+# define STATE_EFF		7
+# define STATE_STOP		8
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
 # define ENG_ERROR_S	"error: engine is not in the correct format"
@@ -73,10 +77,10 @@
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
 # define NVARLIGHT		4
-# define NVARSPHERE		6
-# define NVARPLANE		6
-# define NVARCONE		7
-# define NVARCYLINDRE	7
+# define NVARSPHERE		7
+# define NVARPLANE		7
+# define NVARCONE		8
+# define NVARCYLINDRE	8
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)
@@ -110,9 +114,13 @@
 # define CAM_AV_STR		"Number of Camera available :"
 # define CAM_CH_STR		"Choose the cam with number and press ENTER :"
 
-# define GUI_M_STR		"|          GUI main menu          |"
-# define GUI_M_SCN_STR	"|To change or select scene  :  S  |"
-# define GUI_M_CAM_STR	"|To change or select cam    :  C  |"
+# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon (2) | Negative (3) | B&W (4) | Blur (5)"
+# define EFF_CH_STR		"Choose the effect with number and press ENTER :"
+
+# define GUI_M_STR		"|             GUI main menu          |"
+# define GUI_M_SCN_STR	"|To change or select scene     :  S  |"
+# define GUI_M_CAM_STR	"|To change or select cam       :  C  |"
+# define GUI_M_EFF_STR	"|To choose an effect to apply  :  E  |"
 //# define RIGHT_STR		"Turn Right :  Right"
 //# define PLUS_STR		"Speed Up   :  +"
 //# define MINUS_STR		"Slow Down  :  -"
