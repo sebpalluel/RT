@@ -123,6 +123,7 @@ t_vec3		normal_sphere(t_ray ray, t_list *sph);
 
 t_ray		init_ray(t_vec3 org, t_vec3 dir);
 
+t_vec3		rand_directed_vec(t_vec3 dir);
 t_effects	*effects(void);
 void		perlin_draw_test(t_setup *setup, t_pix pix);
 float		ft_perlin_noise(double x, double y, double z);

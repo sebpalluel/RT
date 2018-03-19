@@ -58,6 +58,7 @@ void			*ft_raytracing(void *a)
 						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
 								setup)));
 	}
+
 	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }

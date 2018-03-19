@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
+void	ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "origin") == 0)
 		flag[0] = ft_getvectfromenv(&CONE(form).org, ENVSTRUCT(env)->value);
@@ -24,8 +24,7 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
-size_t			ft_cone(t_list **list)
+size_t	ft_cone(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
@@ -107,9 +106,10 @@ t_vec3	normal_cone(t_ray ray, t_list *cone)
 	return (norm);
 }
 
-t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
+t_col	intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 {
 	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cone(ray, con);

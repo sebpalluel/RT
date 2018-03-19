@@ -27,6 +27,8 @@ double	hit_cyl(t_ray ray, t_shape *form)
 	tmp = ft_vec3vop_r(form->cyl.dir, \
 			ft_vec3vop_r(ray.org, form->cyl.pos, '-'), 'c');
 	c = ft_vec3dot(tmp, tmp) - form->cyl.r * form->cyl.r;
+	if (a == 0 && b != 0)
+		return (-1.0);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
@@ -51,9 +53,10 @@ t_vec3	normal_cyl(t_ray ray, t_list *cyl)
 	return (norm);
 }
 
-t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
+t_col	intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 {
 	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cyl(ray, cyl);
@@ -62,7 +65,7 @@ t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 	return (setup->background);
 }
 
-void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
+void	ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
 		flag[0] = ft_getvectfromenv(&CYLI(form).pos, ENVSTRUCT(env)->value);
@@ -74,8 +77,7 @@ void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
-size_t			ft_cylindre(t_list **list)
+size_t	ft_cylindre(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;

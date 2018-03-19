@@ -6,13 +6,13 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/19 13:22:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:35:30 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
+double	hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 {
 	double		dist;
 	t_vec3		dir;
@@ -39,22 +39,21 @@ double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 	return (-1);
 }
 
-double	phong(t_ray ray, t_col col, t_vec3 norm, t_list *light)
+double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_list *light)
 {
 	double	refl;
 	t_vec3	phongdir;
 	t_vec3	lgtdir;
 	double	phongterm;
 
-
-	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
+	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect, \
 				ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
 	refl = 2.0 * ft_vec3dot(lgtdir, norm);
 	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refl, '*'), '-');
 	phongterm = ft_vec3dot(phongdir, ray.dir);
 	if (phongterm < 0.0)
 		phongterm = 0.0;
-	phongterm = (col.s * pow(phongterm, 50.0) * LGT(light)->col.s); //pas tres physiquement possible une lumieère avec un specule
+	phongterm = (mat.refl * pow(phongterm, 50.0));
 	return (phongterm);
 }
 
@@ -78,7 +77,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_list		*lgt;
 	t_setup		*setup;
 	t_vec3		hit;
-	t_mat hit_mat;
+	t_mat 		hit_mat;
 
 	setup = get_st();
 	lgt = SCN.lgts;
@@ -90,7 +89,7 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	hit_mat = get_mat_at(hit, form, mat_obj);
 	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
 	if (mat_obj.trsp != 0)
-			hit_mat.trsp = mat_obj.trsp;
+		hit_mat.trsp = mat_obj.trsp;
 	if ((hit_mat.trsp != 0) && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(ft_vec3normalize_r(norm), ray.dir) > 0)
@@ -117,17 +116,16 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	while (lgt)
 	{
 		shad = shadow(LGT(lgt), SCN.forms, hit);
-		//shad = LGT(lgt)->col;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
 		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
 		dist *= dist;
-		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
-						ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
+		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(\
+						ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
-						shad, phong(ray, hit_mat.col, norm, lgt)), 4 * SCN.expo / dist));
+						shad, phong(ray, hit_mat, norm, lgt)), 4 * SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, mat_obj.col), hit_mat.trsp), refl, mat_obj.refl));
+	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, hit_mat.col), hit_mat.trsp), refl, hit_mat.refl));
 }

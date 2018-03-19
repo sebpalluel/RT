@@ -5,7 +5,7 @@
 		<height> 1080 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
-		<amb_light> 1 </amb_light>
+		<amb_light> 0.2 </amb_light>
 	</engine>
 
 	<cameras>
@@ -18,7 +18,7 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> 10.01, 0.0, 10.01 </position>
+			<position> 0.01, 0.0, 0.01 </position>
 			<color> 1., 1., 1., 0.0 </color>
 		</light>
 	</lights>
@@ -71,14 +71,14 @@
 			</material>
 		</cylindre>
 		<plane>
-			<normale> 0, -0.5, -1.0 </normale>
-			<distance> 5.5 </distance>
+			<normale> 0, 0., -1.0 </normale>
+			<distance> 2.5 </distance>
 			<material>
 				<color> 0.87058823529, 0.72156, 0.5294, 1.0 </color>
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
-				<transparency> 0.5 </transparency>
-				<texture> 8 </texture>
+				<transparency> 0 </transparency>
+				<texture> 0 </texture>
 			</material>
 		</plane>
 	</objects>
