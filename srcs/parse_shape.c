@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 14:18:43 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:30:53 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		ft_gettorus(t_list **env, char *obj_str)
 	while ((torus = ft_getobjstr(obj_str, "torus", index++)))
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("torus"), NULL));
-		ft_getvaluetoenv(env, torus, "centre");
+		ft_getvaluetoenv(env, torus, "origin");
 		ft_getvaluetoenv(env, torus, "direction");
 		ft_getvaluetoenv(env, torus, "small_radius");
 		ft_getvaluetoenv(env, torus, "big_radius");
@@ -105,7 +105,7 @@ void		ft_getmoebius(t_list **env, char *obj_str)
 	while ((moebius = ft_getobjstr(obj_str, "moebius", index++)))
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup("moebius"), NULL));
-		ft_getvaluetoenv(env, moebius, "centre");
+		ft_getvaluetoenv(env, moebius, "origin");
 		ft_getvaluetoenv(env, moebius, "axe_x");
 		ft_getvaluetoenv(env, moebius, "axe_y");
 		ft_getvaluetoenv(env, moebius, "radius");

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 14:25:06 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:34:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct	s_cyl
 
 typedef struct	s_torus
 {
-	t_vec3		ctr;
+	t_vec3		org;
 	t_vec3		dir;
 	double		s_r;
 	double		b_r;
@@ -98,7 +98,7 @@ typedef struct	s_torus
 
 typedef struct	s_moebius
 {
-	t_vec3		ctr;
+	t_vec3		org;
 	t_vec3		axe_x;
 	t_vec3		axe_y;
 	double		r;

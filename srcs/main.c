@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 15:49:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:37:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int				usage(int mode)
 		ft_putendl(CONE_ERROR_S);
 	else if (mode == CYLINDRE_ERROR)
 		ft_putendl(CYL_ERROR_S);
+	else if (mode == TORUS_ERROR)
+		ft_putendl(TOR_ERROR_S);
+	else if (mode == MOEBIUS_ERROR)
+		ft_putendl(MOE_ERROR_S);
 	else if (mode == CAM_ERROR)
 		ft_putendl(CAM_ERROR_S);
 	else if (mode == SCN_ERROR)

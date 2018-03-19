@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/19 14:29:10 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/19 16:21:42 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -52,9 +52,7 @@ SRCNAME 	=	main.c \
 				sphere.c \
 				cone.c \
 				cylindre.c \
-				torus.c \
-				moebius.c \
-				torus.c \
+				parser_torus_moebius.c \
 				engine.c \
 				utils.c \
 				raytracing.c \
@@ -79,6 +77,8 @@ SRCNAME 	=	main.c \
 				texture.c \
 				uv_maps.c \
 				uv_maps_helpers.c \
+				#torus.c \
+				#moebius.c \
 				#draw.c \
 				#raycaster.c \
 
