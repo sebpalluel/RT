@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:20:52 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 17:03:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:16:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ double			hit_tor(t_ray ray, t_shape *form)
 	(void)ray;
 	(void)form;
 
-	return (0.);
+	return (-1.);
 }
 
 t_vec3			normal_tor(t_ray ray, t_list *tor)
