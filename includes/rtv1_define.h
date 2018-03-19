@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 14:22:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:29:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,25 @@
 # define LGT_S			parsed[2]
 # define OBJ_S			parsed[3]
 
+# define M_TEX			1
+# define M_GEN			2
+# define NVARTEX		3
+# define NVARGEN		5
+# define NVARMAT		5
+# define NVARMAT_MAX	NVARMAT + NVARGEN
+
 # define UI_WIN			setup->ui_win
 # define UI_IMG			setup->ui_img
 # define NVARENG		5
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
 # define NVARLIGHT		4
-# define NVARSPHERE		7
-# define NVARPLANE		7
-# define NVARCONE		8
-# define NVARCYLINDRE	8
-# define NVARTORUS		9
-# define NVARMOEBIUS	10
+# define NVARSPHERE		2
+# define NVARPLANE		2
+# define NVARCONE		3
+# define NVARCYLINDRE	3
+# define NVARTORUS		4
+# define NVARMOEBIUS	5
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)

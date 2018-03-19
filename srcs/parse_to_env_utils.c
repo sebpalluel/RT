@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 12:15:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:24:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,41 @@ void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name)
 		ft_lstaddend(env, ft_newenv(ft_strdup(name), value));
 }
 
-void		ft_getmaterial(t_list **env, char *mat_str)
+static void	ft_gettexture(t_list **env, char *text_str)
 {
-	ft_getvaluetoenv(env, mat_str, "color");
-	ft_getvaluetoenv(env, mat_str, "reflexion");
-	ft_getvaluetoenv(env, mat_str, "refractive_index");
-	ft_getvaluetoenv(env, mat_str, "transparency");
-	ft_getvaluetoenv(env, mat_str, "texture");
-	free(mat_str);
+	if (text_str)
+	{
+		ft_getvaluetoenv(env, text_str, "texture_num");
+		ft_getvaluetoenv(env, text_str, "size_x");
+		ft_getvaluetoenv(env, text_str, "size_y");
+		free(text_str);
+	}
 }
 
-t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
-		size_t n_flag)
+static void	ft_getgenerative(t_list **env, char *gen_str)
 {
-	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
-		flag[n_flag] = ft_getcolfromenv(&FORM(form)->mat.col, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "reflexion") == 0)
-		flag[n_flag + 1] = ft_getdoublefromenv(&FORM(form)->mat.refl, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "refractive_index") == 0)
-		flag[n_flag + 2] = ft_getdoublefromenv(&FORM(form)->mat.n, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "transparency") == 0)
-		flag[n_flag + 3] = ft_getdoublefromenv(&FORM(form)->mat.trsp, \
-				ENVSTRUCT(env)->value);
-	if (ft_strcmp(ENVSTRUCT(env)->name, "texture") == 0)
-		flag[n_flag + 4] = ft_getsize_tfromenv(&FORM(form)->mat.text, \
-				ENVSTRUCT(env)->value);
-	return (flag);
+	if (gen_str)
+	{
+		ft_getvaluetoenv(env, gen_str, "mode");
+		ft_getvaluetoenv(env, gen_str, "p_color");
+		ft_getvaluetoenv(env, gen_str, "perlin_layers");
+		ft_getvaluetoenv(env, gen_str, "perlin_frequency");
+		ft_getvaluetoenv(env, gen_str, "perlin_persistance");
+		free(gen_str);
+	}
+}
+
+void		ft_getmaterial(t_list **env, char *mat_str)
+{
+	if (mat_str)
+	{
+		ft_getvaluetoenv(env, mat_str, "color");
+		ft_getvaluetoenv(env, mat_str, "reflexion");
+		ft_getvaluetoenv(env, mat_str, "refractive_index");
+		ft_getvaluetoenv(env, mat_str, "transparency");
+		ft_getvaluetoenv(env, mat_str, "texture_mode");
+		ft_gettexture(env, ft_getobjstr(mat_str, "texture", 0));
+		ft_getgenerative(env, ft_getobjstr(mat_str, "generative", 0));
+		free (mat_str);
+	}
 }

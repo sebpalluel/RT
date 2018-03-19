@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/13 12:15:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:19:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,18 @@ size_t	ft_cylindre(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCYLINDRE);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCYLINDRE + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = CYL;
-	while (FORM(form)->num_arg < NVARCYLINDRE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARCYLINDRE, form) && env && (env = env->next))
 		ft_cylindre_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARCYLINDRE) != OK)
+	printf("num var cylindre %lu\n", ft_getnumvar(NVARCYLINDRE, form));
+	if (ft_checkifallset(flag, ft_getnumvar(NVARCYLINDRE, form)) != OK)
 		return (setup->error = CYLINDRE_ERROR);
 	CYLI(form).dir = ft_vec3normalize_r(CYLI(form).dir);
 	*list = env;

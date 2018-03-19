@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 17:28:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:25:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,17 @@ typedef	struct		s_text
 	int				img_h;
 }					t_text;
 
+typedef	struct		s_text_c
+{
+	size_t			text_num;
+	size_t			size_x;
+	size_t			size_y;
+}					t_text_c;
+
 typedef	struct		s_gen
 {
 	size_t			mode;
+	t_col			col;
 	size_t			p_layers;
 	double			p_f;
 	double			p_prst;
@@ -55,8 +63,8 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
-	size_t			text_mode;
-	t_text			text;
+	size_t			text_m;
+	t_text_c		text_c;
 	t_gen			gen;
 }					t_mat;
 

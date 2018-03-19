@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 17:08:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:13:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <time.h>
 # include <sys/time.h>
 # include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
-#include <SDL_image.h>
+//#include <SDL_image.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
@@ -66,6 +66,7 @@ void		ft_gettorus(t_list **env, char *obj_str);
 void		ft_getmoebius(t_list **env, char *obj_str);
 t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
 		size_t n_flag);
+size_t		ft_getnumvar(size_t num_var_shape, t_list *form);
 
 size_t		ft_engine(t_list **list);
 size_t		ft_cam(t_list **list);
