@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:03:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:18:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,42 @@ void		ft_getcylindres(t_list **env, char *obj_str)
 		ft_getvaluetoenv(env, cylindre, "radius");
 		ft_getmaterial(env, ft_getobjstr(cylindre, "material", 0));
 		free(cylindre);
+	}
+}
+
+void		ft_gettorus(t_list **env, char *obj_str)
+{
+	char	*torus;
+	int		index;
+
+	index = 0;
+	while ((torus = ft_getobjstr(obj_str, "torus", index++)))
+	{
+		ft_lstaddend(env, ft_newenv(ft_strdup("torus"), NULL));
+		ft_getvaluetoenv(env, torus, "centre");
+		ft_getvaluetoenv(env, torus, "direction");
+		ft_getvaluetoenv(env, torus, "small_radius");
+		ft_getvaluetoenv(env, torus, "big_radius");
+		ft_getmaterial(env, ft_getobjstr(torus, "material", 0));
+		free(torus);
+	}
+}
+
+void		ft_getmoebius(t_list **env, char *obj_str)
+{
+	char	*moebius;
+	int		index;
+
+	index = 0;
+	while ((moebius = ft_getobjstr(obj_str, "moebius", index++)))
+	{
+		ft_lstaddend(env, ft_newenv(ft_strdup("moebius"), NULL));
+		ft_getvaluetoenv(env, moebius, "centre");
+		ft_getvaluetoenv(env, moebius, "axe_x");
+		ft_getvaluetoenv(env, moebius, "axe_y");
+		ft_getvaluetoenv(env, moebius, "radius");
+		ft_getvaluetoenv(env, moebius, "width");
+		ft_getmaterial(env, ft_getobjstr(moebius, "material", 0));
+		free(moebius);
 	}
 }

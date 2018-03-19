@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 17:23:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:22:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			128
-# define NUM_FORM		4
-# define NUM_OBJS		7
+# define NUM_FORM		6
+# define NUM_OBJS		9
 # define NUM_EFFECTS	5
 # define NUM_PROC		6
 # define NUM_TEXT		2
@@ -50,6 +50,8 @@
 # define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
 # define CONE_ERROR_S	"error: cone struct is not in the correct format"
 # define CYL_ERROR_S	"error: cylindre struct is not in the correct format"
+# define TOR_ERROR_S	"error: torus struct is not in the correct format"
+# define MOE_ERROR_S	"error: moebius struct is not in the correct format"
 # define CAM_ERROR_S	"error: cam struct is not in the correct format"
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
@@ -62,9 +64,11 @@
 # define SPHERE_ERROR	-6
 # define CONE_ERROR		-7
 # define CYLINDRE_ERROR	-8
-# define SCN_ERROR		-9
-# define OBJ_ERROR		-10
-# define DIM_ERROR		-11
+# define TORUS_ERROR	-9
+# define MOEBIUS_ERROR	-10
+# define SCN_ERROR		-11
+# define OBJ_ERROR		-12
+# define DIM_ERROR		-13
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]
@@ -81,6 +85,8 @@
 # define NVARPLANE		7
 # define NVARCONE		8
 # define NVARCYLINDRE	8
+# define NVARTORUS		9
+# define NVARMOEBIUS	10
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)
@@ -88,6 +94,8 @@
 # define PLAN(x)		FORM(x)->plan
 # define CONE(x)		FORM(x)->cone
 # define CYLI(x)		FORM(x)->cyl
+# define TORU(x)		FORM(x)->tor
+# define MOEB(x)		FORM(x)->moeb
 //# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
@@ -95,6 +103,8 @@
 # define PLN			2
 # define CON			3
 # define CYL			4
+# define TOR			5
+# define MOE			6
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1

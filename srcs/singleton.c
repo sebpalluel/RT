@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/13 17:23:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:12:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_setup					*get_st(void)
 t_parse_obj				*parse_obj(void)
 {
 	static t_parse_obj parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
-		, &ft_plane, &ft_sphere, &ft_cone, &ft_cylindre};
+		, &ft_plane, &ft_sphere, &ft_cone, &ft_cylindre, &ft_torus, \
+			&ft_moebius};
 
 	return (parse);
 }
@@ -78,6 +79,8 @@ char					**ft_validobjs(void)
 	validobjs[4] = "sphere";
 	validobjs[5] = "cone";
 	validobjs[6] = "cylindre";
+	validobjs[7] = "torus";
+	validobjs[8] = "moebius";
 	return (validobjs);
 }
 

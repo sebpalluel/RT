@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/19 13:23:29 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/19 14:29:10 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -52,6 +52,9 @@ SRCNAME 	=	main.c \
 				sphere.c \
 				cone.c \
 				cylindre.c \
+				torus.c \
+				moebius.c \
+				torus.c \
 				engine.c \
 				utils.c \
 				raytracing.c \

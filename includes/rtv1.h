@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 13:24:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:23:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../includes/rtv1_global.h"
 # include <time.h>
 # include <sys/time.h>
-//# include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
-#include <SDL_image.h>
+# include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
+//#include <SDL_image.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
@@ -62,6 +62,8 @@ void		ft_getspheres(t_list **env, char *obj_str);
 void		ft_getplanes(t_list **env, char *obj_str);
 void		ft_getcones(t_list **env, char *obj_str);
 void		ft_getcylindres(t_list **env, char *obj_str);
+void		ft_gettorus(t_list **env, char *obj_str);
+void		ft_getmoebius(t_list **env, char *obj_str);
 t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
 		size_t n_flag);
 
@@ -72,6 +74,8 @@ size_t		ft_plane(t_list **list);
 size_t		ft_sphere(t_list **list);
 size_t		ft_cone(t_list **list);
 size_t		ft_cylindre(t_list **list);
+size_t		ft_torus(t_list **list);
+size_t		ft_moebius(t_list **list);
 
 t_parse_obj	*parse_obj(void);
 void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
