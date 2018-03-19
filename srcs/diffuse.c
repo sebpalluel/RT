@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/14 18:16:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:20:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,42 +64,6 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 						ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-')), norm));
 }
 
-t_vec3		normal_distortion(t_list *form, t_vec3 hit, t_vec3 norm)
-{
-	//t_vec3	vec3;
-	//double	e;
-
-	//e = 0.00002323;
-	(void)form;
-	//vec3 = ft_vec3_r(norm.x + hit.x, 50 * norm.y + 100 * hit.y, norm.z + hit.z);
-	//vec3.x = ft_wood(ft_vec3_r(vec3.x - e, vec3.y, vec3.z)) - \
-	//		 ft_wood(ft_vec3_r(vec3.x + e, vec3.y, vec3.z));
-	//vec3.y = ft_wood(ft_vec3_r(vec3.x, vec3.y - e, vec3.z)) - \
-	//		 ft_wood(ft_vec3_r(vec3.x, vec3.y + e, vec3.z));
-	//vec3.z = ft_wood(ft_vec3_r(vec3.x, vec3.y, vec3.z - e)) - \
-	//		 ft_wood(ft_vec3_r(vec3.x, vec3.y, vec3.z + e));
-	//return (ft_vec3add_r(norm, vec3));
-	t_vec3 temp;
-	double bump;
-
-	bump = 0.0001;
-	float noiseCoefx = (ft_perlin(ft_vec3_r(0.1 * (hit.x), 0.1 * (hit.y),0.1 * (hit.z))));
-	float noiseCoefy = (ft_perlin(ft_vec3_r(0.1 * (hit.y), 0.1 * (hit.z),0.1 * (hit.x))));
-	float noiseCoefz = (ft_perlin(ft_vec3_r(0.1 * (hit.z), 0.1 * (hit.x),0.1 * (hit.y))));
-
-	norm.x = (1.0f - bump ) * norm.x + bump * noiseCoefx; 
-	norm.y = (1.0f - bump ) * norm.y + bump * noiseCoefy; 
-	norm.z = (1.0f - bump ) * norm.z + bump * noiseCoefz; 
-
-	temp = ft_vec3mult_r(norm, norm);
-	if (!(temp.x == 0.0f && temp.y == 0. && temp.z == 0.))
-	{
-		temp = ft_vec3_r(ft_invsqrt(temp.x), ft_invsqrt(temp.y), ft_invsqrt(temp.z));
-		norm = ft_vec3mult_r(temp, norm);
-	}
-	return (norm);
-}
-
 t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 {
 	double		lmbrt;
@@ -115,7 +79,6 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_setup		*setup;
 	t_vec3		hit;
 	t_mat hit_mat;
-	t_vec3		ref;
 
 	setup = get_st();
 	lgt = SCN.lgts;
@@ -125,10 +88,6 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	spec = setup->background;
 	refract = mat_obj.col;
 	hit_mat = get_mat_at(hit, form, mat_obj);
-	//if (FORM(form)->type == PLN)
-	//	norm = normal_distortion(form, hit, norm);
-	ref = ft_vec3multscale_r(hit, 100.);
-	norm = ft_vec3addscale_r(norm, ft_perlin(ref) / 100.);
 	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
 	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
 	{
