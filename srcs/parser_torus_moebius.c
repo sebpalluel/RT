@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:20:52 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 16:54:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:03:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,6 @@ double			hit_tor(t_ray ray, t_shape *form)
 	return (0.);
 }
 
-double			hit_moe(t_ray ray, t_shape *form)
-{
-	(void)ray;
-	(void)form;
-
-	return (0.);
-}
-
 t_vec3			normal_tor(t_ray ray, t_list *tor)
 {
 	(void)ray;
@@ -132,15 +124,6 @@ t_vec3			normal_moe(t_ray ray, t_list *moe)
 t_col			intersec_tor(t_ray ray, t_list *tor, t_setup *setup)
 {
 	(void)tor;
-	(void)ray;
-	(void)setup;
-
-	return (setup->background);
-}
-
-t_col			intersec_moe(t_ray ray, t_list *moe, t_setup *setup)
-{
-	(void)moe;
 	(void)ray;
 	(void)setup;
 

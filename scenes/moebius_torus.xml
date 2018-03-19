@@ -25,11 +25,11 @@
 
 	<objects>
 		<moebius>
-			<origin> -0.2, 0., 10. </origin>
+			<origin> 0.0, 0., 1. </origin>
 			<axe_x> 0., 0., -1. </axe_x>
-			<axe_y> -2., 1., 0. </axe_y>
-			<radius> 2.3 </radius>
-			<width> 1. </width>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 1 </radius>
+			<width> 0.3 </width>
 			<material>
 				<color> 1., 1., 1., 1. </color>
 				<reflexion> 0 </reflexion>

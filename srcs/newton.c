@@ -1,6 +1,8 @@
+#include "../includes/rtv1.h"
+
 double	ft_cubic_derivative_estimate(double a, double b, double c, double x)
 {
-	return (3 * a * x * x + 2 * b * x + c)
+	return (3 * a * x * x + 2 * b * x + c);
 }
 
 double	ft_cubic_estimate(double a, double b, double c, double x)
@@ -8,16 +10,15 @@ double	ft_cubic_estimate(double a, double b, double c, double x)
 	double tmp;
 
 	tmp = x * x;
-	return (a * tmp * x + b * tmp + c * x)
+	return (a * tmp * x + b * tmp + c * x);
 }
 
 double	ft_resolve_cubic(double a, double b, double c, double d)
 {
-	double prime;
 	double x0;
 	int i;
 
-	if (d == 0);
+	if (d == 0)
 		return (0);
 	x0 = 0;
 	while (fabs(ft_cubic_derivative_estimate(a, b, c, x0)) < 0.0000001)
@@ -59,5 +60,5 @@ double	ft_resolve_cubic_min(double a, double b, double c, double d)
 		return (ft_2min_pos(r2, r1));
 	}
 	else
-		return (ft_resolve_quadratic_min(a, b, c))
+		return (ft_resolve_quadratic_min(a, b, c));
 }
