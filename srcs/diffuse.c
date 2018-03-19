@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-double				hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
+double	hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 {
 	double		dist;
 	t_vec3		dir;
@@ -46,7 +46,6 @@ double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_list *light)
 	t_vec3	lgtdir;
 	double	phongterm;
 
-
 	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect,
 			ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
 	refle = 2.0 * ft_vec3dot(lgtdir, norm);
@@ -78,10 +77,9 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	t_list		*lgt;
 	t_setup		*setup;
 	t_vec3		hit;
-	t_mat hit_mat;
+	t_mat 		hit_mat;
 
 	setup = get_st();
-//	norm = rand_directed_vec(norm);
 	lgt = SCN.lgts;
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
 	glob = setup->background;
