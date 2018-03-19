@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/13 15:51:26 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/19 13:23:29 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -19,10 +19,10 @@ ERC			=	\033[31m
 WAC			=	\033[33m
 
 CMP			=	gcc
-
+# TODO ADD BREW FOR SDL2 AND SDL2_IMAGE
 DEBUG_F		=	-g3 -fsanitize=address
 
-FLAGS		=	-Wall -Wextra -Werror -O2
+FLAGS		=	-Wall -Wextra -Werror -O2 `sdl2-config --cflags`
 
 OBJDIR		=	./obj/
 INCDIR		=	./includes/
@@ -30,8 +30,8 @@ SRCDIR		=	./srcs/
 
 LFTDIR		=	./libft/
 MLXDIR		=	./minilibx/
-LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F ~/Library/Frameworks/ -framework SDL2
-
+# LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F ~/Library/Frameworks/ -framework SDL2
+LIBS		=	 -lft -lmlx `sdl2-config --libs` -lSDL2_image -framework OpenGL -framework AppKit
 OBJNAME		=	$(SRCNAME:.c=.o)
 INCNAME		=	rtv1.h \
 				rtv1_define.h \
@@ -79,7 +79,8 @@ SRCNAME 	=	main.c \
 
 SRC		= 	$(addprefix $(SRCDIR),$(SRCNAME))
 OBJ		= 	$(addprefix $(OBJDIR),$(OBJNAME))
-INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME)) -I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers
+INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME))
+# INC		= 	$(addprefix -I,$(INCDIR),$(INCNAME)) -I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers
 
 EXT			=	Makefile
 

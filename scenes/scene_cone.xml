@@ -46,9 +46,11 @@
 			<direction> 1., -1., 1. </direction>
 			<degres> 45 </degres>
 			<material>
-				<color> 1.0, 1.0, 1.0, 1.0 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<texture> 1 </texture>
 			</material>
 		</cone>
 		<cone>
@@ -56,10 +58,23 @@
 			<direction> 0., 1., 0. </direction>
 			<degres> 45 </degres>
 			<material>
-				<color> 1.0, 1.0, 1.0, 1.0 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<texture> 2 </texture>
 			</material>
 		</cone>
+		<plane>
+			<normale> -1., 0., 0 </normale>
+			<distance> 2.6 </distance>
+			<material>
+				<color> 1., 1., 1., 1.0 </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture> 0 </texture>
+			</material>
+		</plane>
 	</objects>
 </scene>

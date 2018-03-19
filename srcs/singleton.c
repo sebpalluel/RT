@@ -83,11 +83,10 @@ char					**ft_validobjs(void)
 
 t_text **get_texture(void)
 {
-	static t_text *textures[NUM_TEXT];
-
-	textures[0] = get_texture_datas("./textures/green400x400.bmp");
-	textures[1] = get_texture_datas("./textures/tile4.bmp");
-	return (textures);
+		static t_text *textures[NUM_TEXT];
+		textures[0] = get_texture_datas("./textures/grillage.png");
+		textures[1] = get_texture_datas("./textures/tile4.bmp");
+		return (textures);
 }
 
 t_func_uv_map	*uv_map(void)

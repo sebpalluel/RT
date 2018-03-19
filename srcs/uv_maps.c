@@ -14,6 +14,7 @@ t_vec3 uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	{
 		fit_and_scale(&u, &v, text);
 		mat->col = text->map[(int)u + (int)v * text->img_w];
+		mat->trsp = 1 - mat->col.s;
 	}
 	return (ft_vec3_r(u, v, 1.));
 }
@@ -36,7 +37,7 @@ t_vec3 uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	{
 		fit_and_scale(&u, &v, text);
 		mat->col = text->map[(int)u + (int)v * text->img_w];
-		printf("text\n");
+		mat->trsp = 1 - mat->col.s;
 	}
 	return (ft_vec3_r(u, v, 1.));
 }
@@ -54,6 +55,7 @@ t_vec3 uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	{
 		fit_and_scale(&u, &v, text);
 		mat->col = text->map[(int)u + (int)v * text->img_w];
+		mat->trsp = 1 - mat->col.s;
 	}
 	return (ft_vec3_r(u, v, 1.));
 }
@@ -71,6 +73,7 @@ t_vec3 uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	{
 		fit_and_scale(&u, &v, text);
 		mat->col = text->map[(int)u + (int)v * text->img_w];
+		mat->trsp = 1 - mat->col.s;
 	}
 	return (ft_vec3_r(u, v, 1.));
 }

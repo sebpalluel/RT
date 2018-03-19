@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/19 13:20:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:22:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	refract = mat_obj.col;
 	hit_mat = get_mat_at(hit, form, mat_obj);
 	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
-	if (mat_obj.trsp != 0 && (ray.nbrefl < (int)SCN.refl_max))
+	if (mat_obj.trsp != 0)
+			hit_mat.trsp = mat_obj.trsp;
+	if ((hit_mat.trsp != 0) && (ray.nbrefl < (int)SCN.refl_max))
 	{
 		if (ft_vec3dot(ft_vec3normalize_r(norm), ray.dir) > 0)
 		{
@@ -121,13 +123,11 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 			lmbrt = 0;
 		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
 		dist *= dist;
-
-		//		dist = 1;
 		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
 						ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt * lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
 						shad, phong(ray, hit_mat.col, norm, lgt)), 4 * SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, mat_obj.col), mat_obj.trsp), refl, mat_obj.refl));
+	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, mat_obj.col), hit_mat.trsp), refl, mat_obj.refl));
 }
