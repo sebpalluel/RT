@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/13 13:21:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 15:49:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ size_t			ft_args_to_fd(t_setup *setup)
 
 	if (!setup->path | !(tmp = ft_strsplit(setup->path, '/')))
 		return (ERROR);
-	if (tmp[1] != NULL)
+	if (tmp[0] && tmp[1])
 	{
 		SCN.fd.path = ft_straddchar(tmp[0], '/');
 		SCN.fd.name = ft_strdup(tmp[1]);
 	}
-	else
+	else if (tmp[0])
 	{
 		SCN.fd.path = ft_strdup("./");
 		SCN.fd.name = ft_strdup(tmp[0]);

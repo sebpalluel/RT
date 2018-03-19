@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 10:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/19 14:29:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/19 15:48:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,43 @@
 //	}
 //	return (setup->background);
 //}
+
+void	ft_torus_struct_pop(t_list *form, t_list *env, t_bool *flag)
+{
+	if (ft_strcmp(ENVSTRUCT(env)->name, "center") == 0)
+		flag[0] = ft_getvectfromenv(&TORU(form).ctr, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "dir") == 0)
+		flag[1] = ft_getvectfromenv(&TORU(form).dir, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "small_radius") == 0)
+		flag[2] = ft_getdoublefromenv(&TORU(form).s_r, ENVSTRUCT(env)->value);
+	if (ft_strcmp(ENVSTRUCT(env)->name, "big_radius") == 0)
+		flag[3] = ft_getdoublefromenv(&TORU(form).b_r, ENVSTRUCT(env)->value);
+	flag = ft_mat_struct_pop(form, env, flag, 4);
+	FORM(form)->num_arg++;
+}
+
+size_t	ft_torus(t_list **list)
+{
+	t_setup		*setup;
+	t_list		*env;
+	t_list		*form;
+	t_bool		*flag;
+
+	setup = get_st();
+	env = *list;
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARTORUS)))
+		return (ERROR);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARTORUS);
+	ft_lstaddend(&SCN.forms, ft_newshape());
+	form = SCN.forms;
+	while (form->next)
+		form = form->next;
+	FORM(form)->type = CYL;
+	while (FORM(form)->num_arg < NVARTORUS && env && (env = env->next))
+		ft_torus_struct_pop(form, env, flag);
+	if (ft_checkifallset(flag, NVARTORUS) != OK)
+		return (setup->error = TORUS_ERROR);
+	//TORU(form).dir = ft_vec3normalize_r(TORU(form).dir);
+	*list = env;
+	return (OK);
+}
