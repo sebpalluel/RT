@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 16:05:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:21:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name, \
 	char	*value;
 
 	if (get_st()->error == OK && \
-			name && (value = ft_getobjstr(obj_str, (char *)name, 0)))
+			name && (value = ft_getobjstr(obj_str, (char *)name)))
 	{
 		ft_lstaddend(env, ft_newenv(ft_strdup(name), value));
 		*get_val = TRUE;
@@ -71,8 +71,8 @@ void			ft_getmaterial(t_list **env, char *mat_str)
 		ft_getvaluetoenv(env, mat_str, "refractive_index", &get_val);
 		ft_getvaluetoenv(env, mat_str, "transparency", &get_val);
 		ft_getvaluetoenv(env, mat_str, "texture_mode", &get_val);
-		ft_gettexture(env, ft_getobjstr(mat_str, "texture", 0));
-		ft_getgenerative(env, ft_getobjstr(mat_str, "generative", 0));
+		ft_gettexture(env, ft_getobjstr(mat_str, "texture"));
+		ft_getgenerative(env, ft_getobjstr(mat_str, "generative"));
 		free (mat_str);
 		if (!get_val)
 			get_st()->error = MAT_ERROR;

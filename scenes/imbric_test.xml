@@ -1,0 +1,59 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.7 </amb_light>
+	</engine>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+	</lights>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 2. </origin>
+			<look_at> 0.0, 0.0, 1. </look_at>
+		</camera>
+		<camera>
+			<origin> 1.0, 2.0, 2. </origin>
+			<look_at> 1.0, 3.0, 1. </look_at>
+		</camera>
+	</cameras>
+
+
+	<objects>
+
+		<cylindre>
+			<position> 1., 0., -5.</position>
+			<direction> 0.5, 1., 0. </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture_mode> 0 </texture_mode>
+			</material>
+		</cylindre>
+		<cylindre>
+			<position> 0., 1., -5. </position>
+			<direction> 0.5, 1., 0. </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture_mode> 0 </texture_mode>
+			</material>
+		</cylindre>
+
+	</objects>
+</scene>
