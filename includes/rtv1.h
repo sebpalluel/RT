@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:20:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:25:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
 void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name, \
-		t_bool *get_val);
+		t_bool *no_val);
 void		ft_getmaterial(t_list **env, char *mat_str);
 void		ft_getspheres(t_list **env, char *obj_str);
 void		ft_getplanes(t_list **env, char *obj_str);
