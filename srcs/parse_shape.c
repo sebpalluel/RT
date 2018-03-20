@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 16:54:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:10:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ void		ft_getcylindres(t_list **env, char *obj_str)
 
 	index = 0;
 	get_val = FALSE;
-	while ((cylindre = ft_getobjstr(obj_str, "cylindre", index++)))
+	while ((cylindre = ft_getobjstrn(&obj_str, "cylindre", 0)))
 	{
-		printf("index %d\n", index);
 		ft_lstaddend(env, ft_newenv(ft_strdup("cylindre"), NULL));
 		ft_getvaluetoenv(env, cylindre, "position", &get_val);
 		ft_getvaluetoenv(env, cylindre, "direction", &get_val);

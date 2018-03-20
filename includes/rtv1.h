@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 16:51:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 17:35:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_list		*ft_newenv(char *name, char *value);
 void		ft_editenv(t_list *env, char *name, char *value);
 size_t		ft_args_to_fd(t_setup *setup);
 char		*ft_getobjstr(char *str, char *obj, int num);
+char		*ft_getobjstrn(char **str, char *obj, int num);
 t_list		*ft_parse_scn(t_setup *setup, char *file);
 void		ft_getengine(t_list **env, char *eng_str);
 void		ft_getcams(t_list **env, char *cam_str);
