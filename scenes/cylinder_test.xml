@@ -35,6 +35,18 @@
 				<transparency> 0. </transparency>
 				<texture_mode> 0 </texture_mode>
 			</material>
+			<cylindre>
+				<position> 0., 1., -5. </position>
+				<direction> 0.5, 1., 0. </direction>
+				<radius> 0.5 </radius>
+				<material>
+					<color> 1., 1., 1., 1. </color>
+					<reflexion> 0 </reflexion>
+					<refractive_index> 0. </refractive_index>
+					<transparency> 0. </transparency>
+					<texture_mode> 0 </texture_mode>
+				</material>
+			</cylindre>
 		</cylindre>
 		<cylindre>
 			<position> 1., 0., -5. </position>
@@ -55,7 +67,6 @@
 				</generative>
 			</material>
 		</cylindre>
-
 		<cylindre>
 			<position> 1., 0., -5. </position>
 			<direction> 0., 0.3, 0. </direction>

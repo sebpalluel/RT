@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 16:57:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:58:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char			*ft_getobjstr(char *str, char *obj, int num)
 	if (objstart && objend)
 	{
 		if (!(from_begin = ft_strstrn(str, objstart, num)) || \
-				!(from_end = ft_strstr(from_begin, objend)))
+				!(from_end = ft_strstrn(str, objend, num)))
 		{
 			ft_free(objstart, objend);
 			return (NULL);
