@@ -27,7 +27,7 @@
 		<cylindre>
 			<position> 1., 0., -5. </position>
 			<direction> 0.5, 1., 0. </direction>
-			<radius> 1.5 </radius>
+			<radius> 0.5 </radius>
 			<material>
 				<color> 1., 1., 1., 1. </color>
 				<reflexion> 0 </reflexion>
@@ -40,7 +40,7 @@
 		<cylindre>
 			<position> 1., 0., -5. </position>
 			<direction> -0.5, 0.3, 0. </direction>
-			<radius> 1. </radius>
+			<radius> 0.75 </radius>
 			<material>
 				<color> 1., 1., 1., 1. </color>
 				<reflexion> 0 </reflexion>
@@ -56,6 +56,22 @@
 				</generative>
 			</material>
 		</cylindre>
-
+		<cylindre>
+			<position> 1., 0., -5. </position>
+			<direction> 0., 0.3, 0. </direction>
+			<radius> 0.6 </radius>
+			<material>
+				<color> 1., 0., 0., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture_mode> 1 </texture_mode>
+				<texture>
+					<texture_num> 1 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</cylindre>
 	</objects>
 </scene>
