@@ -134,7 +134,7 @@ t_mat		get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 			prev_col = hit_mat.col;
 			hit = uv_map()[FORM(form)->type - 1](hit, form, &hit_mat, text);
 			hit_mat.col = ft_colinterpol(hit_mat.col, ft_col_r(0., 0., 0., 1.), \
-					effects()[mat_obj.gen.mode](hit));
+					effects()[mat_obj.gen.mode](hit, mat_obj.gen));
 		}
 	}
 	return (hit_mat);
