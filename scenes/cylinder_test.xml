@@ -1,0 +1,61 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.7 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 2.0 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<cylindre>
+			<position> 1., 0., -5. </position>
+			<direction> 0.5, 1., 0. </direction>
+			<radius> 1.5 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture_mode> 0 </texture_mode>
+			</material>
+		</cylindre>
+
+		<cylindre>
+			<position> 1., 0., -5. </position>
+			<direction> -0.5, 0.3, 0. </direction>
+			<radius> 1. </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture_mode> 2 </texture_mode>
+				<generative>
+					<mode> 1 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</cylindre>
+
+	</objects>
+</scene>
