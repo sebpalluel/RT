@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/20 11:31:11 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:25:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ size_t	ft_cylindre(t_list **list)
 		ft_cylindre_struct_pop(form, env, flag);
 	printf("num var cylindre %lu\n", ft_getnumvar(NVARCYLINDRE, form));
 	if (ft_checkifallset(flag, ft_getnumvar(NVARCYLINDRE, form)) != OK)
+	{
+		printf("error cyclindre\n");
 		return (setup->error = CYLINDRE_ERROR);
+	}
 	CYLI(form).dir = ft_vec3normalize_r(CYLI(form).dir);
 	*list = env;
 	return (OK);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 11:44:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:51:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ t_bool		ft_getcolfromenv(t_col *col, char *value);
 t_bool		ft_getdoublefromenv(double *val, char *value);
 t_bool		ft_getsize_tfromenv(size_t *val, char *value);
 t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
-void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name);
+void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name, \
+		t_bool *get_val);
 void		ft_getmaterial(t_list **env, char *mat_str);
 void		ft_getspheres(t_list **env, char *obj_str);
 void		ft_getplanes(t_list **env, char *obj_str);
@@ -157,7 +158,7 @@ t_postproc	*postprocess(void);
 t_text **get_texture(void);
 t_text *get_texture_datas(char *path);
 t_mat get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj);
-void fit_and_scale(double *u, double *v, t_text *text);
+void fit_and_scale(double *u, double *v, t_text *text, t_text_c tex_c);
 t_vec3 get_x_axe(t_vec3 dir);
 void get_local_coords(t_vec3 hit, t_vec3 *coord, t_vec3 orig, t_vec3 dir);
 t_func_uv_map	*uv_map(void);

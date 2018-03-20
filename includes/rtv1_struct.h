@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 11:44:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:16:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef	struct		s_text
 typedef	struct		s_text_c
 {
 	size_t			text_num;
-	size_t			size_x;
-	size_t			size_y;
+	double			size_x;
+	double			size_y;
 }					t_text_c;
 
 typedef	struct		s_gen

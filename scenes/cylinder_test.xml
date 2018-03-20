@@ -36,7 +36,6 @@
 				<texture_mode> 0 </texture_mode>
 			</material>
 		</cylindre>
-
 		<cylindre>
 			<position> 1., 0., -5. </position>
 			<direction> -0.5, 0.3, 0. </direction>
@@ -56,6 +55,7 @@
 				</generative>
 			</material>
 		</cylindre>
+
 		<cylindre>
 			<position> 1., 0., -5. </position>
 			<direction> 0., 0.3, 0. </direction>
@@ -68,10 +68,11 @@
 				<texture_mode> 1 </texture_mode>
 				<texture>
 					<texture_num> 1 </texture_num>
-					<size_x> 1 </size_x>
-					<size_y> 1 </size_y>
+					<size_x> 1. </size_x>
+					<size_y> 2. </size_y>
 				</texture>
 			</material>
 		</cylindre>
+
 	</objects>
 </scene>

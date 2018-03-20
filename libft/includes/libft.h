@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 11:18:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:39:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ char			**ft_tabnewstr(size_t width, size_t height);
 char			***ft_tab3newstr(size_t width, size_t height);
 void			ft_tab3free(void ***tab);
 
+char			*ft_strndup(char *str, size_t n);
 char			*ft_strcat(char *src, const char *dest);
 char			*ft_strchr(const char *src, int c);
 int				ft_strcmp(const char *s1, const char *s2);

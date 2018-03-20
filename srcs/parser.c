@@ -6,11 +6,22 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 14:19:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:57:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+//static void		ft_verifytags_begin_end(char *objstr, char *objstart, char *objend)
+//{
+//	char		*flag_begin;
+//	char		*flag_end;
+//
+//	flag_begin = ft_strstr(objstr, objstart);
+//	flag_end = ft_strstr(objstr, objend);
+//	if (flag_begin || flag_end)
+//		get_st()->error = XML_ERROR;
+//}
 
 static void		ft_free(char *objstart, char *objend)
 {

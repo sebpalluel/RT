@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 18:29:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:10:19 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@
 # define SCN_ERROR_S	"error: scene is not in the correct format"
 # define OBJ_ERROR_S	"error: objects are not in the correct format"
 # define DIM_ERROR_S	"error: dim is not in the correct format [100;4000]"
+# define TEX_MT_ERROR_S	"error: texture not allowed for torus and moebius"
+# define XML_ERROR_S	"error: one of the xml struct is not in the correct format"
+# define MAT_ERROR_S	"error: one of the material is not in the correct format"
+# define GEN_ERROR_S	"error: generative struct is not in the correct format"
+# define TEX_ERROR_S	"error: texture struct is not in the correct format"
 # define FILE_ERROR		-1
 # define ENG_ERROR		-2
 # define LIGHT_ERROR	-3
@@ -69,6 +74,11 @@
 # define SCN_ERROR		-11
 # define OBJ_ERROR		-12
 # define DIM_ERROR		-13
+# define TEX_MT_ERROR	-14
+# define XML_ERROR		-15
+# define MAT_ERROR		-16
+# define GEN_ERROR		-17
+# define TEX_ERROR		-18
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]

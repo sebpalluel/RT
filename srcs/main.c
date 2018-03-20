@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 17:30:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:10:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ int				usage(int mode)
 		ft_putendl(OBJ_ERROR_S);
 	else if (mode == DIM_ERROR)
 		ft_putendl(DIM_ERROR_S);
+	else if (mode == XML_ERROR)
+		ft_putendl(XML_ERROR_S);
+	else if (mode == MAT_ERROR)
+		ft_putendl(MAT_ERROR_S);
+	else if (mode == GEN_ERROR)
+		ft_putendl(GEN_ERROR_S);
+	else if (mode == TEX_ERROR)
+		ft_putendl(TEX_ERROR_S);
 	return (mode);
 }
 
