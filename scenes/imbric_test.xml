@@ -41,8 +41,7 @@
 				<transparency> 0. </transparency>
 				<texture_mode> 0 </texture_mode>
 			</material>
-		</cylindre>
-		<cylindre>
+<cylindre>
 			<position> 0., 1., -5. </position>
 			<direction> 0.5, 1., 0. </direction>
 			<radius> 0.5 </radius>
@@ -55,5 +54,7 @@
 			</material>
 		</cylindre>
 
+		</cylindre>
+		
 	</objects>
 </scene>

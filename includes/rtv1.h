@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:25:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:59:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <time.h>
 # include <sys/time.h>
 # include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
-//# include <SDL_image.h>
+# include <SDL_image.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);

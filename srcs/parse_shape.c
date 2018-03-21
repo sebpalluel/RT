@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:05:50 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 10:53:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:03:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		ft_getspheres(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = SPHERE_ERROR;
 	}
+	ft_strdel(&scope);
 }
 
 void		ft_getplanes(t_list **env, char *obj_str)
@@ -50,6 +51,7 @@ void		ft_getplanes(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = PLANE_ERROR;
 	}
+	ft_strdel(&scope);
 }
 
 void		ft_getcones(t_list **env, char *obj_str)
@@ -71,6 +73,7 @@ void		ft_getcones(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = CONE_ERROR;
 	}
+	ft_strdel(&scope);
 }
 
 void		ft_getcylindres(t_list **env, char *obj_str)
@@ -92,6 +95,7 @@ void		ft_getcylindres(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = CYLINDRE_ERROR;
 	}
+	ft_strdel(&scope);
 }
 
 void		ft_gettorus(t_list **env, char *obj_str)
@@ -114,6 +118,7 @@ void		ft_gettorus(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = TORUS_ERROR;
 	}
+	ft_strdel(&scope);
 }
 
 void		ft_getmoebius(t_list **env, char *obj_str)
@@ -137,4 +142,5 @@ void		ft_getmoebius(t_list **env, char *obj_str)
 		if (no_val)
 			get_st()->error = MOEBIUS_ERROR;
 	}
+	ft_strdel(&scope);
 }
