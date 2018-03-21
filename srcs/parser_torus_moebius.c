@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:20:52 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:21:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:25:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,18 @@ size_t			ft_moebius(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARMOEBIUS)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARMOEBIUS + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARMOEBIUS);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARMOEBIUS + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = MOE;
-	while (FORM(form)->num_arg < NVARMOEBIUS && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARMOEBIUS, form) \
+			&& env && (env = env->next))
 		ft_moebius_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARMOEBIUS) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARMOEBIUS, form)) != OK)
 		return (setup->error = MOEBIUS_ERROR);
 	MOEB(form).axe_x = ft_vec3normalize_r(MOEB(form).axe_x);
 	MOEB(form).axe_y = ft_vec3normalize_r(MOEB(form).axe_y);
@@ -78,17 +79,18 @@ size_t			ft_torus(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARTORUS)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARTORUS + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARTORUS);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARTORUS + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = TOR;
-	while (FORM(form)->num_arg < NVARTORUS && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARTORUS, form) \
+			&& env && (env = env->next))
 		ft_torus_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARTORUS) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARTORUS, form)) != OK)
 		return (setup->error = TORUS_ERROR);
 	TORU(form).dir = ft_vec3normalize_r(TORU(form).dir);
 	*list = env;

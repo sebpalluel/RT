@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:43:43 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:20:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,18 @@ size_t			ft_plane(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARPLANE);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARPLANE + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = PLN;
-	while (FORM(form)->num_arg < NVARPLANE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARPLANE, form) \
+			&& env && (env = env->next))
 		ft_plane_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARPLANE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARPLANE, form)) != OK)
 		return (setup->error = PLANE_ERROR);
 	PLAN(form).nrml = ft_vec3normalize_r(PLAN(form).nrml);
 	*list = env;

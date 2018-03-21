@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:18:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,18 @@ size_t	ft_cone(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCONE);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCONE + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = CON;
-	while (FORM(form)->num_arg < NVARCONE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARCONE, form) \
+			&& env && (env = env->next))
 		ft_cone_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARCONE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARCONE, form)) != OK)
 		return (setup->error = CONE_ERROR);
 	CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);
 	*list = env;

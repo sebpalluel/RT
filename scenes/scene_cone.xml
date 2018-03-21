@@ -11,7 +11,7 @@
 	<cameras>
 
 		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
+			<origin> 0.0, 0.0, -2.0 </origin>
 			<look_at> 1.0, 0.0, 0.0 </look_at>
 		</camera>
 		<camera>
@@ -50,7 +50,11 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0 </transparency>
-				<texture> 1 </texture>
+				<texture>
+					<texture_num> 0 </texture_num>
+					<size_x> 0.3 </size_x>
+					<size_y> 0.8 </size_y>
+				</texture>
 			</material>
 		</cone>
 		<cone>
@@ -62,19 +66,14 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0 </transparency>
-				<texture> 2 </texture>
+				<generative>
+					<mode> 4 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
 			</material>
 		</cone>
-		<plane>
-			<normale> -1., 0., 0 </normale>
-			<distance> 2.6 </distance>
-			<material>
-				<color> 1., 1., 1., 1.0 </color>
-				<reflexion> 0. </reflexion>
-				<refractive_index> 0. </refractive_index>
-				<transparency> 0. </transparency>
-				<texture> 0 </texture>
-			</material>
-		</plane>
 	</objects>
 </scene>

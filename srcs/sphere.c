@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/01 14:42:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:21:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ size_t			ft_sphere(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE);
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE + NVARMAT_MAX);
 	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = SPH;
-	while (FORM(form)->num_arg < NVARSPHERE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARSPHERE, form) \
+			&& env && (env = env->next))
 		ft_sphere_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARSPHERE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARSPHERE, form)) != OK)
 		return (setup->error = SPHERE_ERROR);
 	*list = env;
 	return (OK);
