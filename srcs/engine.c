@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 14:46:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:43:21 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ size_t			ft_engine(t_list **list)
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARENG)))
 		return (ERROR);
 	ft_memset(flag, ERROR, sizeof(t_bool) * NVARENG);
-	//printf("scn_num %lu\n", setup->scn_num);
 	while (SCN.num_arg < NVARENG && env && (env = env->next))
 		ft_engine_struct_pop(setup, env, flag);
 	if (ft_checkifallset(flag, NVARENG) != OK)

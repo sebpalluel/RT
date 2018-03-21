@@ -34,7 +34,6 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
-				<texture_mode> 2 </texture_mode>
 				<generative>
 					<mode> 1 </mode>
 					<p_color> 1., 0., 0., 1. </p_color>
@@ -53,7 +52,6 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
-				<texture_mode> 0 </texture_mode>
 			</material>
 			<cylindre>
 				<position> 0.3, 0.5, -5. </position>
@@ -64,7 +62,6 @@
 					<reflexion> 0 </reflexion>
 					<refractive_index> 0. </refractive_index>
 					<transparency> 0. </transparency>
-					<texture_mode> 0 </texture_mode>
 				</material>
 			</cylindre>
 		</cylindre>
@@ -79,7 +76,6 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
-				<texture_mode> 1 </texture_mode>
 				<texture>
 					<texture_num> 1 </texture_num>
 					<size_x> 1. </size_x>

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:22:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 10:23:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,14 @@ static t_list	*ft_envlistfromparse(t_setup *setup, char **parsed)
 	ft_getcams(&env, CAM_S);
 	ft_getobjects(&env, OBJ_S);
 	ft_getlights(setup, &env, LGT_S);
-	//ft_tabfree((void **)parsed); // here free anyway string in ft_getobjstrn
-	return (env);
+	ft_tabfree((void **)parsed); // here free anyway string in ft_getobjstrn
+	if (setup->error != OK)
+	{
+		ft_quit(setup);
+		return (NULL);
+	}
+	else
+		return (env);
 }
 
 t_list			*ft_parse_scn(t_setup *setup, char *file)
