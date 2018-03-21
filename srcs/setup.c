@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 13:13:09 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:55:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void			ft_start(t_setup *setup)
 static size_t	ft_init_mlx_img(t_setup *setup)
 {
 	if (!(UI_WIN = (t_mlx*)malloc(sizeof(t_mlx))))
-		return (ERROR);
+		return (setup->error = ERROR);
 	setup->mlx_ptr = mlx_init();
 	UI_WIN->mlx_ptr = setup->mlx_ptr;
-	UI_WIN->win_ptr = mlx_new_window(setup->mlx_ptr, setup->width, setup->height, \
-			"rtv1 GUI");
+	UI_WIN->win_ptr = mlx_new_window(setup->mlx_ptr, setup->width, \
+			setup->height, "rtv1 GUI");
 	if (!(UI_IMG = ft_imgnew(setup->mlx_ptr, setup->width, setup->height)))
-		return (ERROR);
+		return (setup->error = ERROR);
 	return (OK);	
 }
 
-t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des racourcis sur la structure setup
+t_setup			*ft_setup_alloc(t_setup *setup)
 {
 	setup->width = WIDTH;
 	setup->height = HEIGHT;
@@ -77,7 +77,7 @@ t_setup			*ft_setup_alloc(t_setup *setup) // tous les define sont juste des raco
 	ft_init_mlx_img(setup);
 	setup->textures = get_texture();
 	setup->scene = (t_scene *)ft_memalloc(sizeof(t_scene) * MAX_WINDOW);
-	if (!UI_WIN || !UI_IMG || !setup->thrd || !setup->scene) // verifie les mallocs precedent et va initialiser tous les objets
+	if (setup->error != OK || !setup->thrd || !setup->scene)
 		return (NULL);
 	return (setup);
 }
