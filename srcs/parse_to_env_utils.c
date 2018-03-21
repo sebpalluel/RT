@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 10:17:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 10:56:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static t_bool	ft_getgenerative(t_list **env, char *gen_str)
 void			ft_getmaterial(t_list **env, char *mat_str)
 {
 	t_bool	no_val;
+	t_bool	get_tex;
+	t_bool	get_gen;
 
 	no_val = FALSE;
 	if (mat_str)
@@ -74,11 +76,12 @@ void			ft_getmaterial(t_list **env, char *mat_str)
 		ft_getvaluetoenv(env, mat_str, "reflexion", &no_val);
 		ft_getvaluetoenv(env, mat_str, "refractive_index", &no_val);
 		ft_getvaluetoenv(env, mat_str, "transparency", &no_val);
-		if (!ft_gettexture(env, ft_getobjstr(mat_str, "texture")) && \
-				!ft_getgenerative(env, ft_getobjstr(mat_str, "generative")))
+		get_tex = ft_gettexture(env, ft_getobjstr(mat_str, "texture"));
+		get_gen = ft_getgenerative(env, ft_getobjstr(mat_str, "generative"));
+		if (!get_tex && !get_gen)
 		ft_lstaddend(env, ft_newenv(ft_strdup("texture_mode"), ft_strdup("0")));
 		free (mat_str);
-		if (no_val)
+		if (no_val || (get_gen && get_tex))
 			get_st()->error = MAT_ERROR;
 	}
 }

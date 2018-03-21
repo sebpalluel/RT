@@ -6,34 +6,20 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:14:30 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 10:23:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 10:53:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-//static void		ft_verifytags_begin_end(char *objstr, char *objstart, char *objend)
-//{
-//	char		*flag_begin;
-//	char		*flag_end;
-//
-//	flag_begin = ft_strstr(objstr, objstart);
-//	flag_end = ft_strstr(objstr, objend);
-//	if (flag_begin || flag_end)
-//		get_st()->error = XML_ERROR;
-//}
-//
 static void		ft_movescope(char **str, size_t len)
 {
 	char		*trunc_str;
 	char		*tmp;
 
-	//trunc_str = *str;
-	//printf("len %lu\n", len);
 	tmp = *str;
 	trunc_str = ft_strnew(ft_strlen(*str) - len);
 	ft_memcpy(trunc_str, &str[0][len], ft_strlen(*str) - len);
-	//printf("str :\n%s\n", trunc_str);
 	*str = trunc_str;
 	ft_strdel(&tmp);
 }
@@ -124,7 +110,7 @@ static t_list	*ft_envlistfromparse(t_setup *setup, char **parsed)
 	ft_getcams(&env, CAM_S);
 	ft_getobjects(&env, OBJ_S);
 	ft_getlights(setup, &env, LGT_S);
-	ft_tabfree((void **)parsed); // here free anyway string in ft_getobjstrn
+	ft_tabfree((void **)parsed);
 	if (setup->error != OK)
 	{
 		ft_quit(setup);
