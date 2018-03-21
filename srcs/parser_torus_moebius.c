@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:20:52 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:25:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:34:48 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,35 +99,10 @@ size_t			ft_torus(t_list **list)
 
 //TODO here dummy functions to avoid segfault in raytracer :
 
-double			hit_tor(t_ray ray, t_shape *form)
-{
-	(void)ray;
-	(void)form;
-
-	return (-1.);
-}
-
 t_vec3			normal_tor(t_ray ray, t_list *tor)
 {
 	(void)ray;
 	(void)tor;
 
 	return (ft_vec3_r(0., 0., 0.));
-}
-
-t_vec3			normal_moe(t_ray ray, t_list *moe)
-{
-	(void)ray;
-	(void)moe;
-
-	return (ft_vec3_r(0., 0., 0.));
-}
-
-t_col			intersec_tor(t_ray ray, t_list *tor, t_setup *setup)
-{
-	(void)tor;
-	(void)ray;
-	(void)setup;
-
-	return (setup->background);
 }

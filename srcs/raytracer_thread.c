@@ -18,10 +18,12 @@ int				ft_raytracing_thread(t_setup *setup)
 
 	i = -1;
 	while (++i < THREAD)
-		pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup);
+		if (pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup))
+			ft_quit(setup);
 	i = -1;
 	while (++i < THREAD)
-		pthread_join(setup->thrd[i], NULL);
+		if (pthread_join(setup->thrd[i], NULL))
+			ft_quit(setup);
 	return (setup->error);
 }
 

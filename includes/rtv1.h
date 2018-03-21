@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:59:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:38:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,4 +170,5 @@ t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 
 double	ft_2min_pos(double a, double b);
 double	ft_resolve_cubic_min(double a, double b, double c, double d);
+double	ft_resolve_quadric_min(double b, double c, double d, double e);
 #endif
