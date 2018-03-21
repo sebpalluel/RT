@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 16:39:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:49:04 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int				ft_checkint(char *str);
 int				ft_checkdigit(char *str);
 int				ft_checkhexa(char *str);
 int				ft_checkalnum(char *str);
+t_bool			ft_checkascii(char *str);
 
 int				ft_atoi(const char *str);
 double			ft_atof(const char *str);
