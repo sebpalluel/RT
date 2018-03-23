@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:42:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 14:41:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:12:40 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,17 @@ void		ft_dellistelem(void *content, size_t size)
 
 static void	ft_scene_free(t_setup *setup)
 {
-	ft_mlxdelete(SCN.win, SCN.img);
+	if (SCN.img && SCN.img[0] && SCN.img[1] && SCN.win)
+	{
+		mlx_destroy_image(SCN.win->mlx_ptr, SCN.img[0]->image);
+		mlx_destroy_image(SCN.win->mlx_ptr, SCN.img[1]->image);
+		free(SCN.img[0]);
+		free(SCN.img[1]);
+		free(SCN.img);
+		free(SCN.win);
+	}
+	if (SCN.win)
+		mlx_destroy_window(SCN.win->mlx_ptr, SCN.win->win_ptr);
 	ft_lstdel(&SCN.env, ft_delenvnode);
 	ft_lstdel(&SCN.forms, ft_dellistelem);
 	ft_lstdel(&SCN.lgts, ft_dellistelem);
@@ -40,6 +50,13 @@ static void	ft_scene_free(t_setup *setup)
 		free(SCN.fd.path);
 	if (SCN.fd.name)
 		free(SCN.fd.name);
+}
+
+int			ft_quit(t_setup *setup)
+{
+		ft_setup_free(setup);
+		usage(setup->error);
+		exit(0);
 }
 
 void		ft_setup_free(t_setup *setup)
@@ -52,9 +69,9 @@ void		ft_setup_free(t_setup *setup)
 	}
 	ft_mlxdelete(UI_WIN, UI_IMG);
 	if (setup->scene)
-	free(setup->scene);
+		free(setup->scene);
 	if (setup->thrd)
-	free(setup->thrd);
+		free(setup->thrd);
 	if (setup->path)
 		free(setup->path);
 }

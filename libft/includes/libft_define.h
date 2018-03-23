@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 18:47:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 11:13:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:23:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,45 @@
 # define ANSI_BLINK					"\e[5m"
 # define ANSI_BLACK					"\e[30m"
 # define ANSI_MATRIX				"\e[5;32m"
+
+/*
+** --- Text Format ---
+*/
+
+# define NRM						"\x1B[0m"
+# define RED						"\x1B[31m"
+# define GRN						"\x1B[32m"
+# define YEL						"\x1B[33m"
+# define BLU						"\x1B[34m"
+# define MAG						"\x1B[35m"
+# define CYN						"\x1B[36m"
+# define WHT						"\x1B[97m"
+# define LGR						"\x1B[37m"
+# define DGR						"\x1B[90m"
+
+/*
+** --- Memblock error formats ---
+*/
+
+# define MB_ERR_HD					"Memblock error: "
+# define MB_ERR_M_FAIL				MB_ERR_HD "malloc failed too many times, exiting"
+# define MB_ERR_E_BIG				MB_ERR_HD "element bigger than block, exiting"
+
+/*
+** --- Attributes ---
+*/
+
+# define NORETURN __attribute__((noreturn)) void
+# define PRINTF __attribute__((format(printf, 1, 2))) void
+# define LFT_HEADER LGR "[" YEL "LFT" LGR "]"
+
+/*
+** --- Utils ---
+*/
+
+# define ERR_GET_FILE_CONTENT_MALLOC LFT_HEADER " cannot get file\n"
+# define ERR_FILE_OPEN LFT_HEADER " Failed to open file: "
+# define MALLOC_FAILURE LFT_HEADER " malloc() failed, not enough ressources\n"
+# define ERROR_NAME_HEADER LFT_HEADER " error\n"
 
 #endif

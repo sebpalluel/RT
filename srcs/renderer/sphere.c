@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 16:00:05 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:21:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ size_t			ft_sphere(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARSPHERE + NVARMAT_MAX);
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = SPH;
-	while (FORM(form)->num_arg < NVARSPHERE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARSPHERE, form) \
+			&& env && (env = env->next))
 		ft_sphere_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARSPHERE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARSPHERE, form)) != OK)
 		return (setup->error = SPHERE_ERROR);
 	*list = env;
 	return (OK);
@@ -54,7 +55,7 @@ t_vec3			normal_sphere(t_ray ray, t_list *sph)
 						ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), SPHERE(sph).ctr, '-')));
 }
 
-double			hit_sphere(t_ray ray, t_forms *form)
+double			hit_sphere(t_ray ray, t_shape *form)
 {
 	t_vec3		oc;
 	double		a;
@@ -69,7 +70,10 @@ double			hit_sphere(t_ray ray, t_forms *form)
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (c);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
@@ -79,7 +83,7 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_sphere(ray, sph);
-		return (diffuse(norm, sph, ray, FORM(sph)->mat.col));
+		return (diffuse(norm, sph, ray, FORM(sph)->mat));
 	}
 	return (setup->background);
 }

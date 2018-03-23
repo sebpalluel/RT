@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled source #
 ###################
 *.com
@@ -36,3 +37,11 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+=======
+**/*.o
+**/*.a
+libft/libft.a
+libft/objs/*
+obj/*
+rtv1
+>>>>>>> abcf62189b28cc704876658938950311375d7428

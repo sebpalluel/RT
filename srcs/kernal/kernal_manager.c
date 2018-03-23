@@ -22,3 +22,8 @@ void				resolve_events(void)
 			g_kernal_resolvers[e.type](e);
 	}
 }
+
+void				init_kernal_engine(void)
+{
+	
+}

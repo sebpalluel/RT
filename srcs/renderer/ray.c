@@ -20,6 +20,8 @@ t_ray	init_ray(t_vec3 org, t_vec3 dir)
 	ray.dir = ft_vec3normalize_r(dir);
 	ray.dist = -1.0;
 	ray.nbrefl = 0;
+	ray.n = 1;
+	ray.flag = 0;
 	return (ray);
 }
 

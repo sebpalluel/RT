@@ -1,0 +1,53 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.2 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<moebius>
+			<origin> 0.0, 0., 1. </origin>
+			<axe_x> 0., 0., -1. </axe_x>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 1 </radius>
+			<width> 0.3 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+			</material>
+		</moebius>
+		<torus>
+			<origin> -0.2, 0., 2.0 </origin>
+			<direction> -0.2, 0., 2.0 </direction>
+			<small_radius> 0.3 </small_radius>
+			<big_radius> 1.3 </big_radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0. </transparency>
+			</material>
+		</torus>
+	</objects>
+</scene>

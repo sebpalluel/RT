@@ -31,8 +31,9 @@
 			<radius> 0.2 </radius>
 			<material>
 				<color> 1., 1., 0., 0.0 </color>
-				<diffuse> 1 </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</sphere>
 		<sphere>
@@ -40,8 +41,9 @@
 			<radius> 0.2 </radius>
 			<material>
 				<color> 0., 1., 1., 0.0 </color>
-				<diffuse> 1 </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</sphere>
 		<plane>
@@ -49,8 +51,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 1 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
@@ -58,8 +61,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0.7 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
@@ -67,8 +71,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0.0, 1.0, 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0.7 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
@@ -76,8 +81,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0.7 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
@@ -85,8 +91,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0.7 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
@@ -94,8 +101,9 @@
 			<distance> 1 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<diffuse> 1. </diffuse>
-				<specular> 1. </specular>
+				<reflexion> 0.7 </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
 			</material>
 		</plane>
 	</objects>

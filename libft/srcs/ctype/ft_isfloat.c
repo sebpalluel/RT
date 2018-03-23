@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:16:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/23 17:48:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:30:29 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_bool	ft_checknumerror(char *s, t_bool dot, t_bool get_num)
 		if (*s)
 			s++;
 	}
-	return (OK);
+	return (!get_num);
 }
 
 t_bool			ft_isfloat(char *s)

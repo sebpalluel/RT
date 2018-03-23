@@ -1,0 +1,80 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.5 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 1.0, 1.0 </origin>
+			<look_at> 1.3, 0.0, 0.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+
+		<light>
+			<type> 0 </type>
+			<position> -1., 0.0, 0. </position>
+			<color> 2., 2., 2., 1 </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 3., 1.0, 1. </position>
+			<color> 2., 2., 2., 1 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<cone>
+			<origin> 1., 0., 0. </origin>
+			<direction> 0., 0., 1. </direction>
+			<degres> 1 </degres>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.5 </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture> 1 </texture>
+			</material>
+		</cone>
+		<cylindre>
+			<position> 1.3, 0., 0. </position>
+			<direction> 0., 1.0, 0.0 </direction>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<texture> 0 </texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 0.35, 0., 0. </center>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1., 1., 1., 0. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0.5 </transparency>
+				<texture> 0 </texture>
+			</material>
+		</sphere>
+		<plane>
+			<normale> 1, 1.0, 1.0 </normale>
+			<distance> 1 </distance>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<texture> 0 </texture>
+			</material>
+		</plane>
+	</objects>
+</scene>

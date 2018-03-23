@@ -1,0 +1,92 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refr_max> 4 </refr_max>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.2 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<sphere>
+			<center> -0.2, 0., 10. </center>
+			<radius> 0.4 </radius>
+			<material>
+				<color> 0, 0, 0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+			</material>
+		</sphere>
+		<sphere>
+			<center> -0.2, 0., 2.0 </center>
+			<radius> 0.3 </radius>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0. </transparency>
+			</material>
+		</sphere>
+		<cone>
+			<origin> 0.0, 0., 20. </origin>
+			<direction> 1., 0.1, 0.6 </direction>
+			<degres> 1 </degres>
+			<material>
+				<color> 0.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0</transparency>
+			</material>
+		</cone>
+		<cylindre>
+			<position> 0.4, 0., 2. </position>
+			<direction> 0., 1.0, 0.0 </direction>
+			<radius> 0.2 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<texture>
+					<texture_num> 0 </texture_num>
+					<size_x> 1. </size_x>
+					<size_y> 2. </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<plane>
+			<normale> 0, 0., -1.0 </normale>
+			<distance> 2.5 </distance>
+			<material>
+				<color> 0.87058823529, 0.72156, 0.5294, 1.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0 </transparency>
+				<generative>
+					<mode> 1 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+	</objects>
+</scene>

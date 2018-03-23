@@ -6,13 +6,13 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/28 15:56:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:18:14 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-double	hit_cyl(t_ray ray, t_forms *form)
+double	hit_cyl(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;
@@ -27,10 +27,15 @@ double	hit_cyl(t_ray ray, t_forms *form)
 	tmp = ft_vec3vop_r(form->cyl.dir, \
 			ft_vec3vop_r(ray.org, form->cyl.pos, '-'), 'c');
 	c = ft_vec3dot(tmp, tmp) - form->cyl.r * form->cyl.r;
+	if (a == 0 && b != 0)
+		return (-1.0);
 	delta = b * b - 4.0 * a * c;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((c = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (c);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_vec3	normal_cyl(t_ray ray, t_list *cyl)
@@ -48,18 +53,19 @@ t_vec3	normal_cyl(t_ray ray, t_list *cyl)
 	return (norm);
 }
 
-t_col			intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
+t_col	intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 {
 	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cyl(ray, cyl);
-		return (diffuse(norm, cyl, ray, FORM(cyl)->mat.col));
+		return (diffuse(norm, cyl, ray, FORM(cyl)->mat));
 	}
 	return (setup->background);
 }
 
-void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
+void	ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "position") == 0)
 		flag[0] = ft_getvectfromenv(&CYLI(form).pos, ENVSTRUCT(env)->value);
@@ -71,8 +77,7 @@ void			ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
-size_t			ft_cylindre(t_list **list)
+size_t	ft_cylindre(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
@@ -81,17 +86,17 @@ size_t			ft_cylindre(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCYLINDRE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCYLINDRE + NVARMAT_MAX);
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = CYL;
-	while (FORM(form)->num_arg < NVARCYLINDRE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARCYLINDRE, form) && env && (env = env->next))
 		ft_cylindre_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARCYLINDRE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARCYLINDRE, form)) != OK)
 		return (setup->error = CYLINDRE_ERROR);
 	CYLI(form).dir = ft_vec3normalize_r(CYLI(form).dir);
 	*list = env;

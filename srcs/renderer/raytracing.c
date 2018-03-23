@@ -6,12 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:09:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:35:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-#include <math.h>
 
 static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 {
@@ -40,26 +39,26 @@ void			*ft_raytracing(void *a)
 {
 	t_setup		*setup;
 	t_pix		pix;
-	pthread_t	id;
-	size_t		thread_n;
-	size_t		inc;
+	int			thread_n;
+	int			inc;
+	int			to_y;
 
 	setup = (t_setup *)a;
-	id = pthread_self();
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;
+	to_y = (thread_n == THREAD - 1 ? SCN.height - 1 : \
+			(inc * (thread_n + 1) - 1));
 	//pthread_mutex_lock(&setup->mutex.mutex);
-	while (++pix.y <= (int)(inc * (thread_n + 1) - 1))
+	while (++pix.y <= to_y)
 	{
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
-		{
-			ft_put_pixel(setup, pix.x, pix.y, \
-					ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
-							setup)));
-		}
+				ft_put_pixel(setup, pix.x, pix.y, \
+						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
+								setup)));
 	}
+
 	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }

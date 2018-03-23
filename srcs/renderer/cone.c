@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 16:06:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:18:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
+void	ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 {
 	if (ft_strcmp(ENVSTRUCT(env)->name, "origin") == 0)
 		flag[0] = ft_getvectfromenv(&CONE(form).org, ENVSTRUCT(env)->value);
@@ -24,8 +24,7 @@ void			ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
-size_t			ft_cone(t_list **list)
+size_t	ft_cone(t_list **list)
 {
 	t_setup		*setup;
 	t_list		*env;
@@ -34,24 +33,25 @@ size_t			ft_cone(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCONE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARCONE + NVARMAT_MAX);
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = CON;
-	while (FORM(form)->num_arg < NVARCONE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARCONE, form) \
+			&& env && (env = env->next))
 		ft_cone_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARCONE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARCONE, form)) != OK)
 		return (setup->error = CONE_ERROR);
 	CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);
 	*list = env;
 	return (OK);
 }
 
-double	hit_cone(t_ray ray, t_forms *form)
+double	hit_cone(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;
@@ -74,7 +74,10 @@ double	hit_cone(t_ray ray, t_forms *form)
 	delta = b * b - 4 * a * k;
 	if (delta <= 0.0)
 		return (-1.0);
-	return ((-b - sqrt(delta)) / (2.0 * a));
+	if ((k = (-b - sqrt(delta)) / (2.0 * a)) > 0)
+		return (k);
+	else
+		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
 t_vec3	normal_cone(t_ray ray, t_list *cone)
@@ -104,13 +107,14 @@ t_vec3	normal_cone(t_ray ray, t_list *cone)
 	return (norm);
 }
 
-t_col			intersec_cone(t_ray ray, t_list *con, t_setup *setup)
+t_col	intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 {
 	t_vec3		norm;
+
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_cone(ray, con);
-		return (diffuse(norm, con, ray, FORM(con)->mat.col));
+		return (diffuse(norm, con, ray, FORM(con)->mat));
 	}
 	return (setup->background);
 }

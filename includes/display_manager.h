@@ -21,6 +21,14 @@
 #define DEFAULT_WIN_W	1920
 #define DEFAULT_WIN_H	1080
 
+typedef enum			e_frame_state
+{
+	FS_DIRTY = 0,
+	FS_DONE,
+	FS_CALCULATING,
+	FS_MAX
+}
+
 typedef struct			s_cam
 {
 	t_vec3				pos;
@@ -28,6 +36,7 @@ typedef struct			s_cam
 	t_vec3				rgt;
 	t_vec3				dwn;
 	SDL_Surface			**frames;
+	uint32_t			*frames_state;
 	uint32_t			frame_number;
 }						t_cam;
 
@@ -56,6 +65,13 @@ typedef struct			s_display_manager
 	uint32_t			windows_managed;
 	t_window			scene_focused;
 }						t_display_manager;
+
+typedef struct			s_thread_data
+{
+	t_cam				*cam;
+	t_scene				*scene;
+	t_window			*window;
+}
 
 void					init_cam_buffers(t_cam *cam, uint32_t frames);
 t_display_manager		*create_display_manager(void);

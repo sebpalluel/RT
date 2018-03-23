@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/02/27 18:11:57 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/21 17:49:59 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -36,6 +36,9 @@ PRINTPATH = print/
 GFXPATH = gfx/
 RANDPATH = rand/
 FDPATH = fd/
+ERRPATH = error/
+MEMBLKPATH = memblock/
+STRINGPATH = string/
 
 SRC		=	$(MEMPATH)ft_memset.c\
 			$(MEMPATH)ft_bzero.c\
@@ -63,6 +66,7 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(TABPATH)ft_tabstrcpy.c\
 			$(TABPATH)ft_tabintcpy.c\
 			$(STRPATH)ft_strlen.c\
+			$(STRPATH)ft_strndup.c\
 			$(STRPATH)ft_straddchar.c\
 			$(STRPATH)ft_strdup.c\
 			$(STRPATH)ft_strcpy.c\
@@ -116,6 +120,7 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(CTYPEPATH)ft_checkdigit.c\
 			$(CTYPEPATH)ft_checkint.c\
 			$(CTYPEPATH)ft_checkalnum.c\
+			$(CTYPEPATH)ft_checkascii.c\
 			$(PUTPATH)ft_putchar.c\
 			$(PUTPATH)ft_putchar_fd.c\
 			$(PUTPATH)ft_putstr.c\
@@ -132,6 +137,8 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(STDLIBPATH)ft_stoul.c\
 			$(MATHPATH)ft_sqrt.c\
 			$(MATHPATH)ft_pow.c\
+			$(MATHPATH)ft_floor.c\
+			$(MATHPATH)ft_lerp.c\
 			$(MATHPATH)ft_abs.c\
 			$(MATHPATH)ft_range_num.c\
 			$(LISTPATH)ft_lstnew.c\
@@ -211,15 +218,27 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(RANDPATH)ft_hash.c\
 			$(RANDPATH)ft_hash32.c\
 			$(RANDPATH)ft_rand.c\
-			$(RANDPATH)ft_rand.c\
 			$(RANDPATH)ft_randint.c\
 			$(RANDPATH)ft_random.c\
+			$(RANDPATH)ft_randf.c\
+			$(RANDPATH)ft_quintic.c\
+			$(RANDPATH)ft_quinticderiv.c\
+			$(RANDPATH)ft_lerp.c\
 			$(RANDPATH)ft_rol.c\
 			$(RANDPATH)ft_ror.c\
 			$(FDPATH)ft_create_file.c\
 			$(FDPATH)ft_open.c\
 			$(FDPATH)ft_close.c\
 			$(FDPATH)ft_fd_delete.c\
+			$(ERRPATH)ft_error.c\
+			$(ERRPATH)ft_error_exit.c\
+			$(MEMBLKPATH)ft_mem_block.c\
+			$(MEMBLKPATH)ft_mem_block_extension.c\
+			$(MEMBLKPATH)ft_realloc.c\
+			$(STRINGPATH)ft_t_string_concat.c\
+			$(STRINGPATH)ft_t_string_concat_len.c\
+			$(STRINGPATH)ft_t_string_expand.c\
+			$(STRINGPATH)ft_t_string_new.c\
 
 .PHONY: all build clean fclean re
 

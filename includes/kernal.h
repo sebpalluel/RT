@@ -24,15 +24,21 @@ typedef enum				e_kernal_event_type
 {
 	EK_UNKNOWN = 0,
 	EK_QUIT,
-	EK_RESIZE,
-	EK_KEYPRESS,
-	EK_KEYRELEASE,
-	EK_MOUSE
+	EK_WINDOW_CLOSE,
+	EK_WINDOW_OPEN,
+	EK_WINDOW_RESIZED,
+	EK_WINDOW_REFRESH,
+	EK_KEY_PRESS,
+	EK_KEY_RELEASE,
+	EK_MOUSE_MOTION,
+	EK_MOUSE_PRESS,
+	EK_MAX_EVENT,
+	EK_SAFE_RANGE
 }							t_ke_type;
 
 typedef union				u_kernal_event_data
 {
-	uint32_t				pad;
+	void					*data;
 }							t_ke_data;
 
 typedef struct				s_kernal_event
@@ -95,9 +101,27 @@ uint32_t					wait_event(t_kernal_event *e);
 ** =============================================================================
 */
 
-# define KERNAL_RESOLVERS	1
-
 typedef void				(*t_ke_func)(t_kernal_event);
+
+/*
+** =============================================================================
+** 							Resolving fuctions
+** =============================================================================
+*/
+
+# define KERNAL_RESOLVERS	10
+
+void						resolve_events(void);
+
+void						quit_all(t_kernal_event e);
+void						gm_window_close(t_kernal_event e);
+void						gm_window_open(t_kernal_event e);
+void						gm_window_resizing(t_kernal_event e);
+void						gm_window_refresh(t_kernal_event e);
+void						im_key_handler(t_kernal_event e);
+void						im_mouse_motion(t_kernal_event e);
+void						im_mouse_press(t_kernal_event e);
+void						im_mouse_release(t_kernal_event e);
 
 /*
 ** =============================================================================
@@ -106,15 +130,16 @@ typedef void				(*t_ke_func)(t_kernal_event);
 extern t_ke_func			g_kernal_resolvers[KERNAL_RESOLVERS];
 t_ke_func					g_kernal_resolvers[KERNAL_RESOLVERS] =
 {
-	NULL
+	&quit_all,
+	&gm_window_close,
+	&gm_window_open,
+	&gm_window_resizing,
+	&gm_window_refresh,
+	&im_key_handler,
+	&im_key_handler,
+	&im_mouse_motion,
+	&im_mouse_press,
+	&im_mouse_release
 };
-
-/*
-** =============================================================================
-** 							Resolver
-** =============================================================================
-*/
-
-void						resolve_events(void);
 
 #endif

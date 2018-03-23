@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 16:00:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:20:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,18 @@ size_t			ft_plane(t_list **list)
 
 	setup = get_st();
 	env = *list;
-	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE)))
+	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE + NVARMAT_MAX)))
 		return (ERROR);
-	ft_memset(flag, ERROR, sizeof(t_bool) * NVARPLANE);
-	ft_lstaddend(&SCN.forms, ft_newform());
+	ft_memset(flag, ERROR, sizeof(t_bool) * NVARPLANE + NVARMAT_MAX);
+	ft_lstaddend(&SCN.forms, ft_newshape());
 	form = SCN.forms;
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = PLN;
-	while (FORM(form)->num_arg < NVARPLANE && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARPLANE, form) \
+			&& env && (env = env->next))
 		ft_plane_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, NVARPLANE) != OK)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARPLANE, form)) != OK)
 		return (setup->error = PLANE_ERROR);
 	PLAN(form).nrml = ft_vec3normalize_r(PLAN(form).nrml);
 	*list = env;
@@ -54,11 +55,11 @@ t_vec3			normal_plane(t_ray ray, t_list *plane)
 
 	norm = PLAN(plane).nrml;
 	if (ft_vec3dot(PLAN(plane).nrml, ray.dir) > 0)
-		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '+');
+		norm = ft_vec3sop_r(PLAN(plane).nrml, -1, '*');
 	return (norm);
 }
 
-double	hit_plan(t_ray ray, t_forms *form)
+double	hit_plan(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;
@@ -78,7 +79,7 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 	if (ray.dist >= 0.0)
 	{
 		norm = normal_plane(ray, pln);
-		return (diffuse(norm, pln, ray, FORM(pln)->mat.col));
+		return (diffuse(norm, pln, ray, FORM(pln)->mat));
 	}
 	return (setup->background);
 }

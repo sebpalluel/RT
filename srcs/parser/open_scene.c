@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/02/28 15:03:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:52:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static char		*ft_append_line_to_file(t_setup *setup)
 	line = NULL;
 	while (get_next_line(SCN.fd.fd, &line))
 	{
-		if (!line)
+		if (!line || (line && ft_checkascii(line) != OK))
 			return (NULL);
 		tmp = file;
 		file = ft_strjoin(tmp, line);
