@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:11:53 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/26 20:27:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,32 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 	return (0);
 }
 
+int			ft_loop_hook(t_setup *setup)
+{
+	t_vec3	rot;
+	double	distance;
+	double step;
+
+	if (SCN.cams)
+	{
+		step = M_PI / 360;
+		distance = 1.;
+		rot.x = distance * -sinf(g_time * step) * \
+				cosf(g_time * step);
+		rot.y = distance * -sinf(g_time * step);
+		rot.z = -distance * cosf(g_time * step) * \
+				cosf(g_time * step);
+		SCN.cur_cam->org = rot;
+		printf("rot.x %f, rot.y %f, rot.z %f\n", rot.x, rot.y, rot.z);
+		//ft_cosvalintime(&SCN.cur_cam->org.x, 0., 1., 0.1);
+		//ft_sinvalintime(&SCN.cur_cam->org.z, 0., 1., 0.1);
+		setup->mode = STATE_DRAW;
+		ft_expose(setup);
+		g_time++;
+	}
+	return (0);
+}
+
 void		ft_mlx_process(t_setup *setup)
 {
 	if (setup->mode == STATE_START)
@@ -67,6 +93,8 @@ void		ft_mlx_process(t_setup *setup)
 	mlx_hook(UI_WIN->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hook, setup);
 	mlx_hook(UI_WIN->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
 			ft_quit, setup);
+	if (VIDEO_MODE)
+		mlx_loop_hook(UI_WIN->mlx_ptr, ft_loop_hook, setup);
 	mlx_expose_hook(UI_WIN->win_ptr, ft_expose, setup);
 	mlx_loop(setup->mlx_ptr);
 }

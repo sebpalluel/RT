@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 18:38:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/26 18:53:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <time.h>
 # include <sys/time.h>
 # include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
-# include <SDL_image.h>
+//# include <SDL_image.h>
 
 int			usage(int mode);
 int			ft_quit(t_setup *setup);
@@ -42,6 +42,7 @@ t_list		*ft_parse_scn(t_setup *setup, char *file);
 void		ft_getengine(t_list **env, char *eng_str);
 void		ft_getcams(t_list **env, char *cam_str);
 void		ft_cam_change(t_setup *setup);
+void		init_cam(t_cam *cam);
 void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_setup *setup, t_list **env, char *light_str);
 int			ft_setup_menu(t_setup *setup);
@@ -51,6 +52,8 @@ size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
+void		ft_sinvalintime(double *val, double min, double max, double speed);
+void		ft_cosvalintime(double *val, double min, double max, double speed);
 
 t_bool		ft_getvectfromenv(t_vec3 *vect, char *value);
 t_bool		ft_getcolfromenv(t_col *col, char *value);

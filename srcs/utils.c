@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 17:17:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/26 18:50:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,42 @@ void			ft_put_pixel(t_setup *setup, int x, int y, int color)
 			+ x * (SCN.img[SCN.effect]->bbp >> 3);
 	tmp = (int *)&SCN.img[SCN.effect]->image_addr[index];
 	*tmp = color;
+}
+
+double			ft_doublescale(double num, double in[2], double scale[2])
+{
+	double		rate;
+	double		offset;
+
+	rate = (scale[1] - scale[0]) / (in[1] - in[0]);
+	offset = scale[0] - (in[0] * rate);
+	return ((num * rate) + offset);
+}
+
+void				ft_sinvalintime(double *val, double min, double max,\
+		double speed)
+{
+	double			in[2];
+	double			scale[2];
+
+	in[0] = -1;
+	in[1] = 1;
+	scale[0] = min;
+	scale[1] = max;
+	g_time += 1;
+	*val = ft_doublescale(sin(g_time * speed), in, scale);
+}
+
+void				ft_cosvalintime(double *val, double min, double max,\
+		double speed)
+{
+	double			in[2];
+	double			scale[2];
+
+	in[0] = -1;
+	in[1] = 1;
+	scale[0] = min;
+	scale[1] = max;
+	g_time += 1;
+	*val = ft_doublescale(cos(g_time * speed), in, scale);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 13:16:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/26 19:29:16 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ typedef struct		s_setup
 	t_mutex			mutex;
 	t_objsfunc		*builtin; // ft_validfuncsptr, pointeur sur les fonctions d'alloc de chaque objet
 	t_text			**textures;
+	t_img			vid[360];
 }					t_setup;
 
 #endif
