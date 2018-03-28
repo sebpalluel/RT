@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 17:52:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/28 17:56:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,17 @@ static char		*ft_append_line_to_file(t_setup *setup)
 	while (get_next_line(SCN.fd.fd, &line))
 	{
 		if (!line || (line && ft_checkascii(line) != OK))
+		{
+			setup->error = line ? SCN_ERROR : FILE_ERROR;
 			return (NULL);
+		}
 		tmp = file;
 		file = ft_strjoin(tmp, line);
 		free(tmp);
 		free(line);
 	}
+	if (!file)
+		setup->error = SCN_ERROR;
 	return (file);
 }
 
@@ -95,7 +100,7 @@ size_t			ft_open_scene(t_setup *setup)
 			ft_open(&SCN.fd, O_RDONLY, O_APPEND) != OK)
 		return (setup->error = FILE_ERROR);
 	if (!(file = ft_append_line_to_file(setup)))
-		return (setup->error = FILE_ERROR);
+		return (setup->error);
 	if (!(SCN.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
 			|| setup->error != OK)
 		return (ERROR);

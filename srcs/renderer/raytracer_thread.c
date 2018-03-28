@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 16:37:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/26 16:17:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int				ft_raytracing_thread(t_setup *setup)
 {
 	int			i;
 
+	init_cam(SCN.cur_cam);
 	i = -1;
 	while (++i < THREAD)
 		if (pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup))

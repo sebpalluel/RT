@@ -29,6 +29,14 @@ typedef enum			e_frame_state
 	FS_MAX
 }
 
+typedef struct			s_rect
+{
+	uint32_t			x;
+	uint32_t			y;
+	uint32_t			w;
+	uint32_t			h;
+}						t_rect;
+
 typedef struct			s_cam
 {
 	t_vec3				pos;

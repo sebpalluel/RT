@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 14:10:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/28 17:56:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define MAX_CAM		10
 # define AMP			1.3
 
+# define VIDEO_MODE		0
+
 # define STATE_RUN		0
 # define STATE_START	1
 # define STATE_SELECT	2
@@ -42,6 +44,8 @@
 # define STATE_CAM		6
 # define STATE_EFF		7
 # define STATE_STOP		8
+
+# define CIRCLE			PAS/PAS_TOTAL * (2 * M_PI)
 
 # define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
 # define ENG_ERROR_S	"error: engine is not in the correct format"
