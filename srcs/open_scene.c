@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/28 16:52:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/28 17:56:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static char		*ft_append_line_to_file(t_setup *setup)
 		free(tmp);
 		free(line);
 	}
+	if (!file)
+		setup->error = SCN_ERROR;
 	return (file);
 }
 
