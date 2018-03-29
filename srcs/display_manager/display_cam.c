@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:37:18 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 10:57:01 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 12:16:56 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void					display_best_cam_buffer(t_cam *cam, t_window *win)
 	s_index = 0;
 	while (s_index < cam->frame_number && cam->frames_state[s_index] == FS_DONE)
 		s_index++;
+	if (s_index >= cam->frame_number)
+		return ;
 	SDL_BlitScaled(cam->frames[s_index], NULL, win->surface, NULL);
 }
 
@@ -55,9 +57,10 @@ void					draw_cam_stack(t_drawing_data data)
 	uint32_t			i;
 
 	ft_memset(data.cam->frames_state, sizeof(uint32_t) * data.cam->frame_number
-			, FS_CALCULATING);
+			, FS_DIRTY);
 	i = ~0U;
 	while (++i < data.cam->frame_number)
+		data.cam->frames_state[i] = FS_CALCULATING;
 		/*uint32_t		ft_raytracing(t_scene *scene, SDL_Surface *surface)*/
 		if (render(data.scene, data.cam->frames[i]))
 		{

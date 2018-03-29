@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:41:00 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 06:47:11 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 13:48:25 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_col			send_ray(t_ray ray, t_scene *scene)
 	t_list		*nearest;
 	double		dist;
 
-	ptr = SCN.forms;
+	ptr = scene->forms;
 	nearest = NULL;
 	while (ptr)
 	{
@@ -68,6 +68,6 @@ t_col			send_ray(t_ray ray, t_scene *scene)
 	if (!nearest)
 		return (setup->background);
 	if (FORM(nearest)->type != 0)
-		return (intersection()[FORM(nearest)->type - 1](ray, nearest, setup));
+		return (intersection()[FORM(nearest)->type - 1](ray, nearest, scene));
 	return (setup->background);
 }
