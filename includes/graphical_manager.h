@@ -6,15 +6,16 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:57:34 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 10:32:25 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 14:56:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICAL_MANAGER_H
 # define GRAPHICAL_MANAGER_H
 
-# include "display_manager.h"
-# include "kernal.h"
+# include "./display_manager.h"
+# include "./kernal.h"
+# include "./rt.h"
 
 typedef enum			e_post_effect
 {
@@ -28,10 +29,10 @@ typedef enum			e_post_effect
 
 void					apply_post_effect(t_cam *cam, t_post_effect e);
 
-void					ft_sepia();
-void					ft_cel_shading();
-void					ft_negative();
-void					ft_blackandwhite();
-void					ft_blur();
+SDL_Surface				*ft_sepia(SDL_Surface *s);
+SDL_Surface				*ft_cel_shading(SDL_Surface *s);
+SDL_Surface				*ft_negative(SDL_Surface *s);
+SDL_Surface				*ft_blackandwhite(SDL_Surface *s);
+SDL_Surface				*ft_blur(SDL_Surface *s);
 
 #endif
