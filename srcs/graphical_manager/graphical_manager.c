@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:55:13 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 16:23:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:10:18 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void				apply_post_effect(t_cam *cam, t_post_effect e)
 			{
 				x = -1;
 				while (++x < cpy->w)
-					set_pixel(cam->frames[i], x, y, postprocess()[cam->effect]\
-						(get_pixel_col(cam->frames[i], x, y)));
+					set_pixel(cam->frames[i], x, y, ft_coltoi(postprocess()\
+								[cam->effect](cam->frames[i], x, y)));
 			}
 			//SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);
 			//SDL_FreeSurface(cpy);

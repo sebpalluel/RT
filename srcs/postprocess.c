@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:16:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 15:24:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:09:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@ static inline t_col	get_pixel_col(SDL_Surface *s, int x, int y)
 	return (ft_hextocol(get_pixel(s, x, y)));
 }
 
-t_col		ft_cel_shading(SDL_Surface *s)
+t_col		ft_cel_shading(SDL_Surface *s, int x, int y)
 {
 	float	index;
 	float	clamp;
 	t_col	col;
-	int		xy[2];
 
 	index = 0;
 	clamp = 0.1;
-	col = ft_get_pixel_col(setup, x, y);
+	col = get_pixel_col(s, x, y);
 	while (index <= 1)
 	{
 		if (col.r >= index && col.r < index + clamp)
@@ -53,7 +52,7 @@ t_col		ft_cel_shading(SDL_Surface *s)
 	return (col);
 }
 
-t_col		ft_blur(SDL_Surface *s)
+t_col		ft_blur(SDL_Surface *s, int x, int y)
 {
 	t_col	avg;
 	t_col	ref;
@@ -63,12 +62,12 @@ t_col		ft_blur(SDL_Surface *s)
 	avg = ft_col_r(0., 0., 0., 1.);
 	blurpix = 0;
 	xy_b[1] = y - 1;
-	while (xy_b[1]++ < (int)SCN.height && xy_b[1] < (y + BLUR_SIZE))
+	while (xy_b[1]++ < (int)s->h && xy_b[1] < (y + BLUR_SIZE))
 	{
 		xy_b[0] = x - 1;
-		while (xy_b[0]++ < (int)SCN.width && xy_b[0] < (x + BLUR_SIZE))
+		while (xy_b[0]++ < (int)s->w && xy_b[0] < (x + BLUR_SIZE))
 		{
-			ref = ft_get_pixel_col(setup, xy_b[0], xy_b[1]);
+			ref = get_pixel_col(s, xy_b[0], xy_b[1]);
 			avg.r += ref.r;
 			avg.g += ref.g;
 			avg.b += ref.b;
@@ -78,14 +77,14 @@ t_col		ft_blur(SDL_Surface *s)
 	return (ft_col_r(avg.r / blurpix, avg.g / blurpix, avg.b / blurpix, 1.));
 }
 
-t_col		ft_sepia(SDL_Surface *s)
+t_col		ft_sepia(SDL_Surface *s, int x, int y)
 {
 	float	red;
 	float	green;
 	float	blue;
 	t_col	col;
 
-	col = ft_get_pixel_col(setup, x, y);
+	col = get_pixel_col(s, x, y);
 	if ((red = (col.r * 0.393) + (col.g * 0.769) + (col.b * 0.189)) > 1.)
 		red = 1.;
 	if ((green = (col.r * 0.349) + (col.g * 0.686) + (col.b * 0.168)) > 1.)
@@ -95,41 +94,20 @@ t_col		ft_sepia(SDL_Surface *s)
 	return (ft_col_r(red, green, blue, 1.));
 }
 
-t_col		ft_blackandwhite(SDL_Surface *st_setup *setup, int x, int y)
+t_col		ft_blackandwhite(SDL_Surface *s, int x, int y)
 {
 	double	tmp;
 	t_col	col;
 
-	col = ft_get_pixel_col(setup, x, y);
+	col = get_pixel_col(s, x, y);
 	tmp = (col.r + col.g + col.b) / 3.;
 	return (ft_col_r(tmp, tmp, tmp, 1.));
 }
 
-t_col		ft_negative(SDL_Surface *s)
+t_col		ft_negative(SDL_Surface *s, int x, int y)
 {
 	t_col	col;
 
-	col = ft_get_pixel_col(setup, x, y);
+	col = get_pixel_col(s, x, y);
 	return (ft_col_r(1 - col.r, 1 - col.g, 1 - col.b, 1.));
 }
-
-//void		ft_effect_change(t_setup *setup, int effect)
-//{
-//	int		x;
-//	int		y;
-//
-//	if ((SCN.effect = effect ? TRUE : FALSE))
-//	{
-//		ft_imgclean(SCN.img[1], SCN.width, SCN.height);
-//		y = -1;
-//			while (y++ < (int)SCN.height)
-//			{
-//				x = -1;
-//				while (x++ < (int)SCN.width)
-//					ft_put_pixel(setup, x, y, \
-//							ft_coltoi(postprocess()[effect - 1](setup, x, y)));
-//			}
-//	}
-//	mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
-//			SCN.img[SCN.effect]->image, 0, 0);
-//}
