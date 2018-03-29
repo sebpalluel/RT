@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:55:13 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:49:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:23:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,24 @@ SDL_Surface                        *dup_surface(SDL_Surface *sf)
 void				apply_post_effect(t_cam *cam, t_post_effect e)
 {
 	uint32_t		i;
-	SDL_Surface		*cpy;
+	int				x;
+	int				y;
 
 	i = 0;
 	while (cam->frames[i])
 	{
-		if (cam->frames_state[i] == FS_DONE && 
-				(cpy = dup_surface(cam->frames[i])))
+		if (cam->frames_state[i] == FS_DONE)
 		{
-			cpy = postprocess()[cam->effect](cpy);
-			SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);
-			SDL_FreeSurface(cpy);
+			y = -1;
+			while (++y < cpy->h)
+			{
+				x = -1;
+				while (++x < cpy->w)
+					set_pixel(cam->frames[i], x, y, postprocess()[cam->effect]\
+						(get_pixel_col(cam->frames[i], x, y)));
+			}
+			//SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);
+			//SDL_FreeSurface(cpy);
 			cam->frames_state[i] = FS_PROCCESSED;
 		}
 		i++;

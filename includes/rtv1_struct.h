@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 14:48:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 15:17:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include "./rtv1_define.h"
+# include "./rt.h"
 
 typedef struct		s_objsfunc
 {
@@ -67,16 +68,6 @@ typedef struct		s_mat
 	t_text_c		text_c;
 	t_gen			gen;
 }					t_mat;
-
-typedef struct		s_cam
-{
-	t_vec3 org;
-	t_vec3 frt;
-	t_vec3 rgt;
-	t_vec3 dwn;
-	t_vec3 look_	at;
-	size_t	num_	arg;
-}					t_cam;
 
 typedef struct		s_lgt
 {
