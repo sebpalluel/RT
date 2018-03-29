@@ -6,12 +6,31 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/01 17:39:39 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 06:38:50 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
+
+/*
+** =============================================================================
+** 							Includes
+** =============================================================================
+**
+** kernal
+** 		display_manager		Rendering scenes / Windows interactions
+** 		graphical_manager	Post-proccess
+** 		keys				Key handling
+**
+** Rest of the mess
+** 			is none of my buisness ♪♪♪
+*/
+
+# include "kernal.h"
+# include "display_manager.h"
+# include "graphical_manager.h"
+# include "keys.h"
 
 /*
 ** =============================================================================

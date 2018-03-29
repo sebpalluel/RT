@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/03 16:29:09 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 09:59:42 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SDL_HANDLER_H
 
 # include <SDL.h>
+# include "graphical_manager.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160
@@ -46,7 +47,24 @@ typedef struct			s_cam
 	SDL_Surface			**frames;
 	uint32_t			*frames_state;
 	uint32_t			frame_number;
+	double				perspective_factor;
+	double				ambient_light;
+	double				exposition;
+	t_pp_effect			effect;
 }						t_cam;
+
+typedef struct			s_scene
+{
+	t_list				*forms;
+	t_list				*lgts;
+	t_list				*cams;
+	t_cam				*cur_cam;
+	size_t				cam_n;
+	double				move_step;
+	double				rot_step;
+	uint64_t			refr_max;
+	uint64_t			refl_max;
+}						t_scene;
 
 typedef struct			s_window_data
 {
@@ -74,12 +92,12 @@ typedef struct			s_display_manager
 	t_window			scene_focused;
 }						t_display_manager;
 
-typedef struct			s_thread_data
+typedef struct			s_draw_data
 {
 	t_cam				*cam;
 	t_scene				*scene;
 	t_window			*window;
-}
+}						t_draw_data;
 
 void					init_cam_buffers(t_cam *cam, uint32_t frames);
 t_display_manager		*create_display_manager(void);
