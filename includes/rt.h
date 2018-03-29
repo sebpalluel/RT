@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 06:38:50 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 14:44:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@
 ** 			is none of my buisness ♪♪♪
 */
 
-# include "kernal.h"
-# include "display_manager.h"
-# include "graphical_manager.h"
-# include "keys.h"
+# include "./kernal.h"
+# include "./rtv1_struct.h"
+# include "./display_manager.h"
+# include "./graphical_manager.h"
+# include "./keys.h"
 
 /*
 ** =============================================================================

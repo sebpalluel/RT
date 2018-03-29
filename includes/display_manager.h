@@ -6,15 +6,16 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 10:51:55 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 14:42:55 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDL_HANDLER_H
 # define SDL_HANDLER_H
 
-# include <SDL.h>
-# include "graphical_manager.h"
+//# include <SDL.h>
+# include "/Users/psebasti/.brew/Cellar/sdl2/2.0.8/include/SDL2/SDL.h"
+# include "./graphical_manager.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160
@@ -29,7 +30,7 @@ typedef enum			e_frame_state
 	FS_DONE,			// Frame is raytraced
 	FS_PROCCESSED,		// Post-proccess has been applied to the frame
 	FS_MAX				// Max value of frame states
-}
+};
 
 typedef struct			s_rect
 {
@@ -102,7 +103,10 @@ typedef struct			s_draw_data
 
 void					init_cam_buffers(t_cam *cam, uint32_t frames);
 t_display_manager		*create_display_manager(void);
+inline uint32_t			get_pixel(SDL_Surface *s, uint32_t x, uint32_t y);
+inline void				set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
+									, uint32_t pixel);
 
-typedef void		(*t_update_dm_func)(t_dm_data);
+typedef void			(*t_update_dm_func)(t_dm_data);
 
 #endif
