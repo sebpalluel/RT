@@ -6,12 +6,17 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:37:18 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 06:43:42 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 10:57:01 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display_manager.h"
 #include "rt.h"
+
+static inline uint32_t	get_pixel(SDL_Surface *s, uint32_t x, uint32_t y)
+{
+	return(*(((uint8_t*)s->pixels) + (y * s->pitch + x * (sizeof(uint32_t)))));
+}
 
 static inline void		set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
 									, uint32_t pixel)
