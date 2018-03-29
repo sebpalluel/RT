@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:00:21 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:37:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
 
-	if (!setup->path | !(tmp = ft_strsplit(setup->path, '/')))
+	if (!setup->path || !(tmp = ft_strsplit(setup->path, '/')))
 		return (ERROR);
 	if (tmp[0] && tmp[1])
 	{
