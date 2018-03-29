@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 09:59:42 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 10:51:55 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 
 typedef enum			e_frame_state
 {
-	FS_DIRTY = 0,
-	FS_DONE,
-	FS_CALCULATING,
-	FS_MAX
+	FS_DIRTY = 0,		// Frame is dirty and to be calculated
+	FS_CALCULATING,		// Frame is in the proccess of calculation
+	FS_DONE,			// Frame is raytraced
+	FS_PROCCESSED,		// Post-proccess has been applied to the frame
+	FS_MAX				// Max value of frame states
 }
 
 typedef struct			s_rect
