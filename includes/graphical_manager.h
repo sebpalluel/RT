@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:57:34 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 10:05:19 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 10:32:25 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef enum			e_post_effect
 {
-	PP_SEPIA,
+	PP_SEPIA = 0,
 	PP_CELL_SHADING,
 	PP_NEGATIVE,
 	PP_BLACK_WHITE,
@@ -26,7 +26,7 @@ typedef enum			e_post_effect
 	PP_MAX
 }						t_post_effect;
 
-void					apply_post_effect(t_scene *s, t_post_effect e);
+void					apply_post_effect(t_cam *cam, t_post_effect e);
 
 void					ft_sepia();
 void					ft_cel_shading();
