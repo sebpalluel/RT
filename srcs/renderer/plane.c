@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:20:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:13:14 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ void			ft_plane_struct_pop(t_list *form, t_list *env, t_bool *flag)
 
 size_t			ft_plane(t_list **list)
 {
-	t_setup		*setup;
 	t_list		*env;
 	t_list		*form;
 	t_bool		*flag;
 
-	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARPLANE + NVARMAT_MAX)))
 		return (ERROR);
@@ -43,7 +41,7 @@ size_t			ft_plane(t_list **list)
 			&& env && (env = env->next))
 		ft_plane_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, ft_getnumvar(NVARPLANE, form)) != OK)
-		return (setup->error = PLANE_ERROR);
+		return (PLANE_ERROR);
 	PLAN(form).nrml = ft_vec3normalize_r(PLAN(form).nrml);
 	*list = env;
 	return (OK);
@@ -72,7 +70,7 @@ double	hit_plan(t_ray ray, t_shape *form)
 	return (-b / a);
 }
 
-t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
+t_col			intersec_plan(t_ray ray, t_list *pln, t_scene *scene)
 {
 	t_vec3		norm;
 
@@ -81,5 +79,5 @@ t_col			intersec_plan(t_ray ray, t_list *pln, t_setup *setup)
 		norm = normal_plane(ray, pln);
 		return (diffuse(norm, pln, ray, FORM(pln)->mat));
 	}
-	return (setup->background);
+	return (scene->background);
 }

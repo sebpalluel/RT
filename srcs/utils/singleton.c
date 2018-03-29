@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/19 17:50:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:26:15 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ t_func_vec3	*normal_shape(void)
 	return (func);
 }
 
-t_setup					*get_st(void)
-{
-	static t_setup		setup;
-
-	return (&setup);
-}
-
 t_parse_obj				*parse_obj(void)
 {
 	static t_parse_obj parse[NUM_OBJS] = {&ft_engine, &ft_cam, &ft_light\
@@ -66,6 +59,55 @@ t_postproc				*postprocess(void)
 		, &ft_negative, &ft_blackandwhite, &ft_blur};
 
 	return (postp);
+}
+
+typedef enum			e_error
+{
+	FILE_ERROR = 0,
+	ENG_ERROR,
+	LIGHT_ERROR,
+	CAM_ERROR,
+	PLANE_ERROR,
+	SPHERE_ERROR,
+	CONE_ERROR,
+	CYLINDRE_ERROR,
+	TORUS_ERROR,
+	MOEBIUS_ERROR,
+	SCN_ERROR,
+	OBJ_ERROR,
+	DIM_ERROR,
+	TEX_MT_ERROR,
+	XML_ERROR,
+	MAT_ERROR,
+	GEN_ERROR,
+	TEX_ERROR,
+	MAX_ERROR
+}						t_error;
+
+void					put_usage(t_error e)
+{
+	static char			*tab[MAX_ERROR] = {
+		"error: file doesn't exist or don't have the rights"
+		"error: engine is not in the correct format",
+		"error: light struct is not in the correct format",
+		"error: plane struct is not in the correct format",
+		"error: sphere struct is not in the correct format",
+		"error: cone struct is not in the correct format",
+		"error: cylindre struct is not in the correct format",
+		"error: torus struct is not in the correct format",
+		"error: moebius struct is not in the correct format",
+		"error: cam struct is not in the correct format",
+		"error: scene is not in the correct format",
+		"error: objects are not in the correct format",
+		"error: dim is not in the correct format [100;4000]",
+		"error: texture not allowed for torus and moebius",
+		"error: one of the xml struct is not in the correct format",
+		"error: one of the material is not in the correct format",
+		"error: generative struct is not in the correct format",
+		"error: texture struct is not in the correct format",
+};
+
+	ft_putendl(tab[e]);
 }
 
 char					**ft_validobjs(void)

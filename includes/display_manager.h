@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:42:55 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:01:49 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct			s_scene
 	double				rot_step;
 	uint64_t			refr_max;
 	uint64_t			refl_max;
+	t_col				background;
 }						t_scene;
 
 typedef struct			s_window_data

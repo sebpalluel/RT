@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 18:16:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:09:26 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
 
 size_t			ft_light(t_list **list)
 {
-	t_setup		*setup;
 	t_list		*env;
 	t_list		*lgt;
 	t_bool		*flag;
 	size_t		num_arg;
 
-	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARLIGHT)))
 		return (ERROR);
@@ -62,7 +60,7 @@ size_t			ft_light(t_list **list)
 				NVARLIGHT : NVARLIGHT - 1)) && env && (env = env->next))
 		ft_light_struct_pop(lgt, env, flag);
 	if (ft_checkifallset(flag, num_arg) != OK)
-		return (setup->error = LIGHT_ERROR);
+		return (LIGHT_ERROR);
 	SCN.num_lgt++;
 	*list = env;
 	return (OK);

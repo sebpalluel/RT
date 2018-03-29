@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/20 11:29:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:11:01 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ double	hit_obj(t_lgt *lgt, t_ray camray, t_list *form, t_list *obj)
 	t_vec3		dir;
 	t_ray		ray;
 	t_list		*ombre;
-	t_setup		*setup;
 
-	setup = get_st();
 	dir = ft_vec3vop_r(ft_vec3vop_r(camray.org, ft_vec3sop_r(camray.dir, camray.dist, '*'), '+'),
 			lgt->vect, '-');
 	ray = init_ray(lgt->vect, ft_vec3normalize_r(dir));

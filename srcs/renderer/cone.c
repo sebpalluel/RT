@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:18:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:02:13 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)
 
 size_t	ft_cone(t_list **list)
 {
-	t_setup		*setup;
 	t_list		*env;
 	t_list		*form;
 	t_bool		*flag;
 
-	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE + NVARMAT_MAX)))
 		return (ERROR);
@@ -45,7 +43,7 @@ size_t	ft_cone(t_list **list)
 			&& env && (env = env->next))
 		ft_cone_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, ft_getnumvar(NVARCONE, form)) != OK)
-		return (setup->error = CONE_ERROR);
+		return (CONE_ERROR);
 	CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);
 	*list = env;
 	return (OK);
@@ -107,7 +105,7 @@ t_vec3	normal_cone(t_ray ray, t_list *cone)
 	return (norm);
 }
 
-t_col	intersec_cone(t_ray ray, t_list *con, t_setup *setup)
+t_col	intersec_cone(t_ray ray, t_list *con, t_scene *scene)
 {
 	t_vec3		norm;
 
@@ -116,5 +114,5 @@ t_col	intersec_cone(t_ray ray, t_list *con, t_setup *setup)
 		norm = normal_cone(ray, con);
 		return (diffuse(norm, con, ray, FORM(con)->mat));
 	}
-	return (setup->background);
+	return (scene->background);
 }

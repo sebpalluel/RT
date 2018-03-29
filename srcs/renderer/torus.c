@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 10:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/21 18:38:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:07:54 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ double			hit_tor(t_ray ray, t_shape *form)
 	return (r);
 }
 
-t_col			intersec_tor(t_ray ray, t_list *torus, t_setup *setup)
+t_col			intersec_tor(t_ray ray, t_list *torus, t_scene *scene)
 {
 	//t_vec3		norm;
 	(void)torus;
@@ -59,5 +59,5 @@ t_col			intersec_tor(t_ray ray, t_list *torus, t_setup *setup)
 		//return (diffuse(norm, sph, ray, FORM(torus)->mat));
 		return (ft_col_r((ray.dist - 1) / 2, 0, 0, 0));
 	}
-	return (setup->background);
+	return (scene->background);
 }

@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:44:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 15:59:29 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,114 @@
 
 /*
 ** =============================================================================
+** 							Shapes
+** =============================================================================
 */
+
+typedef struct		s_sph
+{
+	t_vec3			ctr;
+	double			r;
+}					t_sph;
+
+typedef struct		s_plan
+{
+	t_vec3			nrml;
+	double			dst;
+}					t_plan;
+
+typedef struct		s_cone
+{
+	t_vec3			org;
+	t_vec3			dir;
+	double			theta;
+}					t_cone;
+
+typedef struct		s_cyl
+{
+	t_vec3			pos;
+	t_vec3			dir;
+	double			r;
+}					t_cyl;
+
+typedef struct		s_torus
+{
+	t_vec3			org;
+	t_vec3			dir;
+	double			s_r;
+	double			b_r;
+}					t_torus;
+
+typedef struct		s_moebius
+{
+	t_vec3			org;
+	t_vec3			axe_x;
+	t_vec3			axe_y;
+	double			r;
+	double			width;
+}					t_moebius;
+
+typedef struct		s_shape
+{
+	int				type;
+	size_t			num_arg;
+	t_mat			mat;
+	t_sph			sph;
+	t_plan			plan;
+	t_cone			cone;
+	t_cyl			cyl;
+	t_torus			tor;
+	t_moebius		moeb;
+}					t_shape;
+
+/*
+** =============================================================================
+** 							Utils
+** =============================================================================
+*/
+
+typedef struct		s_mat
+{
+	t_col			col;
+	double			refl;
+	double			n;
+	double			trsp;
+	size_t			text_m;
+	t_text_c		text_c;
+	t_gen			gen;
+}					t_mat;
+
+typedef struct		s_lgt
+{
+	size_t			type;
+	t_vec3			vect;
+	t_vec3 			dir;
+	t_col			col;
+	size_t			num_arg;
+}					t_lgt;
+
+typedef struct		s_ray
+{
+	t_vec3			org;
+	t_vec3			dir;
+	double			dist;
+	double			n;
+	int				nbrefl;
+	int				flag;
+}					t_ray;
+
+/*
+** =============================================================================
+** 							Function typedefs
+** =============================================================================
+*/
+
+typedef t_col		(*t_func_col)();
+typedef char		*(*t_name_obj)();
+typedef size_t		(*t_parse_obj)();
+typedef	t_vec3		(*t_func_vec3)();
+typedef t_vec3		(*t_func_uv_map)();
+typedef	double		(*t_effects)();
+typedef	SDL_Surface	*(*t_postproc)();
 
 #endif

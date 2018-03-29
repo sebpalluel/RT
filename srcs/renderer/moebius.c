@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/19 17:17:18 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:08:18 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_vec3			normal_moe(t_ray ray, t_list *moe)
 
 
 
-t_col			intersec_moe(t_ray ray, t_list *moe, t_setup *setup)
+t_col			intersec_moe(t_ray ray, t_list *moe, t_scene *scene)
 {
 	t_vec3		norm;
 //(void)moe;
@@ -136,5 +136,5 @@ t_col			intersec_moe(t_ray ray, t_list *moe, t_setup *setup)
 //		return(ft_col_r(1, ray.dist / 3, 0, 0));
 		return (diffuse(norm, moe, ray, FORM(moe)->mat));
 	}
-	return (setup->background);
+	return (scene->background);
 }

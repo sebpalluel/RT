@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:21:39 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:07:33 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 
 size_t			ft_sphere(t_list **list)
 {
-	t_setup		*setup;
 	t_list		*env;
 	t_list		*form;
 	t_bool		*flag;
 
-	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARSPHERE + NVARMAT_MAX)))
 		return (ERROR);
@@ -44,7 +42,7 @@ size_t			ft_sphere(t_list **list)
 			&& env && (env = env->next))
 		ft_sphere_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, ft_getnumvar(NVARSPHERE, form)) != OK)
-		return (setup->error = SPHERE_ERROR);
+		return (SPHERE_ERROR);
 	*list = env;
 	return (OK);
 }
@@ -76,7 +74,7 @@ double			hit_sphere(t_ray ray, t_shape *form)
 		return ((-b + sqrt(delta)) / (2.0 * a));
 }
 
-t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
+t_col			intersec_sphere(t_ray ray, t_list *sph, t_scene *scene)
 {
 	t_vec3		norm;
 
@@ -85,5 +83,5 @@ t_col			intersec_sphere(t_ray ray, t_list *sph, t_setup *setup)
 		norm = normal_sphere(ray, sph);
 		return (diffuse(norm, sph, ray, FORM(sph)->mat));
 	}
-	return (setup->background);
+	return (scene->background);
 }

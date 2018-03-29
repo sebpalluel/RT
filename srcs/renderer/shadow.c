@@ -6,25 +6,23 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/20 11:29:33 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:14:08 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint)
+t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint, t_scene *scene)
 {
 	t_col	shadow;
 	t_vec3	dir;
 	t_vec3	tmp;
 	t_ray	ray;
-	t_setup *setup;
 	double	dist;
 	double	hit;
 	double	hit2;
 	t_mat	mat;
 
-	setup = get_st();
 	shadow = lgt->col;
 	dir = ft_vec3normalize_r(ft_vec3vop_r(hitpoint, lgt->vect, '-'));
 	ray = init_ray(lgt->vect, dir);
@@ -39,7 +37,7 @@ t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint)
 				if (FORM(objects)->mat.trsp != 0)
 					mat.trsp = FORM(objects)->mat.trsp;
 				if (mat.trsp == 0)
-					return (setup->background);
+					return (scene->background);
 				else
 				{
 					shadow = ft_colmult(ft_colmultscale(mat.col,

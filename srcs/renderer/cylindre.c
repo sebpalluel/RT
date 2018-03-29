@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/21 11:18:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:03:07 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_vec3	normal_cyl(t_ray ray, t_list *cyl)
 	return (norm);
 }
 
-t_col	intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
+t_col	intersec_cyl(t_ray ray, t_list *cyl, t_scene *scene)
 {
 	t_vec3		norm;
 
@@ -62,7 +62,7 @@ t_col	intersec_cyl(t_ray ray, t_list *cyl, t_setup *setup)
 		norm = normal_cyl(ray, cyl);
 		return (diffuse(norm, cyl, ray, FORM(cyl)->mat));
 	}
-	return (setup->background);
+	return (scene->background);
 }
 
 void	ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
@@ -79,12 +79,10 @@ void	ft_cylindre_struct_pop(t_list *form, t_list *env, t_bool *flag)
 
 size_t	ft_cylindre(t_list **list)
 {
-	t_setup		*setup;
 	t_list		*env;
 	t_list		*form;
 	t_bool		*flag;
 
-	setup = get_st();
 	env = *list;
 	if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCYLINDRE + NVARMAT_MAX)))
 		return (ERROR);
@@ -97,7 +95,7 @@ size_t	ft_cylindre(t_list **list)
 	while (FORM(form)->num_arg < ft_getnumvar(NVARCYLINDRE, form) && env && (env = env->next))
 		ft_cylindre_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, ft_getnumvar(NVARCYLINDRE, form)) != OK)
-		return (setup->error = CYLINDRE_ERROR);
+		return (CYLINDRE_ERROR);
 	CYLI(form).dir = ft_vec3normalize_r(CYLI(form).dir);
 	*list = env;
 	return (OK);
