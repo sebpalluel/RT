@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 16:26:17 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:34:35 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,6 @@
 # define STATE_STOP		8
 
 # define CIRCLE			PAS/PAS_TOTAL * (2 * M_PI)
-
-# define FILE_ERROR_S	
-# define ENG_ERROR_S	
-# define LIGHT_ERROR_S	
-# define PLANE_ERROR_S	
-# define SPHERE_ERROR_S	
-# define CONE_ERROR_S	
-# define CYL_ERROR_S	
-# define TOR_ERROR_S	
-# define MOE_ERROR_S	
-# define CAM_ERROR_S	
-# define SCN_ERROR_S	
-# define OBJ_ERROR_S	
-# define DIM_ERROR_S	
-# define TEX_MT_ERROR_S	
-# define XML_ERROR_S	
-# define MAT_ERROR_S	
-# define GEN_ERROR_S	
-# define TEX_ERROR_S	
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]

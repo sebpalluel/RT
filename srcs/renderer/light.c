@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 16:09:26 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:35:13 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 static t_list	*ft_newlgt(void)
 {

@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 16:30:17 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:31:03 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,35 @@
 #define DEFAULT_WIN_W	1920
 #define DEFAULT_WIN_H	1080
 
+/*
+** =============================================================================
+** 						Post proccess
+** =============================================================================
+*/
+
+typedef enum			e_post_effect
+{
+	PP_SEPIA = 0,
+	PP_CELL_SHADING,
+	PP_NEGATIVE,
+	PP_BLACK_WHITE,
+	PP_BLUR,
+	PP_MAX
+}						t_post_effect;
+
+
+SDL_Surface				*ft_sepia(SDL_Surface *s);
+SDL_Surface				*ft_cel_shading(SDL_Surface *s);
+SDL_Surface				*ft_negative(SDL_Surface *s);
+SDL_Surface				*ft_blackandwhite(SDL_Surface *s);
+SDL_Surface				*ft_blur(SDL_Surface *s);
+
+/*
+** =============================================================================
+** 						Display
+** =============================================================================
+*/
+
 typedef enum			e_frame_state
 {
 	FS_DIRTY = 0,		// Frame is dirty and to be calculated
@@ -30,7 +59,7 @@ typedef enum			e_frame_state
 	FS_DONE,			// Frame is raytraced
 	FS_PROCCESSED,		// Post-proccess has been applied to the frame
 	FS_MAX				// Max value of frame states
-};
+}						t_frame_state;
 
 typedef struct			s_rect
 {
@@ -52,7 +81,7 @@ typedef struct			s_cam
 	double				perspective_factor;
 	double				ambient_light;
 	double				exposition;
-	t_pp_effect			effect;
+	t_post_effect		effect;
 }						t_cam;
 
 typedef struct			s_scene
@@ -83,6 +112,7 @@ typedef struct			s_window
 {
 	SDL_Window			*window;
 	SDL_Surface			*surface;
+	t_scene				*scene;
 	t_window_data		original_data;
 	struct s_window		*next;
 }						t_window;
@@ -108,6 +138,6 @@ inline uint32_t			get_pixel(SDL_Surface *s, uint32_t x, uint32_t y);
 inline void				set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
 									, uint32_t pixel);
 
-typedef void			(*t_update_dm_func)(t_dm_data);
+void					apply_post_effect(t_cam *cam, t_post_effect e);
 
 #endif

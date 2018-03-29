@@ -76,25 +76,11 @@ DEPENDECIES = make -C $(PATH_LIB) $(INSTRUCTION) HIDDEN_FLAGS=$(HIDDEN_FLAGS);\
 DEP = -L $(PATH_LIB) -lft $(SDL_LIB_PATH)									\
 
 SRCS = main.c																\
-	   setup.c																\
-	   setup_free.c															\
-	   open_scene.c															\
-	   env.c																\
-	   cam.c																\
-	   light.c																\
 	   plane.c																\
 	   sphere.c																\
 	   cone.c																\
 	   cylindre.c															\
-	   engine.c																\
 	   utils.c																\
-	   raytracing.c															\
-	   raytracer_thread.c													\
-	   parse_to_env_utils.c													\
-	   parser.c																\
-	   parser_error.c														\
-	   parse_forms.c														\
-	   parse_objects.c														\
 	   sp_mat.c																\
 	   matrices.c															\
 	   forms.c																\
