@@ -6,11 +6,12 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 16:26:17 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:29:41 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
+
 size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
@@ -33,48 +34,7 @@ size_t			ft_args_to_fd(t_setup *setup)
 	return (OK);
 }
 
-int				usage(int mode)
-{
-	if (mode == OK)
-		ft_putendl("program exited normally");
-	else if (mode == ERROR)
-		ft_putendl("usage: ./rtv1 map_name");
-	else if (mode == FILE_ERROR)
-		ft_putendl(FILE_ERROR_S);
-	else if (mode == ENG_ERROR)
-		ft_putendl(ENG_ERROR_S);
-	else if (mode == LIGHT_ERROR)
-		ft_putendl(LIGHT_ERROR_S);
-	else if (mode == PLANE_ERROR)
-		ft_putendl(PLANE_ERROR_S);
-	else if (mode == SPHERE_ERROR)
-		ft_putendl(SPHERE_ERROR_S);
-	else if (mode == CONE_ERROR)
-		ft_putendl(CONE_ERROR_S);
-	else if (mode == CYLINDRE_ERROR)
-		ft_putendl(CYL_ERROR_S);
-	else if (mode == TORUS_ERROR)
-		ft_putendl(TOR_ERROR_S);
-	else if (mode == MOEBIUS_ERROR)
-		ft_putendl(MOE_ERROR_S);
-	else if (mode == CAM_ERROR)
-		ft_putendl(CAM_ERROR_S);
-	else if (mode == SCN_ERROR)
-		ft_putendl(SCN_ERROR_S);
-	else if (mode == OBJ_ERROR)
-		ft_putendl(OBJ_ERROR_S);
-	else if (mode == DIM_ERROR)
-		ft_putendl(DIM_ERROR_S);
-	else if (mode == XML_ERROR)
-		ft_putendl(XML_ERROR_S);
-	else if (mode == MAT_ERROR)
-		ft_putendl(MAT_ERROR_S);
-	else if (mode == GEN_ERROR)
-		ft_putendl(GEN_ERROR_S);
-	else if (mode == TEX_ERROR)
-		ft_putendl(TEX_ERROR_S);
-	return (mode);
-}
+
 
 int				main(int ac, char **av)
 {

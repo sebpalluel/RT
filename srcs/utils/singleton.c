@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/29 16:26:15 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:46:47 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void					put_usage(t_error e)
 		"error: one of the xml struct is not in the correct format",
 		"error: one of the material is not in the correct format",
 		"error: generative struct is not in the correct format",
-		"error: texture struct is not in the correct format",
+		"error: texture struct is not in the correct format"
 };
 
 	ft_putendl(tab[e]);
@@ -112,17 +112,18 @@ void					put_usage(t_error e)
 
 char					**ft_validobjs(void)
 {
-	static char			*validobjs[NUM_OBJS];
+	static char			*validobjs[NUM_OBJS] = {
+		"engine",
+		"camera",
+		"light",
+		"plane",
+		"sphere",
+		"cone",
+		"cylindre",
+		"torus",
+		"moebius"
+	};
 
-	validobjs[0] = "engine";
-	validobjs[1] = "camera";
-	validobjs[2] = "light";
-	validobjs[3] = "plane";
-	validobjs[4] = "sphere";
-	validobjs[5] = "cone";
-	validobjs[6] = "cylindre";
-	validobjs[7] = "torus";
-	validobjs[8] = "moebius";
 	return (validobjs);
 }
 
