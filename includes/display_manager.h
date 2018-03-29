@@ -6,16 +6,14 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 17:31:03 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:52:18 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDL_HANDLER_H
 # define SDL_HANDLER_H
 
-//# include <SDL.h>
-# include "SDL.h"
-# include "graphical_manager.h"
+# include "rt.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160
@@ -71,7 +69,7 @@ typedef struct			s_rect
 
 typedef struct			s_cam
 {
-	t_vec3				pos;
+	t_vec3				org;
 	t_vec3				frt;
 	t_vec3				rgt;
 	t_vec3				dwn;
@@ -104,8 +102,8 @@ typedef struct			s_window_data
 	int32_t				y;
 	int32_t				w;
 	int32_t				h;
-	uint32_t			flags;
 	char				*title;
+	uint32_t			flags;
 }						t_window_data;
 
 typedef struct			s_window

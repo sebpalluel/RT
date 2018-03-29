@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:02:37 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:39:47 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:55:35 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_kernal_stack				g_kernal_stack[KERNAL_EVENT_BUFFER];
 
 uint32_t					push_kernal_event(t_kernal_event e);
 t_kernal_event				pop_kernal_event(void);
-uint32_t					wait_event(t_kernal_event *e);
+uint32_t					wait_event(void);
 
 /*
 ** =============================================================================
@@ -130,16 +130,17 @@ void						im_mouse_release(t_kernal_event e);
 extern t_ke_func			g_kernal_resolvers[KERNAL_RESOLVERS];
 t_ke_func					g_kernal_resolvers[KERNAL_RESOLVERS] =
 {
-	&quit_all,
-	&gm_window_close,
-	&gm_window_open,
-	&gm_window_resizing,
-	&gm_window_refresh,
-	&im_key_handler,
-	&im_key_handler,
-	&im_mouse_motion,
-	&im_mouse_press,
-	&im_mouse_release
+	//&quit_all,
+	//&gm_window_close,
+	//&gm_window_open,
+	//&gm_window_resizing,
+	//&gm_window_refresh,
+	//&im_key_handler,
+	//&im_key_handler,
+	//&im_mouse_motion,
+	//&im_mouse_press,
+	//&im_mouse_release
 };
 
 #endif
+extern t_ke_func			g_kernal_resolvers[KERNAL_RESOLVERS];

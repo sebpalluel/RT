@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 02:18:14 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 14:20:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:56:04 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 t_matrix	rot_mat(t_vec3 v, double theta)
 {

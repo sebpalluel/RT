@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 03:32:32 by esuits            #+#    #+#             */
-/*   Updated: 2018/02/27 17:11:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:00:58 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 t_ray	init_ray(t_vec3 org, t_vec3 dir)
 {
@@ -25,7 +25,7 @@ t_ray	init_ray(t_vec3 org, t_vec3 dir)
 	return (ray);
 }
 
-t_col	send_ray(t_ray ray, t_setup *setup)
+t_col	send_ray(t_ray ray, t_scene *scene)
 {
 	t_list		*ptr;
 	t_list		*nearest;

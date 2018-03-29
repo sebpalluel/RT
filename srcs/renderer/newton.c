@@ -1,4 +1,16 @@
-#include "../includes/rtv1.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newton.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/29 18:22:54 by mbeilles          #+#    #+#             */
+/*   Updated: 2018/03/29 18:23:00 by mbeilles         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "rt.h"
 
 double	ft_cubic_derivative_estimate(double a, double b, double c, double x)
 {

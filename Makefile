@@ -60,12 +60,12 @@ INSTALL_XML = 0
 #==============================================================================#
 
 BREW_INSTALL_CMD = if [ -f $(HOME)/.brew ]; then printf $(HD)"Installing Brew\n"$(NRM) \
-				   && curl -fsSL https://rawgit.com/kube/42homebrew/master/install.sh | zsh ; fi;\
+				   && curl -fsSL https://rawgit.com/kube/42homebrew/master/install.sh | zsh
 
 SDL_INSTALL_CMD = printf $(HD)"Installing SDL2\n"$(NRM) \
 				  && brew install sdl2 \
 				  && printf $(HD)"Installing SDL2_Ttf\n"$(NRM) \
-				  && brew install sdl2_ttf \
+				  && brew install sdl2_ttf
 
 #==============================================================================#
 #                                   Sources                                    #
@@ -76,17 +76,27 @@ DEPENDECIES = make -C $(PATH_LIB) $(INSTRUCTION) HIDDEN_FLAGS=$(HIDDEN_FLAGS);\
 DEP = -L $(PATH_LIB) -lft $(SDL_LIB_PATH)									\
 
 SRCS = main.c																\
-	   plane.c																\
-	   sphere.c																\
-	   cone.c																\
-	   cylindre.c															\
+			plane.c															\
+			sphere.c														\
+			cone.c															\
+			cylindre.c														\
+			torus.c															\
+			moebius.c														\
+			newton.c														\
+			quadric.c														\
+			uv_maps.c														\
+			uv_maps_helpers.c												\
+			perlin_calc.c													\
 	   utils.c																\
 	   sp_mat.c																\
 	   matrices.c															\
-	   forms.c																\
 	   singleton.c															\
-	   ray.c																\
-	   diffuse.c															\
+			create_cam_buffer.c												\
+			create_display_manager.c										\
+			update_display_manager.c										\
+			render.c														\
+			event_stack.c													\
+			
 
 
 INC = libft.h																\
@@ -106,8 +116,7 @@ vpath %.c $(PATH_SRC)/parser
 vpath %.c $(PATH_SRC)/keys
 vpath %.c $(PATH_SRC)/kernal
 vpath %.c $(PATH_SRC)/cli
-#vpath %.c $(PATH_SRC)/ui
-#vpath %.c $(PATH_SRC)/utils
+vpath %.c $(PATH_SRC)/utils
 vpath %.c $(PATH_SRC)
 vpath %.o $(PATH_OBJ)
 vpath %.h $(PATH_INC)
@@ -181,9 +190,6 @@ endif
 #==============================================================================#
 
 $(NAME):  $(PATH_OBJ) $(OBJS)
-	@if [ $(INSTALL_BREW) == 1 ]; then $(BREW_INSTALL_CMD) fi;
-	@if [ $(INSTALL_SDL) == 1 ]; then $(SDL_INSTALL_CMD) fi;
-	@$(export RTV2_DEBUG := 0)
 	@$(eval INSTRUCTION := all)
 	@if [ $(MAKE_DEP) == 1 ]; then $(DEPENDECIES) fi;
 	@printf $(MAKING_PROGRESS)
@@ -204,14 +210,6 @@ $(PATH_OBJ):
 
 install_dependencies: install_brew install_sdl
 	@printf $(SUCCESS_HD)$(SUCCESS_COLOR)"Instalation complete!\n"
-
-debug:
-	@$(eval CFLAG += $(SLOW_FLAG))
-	@$(MAKE) all CFLAG='$(CFLAG)'
-
-release:
-	@$(eval CFLAG += $(FAST_FLAG))
-	@$(MAKE) all CFLAG='$(CFLAG)'
 
 install_sdl:
 	@$(SDL_INSTALL_CMD)

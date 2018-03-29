@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:08:18 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/05 17:45:29 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:54:57 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_kernal_event		pop_kernal_event(void)
 
 	if (g_kernal.stack_pushed <= 0)
 		return (KERNAL_EVENT_NULL);
-	event = g_kernal.first_stack.event;
+	event = g_kernal.first_stack->event;
 	g_kernal.first_stack = g_kernal.first_stack->prev;
 	g_kernal.stack_pushed--;
 	return (event);

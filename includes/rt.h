@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 17:41:27 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:49:16 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@
 ** 			is none of my buisness ♪♪♪
 */
 
+# include <SDL.h>
 # include "kernal.h"
 # include "rtv1_struct.h"
 # include "display_manager.h"
-# include "graphical_manager.h"
 # include "keys.h"
 
 # include "rtv1_define.h"
+# include "libft.h"
 
 /*
 ** =============================================================================
@@ -75,6 +76,8 @@
 # define C_DGREY		"\033[38;2;127;140;141m"
 # define C_BLACK		"\033[38;2;44;62;80m"
 
+# define C_NICK			C_ORANGE
+
 /*
 ** =============================================================================
 ** 							Debug messages
@@ -84,8 +87,8 @@
 # define HEADER			C_MGREY "[" C_GREEN C_NICK C_MGREY "] "
 # define HD				HEADER
 
-# define ERR_HEADER		HD " [" C_ERR "x" C_MGREY "] [" C_CODE code C_MGREY "] "
-# define WRN_HEADER		HD " [" C_WRN "!" C_MGREY "] [" sev C_MGREY "] "
+# define ERR_HEADER(c)	HD " [" C_ERR "x" C_MGREY "] [" C_CODE c C_MGREY "] "
+# define WRN_HEADER(sv)	HD " [" C_WRN "!" C_MGREY "] [" sv C_MGREY "] "
 # define INF_HEADER		HD " [" C_INF "i" C_MGREY "] "
 
 # define WRN_SEV_MINOR	C_YELLOW "Minor" C_NRM
@@ -200,12 +203,13 @@ typedef struct		s_shape
 ** =============================================================================
 */
 
-typedef t_col		(*t_func_col)();
-typedef char		*(*t_name_obj)();
-typedef size_t		(*t_parse_obj)();
-typedef	t_vec3		(*t_func_vec3)();
-typedef t_vec3		(*t_func_uv_map)();
-typedef	double		(*t_effects)();
+typedef t_col	(*t_func_col)();
+typedef double	(*t_func_dble)();
+typedef char	*(*t_name_obj)();
+typedef size_t	(*t_parse_obj)();
+typedef	t_vec3	(*t_func_vec3)();
+typedef t_vec3	(*t_func_uv_map)();
+typedef	double	(*t_effects)();
 typedef	SDL_Surface	*(*t_postproc)();
 
 /*
@@ -217,8 +221,6 @@ typedef	SDL_Surface	*(*t_postproc)();
 int			usage(int mode);
 int			ft_quit(t_scene *scene);
 void		ft_start(t_scene *scene);
-void		ft_mlx_control_key(t_scene *scene);
-t_setup		*ft_setup_alloc(t_scene *scene); // tous les define sont juste des racourcis sur la structure setup
 char		**ft_validobjs(void); // ce qui contient tous les types d'objet qu'on gere pour le parsing
 //t_objsparam	*ft_objsparam(void);
 t_list		*ft_searchenv(t_list *env, char *name);
@@ -239,11 +241,7 @@ void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_scene *scene, t_list **env, char *light_str);
 int			ft_setup_menu(t_scene *scene);
 void		ft_setup_free(t_scene *scene);
-size_t		ft_select_scene(t_scene *scene, int scene);
 size_t		ft_open_scene(t_scene *scene);
-void		ft_put_pixel(t_scene *scene, int x, int y, int color);
-void		ft_mlx_process(t_scene *scene);
-void		ft_put_pxl_to_img(t_scene *scene, t_vec3 pos, t_color *clr);
 void		ft_sinvalintime(double *val, double min, double max, double speed);
 void		ft_cosvalintime(double *val, double min, double max, double speed);
 
@@ -283,7 +281,6 @@ void		ft_setup_cam(t_scene *scene);
 void		ft_put_pixel(t_scene *scene, int x, int y, int color);
 
 // TODO Eliott functions
-t_setup		*get_st(void);
 int			coltoi(t_col col);
 int			init_mat(t_matrix *mat, int i, int j);
 void		add_mat(t_matrix *a, t_matrix *b);
@@ -342,12 +339,12 @@ double		ft_wood(t_vec3 vec3, t_gen gen);
 double		ft_cloud(t_vec3 vec3, t_gen gen);
 double		ft_checker(t_vec3 vec3, t_gen gen);
 
-t_col		ft_sepia(t_scene *scene, int x, int y);
-t_col		ft_blur(t_scene *scene, int x, int y);
-t_col		ft_cel_shading(t_scene *scene, int x, int y);
-t_col		ft_blackandwhite(t_scene *scene, int x, int y);
-t_col		ft_negative(t_scene *scene, int x, int y);
-void		ft_effect_change(t_scene *scene, int effect);
+SDL_Surface	*ft_sepia(SDL_Surface *s);
+SDL_Surface	*ft_blur(SDL_Surface *s);
+SDL_Surface	*ft_cel_shading(SDL_Surface *s);
+SDL_Surface	*ft_blackandwhite(SDL_Surface *s);
+SDL_Surface	*ft_negative(SDL_Surface *s);
+SDL_Surface	*ft_effect_change(SDL_Surface *s);
 t_postproc	*postprocess(void);
 
 // Nathan
@@ -366,5 +363,60 @@ t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 double	ft_2min_pos(double a, double b);
 double	ft_resolve_cubic_min(double a, double b, double c, double d);
 double	ft_resolve_quadric_min(double b, double c, double d, double e);
+
+/*
+** =============================================================================
+** 							Globales
+** =============================================================================
+*/
+
+static const unsigned char	g_perm[512] = {
+	217, 150, 31, 204, 241, 104, 201, 34, 39, 210, 177, 232, 160, 162, 128, \
+	102, 2, 26, 95, 134, 108, 194, 143, 230, 216, 228, 82, 212, 168, 118, 67, \
+	48, 213, 236, 158, 142, 225, 2, 133, 156, 29, 72, 231, 41, 235, 15, \
+	49, 178, 12, 5, 27, 180, 195, 44, 60, 9, 138, 130, 197, 198, 21, \
+	8, 152, 252, 114, 172, 46, 54, 101, 220, 8, 90, 48, 65, 206, 1, \
+	18, 59, 191, 240, 139, 30, 205, 77, 233, 33, 32, 6, 215, 38, 10, \
+	5, 199, 53, 73, 28, 196, 51, 221, 246, 69, 58, 187, 200, 87, 242, \
+	6, 202, 94, 136, 253, 234, 237, 226, 3, 250, 92, 11, 219, 85, 22, \
+	13, 151, 24, 159, 88, 243, 125, 207, 61, 126, 13, 227, 80, 175, 70, \
+	0, 132, 20, 64, 186, 224, 17, 244, 120, 68, 7, 75, 81, 89, 181, \
+	6, 161, 91, 40, 49, 211, 155, 249, 164, 79, 166, 179, 248, 131, 214, \
+	05, 57, 222, 122, 174, 135, 176, 115, 74, 19, 25, 173, 251, 154, 93, \
+	54, 203, 63, 43, 71, 18, 106, 55, 190, 141, 165, 245, 119, 123, 103, \
+	3, 47, 37, 184, 76, 52, 185, 112, 107, 145, 84, 116, 147, 183, 209, \
+	00, 223, 121, 189, 169, 208, 45, 14, 36, 0, 146, 127, 97, 66, 157, \
+	47, 193, 144, 167, 238, 171, 239, 4, 96, 99, 137, 117, 170, 182, 109, \
+	11, 140, 78, 229, 124, 129, 188, 42, 153, 23, 110, 192, 163, 16, 217, \
+	50, 31, 204, 241, 104, 201, 34, 39, 210, 177, 232, 160, 162, 128, 102, \
+	2, 26, 95, 134, 108, 194, 143, 230, 216, 228, 82, 212, 168, 118, 67, \
+	48, 213, 236, 158, 142, 225, 2, 133, 156, 29, 72, 231, 41, 235, 15, \
+	49, 178, 12, 5, 27, 180, 195, 44, 60, 9, 138, 130, 197, 198, 21, \
+	8, 152, 252, 114, 172, 46, 54, 101, 220, 8, 90, 48, 65, 206, 1, \
+	18, 59, 191, 240, 139, 30, 205, 77, 233, 33, 32, 6, 215, 38, 10, \
+	5, 199, 53, 73, 28, 196, 51, 221, 246, 69, 58, 187, 200, 87, 242, \
+	6, 202, 94, 136, 253, 234, 237, 226, 3, 250, 92, 11, 219, 85, 22, \
+	13, 151, 24, 159, 88, 243, 125, 207, 61, 126, 13, 227, 80, 175, 70, \
+	0, 132, 20, 64, 186, 224, 17, 244, 120, 68, 7, 75, 81, 89, 181, \
+	6, 161, 91, 40, 49, 211, 155, 249, 164, 79, 166, 179, 248, 131, 214, \
+	05, 57, 222, 122, 174, 135, 176, 115, 74, 19, 25, 173, 251, 154, 93, \
+	54, 203, 63, 43, 71, 18, 106, 55, 190, 141, 165, 245, 119, 123, 103, \
+	3, 47, 37, 184, 76, 52, 185, 112, 107, 145, 84, 116, 147, 183, 209, \
+	00, 223, 121, 189, 169, 208, 45, 14, 36, 0, 146, 127, 97, 66, 157, \
+	47, 193, 144, 167, 238, 171, 239, 4, 96, 99, 137, 117, 170, 182, 109};
+
+static const t_vec3			g_gradtab[16] = {
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 1, -1, 0 }, { -1, -1, 0 }, \
+	{ 1, 0, 1 }, { -1, 0, 1 }, { 1, 0, -1 }, { -1, 0, -1 }, \
+	{ 0, 1, 1 }, { 0, -1, 1 }, { 0, 1, -1 }, { 0, -1, -1 }, \
+	{ 1, 1, 0 }, { -1, 1, 0 }, { 0, -1, 1 }, { 0, -1, -1 }
+};
+
+static const t_vec3			g_unitcube[8] = {
+	{ 0, 0, 0 }, { -1, 0, 0 }, { 0, -1, 0 }, { -1, -1, 0 }, \
+	{ 0, 0, -1 }, { 0, -1, -1 }, { 0, -1, -1 }, { -1, -1, -1 }
+};
+
+static size_t	g_time = 0;
 
 #endif

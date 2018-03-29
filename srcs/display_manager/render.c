@@ -6,11 +6,10 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:41:00 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 13:48:25 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:53:10 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "display_manager.h"
 #include "rt.h"
 
 t_ray	init_ray(t_vec3 org, t_vec3 dir)
@@ -66,8 +65,8 @@ t_col			send_ray(t_ray ray, t_scene *scene)
 	ptr = ptr->next;
 	}
 	if (!nearest)
-		return (setup->background);
+		return (scene->background);
 	if (FORM(nearest)->type != 0)
 		return (intersection()[FORM(nearest)->type - 1](ray, nearest, scene));
-	return (setup->background);
+	return (scene->background);
 }

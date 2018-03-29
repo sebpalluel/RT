@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 14:34:05 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 14:18:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:24:16 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 static inline float 	getgradformvec(uint8_t perm, t_vec3 vec3)
 {

@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 10:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/29 16:07:54 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:22:10 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 double			hit_tor(t_ray ray, t_shape *form)
 {

@@ -6,22 +6,33 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:46:44 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 13:46:46 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:36:10 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "display_manager.h"
 #include "rt.h"
+
+static inline void		leave(char *str, uint32_t exit_code)
+{
+	if (str)
+		ft_putstr(str);
+	ft_putstr(STR_INF("Exiting"NICK));
+	exit(exit_code);
+}
 
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
 static inline uint32_t	*get_mask_endian(void)
 {
-	return ({0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff});
+	static uint32_t		t[4] = {0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff};
+
+	return (t);
 }
 #else
 static inline uint32_t	*get_mask_endian(void)
 {
-	return ({0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000});
+	static uint32_t		t[4] = {0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000};
+
+	return (t);
 }
 #endif
 
@@ -45,5 +56,4 @@ void					init_cam_buffers(t_cam *cam, uint32_t frames)
 			leave(STR_ERR("002", "Fail creating frames"), EXIT_FAILURE);
 	}
 	ft_memset(cam->frames_state, sizeof(uint32_t) * frames, FS_DIRTY);
-	return (0);
 }

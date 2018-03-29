@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/29 16:08:18 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/29 18:22:40 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "rt.h"
 
 static inline double	calc(double x, double ox, double y, double oy)
 {
