@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 19:12:02 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 19:14:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ size_t			ft_init_new_scene(t_scene *scn, const char *path)
 	  */
 	if ((scn->fd = open(path, O_RDONLY, O_APPEND) > 0))
 		return (OK);
+<<<<<<< HEAD
 	return (scn->error = FILE_ERROR);
+=======
+	return (ERROR);
+>>>>>>> 5fdf1f13bf44eec7c231a8149d9efca69b4a289d
 }
 
 static char		*ft_append_line_to_file(t_scene *scn)
@@ -103,19 +107,23 @@ t_scene			*ft_open_scene(const char *path)
 	t_scene		*scn;
 
 	scn = (t_scene*)ft_memalloc(sizeof(t_scene));
-	if (!path || !scn || ft_init_new_scene(scn, path) != OK || 
-			!(file = ft_append_line_to_file(scn)))
+	if (!path || !scn || ft_init_new_scene(scn, path) != OK)
+	{
+		scn->error = FILE_ERROR;
 		return (NULL);
-	if (!(scn->p_env = ft_parse_scn(scn, file)) || ft_envtosetup(scn) != OK\
+	}
+	if (!(file = ft_append_line_to_file(scn)))
+		return (NULL);
+	if (!(SCN.env = ft_parse_scn(scn, file)) || ft_envtosetup(scn) != OK\
 			|| scn->error != OK)
-		return (NULL);
-	//if (scn->num_cam == 0)
-	//	return (scn->error = CAM_ERROR);
-	scn->cur_cam = CAM(scn->cams);
-	//if (!scn->num_scn)
-	//	scn->num_scn = 1;
-	//mlx_put_image_to_window(scn->mlx_ptr, UI_WIN->win_ptr, \
-	//		UI_IMG->image, 0, 0);
-	//scn->mode = STATE_DRAW;
+		return (ERROR);
+	if (SCN.num_cam == 0)
+		return (scn->error = CAM_ERROR);
+	SCN.cur_cam = CAM(SCN.cams);
+	if (!scn->num_scn)
+		scn->num_scn = 1;
+	mlx_put_image_to_window(scn->mlx_ptr, UI_WIN->win_ptr, \
+			UI_IMG->image, 0, 0);
+	scn->mode = STATE_DRAW;
 	return (OK);
 }
