@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 14:55:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 15:30:03 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,9 +210,9 @@ void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdelif(t_list **alst, void *to_cmpr, \
 		int (*cmp)(void *, void *), void (*del)(void *, size_t));
-void			ft_lstadd(t_list **alst, t_list *new);
-void			ft_lstaddend(t_list **alst, t_list *new);
-void			ft_lstaddfront(t_list **alst, t_list *new);
+void			ft_lstadd(t_list **alst, t_list *elem);
+void			ft_lstaddend(t_list **alst, t_list *elem);
+void			ft_lstaddfront(t_list **alst, t_list *elem);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				ft_lstlen(t_list *lst);
@@ -221,7 +221,7 @@ void			**ft_lsttoarray(t_list *lst);
 t_list			*ft_lstpushback(t_list **alst, void *data, size_t content_size);
 t_list			*ft_lstpushfront(t_list **alst, void *data, \
 		size_t content_size);
-void			ft_lstaddback(t_list **alst, t_list *new);
+void			ft_lstaddback(t_list **alst, t_list *elem);
 
 void			ft_printfloatmatrix(float **mat, size_t size);
 void			ft_printintarray(int **map, size_t width, size_t height);

@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/28 17:56:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 15:21:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "./includes/rt.h"
 
 size_t			ft_envtosetup(t_setup *setup)
 {
