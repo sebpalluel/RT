@@ -6,14 +6,15 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:52:18 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 14:49:30 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDL_HANDLER_H
 # define SDL_HANDLER_H
 
-# include "rt.h"
+# include <SDL.h>
+# include "libft.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160

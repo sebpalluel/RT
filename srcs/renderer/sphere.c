@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:40:58 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 17:52:18 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 14:47:29 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 	/*while (form->next)*/
 		/*form = form->next;*/
 	/*FORM(form)->type = SPH;*/
-	/*while (FORM(form)->num_arg < ft_getnumvar(NVARSPHERE, form) \*/
+	/*while (FORM(form)->num_arg < ft_getnumvar(NVARSPHERE, form) */
 			/*&& env && (env = env->next))*/
 		/*ft_sphere_struct_pop(form, env, flag);*/
 	/*if (ft_checkifallset(flag, ft_getnumvar(NVARSPHERE, form)) != OK)*/
