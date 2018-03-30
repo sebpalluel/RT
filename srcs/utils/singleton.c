@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/29 17:57:38 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 15:44:28 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "./includes/rt.h"
 
 t_func_col		*intersection(void)
 {

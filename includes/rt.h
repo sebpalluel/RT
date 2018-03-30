@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 15:28:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:22:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
 # include "keys.h"
 
 # include "rtv1_define.h"
-# include "libft.h"
+# include "../libft/includes/libft.h"
+//# include "libft.h"
 
 /*
 ** =============================================================================
@@ -242,7 +243,7 @@ void		ft_getobjects(t_list **env, char *obj_str);
 void		ft_getlights(t_scene *scene, t_list **env, char *light_str);
 int			ft_setup_menu(t_scene *scene);
 void		ft_setup_free(t_scene *scene);
-size_t		ft_open_scene(t_scene *scene);
+t_scene		*ft_open_scene(const char *path);
 void		ft_sinvalintime(double *val, double min, double max, double speed);
 void		ft_cosvalintime(double *val, double min, double max, double speed);
 

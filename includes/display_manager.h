@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 15:31:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:21:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //# include <SDL.h>
 # include "/Users/seb/.brew/include/SDL2/SDL.h"
-# include "./libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160
@@ -96,6 +96,8 @@ typedef struct			s_scene
 	uint64_t			refr_max;
 	uint64_t			refl_max;
 	t_col				background;
+	int					fd;
+	int					error;
 }						t_scene;
 
 typedef struct			s_window_data
