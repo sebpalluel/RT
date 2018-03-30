@@ -6,13 +6,13 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:46:44 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:36:10 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:08:01 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static inline void		leave(char *str, uint32_t exit_code)
+inline void				leave(char *str, uint32_t exit_code)
 {
 	if (str)
 		ft_putstr(str);
