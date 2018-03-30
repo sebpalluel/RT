@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:49:16 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:28:26 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,6 +363,11 @@ t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 double	ft_2min_pos(double a, double b);
 double	ft_resolve_cubic_min(double a, double b, double c, double d);
 double	ft_resolve_quadric_min(double b, double c, double d, double e);
+
+//Maxime
+t_display_manager		*create_display_manager(void);
+t_window				create_window(t_window_data data);
+
 
 /*
 ** =============================================================================

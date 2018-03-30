@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 17:25:36 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:38:08 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,25 @@
 	/*return (OK);*/
 /*}*/
 
-int				main(int ac, char **av)
+uint32_t		launcher(int c, char **v)
 {
-	SDL_Event	e;
-	uint32_t	quit;
+	uint32_t	i;
+	t_scene		*tmp;
 
+	create_display_manager();
+	i = ~0U;
+	while (++i < c)
+		if ((tmp = open_file(v[i]))
+
+}
+
+int				main(int c, char **v)
+{
 	// PRE LAUNCH EVENTS
-	quit = 0;
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT)
-				quit = 1;
-		}
-	}
+	launcher(c - 1, v + 1);
+	// POST LAUNCH
+	while (42)
+		resolve_events();
 	return (0);
 }
 

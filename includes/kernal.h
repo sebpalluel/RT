@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:02:37 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:55:35 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:33:40 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 typedef enum				e_kernal_event_type
 {
-	EK_UNKNOWN = 0,
+	EK_NONE = 0,
+	EK_UNKNOWN,
 	EK_QUIT,
 	EK_WINDOW_CLOSE,
 	EK_WINDOW_OPEN,
@@ -72,7 +73,7 @@ typedef struct				s_kernal
 */
 
 # define KERNAL_EVENT_BUFFER	1 << 21
-# define KERNAL_EVENT_NULL		((t_kernal_event){EK_UNKNOWN, 0})
+# define KERNAL_EVENT_NULL		((t_kernal_event){EK_NONE, 0})
 
 extern t_kernal				g_kernal;
 t_kernal					g_kernal = (t_kernal)
@@ -114,10 +115,10 @@ typedef void				(*t_ke_func)(t_kernal_event);
 void						resolve_events(void);
 
 void						quit_all(t_kernal_event e);
-void						gm_window_close(t_kernal_event e);
-void						gm_window_open(t_kernal_event e);
-void						gm_window_resizing(t_kernal_event e);
-void						gm_window_refresh(t_kernal_event e);
+void						dm_window_close(t_kernal_event e);
+void						dm_window_open(t_kernal_event e);
+void						dm_window_resizing(t_kernal_event e);
+void						dm_window_refresh(t_kernal_event e);
 void						im_key_handler(t_kernal_event e);
 void						im_mouse_motion(t_kernal_event e);
 void						im_mouse_press(t_kernal_event e);

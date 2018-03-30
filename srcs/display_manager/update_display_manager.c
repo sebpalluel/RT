@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 12:36:07 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:51:50 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:26:58 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef uint32_t				(*t_cases)(SDL_Event);
 void							display_manager_event_watcher(void)
 {
 	static t_cases				cases[3] = {&case_quit, &case_resize, &case_mouse};
-	uint32_t					ke_type[3] = {EK_QUIT, EK_WINDOW_RESIZED, 								EK_MOUSE_MOTION};
+	uint32_t					ke_type[3] = {EK_QUIT
+		,EK_WINDOW_RESIZED, EK_MOUSE_MOTION, };
 	SDL_Event					e;
 	t_kernal_event				ke;
 	uint32_t					i;

@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 14:49:30 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:05:16 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct			s_window
 	SDL_Surface			*surface;
 	t_scene				*scene;
 	t_window_data		original_data;
+	pthread_t			*thread;
 	struct s_window		*next;
 }						t_window;
 
@@ -121,7 +122,7 @@ typedef struct			s_display_manager
 	t_window			*win;
 	t_window			*cli;
 	uint32_t			windows_managed;
-	t_window			scene_focused;
+	t_window			window_focused;
 }						t_display_manager;
 
 typedef struct			s_draw_data
@@ -137,6 +138,19 @@ inline uint32_t			get_pixel(SDL_Surface *s, uint32_t x, uint32_t y);
 inline void				set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
 									, uint32_t pixel);
 
+inline t_window			*create_dwindow(t_window_data data);
+inline void				destroy_dwindow(t_window *window);
+inline void				create_cli(void);
+
 void					apply_post_effect(t_cam *cam, t_post_effect e);
+
+extern t_display_manager		g_display_manager;
+t_display_manager				g_display_manager = (t_display_manager)
+{
+	.win = NULL,
+	.cli = NULL,
+	.window_focused = NULL,
+	.windows_managed = 0
+};
 
 #endif
