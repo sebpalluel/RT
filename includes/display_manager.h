@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 18:05:16 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:51:03 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ t_display_manager		*create_display_manager(void);
 inline uint32_t			get_pixel(SDL_Surface *s, uint32_t x, uint32_t y);
 inline void				set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
 									, uint32_t pixel);
+
+void					display_manager_event_watcher(void);
 
 inline t_window			*create_dwindow(t_window_data data);
 inline void				destroy_dwindow(t_window *window);

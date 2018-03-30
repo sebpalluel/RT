@@ -6,24 +6,36 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:55:13 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:49:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:48:05 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <SDL.h>
-#include "/Users/psebasti/.brew/Cellar/sdl2/2.0.8/include/SDL2/SDL.h"
-#include "./includes/rt.h"
-#include "./includes/graphical_manager.h"
+#include <SDL.h>
+#include "rt.h"
+#include "graphical_manager.h"
 
-uint32_t			update_graphical_manager(t_kernal_event e)
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+static inline uint32_t	*get_mask_endian(void)
 {
-	if (e.type == EK_WINDOW_REFRESH)
+	static uint32_t		t[4] = {0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff};
+
+	return (t);
 }
-
-SDL_Surface                        *dup_surface(SDL_Surface *sf)
+#else
+static inline uint32_t	*get_mask_endian(void)
 {
-	SDL_Surface *s;
+	static uint32_t		t[4] = {0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000};
 
+	return (t);
+}
+#endif
+
+SDL_Surface				*dup_surface(SDL_Surface *sf)
+{
+	SDL_Surface			*s;
+	uint32_t			*mask;
+
+	mask = get_mask_endian();
 	if (!(s = SDL_CreateRGBSurface(0, sf->w, sf->h, 32, mask[0], mask[1], \
 					mask[2], mask[3])))
 		exit(EXIT_FAILURE);
@@ -31,10 +43,10 @@ SDL_Surface                        *dup_surface(SDL_Surface *sf)
 	return (s);
 }
 
-void				apply_post_effect(t_cam *cam, t_post_effect e)
+void					apply_post_effect(t_cam *cam, t_post_effect e)
 {
-	uint32_t		i;
-	SDL_Surface		*cpy;
+	uint32_t			i;
+	SDL_Surface			*cpy;
 
 	i = 0;
 	while (cam->frames[i])

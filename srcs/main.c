@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 16:38:08 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:31:30 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ uint32_t		launcher(int c, char **v)
 	uint32_t	i;
 	t_scene		*tmp;
 
-	create_display_manager();
 	i = ~0U;
 	while (++i < c)
-		if ((tmp = open_file(v[i]))
-
+		/*if ((tmp = open_file(v[i]))*/
+		++i;
+	return (1);
 }
 
 int				main(int c, char **v)

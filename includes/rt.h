@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 18:08:39 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:49:54 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,7 +365,7 @@ double	ft_resolve_cubic_min(double a, double b, double c, double d);
 double	ft_resolve_quadric_min(double b, double c, double d, double e);
 
 //Maxime
-inline void					leave(char *msg, uint32_t exit_code);
+void					leave(char *msg, uint32_t exit_code);
 
 
 
