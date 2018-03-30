@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 17:25:36 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 15:57:58 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,15 @@ int				main(int ac, char **av)
 {
 	SDL_Event	e;
 	uint32_t	quit;
+	t_scene		*scn;
 
 	// PRE LAUNCH EVENTS
 	quit = 0;
+	if (ac == 2) // temporary solution to test parsing
+		if (!(scn = ft_open_scene(av[1])))
+			return (EXIT_FAILURE);
+		else
+			return (EXIT_SUCCESS);
 	while (!quit)
 	{
 		while (SDL_PollEvent(&e))

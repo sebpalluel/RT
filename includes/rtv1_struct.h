@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 15:59:47 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 17:49:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ typedef struct		s_objsfunc
 {
 	size_t			(*builtinfunc)(void *a, t_list **list);
 }					t_objsfunc;
-
-typedef struct		s_env
-{
-	char			*name;
-	char			*value;
-}					t_env;
 
 typedef	struct		s_text
 {

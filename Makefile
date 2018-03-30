@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/03/29 14:40:17 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/03/30 17:44:14 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,35 +75,36 @@ DEPENDECIES = make -C $(PATH_LIB) $(INSTRUCTION) HIDDEN_FLAGS=$(HIDDEN_FLAGS);\
 
 DEP = -L $(PATH_LIB) -lft $(SDL_LIB_PATH)									\
 
-SRCS = main.c																\
-			plane.c															\
-			sphere.c														\
-			cone.c															\
-			cylindre.c														\
-			torus.c															\
-			moebius.c														\
-			newton.c														\
-			quadric.c														\
-			uv_maps.c														\
-			uv_maps_helpers.c												\
-			perlin_calc.c													\
-	   utils.c																\
-	   sp_mat.c																\
-	   matrices.c															\
-	   singleton.c															\
-			create_cam_buffer.c												\
-			create_display_manager.c										\
-			update_display_manager.c										\
-			render.c														\
-			event_stack.c													\
-			
+SRCS = main.c															\
+		plane.c															\
+		sphere.c														\
+		cone.c															\
+		cylindre.c														\
+		torus.c															\
+		moebius.c														\
+		newton.c														\
+		quadric.c														\
+		uv_maps.c														\
+		uv_maps_helpers.c												\
+		perlin_calc.c													\
+		utils.c															\
+		sp_mat.c														\
+		matrices.c														\
+		singleton.c														\
+		create_cam_buffer.c												\
+		create_display_manager.c										\
+		update_display_manager.c										\
+		render.c														\
+		event_stack.c													\
+
 
 
 INC = libft.h																\
-	  rtv1.h																\
+	  rt.h																\
 	  keys.h																\
 	  matrice.h																\
 	  parser.h																\
+	  error.h																\
 
 #==============================================================================#
 #                                    Vpaths                                    #
@@ -216,7 +217,7 @@ install_sdl:
 
 install_brew:
 	@if [ ! -f $(HOME)/.brew ]; then
-		$(BREW_INSTALL_CMD); fi
+	$(BREW_INSTALL_CMD); fi
 
 depend: .depend
 

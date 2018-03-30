@@ -6,48 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 17:52:50 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 19:00:36 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-
-/*void	ft_cone_struct_pop(t_list *form, t_list *env, t_bool *flag)*/
-/*{*/
-	/*if (ft_strcmp(ENVSTRUCT(env)->name, "origin") == 0)*/
-		/*flag[0] = ft_getvectfromenv(&CONE(form).org, ENVSTRUCT(env)->value);*/
-	/*if (ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)*/
-		/*flag[1] = ft_getvectfromenv(&CONE(form).dir, ENVSTRUCT(env)->value);*/
-	/*if (ft_strcmp(ENVSTRUCT(env)->name, "degres") == 0)*/
-		/*flag[2] = ft_getdoublefromenv(&CONE(form).theta, ENVSTRUCT(env)->value);*/
-	/*flag = ft_mat_struct_pop(form, env, flag, 3);*/
-	/*FORM(form)->num_arg++;*/
-/*}*/
-
-/*size_t	ft_cone(t_list **list)*/
-/*{*/
-	/*t_list		*env;*/
-	/*t_list		*form;*/
-	/*t_bool		*flag;*/
-
-	/*env = *list;*/
-	/*if (!(flag = (t_bool *)malloc(sizeof(t_bool) * NVARCONE + NVARMAT_MAX)))*/
-		/*return (ERROR);*/
-	/*ft_memset(flag, ERROR, sizeof(t_bool) * NVARCONE + NVARMAT_MAX);*/
-	/*ft_lstaddend(&SCN.forms, ft_newshape());*/
-	/*form = SCN.forms;*/
-	/*while (form->next)*/
-		/*form = form->next;*/
-	/*FORM(form)->type = CON;*/
-	/*while (FORM(form)->num_arg < ft_getnumvar(NVARCONE, form) \*/
-			/*&& env && (env = env->next))*/
-		/*ft_cone_struct_pop(form, env, flag);*/
-	/*if (ft_checkifallset(flag, ft_getnumvar(NVARCONE, form)) != OK)*/
-		/*return (CONE_ERROR);*/
-	/*CONE(form).dir = ft_vec3normalize_r(CONE(form).dir);*/
-	/**list = env;*/
-	/*return (OK);*/
-/*}*/
+#include "./includes/rt.h"
 
 double	hit_cone(t_ray ray, t_shape *form)
 {

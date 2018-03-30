@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 15:28:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:06:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@
 # include "rtv1_struct.h"
 # include "display_manager.h"
 # include "keys.h"
+# include "error.h"
+# include "parser.h"
 
 # include "rtv1_define.h"
-# include "libft.h"
+# include "../libft/includes/libft.h"
+//# include "libft.h"
 
 /*
 ** =============================================================================
@@ -123,7 +126,6 @@ typedef struct		s_lgt
 	t_vec3			vect;
 	t_vec3 			dir;
 	t_col			col;
-	size_t			num_arg;
 }					t_lgt;
 
 typedef struct		s_ray
@@ -206,8 +208,6 @@ typedef struct		s_shape
 
 typedef t_col	(*t_func_col)();
 typedef double	(*t_func_dble)();
-typedef char	*(*t_name_obj)();
-typedef size_t	(*t_parse_obj)();
 typedef	t_vec3	(*t_func_vec3)();
 typedef t_vec3	(*t_func_uv_map)();
 typedef	double	(*t_effects)();
@@ -222,59 +222,13 @@ typedef	SDL_Surface	*(*t_postproc)();
 int			usage(int mode);
 int			ft_quit(t_scene *scene);
 void		ft_start(t_scene *scene);
-char		**ft_validobjs(void); // ce qui contient tous les types d'objet qu'on gere pour le parsing
-//t_objsparam	*ft_objsparam(void);
-t_list		*ft_searchenv(t_list *env, char *name);
-t_list		*ft_envlist(char *file);
-t_list		*ft_newshape(void);
-char		**ft_getenv(t_scene *scene);
-t_list		*ft_newenv(char *name, char *value);
-void		ft_editenv(t_list *env, char *name, char *value);
-size_t		ft_args_to_fd(t_scene *scene);
-char		*ft_getobjstr(char *str, char *obj);
-char		*ft_getobjstrn(char **str, char *obj);
-t_list		*ft_parse_scn(t_scene *scene, char *file);
-void		ft_getengine(t_list **env, char *eng_str);
-void		ft_getcams(t_list **env, char *cam_str);
 void		ft_cam_change(t_scene *scene);
 void		init_cam(t_cam *cam);
-void		ft_getobjects(t_list **env, char *obj_str);
-void		ft_getlights(t_scene *scene, t_list **env, char *light_str);
 int			ft_setup_menu(t_scene *scene);
 void		ft_setup_free(t_scene *scene);
-size_t		ft_open_scene(t_scene *scene);
 void		ft_sinvalintime(double *val, double min, double max, double speed);
 void		ft_cosvalintime(double *val, double min, double max, double speed);
 
-t_bool		ft_getvectfromenv(t_vec3 *vect, char *value);
-t_bool		ft_getcolfromenv(t_col *col, char *value);
-t_bool		ft_getdoublefromenv(double *val, char *value);
-t_bool		ft_getsize_tfromenv(size_t *val, char *value);
-t_bool		ft_checkifallset(t_bool *flag, size_t numvar);
-void		ft_getvaluetoenv(t_list **env, char *obj_str, const char *name, \
-		t_bool *no_val);
-void		ft_getmaterial(t_list **env, char *mat_str);
-void		ft_getspheres(t_list **env, char *obj_str);
-void		ft_getplanes(t_list **env, char *obj_str);
-void		ft_getcones(t_list **env, char *obj_str);
-void		ft_getcylindres(t_list **env, char *obj_str);
-void		ft_gettorus(t_list **env, char *obj_str);
-void		ft_getmoebius(t_list **env, char *obj_str);
-t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
-		size_t n_flag);
-size_t		ft_getnumvar(size_t num_var_shape, t_list *form);
-
-size_t		ft_engine(t_list **list);
-size_t		ft_cam(t_list **list);
-size_t		ft_light(t_list **list);
-size_t		ft_plane(t_list **list);
-size_t		ft_sphere(t_list **list);
-size_t		ft_cone(t_list **list);
-size_t		ft_cylindre(t_list **list);
-size_t		ft_torus(t_list **list);
-size_t		ft_moebius(t_list **list);
-
-t_parse_obj	*parse_obj(void);
 void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
 int			ft_raytracing_thread(t_scene *scene);
 size_t		ft_get_thread_n(t_scene *scene);

@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 15:31:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:06:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //# include <SDL.h>
 # include "/Users/seb/.brew/include/SDL2/SDL.h"
-# include "./libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 
 #define DEFAULT_WIDTH	3840
 #define DEFAULT_HEIGHT	2160
@@ -75,6 +75,7 @@ typedef struct			s_cam
 	t_vec3				frt;
 	t_vec3				rgt;
 	t_vec3				dwn;
+	t_vec3				look_at;
 	SDL_Surface			**frames;
 	uint32_t			*frames_state;
 	uint32_t			frame_number;
@@ -89,13 +90,19 @@ typedef struct			s_scene
 	t_list				*forms;
 	t_list				*lgts;
 	t_list				*cams;
+	t_list				*p_env;
 	t_cam				*cur_cam;
 	size_t				cam_n;
+	size_t				num_cam;
+	size_t				num_lgt;
 	double				move_step;
 	double				rot_step;
-	uint64_t			refr_max;
-	uint64_t			refl_max;
+	double				amb_light;
+	size_t				refr_max;
+	size_t				refl_max;
 	t_col				background;
+	int					fd;
+	int					error;
 }						t_scene;
 
 typedef struct			s_window_data

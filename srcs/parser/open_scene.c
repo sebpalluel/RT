@@ -6,32 +6,32 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 17:20:12 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 15:21:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 19:12:02 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/rt.h"
 
-size_t			ft_envtosetup(t_setup *setup)
+size_t			ft_envtosetup(t_scene *scn)
 {
 	t_list		*env;
 	int			i;
 	t_bool		flag;
 	char		**validobjs;
 
-	env = SCN.env;
+	env = scn->p_env;
 	validobjs = ft_validobjs();
-	while (env && ENVSTRUCT(env))
+	while (env && P_ENV(env))
 	{
 		i = -1;
 		flag = ERROR;
 		while (env && ++i < NUM_OBJS)
 		{
-			if (ft_strcmp(ENVSTRUCT(env)->name, validobjs[i]) == 0)
+			if (ft_strcmp(P_ENV(env)->name, validobjs[i]) == 0)
 			{
 
 				flag = OK;
-				if (parse_obj()[i](&env) != OK)
+				if (parse_obj()[i](scn, &env) != OK)
 					return (ERROR);
 				if (env)
 					env = env->next;
@@ -43,31 +43,36 @@ size_t			ft_envtosetup(t_setup *setup)
 	return (OK);
 }
 
-size_t			ft_select_scene(t_setup *setup, int scene)
+size_t			ft_select_scene(t_scene *scn, int scene)
 {
-	if (setup->path)
-		ft_strdel(&setup->path);
-	if (scene == 0)
-		setup->path = ft_strdup(SCN_PATH_0);
-	else if (scene == 1)
-		setup->path = ft_strdup(SCN_PATH_1);
-	if (setup->path != NULL)
+	(void)scn;
+	(void)scene;
+	//if (scn->path)
+	//	ft_strdel(&scn->path);
+	//if (scene == 0)
+	//	scn->path = ft_strdup(SCN_PATH_0);
+	//else if (scene == 1)
+	//	scn->path = ft_strdup(SCN_PATH_1);
+	//if (scn->path != NULL)
 		return (OK);
-	else
-		return (ERROR);
+	//else
+	//	return (ERROR);
 }
 
-size_t			ft_init_new_scene(t_setup *setup)
+size_t			ft_init_new_scene(t_scene *scn, const char *path)
 {
-	ft_args_to_fd(setup);
-	SCN.move_step = MOVE_STEP;
-	SCN.rot_step = ROT_STEP;
-	SCN.pers = 1.;
-	SCN.expo = 1.;
-	return (OK);
+	scn->move_step = MOVE_STEP;
+	scn->rot_step = ROT_STEP;
+	/*TODO expo and pers init for t_env
+	  scn->pers = 1.;
+	  scn->expo = 1.;
+	  */
+	if ((scn->fd = open(path, O_RDONLY, O_APPEND) > 0))
+		return (OK);
+	return (scn->error = FILE_ERROR);
 }
 
-static char		*ft_append_line_to_file(t_setup *setup)
+static char		*ft_append_line_to_file(t_scene *scn)
 {
 	char		*file;
 	char		*line;
@@ -75,11 +80,11 @@ static char		*ft_append_line_to_file(t_setup *setup)
 
 	file = NULL;
 	line = NULL;
-	while (get_next_line(SCN.fd.fd, &line))
+	while (get_next_line(scn->fd, &line))
 	{
 		if (!line || (line && ft_checkascii(line) != OK))
 		{
-			setup->error = line ? SCN_ERROR : FILE_ERROR;
+			scn->error = line ? SCN_ERROR : FILE_ERROR;
 			return (NULL);
 		}
 		tmp = file;
@@ -88,29 +93,29 @@ static char		*ft_append_line_to_file(t_setup *setup)
 		free(line);
 	}
 	if (!file)
-		setup->error = SCN_ERROR;
+		scn->error = SCN_ERROR;
 	return (file);
 }
 
-size_t			ft_open_scene(t_setup *setup)
+t_scene			*ft_open_scene(const char *path)
 {
 	char		*file;
+	t_scene		*scn;
 
-	if (ft_init_new_scene(setup) != OK || \
-			ft_open(&SCN.fd, O_RDONLY, O_APPEND) != OK)
-		return (setup->error = FILE_ERROR);
-	if (!(file = ft_append_line_to_file(setup)))
-		return (setup->error);
-	if (!(SCN.env = ft_parse_scn(setup, file)) || ft_envtosetup(setup) != OK\
-			|| setup->error != OK)
-		return (ERROR);
-	if (SCN.num_cam == 0)
-		return (setup->error = CAM_ERROR);
-	SCN.cur_cam = CAM(SCN.cams);
-	if (!setup->num_scn)
-		setup->num_scn = 1;
-	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, \
-			UI_IMG->image, 0, 0);
-	setup->mode = STATE_DRAW;
+	scn = (t_scene*)ft_memalloc(sizeof(t_scene));
+	if (!path || !scn || ft_init_new_scene(scn, path) != OK || 
+			!(file = ft_append_line_to_file(scn)))
+		return (NULL);
+	if (!(scn->p_env = ft_parse_scn(scn, file)) || ft_envtosetup(scn) != OK\
+			|| scn->error != OK)
+		return (NULL);
+	//if (scn->num_cam == 0)
+	//	return (scn->error = CAM_ERROR);
+	scn->cur_cam = CAM(scn->cams);
+	//if (!scn->num_scn)
+	//	scn->num_scn = 1;
+	//mlx_put_image_to_window(scn->mlx_ptr, UI_WIN->win_ptr, \
+	//		UI_IMG->image, 0, 0);
+	//scn->mode = STATE_DRAW;
 	return (OK);
 }

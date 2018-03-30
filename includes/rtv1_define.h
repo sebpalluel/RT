@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 17:34:35 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/30 19:06:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,7 @@
 # define RATIO			WIDTH / HEIGHT
 # define FOV			45
 # define DEG2RAD(x)    ((x * M_PI) / 180)
-# define MAX_SIZE		10000
-# define MAX_OBJ		20
 # define THREAD			128
-# define NUM_FORM		6
-# define NUM_OBJS		9
-# define NUM_EFFECTS	5
-# define NUM_PROC		6
-# define NUM_TEXT		2
-# define MAX_WINDOW		5
-# define MAX_CAM		10
 # define AMP			1.3
 
 # define VIDEO_MODE		0
@@ -47,30 +38,8 @@
 
 # define CIRCLE			PAS/PAS_TOTAL * (2 * M_PI)
 
-# define ENG_S			parsed[0]
-# define CAM_S			parsed[1]
-# define LGT_S			parsed[2]
-# define OBJ_S			parsed[3]
-
-# define M_TEX			1
-# define M_GEN			2
-# define NVARTEX		3
-# define NVARGEN		5
-# define NVARMAT		5
-# define NVARMAT_MAX	NVARMAT + NVARGEN
-
 # define UI_WIN			setup->ui_win
 # define UI_IMG			setup->ui_img
-# define NVARENG		5
-# define SCN			setup->scene[setup->scn_num]
-# define NVARCAM		2
-# define NVARLIGHT		4
-# define NVARSPHERE		2
-# define NVARPLANE		2
-# define NVARCONE		3
-# define NVARCYLINDRE	3
-# define NVARTORUS		4
-# define NVARMOEBIUS	5
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)
@@ -80,8 +49,6 @@
 # define CYLI(x)		FORM(x)->cyl
 # define TORU(x)		FORM(x)->tor
 # define MOEB(x)		FORM(x)->moeb
-//# define ENV(x)			((t_env *)(*(x)->env).content)
-# define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
 # define SPH			1
 # define PLN			2

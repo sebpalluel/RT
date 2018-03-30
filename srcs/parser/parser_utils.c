@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:44:40 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:21:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:57:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "./includes/rt.h"
 
 size_t		ft_getnumvar(size_t num_var_shape, t_list *form)
 {
