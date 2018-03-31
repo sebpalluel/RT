@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/31 11:06:58 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/31 17:12:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <SDL.h>
 //# include "/Users/seb/.brew/include/SDL2/SDL.h"
+# include "graphical_manager.h"
 # include "../libft/includes/libft.h"
 
 #define DEFAULT_WIDTH	3840
@@ -22,29 +23,6 @@
 
 #define DEFAULT_WIN_W	1920
 #define DEFAULT_WIN_H	1080
-
-/*
-** =============================================================================
-** 						Post proccess
-** =============================================================================
-*/
-
-typedef enum			e_post_effect
-{
-	PP_SEPIA = 0,
-	PP_CELL_SHADING,
-	PP_NEGATIVE,
-	PP_BLACK_WHITE,
-	PP_BLUR,
-	PP_MAX
-}						t_post_effect;
-
-
-SDL_Surface				*ft_sepia(SDL_Surface *s);
-SDL_Surface				*ft_cel_shading(SDL_Surface *s);
-SDL_Surface				*ft_negative(SDL_Surface *s);
-SDL_Surface				*ft_blackandwhite(SDL_Surface *s);
-SDL_Surface				*ft_blur(SDL_Surface *s);
 
 /*
 ** =============================================================================
@@ -144,6 +122,8 @@ t_display_manager		*create_display_manager(void);
 inline uint32_t			get_pixel(SDL_Surface *s, uint32_t x, uint32_t y);
 inline void				set_pixel(SDL_Surface *s, uint32_t x, uint32_t y
 									, uint32_t pixel);
+Uint32					getpixel(SDL_Surface *surface, int x, int y);
+t_col					get_px_color(SDL_PixelFormat *fmt, Uint32 pixel);
 
 void					apply_post_effect(t_cam *cam, t_post_effect e);
 
