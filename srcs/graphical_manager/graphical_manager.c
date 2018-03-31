@@ -6,12 +6,12 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:55:13 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 14:49:38 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 17:02:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <SDL.h>
-#include "/Users/psebasti/.brew/Cellar/sdl2/2.0.8/include/SDL2/SDL.h"
+#include "/Users/seb/.brew/Cellar/sdl2/2.0.8/include/SDL2/SDL.h"
 #include "./includes/rt.h"
 #include "./includes/graphical_manager.h"
 
@@ -35,18 +35,29 @@ void				apply_post_effect(t_cam *cam, t_post_effect e)
 {
 	uint32_t		i;
 	SDL_Surface		*cpy;
+	int				x;
+	int				y;
 
 	i = 0;
 	while (cam->frames[i])
 	{
-		if (cam->frames_state[i] == FS_DONE && 
-				(cpy = dup_surface(cam->frames[i])))
+		/*if (cam->frames_state[i] == FS_DONE && */
+		/*(cpy = dup_surface(cam->frames[i])))*/
+		if (cam->frames_state[i] == FS_DONE)
 		{
-			cpy = postprocess()[cam->effect](cpy);
-			SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);
-			SDL_FreeSurface(cpy);
-			cam->frames_state[i] = FS_PROCCESSED;
+			y = -1;
+			while (++y < s->h)
+			{
+				x = -1;
+				while (++x < s->w)
+					set_pixel(s, x, y, postprocess()[cam->effect](s, x, y));
+			}
+			/*cpy = postprocess()[cam->effect](cpy);*/
+			/*SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);*/
+			/*SDL_FreeSurface(cpy);*/
 		}
-		i++;
+		cam->frames_state[i] = FS_PROCCESSED;
 	}
+	i++;
+}
 }

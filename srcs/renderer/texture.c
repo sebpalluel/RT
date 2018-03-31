@@ -15,7 +15,7 @@ t_col get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 	color.s = s / 255.0;
 	//if (color.s != 0)
 	// printf("Pixel Color -> R: %f,  G: %f,  B: %f, A: %f\n", color.r, color.g, color.b, color.s);
-	return color;
+	return (color);
 }
 
 /*

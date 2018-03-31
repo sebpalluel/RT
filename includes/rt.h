@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/31 11:12:07 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/03/31 17:00:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,6 @@ typedef double	(*t_func_dble)();
 typedef	t_vec3	(*t_func_vec3)();
 typedef t_vec3	(*t_func_uv_map)();
 typedef	double	(*t_effects)();
-typedef	SDL_Surface	*(*t_postproc)();
 
 /*
 ** =============================================================================
@@ -293,14 +292,6 @@ double		ft_zebra(t_vec3 vec3, t_gen gen);
 double		ft_wood(t_vec3 vec3, t_gen gen);
 double		ft_cloud(t_vec3 vec3, t_gen gen);
 double		ft_checker(t_vec3 vec3, t_gen gen);
-
-SDL_Surface	*ft_sepia(SDL_Surface *s);
-SDL_Surface	*ft_blur(SDL_Surface *s);
-SDL_Surface	*ft_cel_shading(SDL_Surface *s);
-SDL_Surface	*ft_blackandwhite(SDL_Surface *s);
-SDL_Surface	*ft_negative(SDL_Surface *s);
-SDL_Surface	*ft_effect_change(SDL_Surface *s);
-t_postproc	*postprocess(void);
 
 // Nathan
 t_text **get_texture(void);
