@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 18:13:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:08:39 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/rt.h"
+#include "rt.h"
 
 t_vec3			normal_plane(t_ray ray, t_list *plane)
 {

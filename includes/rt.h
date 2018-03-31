@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 19:15:17 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:12:07 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 ** 			is none of my buisness ♪♪♪
 */
 
-//# include <SDL.h>
-# include "/Users/seb/.brew/include/SDL2/SDL.h"
+# include <SDL.h>
+//# include "/Users/seb/.brew/include/SDL2/SDL.h"
 # include "kernal.h"
 # include "rtv1_struct.h"
 # include "display_manager.h"

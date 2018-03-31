@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 09:10:24 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 19:15:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:08:18 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 ** =============================================================================
 */
 
-//# include <SDL.h>
-# include "/Users/seb/.brew/include/SDL2/SDL.h"
+# include <SDL.h>
+//# include "/Users/seb/.brew/include/SDL2/SDL.h"
 # include "rt.h"
 
 /*
@@ -37,7 +37,7 @@
 ** =============================================================================
 */
 
-typedef void				(*t_key_func)(t_env *);
+typedef void				(*t_key_func)(void);
 
 typedef struct				s_key
 {
@@ -54,23 +54,23 @@ typedef struct				s_key
 
 t_key						*init_keys(void);
 
-void						handle_keyboard(t_env *env);
+void						handle_keyboard(void);
 
 uint32_t					is_combinason_pressed(t_key k, const uint8_t *keys);
 SDL_Scancode				*create_codes(int32_t codes, ...);
 t_key						create_key(uint32_t keys, SDL_Scancode *codes
 										, t_key_func f);
 
-void						exit_rt(t_env *env);
-void						toggle_fullscreen(t_env *env);
-void						perspepective_up(t_env *env);
-void						perspepective_down(t_env *env);
-void						rpp_up(t_env *env);
-void						rpp_down(t_env *env);
-void						expo_up(t_env *env);
-void						expo_down(t_env *env);
-void						threshold_up(t_env *env);
-void						threshold_down(t_env *env);
+void						exit_rt(void);
+void						toggle_fullscreen(void);
+void						perspepective_up(void);
+void						perspepective_down(void);
+void						rpp_up(void);
+void						rpp_down(void);
+void						expo_up(void);
+void						expo_down(void);
+void						threshold_up(void);
+void						threshold_down(void);
 
 /*
 ** =============================================================================

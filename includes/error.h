@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 16:23:02 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 19:16:01 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:13:43 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,28 @@
 # define MAT_ERROR_S	"error: one of the material is not in the correct format"
 # define GEN_ERROR_S	"error: generative struct is not in the correct format"
 # define TEX_ERROR_S	"error: texture struct is not in the correct format"
-# define FILE_ERROR		-1
-# define ENG_ERROR		-2
-# define LIGHT_ERROR	-3
-# define CAM_ERROR		-4
-# define PLANE_ERROR	-5
-# define SPHERE_ERROR	-6
-# define CONE_ERROR		-7
-# define CYLINDRE_ERROR	-8
-# define TORUS_ERROR	-9
-# define MOEBIUS_ERROR	-10
-# define SCN_ERROR		-11
-# define OBJ_ERROR		-12
-# define DIM_ERROR		-13
-# define TEX_MT_ERROR	-14
-# define XML_ERROR		-15
-# define MAT_ERROR		-16
-# define GEN_ERROR		-17
-# define TEX_ERROR		-18
+
+typedef enum			e_error
+{
+	FILE_ERROR = 0,
+	ENG_ERROR,
+	LIGHT_ERROR,
+	CAM_ERROR,
+	PLANE_ERROR,
+	SPHERE_ERROR,
+	CONE_ERROR,
+	CYLINDRE_ERROR,
+	TORUS_ERROR,
+	MOEBIUS_ERROR,
+	SCN_ERROR,
+	OBJ_ERROR,
+	DIM_ERROR,
+	TEX_MT_ERROR,
+	XML_ERROR,
+	MAT_ERROR,
+	GEN_ERROR,
+	TEX_ERROR,
+	MAX_ERROR
+}						t_error;
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   postprocess.c                                      :+:      :+:    :+:   */
+/*   post_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:16:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 14:56:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:23:15 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static inline t_col	get_pixel_col(SDL_Surface *s, int x, int y)
 	return (ft_hextocol(get_pixel(s, x, y)));
 }
 
-t_col		ft_cel_shading(SDL_Surface *s)
+SDL_Surface		*ft_cel_shading(SDL_Surface *s)
 {
 	float	index;
 	float	clamp;
@@ -53,7 +53,7 @@ t_col		ft_cel_shading(SDL_Surface *s)
 	return (col);
 }
 
-t_col		ft_blur(SDL_Surface *s)
+SDL_Surface		*ft_blur(SDL_Surface *s)
 {
 	t_col	avg;
 	t_col	ref;
@@ -78,7 +78,7 @@ t_col		ft_blur(SDL_Surface *s)
 	return (ft_col_r(avg.r / blurpix, avg.g / blurpix, avg.b / blurpix, 1.));
 }
 
-t_col		ft_sepia(SDL_Surface *s)
+SDL_Surface		*ft_sepia(SDL_Surface *s)
 {
 	float	red;
 	float	green;
@@ -95,7 +95,7 @@ t_col		ft_sepia(SDL_Surface *s)
 	return (ft_col_r(red, green, blue, 1.));
 }
 
-t_col		ft_blackandwhite(SDL_Surface *st_setup *setup, int x, int y)
+SDL_Surface		*ft_blackandwhite(SDL_Surface *s, int x, int y)
 {
 	double	tmp;
 	t_col	col;
@@ -105,7 +105,7 @@ t_col		ft_blackandwhite(SDL_Surface *st_setup *setup, int x, int y)
 	return (ft_col_r(tmp, tmp, tmp, 1.));
 }
 
-t_col		ft_negative(SDL_Surface *s)
+SDL_surface		*ft_negative(SDL_Surface *s)
 {
 	t_col	col;
 

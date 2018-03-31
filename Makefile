@@ -96,6 +96,8 @@ SRCS = main.c															\
 		update_display_manager.c										\
 		render.c														\
 		event_stack.c													\
+		post_process.c													\
+		graphical_manager.c												\
 
 
 
@@ -112,6 +114,7 @@ INC = libft.h																\
 
 vpath %.c $(PATH_SRC)/renderer
 vpath %.c $(PATH_SRC)/display_manager
+vpath %.c $(PATH_SRC)/graphical_manager
 vpath %.c $(PATH_SRC)/event_manager
 vpath %.c $(PATH_SRC)/parser
 vpath %.c $(PATH_SRC)/keys

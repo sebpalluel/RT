@@ -6,11 +6,12 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/30 19:13:48 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:12:41 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/rt.h"
+#include "rt.h"
+//#include "./includes/rt.h"
 
 t_func_col		*intersection(void)
 {
@@ -61,29 +62,6 @@ t_postproc				*postprocess(void)
 	return (postp);
 }
 
-typedef enum			e_error
-{
-	FILE_ERROR = 0,
-	ENG_ERROR,
-	LIGHT_ERROR,
-	CAM_ERROR,
-	PLANE_ERROR,
-	SPHERE_ERROR,
-	CONE_ERROR,
-	CYLINDRE_ERROR,
-	TORUS_ERROR,
-	MOEBIUS_ERROR,
-	SCN_ERROR,
-	OBJ_ERROR,
-	DIM_ERROR,
-	TEX_MT_ERROR,
-	XML_ERROR,
-	MAT_ERROR,
-	GEN_ERROR,
-	TEX_ERROR,
-	MAX_ERROR
-}						t_error;
-
 void					put_usage(t_error e)
 {
 	static char			*tab[MAX_ERROR] = {
@@ -105,7 +83,7 @@ void					put_usage(t_error e)
 		"error: one of the material is not in the correct format",
 		"error: generative struct is not in the correct format",
 		"error: texture struct is not in the correct format"
-};
+	};
 
 	ft_putendl(tab[e]);
 }

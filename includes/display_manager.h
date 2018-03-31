@@ -6,15 +6,15 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 13:58:16 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 19:16:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:06:58 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDL_HANDLER_H
 # define SDL_HANDLER_H
 
-//# include <SDL.h>
-# include "/Users/seb/.brew/include/SDL2/SDL.h"
+# include <SDL.h>
+//# include "/Users/seb/.brew/include/SDL2/SDL.h"
 # include "../libft/includes/libft.h"
 
 #define DEFAULT_WIDTH	3840

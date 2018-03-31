@@ -6,11 +6,11 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:29:07 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/30 19:01:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:09:10 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/rt.h"
+#include "rt.h"
 
 double	hit_cyl(t_ray ray, t_shape *form)
 {

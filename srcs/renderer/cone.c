@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 20:19:17 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/30 19:00:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:08:54 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/rt.h"
+#include "rt.h"
 
 double	hit_cone(t_ray ray, t_shape *form)
 {
