@@ -90,6 +90,7 @@ SRCS = main.c																\
 	   utils.c																\
 	   sp_mat.c																\
 	   matrices.c															\
+	   postprocess.c														\
 	   singleton.c															\
 			create_cam_buffer.c												\
 			create_display_manager.c										\

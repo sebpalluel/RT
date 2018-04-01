@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:41:00 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/29 18:53:10 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/01 17:42:38 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ t_ray			calculate_ray(int32_t x, int32_t y, t_cam *cam, SDL_Surface *s)
 	return (ray);
 }
 
-t_col			send_ray(t_ray ray, t_scene *scene)
+t_col			send_ray(t_ray ray, t_draw_data *data)
 {
 	t_list		*ptr;
 	t_list		*nearest;
 	double		dist;
 
-	ptr = scene->forms;
+	ptr = data->scene->forms;
 	nearest = NULL;
 	while (ptr)
 	{
@@ -65,8 +65,8 @@ t_col			send_ray(t_ray ray, t_scene *scene)
 	ptr = ptr->next;
 	}
 	if (!nearest)
-		return (scene->background);
+		return (data->scene->background);
 	if (FORM(nearest)->type != 0)
-		return (intersection()[FORM(nearest)->type - 1](ray, nearest, scene));
-	return (scene->background);
+		return (intersection()[FORM(nearest)->type - 1](ray, nearest, data->scene));
+	return (data->scene->background);
 }

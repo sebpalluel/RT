@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:45:17 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 18:49:54 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/01 18:46:50 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,29 @@ typedef struct		s_ray
 	int				nbrefl;
 	int				flag;
 }					t_ray;
+
+typedef enum		e_error
+{
+	FILE_ERROR = 0,
+	ENG_ERROR,
+	LIGHT_ERROR,
+	CAM_ERROR,
+	PLANE_ERROR,
+	SPHERE_ERROR,
+	CONE_ERROR,
+	CYLINDRE_ERROR,
+	TORUS_ERROR,
+	MOEBIUS_ERROR,
+	SCN_ERROR,
+	OBJ_ERROR,
+	DIM_ERROR,
+	TEX_MT_ERROR,
+	XML_ERROR,
+	MAT_ERROR,
+	GEN_ERROR,
+	TEX_ERROR,
+	MAX_ERROR
+}					t_error;
 
 /*
 ** =============================================================================
@@ -274,11 +297,7 @@ size_t		ft_torus(t_list **list);
 size_t		ft_moebius(t_list **list);
 
 t_parse_obj	*parse_obj(void);
-void		*ft_raytracing(void *a); // Nathan: en fait ici c est la fonction de render
-int			ft_raytracing_thread(t_scene *scene);
-size_t		ft_get_thread_n(t_scene *scene);
 void		ft_setup_cam(t_scene *scene);
-void		ft_put_pixel(t_scene *scene, int x, int y, int color);
 
 // TODO Eliott functions
 int			coltoi(t_col col);
@@ -291,7 +310,7 @@ t_matrix	id_mat(void);
 t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b);
 t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis);
 
-t_col		send_ray(t_ray ray, t_scene *scene);
+t_col		send_ray(t_ray ray, t_draw_data *data);
 
 t_func_col	*intersection(void);
 t_func_dble	*hit_shape(void);
@@ -366,6 +385,21 @@ double	ft_resolve_quadric_min(double b, double c, double d, double e);
 
 //Maxime
 void					leave(char *msg, uint32_t exit_code);
+void					display_manager_event_watcher(void);
+uint32_t				refresh_dwindow(t_window *win);
+uint32_t				display_best_frame(t_cam *cam, SDL_Surface *s
+											, t_frame_state state);
+
+/*
+** Endian color dep
+*/
+inline uint32_t			*get_mask_endian(void);
+inline uint8_t			get_pixel_alpha(uint32_t p);
+inline uint8_t			get_pixel_blue(uint32_t p);
+inline uint8_t			get_pixel_green(uint32_t p);
+inline uint8_t			get_pixel_red(uint32_t p);
+inline uint32_t			create_color(uint8_t r, uint8_t g, uint8_t b
+									, uint8_t a);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:46:44 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/30 18:08:01 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/01 18:39:03 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ inline void				leave(char *str, uint32_t exit_code)
 	ft_putstr(STR_INF("Exiting"NICK));
 	exit(exit_code);
 }
-
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-static inline uint32_t	*get_mask_endian(void)
-{
-	static uint32_t		t[4] = {0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff};
-
-	return (t);
-}
-#else
-static inline uint32_t	*get_mask_endian(void)
-{
-	static uint32_t		t[4] = {0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000};
-
-	return (t);
-}
-#endif
 
 void					init_cam_buffers(t_cam *cam, uint32_t frames)
 {

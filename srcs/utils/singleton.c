@@ -6,13 +6,13 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:09:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/29 17:57:38 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/01 19:21:04 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_func_col		*intersection(void)
+t_func_col				*intersection(void)
 {
 	static t_func_col func[NUM_FORM] = {&intersec_sphere, &intersec_plan, \
 		&intersec_cone, &intersec_cyl, &intersec_tor, &intersec_moe};
@@ -20,7 +20,7 @@ t_func_col		*intersection(void)
 	return (func);
 }
 
-t_func_dble	*hit_shape(void)
+t_func_dble				*hit_shape(void)
 {
 	static t_func_dble func[NUM_FORM] = {&hit_sphere, &hit_plan, \
 		&hit_cone, &hit_cyl, &hit_tor, &hit_moe};
@@ -28,7 +28,7 @@ t_func_dble	*hit_shape(void)
 	return (func);
 }
 
-t_func_vec3	*normal_shape(void)
+t_func_vec3				*normal_shape(void)
 {
 	static t_func_vec3 func[NUM_FORM] = {&normal_sphere, &normal_plane, \
 		&normal_cone, &normal_cyl, &normal_tor, &normal_moe};
@@ -45,13 +45,13 @@ t_parse_obj				*parse_obj(void)
 	return (parse);
 }
 
-t_effects				*effects(void)
-{
-	static t_effects effect[NUM_PROC] = {&ft_marble, &ft_zebra\
-		, &ft_wood, &ft_cloud, &ft_perlin, &ft_checker};
+/*t_effects				*effects(void)*/
+/*{*/
+	/*static t_effects effect[NUM_PROC] = {&ft_marble, &ft_zebra\*/
+		/*, &ft_wood, &ft_cloud, &ft_perlin, &ft_checker};*/
 
-	return (effect);
-}
+	/*return (effect);*/
+/*}*/
 
 t_postproc				*postprocess(void)
 {
@@ -60,29 +60,6 @@ t_postproc				*postprocess(void)
 
 	return (postp);
 }
-
-typedef enum			e_error
-{
-	FILE_ERROR = 0,
-	ENG_ERROR,
-	LIGHT_ERROR,
-	CAM_ERROR,
-	PLANE_ERROR,
-	SPHERE_ERROR,
-	CONE_ERROR,
-	CYLINDRE_ERROR,
-	TORUS_ERROR,
-	MOEBIUS_ERROR,
-	SCN_ERROR,
-	OBJ_ERROR,
-	DIM_ERROR,
-	TEX_MT_ERROR,
-	XML_ERROR,
-	MAT_ERROR,
-	GEN_ERROR,
-	TEX_ERROR,
-	MAX_ERROR
-}						t_error;
 
 void					put_usage(t_error e)
 {
