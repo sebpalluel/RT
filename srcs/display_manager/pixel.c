@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:31:00 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/04/01 18:46:25 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/01 19:34:33 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ inline uint8_t			get_pixel_green(uint32_t p)
 	return ((uint8_t)((p & 0x00ff0000) >> 16));
 }
 
-inline uint8_t			get_pixel_blue(uint32_t p)
+inline uint8_t			get_pixel_red(uint32_t p)
 {
 	return ((uint8_t)((p & 0xff000000) >> 24));
 }
@@ -80,7 +80,7 @@ inline uint8_t			get_pixel_green(uint32_t p)
 	return ((uint8_t)((p & 0x0000ff00) >> 8));
 }
 
-inline uint8_t			get_pixel_blue(uint32_t p)
+inline uint8_t			get_pixel_red(uint32_t p)
 {
 	return ((uint8_t)((p & 0x000000ff)));
 }
