@@ -6,7 +6,7 @@
 /*   By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:55:13 by mbeilles          #+#    #+#             */
-/*   Updated: 2018/03/31 17:15:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 00:45:27 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include "rt.h"
 #include "graphical_manager.h"
 
-uint32_t			update_graphical_manager(t_kernal_event e)
-{
-	if (e.type == EK_WINDOW_REFRESH)
-}
+//uint32_t			update_graphical_manager(t_kernal_event e)
+//{
+//	if (e.type == EK_WINDOW_REFRESH)
+//}
 
 //SDL_Surface                        *dup_surface(SDL_Surface *sf)
 //{
@@ -41,8 +41,6 @@ void				apply_post_effect(t_cam *cam, t_post_effect e)
 	i = 0;
 	while (cam->frames[i])
 	{
-		/*if (cam->frames_state[i] == FS_DONE && */
-		/*(cpy = dup_surface(cam->frames[i])))*/
 		if (cam->frames_state[i] == FS_DONE)
 		{
 			s = cam->frames[i];
@@ -53,9 +51,6 @@ void				apply_post_effect(t_cam *cam, t_post_effect e)
 				while (++x < s->w)
 					set_px_color(s, x, y, postprocess()[cam->effect](s, x, y));
 			}
-			/*cpy = postprocess()[cam->effect](cpy);*/
-			/*SDL_BlitSurface(cpy, NULL, cam->frames[i], NULL);*/
-			/*SDL_FreeSurface(cpy);*/
 			cam->frames_state[i] = FS_PROCCESSED;
 		}
 		i++;
