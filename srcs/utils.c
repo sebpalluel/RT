@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:59:10 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 13:57:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 17:34:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,4 @@ void				ft_cosvalintime(double *val, double min, double max,\
 	scale[1] = max;
 	g_time += 1;
 	*val = ft_doublescale(cos(g_time * speed), in, scale);
-}
-
-void				ft_saveimg(t_img *img, char *name, \
-		int width, int height)
-{
-	int				fd;
-	//int				xy[2];
-	//int				b;
-
-	if ((fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, 0755)) >= 2)
-	{
-		//fprintf(file, "P6 %d %d %d\n", width, height, 255);
-		//fwrite(img->image, img->bbp, width * height, file);
-		(void)width;
-		(void)height;
-		(void)img;
-		close(fd);
-	}
 }

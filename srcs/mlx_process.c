@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 16:24:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 16:45:10 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			ft_loop_hook(t_setup *setup)
 				cosf(g_time * step);
 		SCN.cur_cam->org = rot;
 		printf("rot.x %f, rot.y %f, rot.z %f\n", rot.x, rot.y, rot.z);
-		ft_saveimg(SCN.img[SCN.effect], "test.ppm", SCN.width, SCN.height);
+		ft_saveimg(SCN, "test.ppm");
 		//ft_cosvalintime(&SCN.cur_cam->org.x, 0., 1., 0.1);
 		//ft_sinvalintime(&SCN.cur_cam->org.z, 0., 1., 0.1);
 		setup->mode = STATE_DRAW;
