@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 14:25:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/26 16:11:06 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 14:03:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ static const t_vec3			g_unitcube[8] = {
 };
 
 static size_t				g_time = 0;
+static size_t				g_thread = 0;
 
 #endif

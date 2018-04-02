@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:49:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 11:35:31 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 15:51:45 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void			*ft_raytracing(void *a)
 						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
 								setup)));
 	}
-
 	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }

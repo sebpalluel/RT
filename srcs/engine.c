@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/26 19:57:24 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 16:26:05 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ static void		ft_create_new_window(t_setup *setup)
 			!(SCN.img[1] = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height)))
 		setup->error = ERROR;
 	else
+	{
 		SCN.win->mlx_ptr = setup->mlx_ptr;
-	mlx_hook(SCN.win->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
-			ft_quit, setup);
+		mlx_hook(SCN.win->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
+				ft_quit, setup);
+		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
+				setup->loading->image, SCN.width / 3., SCN.height / 2.7);
+	}
 }
 
 size_t			ft_engine(t_list **list)
