@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/01/09 14:05:27 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/04/02 13:16:32 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/02 17:36:05 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -80,6 +80,7 @@ SRCNAME 	=	main.c \
 				uv_maps_helpers.c \
 				moebius.c \
 				newton.c \
+				save_img.c \
 				#draw.c \
 				#raycaster.c \
 
