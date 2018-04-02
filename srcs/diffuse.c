@@ -63,23 +63,6 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 						ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-')), norm));
 }
 
-t_col ft_col_map(t_col col)
-{
-	if (col.r > 0)
-		col.r = col.r / (col.r + 1);
-	else
-		col.r = 0;
-	if (col.g > 0)
-		col.g = col.g / (col.g + 1);
-	else
-		col.g = 0;
-	if (col.b > 0)
-		col.b = col.b / (col.b + 1);
-	else
-		col.b = 0;
-	return (col);
-}
-
 t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 {
 	double		lmbrt;
@@ -146,6 +129,5 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 		lgt = lgt->next;
 	}
 	col = ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, hit_mat.col), hit_mat.trsp), refl, hit_mat.refl);
-	col = ft_col_map(col);
 	return (col);
 }

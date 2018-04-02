@@ -10,7 +10,7 @@
 
 	<cameras>
 		<camera>
-			<origin> 1.0, 0.0, 0.0 </origin>
+			<origin> 0.0, 0.0, -1.0 </origin>
 			<look_at> 0.0, 0.0, 0.0 </look_at>
 		</camera>
 	</cameras>
@@ -70,7 +70,14 @@
 				<color> 1.0, 1.0, 1.0, 0.0 </color>
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
-				<transparency> 0 </transparency>
+				<transparency> 0.9 </transparency>
+				<generative>
+					<mode> 1 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
 			</material>
 		</cylindre>
 		<plane>

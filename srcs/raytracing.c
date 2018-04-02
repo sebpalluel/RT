@@ -35,6 +35,23 @@ static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 	return (ray);
 }
 
+t_col ft_col_map(t_col col)
+{
+	if (col.r > 0)
+		col.r = col.r / (col.r + 1);
+	else
+		col.r = 0;
+	if (col.g > 0)
+		col.g = col.g / (col.g + 1);
+	else
+		col.g = 0;
+	if (col.b > 0)
+		col.b = col.b / (col.b + 1);
+	else
+		col.b = 0;
+	return (col);
+}
+
 void			*ft_raytracing(void *a)
 {
 	t_setup		*setup;
@@ -55,8 +72,8 @@ void			*ft_raytracing(void *a)
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
 				ft_put_pixel(setup, pix.x, pix.y, \
-						ft_coltoi(send_ray(calculate_ray(pix.x, pix.y, setup), \
-								setup)));
+						ft_coltoi(ft_col_map(send_ray(calculate_ray(pix.x, pix.y, setup), \
+								setup))));
 	}
 	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
