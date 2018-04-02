@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1_struct.h                                    :+:      :+:    :+:   */
+/*   rtv1_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 16:23:00 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 23:02:18 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,30 @@ typedef struct		s_setup
 	t_text			**textures;
 	t_img			vid[360];
 }					t_setup;
+
+typedef enum		e_error
+{
+	NO_ERROR = OK,
+	UNDIFINED_ERROR = ERROR,
+	FILE_ERROR = 2,
+	ENG_ERROR,
+	LIGHT_ERROR,
+	CAM_ERROR,
+	PLANE_ERROR,
+	SPHERE_ERROR,
+	CONE_ERROR,
+	CYLINDRE_ERROR,
+	TORUS_ERROR,
+	MOEBIUS_ERROR,
+	SCN_ERROR,
+	OBJ_ERROR,
+	DIM_ERROR,
+	TEX_MT_ERROR,
+	XML_ERROR,
+	MAT_ERROR,
+	GEN_ERROR,
+	TEX_ERROR,
+	ERROR_MAX
+}					t_error;
 
 #endif

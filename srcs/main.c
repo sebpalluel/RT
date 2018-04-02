@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:56:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 19:17:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 23:04:52 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,32 @@ size_t			ft_args_to_fd(t_setup *setup)
 	return (OK);
 }
 
-int				usage(int mode)
+int				usage(t_error mode)
 {
-	if (mode == OK)
-		ft_putendl("program exited normally");
-	else if (mode == ERROR)
-		ft_putendl("usage: ./rtv1 map_name");
-	else if (mode == FILE_ERROR)
-		ft_putendl(FILE_ERROR_S);
-	else if (mode == ENG_ERROR)
-		ft_putendl(ENG_ERROR_S);
-	else if (mode == LIGHT_ERROR)
-		ft_putendl(LIGHT_ERROR_S);
-	else if (mode == PLANE_ERROR)
-		ft_putendl(PLANE_ERROR_S);
-	else if (mode == SPHERE_ERROR)
-		ft_putendl(SPHERE_ERROR_S);
-	else if (mode == CONE_ERROR)
-		ft_putendl(CONE_ERROR_S);
-	else if (mode == CYLINDRE_ERROR)
-		ft_putendl(CYL_ERROR_S);
-	else if (mode == TORUS_ERROR)
-		ft_putendl(TOR_ERROR_S);
-	else if (mode == MOEBIUS_ERROR)
-		ft_putendl(MOE_ERROR_S);
-	else if (mode == CAM_ERROR)
-		ft_putendl(CAM_ERROR_S);
-	else if (mode == SCN_ERROR)
-		ft_putendl(SCN_ERROR_S);
-	else if (mode == OBJ_ERROR)
-		ft_putendl(OBJ_ERROR_S);
-	else if (mode == DIM_ERROR)
-		ft_putendl(DIM_ERROR_S);
-	else if (mode == XML_ERROR)
-		ft_putendl(XML_ERROR_S);
-	else if (mode == MAT_ERROR)
-		ft_putendl(MAT_ERROR_S);
-	else if (mode == GEN_ERROR)
-		ft_putendl(GEN_ERROR_S);
-	else if (mode == TEX_ERROR)
-		ft_putendl(TEX_ERROR_S);
+	static char	*str[ERROR_MAX] = {
+		"program exited normally",
+		"usage: ./rt [/path/to/map]",
+		"error: file doesn't exist or don't have the rights",
+		"error: engine is not in the correct format",
+		"error: light struct is not in the correct format",
+		"error: plane struct is not in the correct format",
+		"error: sphere struct is not in the correct format",
+		"error: cone struct is not in the correct format",
+		"error: cylindre struct is not in the correct format",
+		"error: torus struct is not in the correct format",
+		"error: moebius struct is not in the correct format",
+		"error: cam struct is not in the correct format",
+		"error: scene is not in the correct format",
+		"error: objects are not in the correct format",
+		"error: dim is not in the correct format [100;4000]",
+		"error: texture not allowed for torus and moebius",
+		"error: one of the xml struct is not in the correct format",
+		"error: one of the material is not in the correct format",
+		"error: generative struct is not in the correct format",
+		"error: texture struct is not in the correct format"
+	};
+
+	ft_putendl(str[mode]);
 	return (mode);
 }
 
