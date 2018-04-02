@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 16:43:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 17:37:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../includes/rtv1_global.h"
 # include <time.h>
 # include <sys/time.h>
-//# include "/Users/psebasti/Library/Frameworks/SDL2.framework/Headers/SDL.h"
+//# include "/Users/esuits/Library/Frameworks/SDL2.framework/Headers/SDL.h"
 # include <SDL_image.h>
 # include <SDL.h>
 
@@ -175,6 +175,7 @@ t_vec3		uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 t_vec3		uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 
 double	ft_2min_pos(double a, double b);
-double	ft_resolve_cubic_min(double a, double b, double c, double d);
+int		ft_resolve_cubic_min(double *a, double *b, double *c, double d);
 double	ft_resolve_quadric_min(double b, double c, double d, double e);
+double	det_mat(t_vec3 a, t_vec3 b, t_vec3 c);
 #endif

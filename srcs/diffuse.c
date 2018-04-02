@@ -46,7 +46,7 @@ double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_list *light)
 	t_vec3	lgtdir;
 	double	phongterm;
 
-	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect, \
+	lgtdir = ft_vec3normalize_r(ft_vec3vop_r(LGT(light)->vect, 
 				ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-'));
 	refl = 2.0 * ft_vec3dot(lgtdir, norm);
 	phongdir = ft_vec3vop_r(lgtdir, ft_vec3sop_r(norm, refl, '*'), '-');
@@ -61,6 +61,23 @@ double	lambert(t_ray ray, t_vec3 norm, t_list *lgt)
 {
 	return (ft_vec3dot(ft_vec3normalize_r(ft_vec3vop_r(LGT(lgt)->vect,
 						ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), '-')), norm));
+}
+
+t_col ft_col_map(t_col col)
+{
+	if (col.r > 0)
+		col.r = col.r / (col.r + 1);
+	else
+		col.r = 0;
+	if (col.g > 0)
+		col.g = col.g / (col.g + 1);
+	else
+		col.g = 0;
+	if (col.b > 0)
+		col.b = col.b / (col.b + 1);
+	else
+		col.b = 0;
+	return (col);
 }
 
 t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
@@ -116,16 +133,19 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	while (lgt)
 	{
 		shad = shadow(LGT(lgt), SCN.forms, hit);
+	//	shad = LGT(lgt)->col;
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;
 		dist = ft_vec3norm(ft_vec3vop_r(hit, LGT(lgt)->vect, '-'));
 		dist *= dist;
-		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(\
+		col = ft_coladd(ft_colinterpol(setup->background, ft_colmultscale(
 						ft_colmult(hit_mat.col, shad), 4 * SCN.expo / dist), lmbrt), col);
 		spec = ft_coladd(spec, ft_colmultscale(ft_colinterpol(setup->background,
 						shad, phong(ray, hit_mat, norm, lgt)), 4 * SCN.expo / dist));
 		lgt = lgt->next;
 	}
-	return (ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, hit_mat.col), hit_mat.trsp), refl, hit_mat.refl));
+	col = ft_colinterpol(ft_colinterpol(ft_coladd(spec, ft_coladd(col, glob)), ft_colmult(refract, hit_mat.col), hit_mat.trsp), refl, hit_mat.refl);
+	col = ft_col_map(col);
+	return (col);
 }

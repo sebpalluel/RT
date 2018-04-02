@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 16:41:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 17:38:23 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MAX_CAM		10
 # define AMP			1.3
 
-# define VIDEO_MODE		1
+# define VIDEO_MODE		0
 
 # define STATE_RUN		0
 # define STATE_START	1

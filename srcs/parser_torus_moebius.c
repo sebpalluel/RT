@@ -51,7 +51,9 @@ size_t			ft_moebius(t_list **list)
 	if (ft_checkifallset(flag, ft_getnumvar(NVARMOEBIUS, form)) != OK)
 		return (setup->error = MOEBIUS_ERROR);
 	MOEB(form).axe_x = ft_vec3normalize_r(MOEB(form).axe_x);
-	MOEB(form).axe_y = ft_vec3normalize_r(MOEB(form).axe_y);
+	MOEB(form).axe_y = ft_vec3normalize_r(ft_vec3vop_r(MOEB(form).axe_y, ft_vec3sop_r(MOEB(form).axe_x, ft_vec3dot(MOEB(form).axe_x, MOEB(form).axe_y), '*'), '-'));
+	if (MOEB(form).axe_y.x == 0 && MOEB(form).axe_y.y == 0 && MOEB(form).axe_y.z == 0)
+		return (setup->error = MOEBIUS_ERROR);
 	*list = env;
 	return (OK);
 }
