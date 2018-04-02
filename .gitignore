@@ -3,4 +3,5 @@
 libft/libft.a
 libft/objs/*
 obj/*
+captures/*
 rtv1

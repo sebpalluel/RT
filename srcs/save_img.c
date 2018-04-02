@@ -6,19 +6,39 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 17:34:04 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 17:38:08 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 19:12:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static void			put_header(t_scene scn, int fd)
+static t_bool		put_header(t_scene scn, int fd)
 {
+	char			*width;
+	char			*height;
+
+	width = ft_itoa(scn.width);
+	height = ft_itoa(scn.height);
+	if (!width || !height)
+		return (ERROR);
 	write(fd, "P6\n", 3);
-	write(fd, ft_itoa(scn.width), ft_strlen(ft_itoa(scn.width)));
+	write(fd, width, ft_strlen(width));
 	write(fd, " ", 1);
-	write(fd, ft_itoa(scn.height), ft_strlen(ft_itoa(scn.height)));
+	write(fd, height, ft_strlen(height));
 	write(fd, "\n255\n", 5);
+	free(width);
+	free(height);
+	return (OK);
+}
+
+char				*ft_savename(const char *name, size_t counter)
+{
+	char			*ret;
+
+	ret = ft_strjoinfree((char*)name, ft_itoa(counter), 2);
+	ret = ft_strjoinfree(ret, ft_strdup(".ppm"), 0);
+	printf("g_time %lu, str %s\n", g_time, ret);
+	return (ret);
 }
 
 void				ft_saveimg(t_scene scn, char *name)
@@ -29,9 +49,9 @@ void				ft_saveimg(t_scene scn, char *name)
 	t_img			*img;
 
 	img = scn.img[scn.effect];
-	if ((fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, 0755)) >= 2)
+	if (name && (fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, 0755)) >= 2 && 
+			put_header(scn, fd) == OK)
 	{
-		put_header(scn, fd);
 		xy[1] = -1;
 		while (++xy[1] < (int)scn.height)
 		{
