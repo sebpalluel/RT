@@ -220,7 +220,7 @@ endif
 #                                    Rules                                     #
 #==============================================================================#
 
-$(NAME):  $(PATH_OBJ) $(OBJS)
+$(NAME): $(OBJS)
 	@$(eval INSTRUCTION := all)
 	@if [ $(MAKE_DEP) == 1 ]; then $(DEPENDECIES) fi;
 	@printf $(MAKING_PROGRESS)
@@ -231,7 +231,7 @@ $(NAME):  $(PATH_OBJ) $(OBJS)
 
 all: $(NAME)
 
-%.o: %.c
+%.o: %.c | $(PATH_OBJ)
 	@$(CC) -o $(PATH_OBJ)/$@ -c $< $(CFLAG); \
 		if [ $$? != 1 ]; then printf $(COMPILING_OK); exit 0; \
 		else printf $(COMPILING_KO); exit 2; fi
@@ -248,12 +248,6 @@ install_sdl:
 install_brew:
 	@if [ ! -f $(HOME)/.brew ]; then
 		$(BREW_INSTALL_CMD); fi
-
-depend: .depend
-
-.depend: $(SRCS)
-	@rm -f ./.depend
-	@$(CC) $(CFLAG) -MM $^ -MF ./.depend;
 
 clean:
 	@$(eval INSTRUCTION := clean)
