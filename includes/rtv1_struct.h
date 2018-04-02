@@ -112,14 +112,6 @@ typedef struct	s_cyl
 	double	r;
 }				t_cyl;
 
-typedef struct	s_torus
-{
-	t_vec3		org;
-	t_vec3		dir;
-	double		s_r;
-	double		b_r;
-}				t_torus;
-
 typedef struct	s_moebius
 {
 	t_vec3		org;
@@ -138,7 +130,6 @@ typedef struct	s_shape
 	t_plan		plan;
 	t_cone		cone;
 	t_cyl		cyl;
-	t_torus		tor;
 	t_moebius	moeb;
 }				t_shape;
 
@@ -226,7 +217,6 @@ typedef enum		e_error
 	SPHERE_ERROR,
 	CONE_ERROR,
 	CYLINDRE_ERROR,
-	TORUS_ERROR,
 	MOEBIUS_ERROR,
 	SCN_ERROR,
 	OBJ_ERROR,

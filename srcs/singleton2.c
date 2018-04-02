@@ -28,8 +28,7 @@ char			**ft_validobjs(void)
 	validobjs[4] = "sphere";
 	validobjs[5] = "cone";
 	validobjs[6] = "cylindre";
-	validobjs[7] = "torus";
-	validobjs[8] = "moebius";
+	validobjs[7] = "moebius";
 	return (validobjs);
 }
 

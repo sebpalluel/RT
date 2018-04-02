@@ -45,7 +45,6 @@ int				usage(t_error mode)
 		"error: sphere struct is not in the correct format",
 		"error: cone struct is not in the correct format",
 		"error: cylindre struct is not in the correct format",
-		"error: torus struct is not in the correct format",
 		"error: moebius struct is not in the correct format",
 		"error: cam struct is not in the correct format",
 		"error: scene is not in the correct format",

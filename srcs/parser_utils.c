@@ -25,7 +25,7 @@ size_t		ft_getnumvar(size_t num_var_shape, t_list *form)
 
 t_bool		ft_checkshapevalues(t_setup *setup, t_shape shape)
 {
-	if ((shape.type == MOE || shape.type == TOR) && shape.mat.text_m)
+	if ((shape.type == MOE) && shape.mat.text_m)
 		return (setup->error = TEX_MT_ERROR);
 	//if (shape.mat.text_m == M_TEX && shape.mat.text_c.text_num >= NUM_TEXT)
 	

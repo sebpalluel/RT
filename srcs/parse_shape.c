@@ -98,29 +98,6 @@ void		ft_getcylindres(t_list **env, char *obj_str)
 	ft_strdel(&scope);
 }
 
-void		ft_gettorus(t_list **env, char *obj_str)
-{
-	char	*torus;
-	char	*scope;
-	t_bool	no_val;
-
-	no_val = FALSE;
-	scope = ft_strdup(obj_str);
-	while ((torus = ft_getobjstrn(&scope, "torus")))
-	{
-		ft_lstaddend(env, ft_newenv(ft_strdup("torus"), NULL));
-		ft_getvaluetoenv(env, torus, "origin", &no_val);
-		ft_getvaluetoenv(env, torus, "direction", &no_val);
-		ft_getvaluetoenv(env, torus, "small_radius", &no_val);
-		ft_getvaluetoenv(env, torus, "big_radius", &no_val);
-		ft_getmaterial(env, ft_getobjstr(torus, "material"));
-		free(torus);
-		if (no_val)
-			get_st()->error = TORUS_ERROR;
-	}
-	ft_strdel(&scope);
-}
-
 void		ft_getmoebius(t_list **env, char *obj_str)
 {
 	char	*moebius;

@@ -25,7 +25,7 @@
 # define MAX_OBJ		20
 # define THREAD			128
 # define NUM_FORM		5
-# define NUM_OBJS		9
+# define NUM_OBJS		8
 # define NUM_EFFECTS	5
 # define NUM_PROC		6
 # define NUM_TEXT		2
@@ -88,7 +88,7 @@
 # define NVARPLANE		2
 # define NVARCONE		3
 # define NVARCYLINDRE	3
-# define NVARMOEBIUS	4
+# define NVARMOEBIUS	5
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)
@@ -104,8 +104,7 @@
 # define PLN			2
 # define CON			3
 # define CYL			4
-# define TOR			5
-# define MOE			6
+# define MOE			5
 
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
