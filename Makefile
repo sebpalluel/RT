@@ -23,10 +23,10 @@ NICK = "RTv2"
 #                                 Compilation                                  #
 #==============================================================================#
 
-FLAGS = $(HIDDEN_FLAGS) $(NAZI_FLAG) $(FAST_FLAG)
+FLAGS = $(HIDDEN_FLAGS) $(NAZI_FLAG)
 CFLAG = -I$(PATH_INC) -I$(PATH_LIB)/$(PATH_INC) $(SDL_HDR_PATH) $(FLAGS)
 FAST_FLAG = -O3 -march=native -flto
-SLOW_FLAG = #-fsanitize=address -g3 -O0
+SLOW_FLAG = -fsanitize=address -g3 -O0
 
 HIDDEN_FLAGS = #-v
 NAZI_FLAG = #-Weverything
@@ -188,8 +188,11 @@ MAKING_FAILURE = $(FAILURE_HD)$(ERROR_COLOR)$(NAME)" not generated!\n"$(NRM)
 
 COMPILING_OK = $(HD)$(OK)$(PRIMARY_COLOR)"$@\n"$(NRM)
 COMPILING_KO = $(HD)$(KO)$(ERROR_COLOR)"* "$(PRIMARY_COLOR)"$@\n"$(NRM)
+COMPILING_DBG = $(HD)$(PROJECT_COLOR)$(NAME)" is compiling in "$(ERROR_COLOR)"debug"$(PROJECT_COLOR)" mode. \'make re\' to compile in production mode\n"$(NRM)
+COMPILING_PRD = $(HD)$(PROJECT_COLOR)$(NAME)" is compiling in "$(SUCCESS_COLOR_ALT)"production"$(PROJECT_COLOR)" mode.\n"$(NRM)
 
-COMPILED_ALL = $(SUCCESS_HD)$(PROJECT_COLOR)"Compiled with '"$(PRIMARY_COLOR)'$(strip $(CFLAG))'$(PROJECT_COLOR)"' flags.\n"$(NRM)
+COMPILED_DBG = $(SUCCESS_HD)$(PROJECT_COLOR)"Compiled with '"$(PRIMARY_COLOR)'$(strip "$(CFLAG) $(SLOW_FLAG)")'$(PROJECT_COLOR)"' flags.\n"$(NRM)
+COMPILED_PRD = $(SUCCESS_HD)$(PROJECT_COLOR)"Compiled with '"$(PRIMARY_COLOR)'$(strip "$(CFLAG) $(FAST_FLAG)")'$(PROJECT_COLOR)"' flags.\n"$(NRM)
 
 CLEANING_OBJS = $(HD)$(OK)$(PROJECT_COLOR)"Files cleaned\n"$(NRM)
 CLEANING_BINS = $(HD)$(OK)$(PROJECT_COLOR)"Binary cleaned\n"$(NRM)
@@ -220,21 +223,38 @@ endif
 #                                    Rules                                     #
 #==============================================================================#
 
+
 $(NAME): $(OBJS)
 	@$(eval INSTRUCTION := all)
 	@if [ $(MAKE_DEP) == 1 ]; then $(DEPENDECIES) fi;
-	@printf $(MAKING_PROGRESS)
-	@$(CC) -o $(NAME) $(ARG_O) $(DEP) $(CFLAG); \
+ifeq	(, $(filter debug, $(MAKECMDGOALS)))
+	@printf $(COMPILING_PRD)
+	@$(CC) -o $(NAME) $(ARG_O) $(DEP) $(CFLAG) $(FAST_FLAG); \
 		if [ $$? != 1 ]; then printf $(MAKING_SUCCESS); exit 0; \
 		else printf $(MAKING_FAILURE); exit 2; fi
-	@printf $(COMPILED_ALL)
+	@printf $(COMPILED_PRD)
+else
+	@printf $(COMPILING_DBG)
+	@$(CC) -o $(NAME) $(ARG_O) $(DEP) $(CFLAG) $(SLOW_FLAG); \
+		if [ $$? != 1 ]; then printf $(MAKING_SUCCESS); exit 0; \
+		else printf $(MAKING_FAILURE); exit 2; fi
+	@printf $(COMPILED_DBG)
+endif
 
 all: $(NAME)
 
+debug: $(NAME)
+
 %.o: %.c | $(PATH_OBJ)
-	@$(CC) -o $(PATH_OBJ)/$@ -c $< $(CFLAG); \
+ifeq	(,$(filter debug, $(MAKECMDGOALS)))
+	@$(CC) -o $(PATH_OBJ)/$@ -c $< $(CFLAG) $(FAST_FLAG); \
 		if [ $$? != 1 ]; then printf $(COMPILING_OK); exit 0; \
 		else printf $(COMPILING_KO); exit 2; fi
+else
+	@$(CC) -o $(PATH_OBJ)/$@ -c $< $(CFLAG) $(SLOW_FLAG); \
+		if [ $$? != 1 ]; then printf $(COMPILING_OK); exit 0; \
+		else printf $(COMPILING_KO); exit 2; fi
+endif
 
 $(PATH_OBJ):
 	@mkdir -p $(PATH_OBJ)
@@ -265,4 +285,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: install_dependencies install_brew install_sdl clean fclean
+.PHONY: install_dependencies install_brew install_sdl clean fclean prestate
