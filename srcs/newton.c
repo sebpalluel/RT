@@ -21,10 +21,10 @@ double	ft_resolve_cubic_n(double a, double b, double c, double d)
 	if (d == 0)
 		return (0);
 	x0 = 0;
-	while (fabs(ft_cubic_derivative_estimate(a, b, c, x0)) < 0.0000001)
+	while (fabs(ft_cubic_derivative_estimate(a, b, c, x0)) < 0.0000000000001)
 		x0 = x0 + 1;
 	i = 0;
-	while (fabs(ft_cubic_estimate(a, b, c, x0) + d) > 0.00000001 && i++ < 1000)
+	while (fabs(ft_cubic_estimate(a, b, c, x0) + d) > 0.00000000000001 && i++ < 1000)
 	{
 	//	printf("%f, %f, %d\n", fabs(ft_cubic_estimate(a, b, c, x0) + d), x0, i);
 		x0 = x0 - ((ft_cubic_estimate(a, b, c, x0) + d) / ft_cubic_derivative_estimate(a, b, c, x0));
@@ -34,6 +34,7 @@ double	ft_resolve_cubic_n(double a, double b, double c, double d)
 		//printf("prout\n");
 		return (INFINITY);
 	}
+//	printf("%d\n", i);
 	return (x0);
 }
 
@@ -70,47 +71,49 @@ double	ft_resolve_cubic(double a, double b, double c, double d)
 	return (x0);
 }
 
-double	ft_resolve_quadratic_min(double a, double b, double c)
+int		ft_resolve_quadratic_min(double *a, double *b, double c)
 {
 	double delta;
 	double r1;
 	double r2;
 
 
-	delta = b * b - 4 * a * c;
+	delta = *b * *b - 4 * *a * c;
 	if (delta <= 0)
-		return (-1);
-	if (a == 0)
-		return (-c / b);
+		return (0);
+	if (*a == 0)
+	{
+		*a = -c / *b;
+		*b = -1;
+		return (1);
+	}
 	delta = sqrt(delta);
-	r1 = (-b - delta) / (2.0 * a);
-	r2 = (-b + delta) / (2.0 * a);
-	return (ft_2min_pos(r1, r2));
+	r1 = (-*b - delta) / (2.0 * *a);
+	r2 = (-*b + delta) / (2.0 * *a);
+	*a = r1;
+	*b = r2;
+	return (1);
 }
 
-double	ft_resolve_cubic_min(double a, double b, double c, double d)
+int		ft_resolve_cubic_min(double *a, double *b, double *c, double d)
 {
 	double r1;
 	double r2;
 
 	if (a != 0)
 	{
-		r1 = ft_resolve_cubic_n(a, b, c, d);
+		r1 = ft_resolve_cubic_n(*a, *b, *c, d);
 		if (r1 == INFINITY)
 		{
-			r1 = ft_resolve_cubic(a, b, c, d);
+			r1 = ft_resolve_cubic(*a, *b, *c, d);
 			if (r1 == INFINITY)
-			{
-		//		printf("%fx^3 + %fx^2 + %fx + %f\n", a, b, c, d);
-				return(-1);
-			}
+				return(0);
 		}
-		b = b + a * r1;
-		c = c + r1 * b;
-		r2 = ft_resolve_quadratic_min(a, b, c);
-		if (r2 == -1)
-			return (r1);
-		return (ft_2min_pos(r2, r1));
+		*b = *b + *a * r1;
+		*c = *c + r1 * *b;
+		r2 = ft_resolve_quadratic_min(a, b, *c);
+		*c = r1;
+		return (1);
 	}
 	else
 		return (ft_resolve_quadratic_min(b, c, d));

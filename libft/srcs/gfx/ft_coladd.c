@@ -17,13 +17,7 @@ t_col		ft_coladd(t_col col1, t_col col2)
 	t_col	col;
 
 	col.r = col1.r + col2.r;
-	if (col.r > 1)
-		col.r = 1;
 	col.g = col1.g + col2.g;
-	if (col.g > 1)
-		col.g = 1;
 	col.b = col1.b + col2.b;
-	if (col.b > 1)
-		col.b = 1;
 	return (col);
 }

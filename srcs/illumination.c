@@ -21,7 +21,6 @@ t_vec3	rand_directed_vec(t_vec3 dir)
 		rand() * 2.0 - RAND_MAX,
 		rand() * 2.0 - RAND_MAX);
 	ranvect = ft_vec3normalize_r(ranvect);
-	//ranvect = ft_vec3normalize_r(ft_vec3vop_r(ranvect, ft_vec3sop_r(dir, 500, '*'), '+'));
 	if (ft_dotproduct(dir, ranvect) < 0)
 		ranvect = ft_vec3sop_r(ranvect, -1, '*');
 	return (ranvect);
@@ -70,7 +69,9 @@ t_col	amb_light(t_col col, t_vec3 norm, t_vec3 dir, double amb_light)
 	t_col	amb;
 	double	scale;
 
-	scale = fabs(ft_dotproduct(norm, dir));
+	scale = -ft_dotproduct(norm, dir);
+	if (scale <= 0)
+		return (ft_colmultscale(col, 0));
 	scale *= amb_light;
 	amb = ft_colmultscale(col, scale);
 	return (amb);

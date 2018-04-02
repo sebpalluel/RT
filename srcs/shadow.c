@@ -32,9 +32,9 @@ t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint)
 	while (objects)
 	{
 			hit = hit_shape()[FORM(objects)->type - 1](ray, FORM(objects));
-			if (hit < (dist - 0.001) && hit > 0)
+			if (hit < (dist - 0.0001) && hit > 0)
 			{
-				tmp = ft_vec3vop_r(lgt->vect, ft_vec3sop_r(dir, hit + 0.001, '*'),'+');
+				tmp = ft_vec3vop_r(lgt->vect, ft_vec3sop_r(dir, hit + 0.0001, '*'),'+');
 				mat = get_mat_at(tmp, objects, FORM(objects)->mat);
 				if (FORM(objects)->mat.trsp != 0)
 					mat.trsp = FORM(objects)->mat.trsp;
@@ -45,9 +45,9 @@ t_col	shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint)
 					shadow = ft_colmult(ft_colmultscale(mat.col,
 						mat.trsp), shadow);
 					hit2 = hit_shape()[FORM(objects)->type - 1](init_ray(tmp, dir), FORM(objects));
-					if (hit2 > 0 && hit + hit2 < dist - 0.001)
+					if (hit2 > 0 && hit + hit2 < dist - 0.0001)
 					{
-						tmp = ft_vec3vop_r(lgt->vect, ft_vec3sop_r(dir, hit + hit2 - 0.001, '*'),'+');
+						tmp = ft_vec3vop_r(lgt->vect, ft_vec3sop_r(dir, hit + hit2 - 0.0001, '*'),'+');
 						mat = get_mat_at(tmp, objects, FORM(objects)->mat);
 						shadow = ft_colmult(ft_colmultscale(mat.col, mat.trsp), shadow);
 					}
