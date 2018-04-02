@@ -59,7 +59,6 @@ void		ft_getobjects(t_list **env, char *obj_str)
 	ft_getplanes(env, obj_str);
 	ft_getcones(env, obj_str);
 	ft_getcylindres(env, obj_str);
-	ft_gettorus(env, obj_str);
 	ft_getmoebius(env, obj_str);
 }
 

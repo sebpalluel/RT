@@ -6,12 +6,12 @@
 		<height> 1080 </height>
 		<refr_max> 4 </refr_max>
 		<refl_max> 128 </refl_max>
-		<amb_light> 0.09 </amb_light>
+		<amb_light> 0.75 </amb_light>
 	</engine>
 
 	<cameras>
 		<camera>
-			<origin> 0.0, 0.0, 0.0 </origin>
+			<origin> 0.0, 0.5, 0.5 </origin>
 			<look_at> 1.0, 0.0, 0.0 </look_at>
 		</camera>
 	</cameras>
@@ -48,7 +48,7 @@
 		</sphere>
 		<plane>
 			<normale> 0, 1, 0 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
 				<reflexion> 1 </reflexion>
@@ -58,50 +58,50 @@
 		</plane>
 		<plane>
 			<normale> 0, -1, 0 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.7 </reflexion>
+				<reflexion> 1 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
 			<normale> -1, 0, 0 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0.0, 1.0, 0.7, 0.95 </color>
-				<reflexion> 0.7 </reflexion>
+				<reflexion> 1 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
 			<normale> 1, 0, 0 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.7 </reflexion>
+				<reflexion> 1 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
 			<normale> 0, 0, 1 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.7 </reflexion>
+				<reflexion> 1 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>
 		</plane>
 		<plane>
 			<normale> 0, 0, -1 </normale>
-			<distance> 1 </distance>
+			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.7 </reflexion>
+				<reflexion> 1 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 			</material>

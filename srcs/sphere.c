@@ -22,7 +22,6 @@ void			ft_sphere_struct_pop(t_list *form, t_list *env, t_bool *flag)
 	FORM(form)->num_arg++;
 }
 
-
 size_t			ft_sphere(t_list **list)
 {
 	t_setup		*setup;
@@ -51,8 +50,9 @@ size_t			ft_sphere(t_list **list)
 
 t_vec3			normal_sphere(t_ray ray, t_list *sph)
 {
-	return (ft_vec3normalize_r(ft_vec3vop_r(ft_vec3vop_r(ray.org, \
-						ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'), SPHERE(sph).ctr, '-')));
+	return (ft_vec3normalize_r(ft_vec3vop_r(ft_vec3vop_r(ray.org,
+				ft_vec3sop_r(ray.dir, ray.dist, '*'), '+'),
+				SPHERE(sph).ctr, '-')));
 }
 
 double			hit_sphere(t_ray ray, t_shape *form)

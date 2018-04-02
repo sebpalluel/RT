@@ -31,7 +31,7 @@ SRCDIR		=	./srcs/
 LFTDIR		=	./libft/
 MLXDIR		=	./minilibx/
 
-# LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F ~/Library/Frameworks/ -framework SDL2
+# LIBS		=	 -lft -lmlx -framework OpenGL -framework AppKit -F ~/Library/Frameworks/ -framework SDL2_IMAGE
 LIBS		=	 -lft -lmlx `sdl2-config --libs` -lSDL2_image -framework OpenGL -framework AppKit
 
 OBJNAME		=	$(SRCNAME:.c=.o)
@@ -81,7 +81,6 @@ SRCNAME 	=	main.c \
 				moebius.c \
 				newton.c \
 				save_img.c \
-				torus.c \
 				#draw.c \
 				#raycaster.c \
 

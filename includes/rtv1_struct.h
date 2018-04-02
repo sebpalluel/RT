@@ -27,7 +27,6 @@ typedef struct		s_mutex
 	pthread_mutex_t	mutex;
 }					t_mutex;
 
-
 typedef struct		s_env
 {
 	char			*name;
