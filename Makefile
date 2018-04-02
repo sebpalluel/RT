@@ -118,6 +118,7 @@ SRCS =	main.c																\
 			sp_mat.c														\
 			matrices.c														\
 			singleton.c														\
+			singleton2.c													\
 			save_img.c														\
 #		draw.c																\
 		raycaster.c															\
