@@ -67,6 +67,7 @@ SRCNAME 	=	main.c \
 				matrices.c \
 				shape.c \
 				singleton.c \
+				singleton2.c \
 				ray.c \
 				diffuse.c \
 				reflexion.c \

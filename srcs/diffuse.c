@@ -132,8 +132,8 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 		glob = global_illum(ray, norm, hit, form);
 	while (lgt)
 	{
-		shad = shadow(LGT(lgt), SCN.forms, hit);
-	//	shad = LGT(lgt)->col;
+		shad = LGT(lgt)->col;
+		shadow(LGT(lgt), SCN.forms, hit, &shad);
 		lmbrt = lambert(ray, norm, lgt);
 		if (lmbrt < 0.0)
 			lmbrt = 0;

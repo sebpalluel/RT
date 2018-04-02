@@ -112,7 +112,7 @@ t_func_dble	*hit_shape(void);
 t_func_vec3	*normal_shape(void);
 
 t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj);
-t_col		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint);
+void		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint, t_col *shad);
 t_col		global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj);
 t_col		amb_light(t_col col, t_vec3 norm, t_vec3 dir, double amb_light);
 t_ray		reflexion(t_ray ray, t_vec3 norm);

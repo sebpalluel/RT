@@ -19,19 +19,20 @@ int				ft_setup_menu(t_setup *setup)
 
 	xy[0] = setup->width / 2 - setup->width / 14;
 	xy[1] = setup->height / 2 - setup->height / 10;
-	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, UI_IMG->image, 0, 0);
+	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr,
+		UI_IMG->image, 0, 0);
 	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1]\
 			, 0x00611DE9, CHOOSE_STR);
 	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, xy[0], xy[1] + 30\
 			, 0x009999FF, SELECT_STR);
-	ret = ft_mlx_keytoint(setup->key); // permet de selectioner le numero de map
+	ret = ft_mlx_keytoint(setup->key);
 	if (ret >= 0 && setup->num_scn < MAX_WINDOW)
 	{
-		if (ft_select_scene(setup, ret) != OK) // stocke le path vers la map correspondant
-			return (setup->error = FILE_ERROR); //  dans le cas ou fichier inexistant
+		if (ft_select_scene(setup, ret) != OK)
+			return (setup->error = FILE_ERROR);
 		setup->scn_num = setup->num_scn;
 		setup->num_scn++;
-		setup->mode = STATE_OPEN; // rentre dans le mode qui va permettre d'open la map et de parser
+		setup->mode = STATE_OPEN;
 	}
 	//TODO marquer ici un message au cas ou depase le max window, du type nombre de rendu max atteint
 	return (OK);
@@ -62,7 +63,7 @@ static size_t	ft_init_mlx_img(t_setup *setup)
 			100, 100);
 	if (!UI_IMG || !setup->loading)
 		return (setup->error = ERROR);
-	return (OK);	
+	return (OK);
 }
 
 t_setup			*ft_setup_alloc(t_setup *setup)

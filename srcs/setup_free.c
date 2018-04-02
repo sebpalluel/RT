@@ -53,9 +53,9 @@ static void	ft_scene_free(t_setup *setup)
 
 int			ft_quit(t_setup *setup)
 {
-		ft_setup_free(setup);
-		usage(setup->error);
-		exit(0);
+	ft_setup_free(setup);
+	usage(setup->error);
+	exit(0);
 }
 
 void		ft_setup_free(t_setup *setup)
@@ -72,7 +72,7 @@ void		ft_setup_free(t_setup *setup)
 		free(setup->loading);
 	}
 	if (UI_WIN && UI_IMG)
-	ft_mlxdelete(UI_WIN, UI_IMG);
+		ft_mlxdelete(UI_WIN, UI_IMG);
 	if (setup->scene)
 		free(setup->scene);
 	if (setup->thrd)

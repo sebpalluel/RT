@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-void			ft_put_pixel(t_setup *setup, int x, int y, int color)
+void				ft_put_pixel(t_setup *setup, int x, int y, int color)
 {
 	int			*tmp;
 	size_t		index;
@@ -25,7 +25,7 @@ void			ft_put_pixel(t_setup *setup, int x, int y, int color)
 	*tmp = color;
 }
 
-double			ft_doublescale(double num, double in[2], double scale[2])
+double				ft_doublescale(double num, double in[2], double scale[2])
 {
 	double		rate;
 	double		offset;
