@@ -113,5 +113,7 @@ t_mat	get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 					effects()[mat_obj.gen.mode](hit, mat_obj.gen));
 		}
 	}
+	if (FORM(form)->mat.trsp != 0)
+		hit_mat.trsp = FORM(form)->mat.trsp;
 	return (hit_mat);
 }
