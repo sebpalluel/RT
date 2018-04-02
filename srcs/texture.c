@@ -98,7 +98,7 @@ t_mat	get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 	t_col	prev_col;
 
 	hit_mat = mat_obj;
-	if (FORM(form)->type < NUM_FORM - 1) // TODO bypass torus and moebius
+	if (FORM(form)->type < NUM_FORM) // TODO bypass torus and moebius
 	{
 		if (mat_obj.text_m == M_TEX)
 		{
