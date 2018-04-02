@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:42:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 13:12:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 16:29:38 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ static void	ft_scene_free(t_setup *setup)
 	{
 		mlx_destroy_image(SCN.win->mlx_ptr, SCN.img[0]->image);
 		mlx_destroy_image(SCN.win->mlx_ptr, SCN.img[1]->image);
+		mlx_destroy_window(SCN.win->mlx_ptr, SCN.win->win_ptr);
 		free(SCN.img[0]);
 		free(SCN.img[1]);
 		free(SCN.img);
 		free(SCN.win);
 	}
-	if (SCN.win)
-		mlx_destroy_window(SCN.win->mlx_ptr, SCN.win->win_ptr);
 	ft_lstdel(&SCN.env, ft_delenvnode);
 	ft_lstdel(&SCN.forms, ft_dellistelem);
 	ft_lstdel(&SCN.lgts, ft_dellistelem);
@@ -67,6 +66,12 @@ void		ft_setup_free(t_setup *setup)
 		ft_scene_free(setup);
 		setup->scn_num++;
 	}
+	if (setup->loading)
+	{
+		mlx_destroy_image(setup->mlx_ptr, setup->loading->image);
+		free(setup->loading);
+	}
+	if (UI_WIN && UI_IMG)
 	ft_mlxdelete(UI_WIN, UI_IMG);
 	if (setup->scene)
 		free(setup->scene);

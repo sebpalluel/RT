@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:44:42 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/26 16:17:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 15:51:41 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int				ft_raytracing_thread(t_setup *setup)
 			ft_quit(setup);
 	i = -1;
 	while (++i < THREAD)
+	{
 		if (pthread_join(setup->thrd[i], NULL))
 			ft_quit(setup);
+	}
 	return (setup->error);
 }
 

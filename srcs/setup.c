@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 17:58:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 17:55:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 16:23:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ static size_t	ft_init_mlx_img(t_setup *setup)
 	setup->mlx_ptr = mlx_init();
 	UI_WIN->mlx_ptr = setup->mlx_ptr;
 	UI_WIN->win_ptr = mlx_new_window(setup->mlx_ptr, setup->width, \
-			setup->height, "rtv1 GUI");
-	if (!(UI_IMG = ft_imgnew(setup->mlx_ptr, setup->width, setup->height)))
+			setup->height, "RT GUI");
+	UI_IMG = ft_imgnew(setup->mlx_ptr, setup->width, setup->height);
+	setup->loading = ft_xmpnew(setup->mlx_ptr, "textures/loading.xpm", \
+			100, 100);
+	if (!UI_IMG || !setup->loading)
 		return (setup->error = ERROR);
 	return (OK);	
 }

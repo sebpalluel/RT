@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/26 19:29:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/02 16:23:00 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ typedef struct		s_setup
 	t_col			background;
 	t_mlx			*ui_win;
 	t_img			*ui_img;
+	t_img			*loading;
 	void			*mlx_ptr;
 	t_scene			*scene;
 	size_t			num_scn;
