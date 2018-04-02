@@ -42,7 +42,7 @@ t_matrix	id_mat(void)
 	return (id);
 }
 
-t_vec3	mult_vec3_mat(t_matrix a, t_vec3 b)
+t_vec3		mult_vec3_mat(t_matrix a, t_vec3 b)
 {
 	t_vec3	res;
 
@@ -52,7 +52,7 @@ t_vec3	mult_vec3_mat(t_matrix a, t_vec3 b)
 	return (res);
 }
 
-t_vec3	rot_vec3(t_vec3 v, double theta, t_vec3 axis)
+t_vec3		rot_vec3(t_vec3 v, double theta, t_vec3 axis)
 {
 	return (mult_vec3_mat(rot_mat(axis, theta), v));
 }

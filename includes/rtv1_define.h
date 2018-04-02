@@ -24,7 +24,7 @@
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			128
-# define NUM_FORM		6
+# define NUM_FORM		5
 # define NUM_OBJS		9
 # define NUM_EFFECTS	5
 # define NUM_PROC		6
@@ -106,8 +106,7 @@
 # define NVARPLANE		2
 # define NVARCONE		3
 # define NVARCYLINDRE	3
-# define NVARTORUS		4
-# define NVARMOEBIUS	5
+# define NVARMOEBIUS	4
 # define CAM(x)			((t_cam *)(*(x)).content)
 # define LGT(x)			((t_lgt *)(*(x)).content)
 # define FORM(x)		((t_shape *)(*(x)).content)
@@ -115,7 +114,6 @@
 # define PLAN(x)		FORM(x)->plan
 # define CONE(x)		FORM(x)->cone
 # define CYLI(x)		FORM(x)->cyl
-# define TORU(x)		FORM(x)->tor
 # define MOEB(x)		FORM(x)->moeb
 //# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)

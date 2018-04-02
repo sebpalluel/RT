@@ -1,6 +1,6 @@
 #include "../includes/rtv1.h"
 
-t_vec3 uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
+t_vec3	uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 {
 	double u;
 	double v;
@@ -19,10 +19,7 @@ t_vec3 uv_map_sph(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	return (ft_vec3_r(u, v, 1.));
 }
 
-/*
- ** prend la normale et on veut deter deux vect perpendicualiree sur le plan
- */
-t_vec3 uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
+t_vec3	uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 {
 	t_vec3 x_axe;
 	t_vec3 y_axe;
@@ -42,7 +39,7 @@ t_vec3 uv_map_pln(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	return (ft_vec3_r(u, v, 1.));
 }
 
-t_vec3 uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
+t_vec3	uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 {
 	double u;
 	double v;
@@ -60,7 +57,7 @@ t_vec3 uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 	return (ft_vec3_r(u, v, 1.));
 }
 
-t_vec3 uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
+t_vec3	uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text)
 {
 	t_vec3 coord;
 	double u;
