@@ -6,18 +6,33 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:09:25 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:59:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int			ft_expose(t_setup *setup)
+void				ft_getdeltatime(struct timespec start)
 {
-	int		ret;
-	double	delta_time;
-	struct timespec start;
-	struct timespec end;
+	double			delta_time;
+	struct timespec	end;
+	char			*nbr;
+
+	clock_gettime(CLOCK_REALTIME, &end);
+	delta_time = (end.tv_sec - start.tv_sec) \
+				+ (end.tv_nsec - start.tv_nsec) / 1E9;
+	if ((nbr = ft_ftoa(delta_time)))
+	{
+		ft_putstr(nbr);
+		ft_putendl(" sec");
+		free(nbr);
+	}
+}
+
+int					ft_expose(t_setup *setup)
+{
+	int				ret;
+	struct timespec	start;
 
 	ret = OK;
 	ft_imgclean(UI_IMG, setup->width, setup->height);
@@ -25,16 +40,13 @@ int			ft_expose(t_setup *setup)
 	{
 		ft_imgclean(SCN.img[0], SCN.width, SCN.height);
 		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
-				setup->loading->image, SCN.width / 3., SCN.height/ 2.7);
+				setup->loading->image, SCN.width / 3., SCN.height / 2.7);
 		clock_gettime(CLOCK_REALTIME, &start);
 		if ((ret = ft_raytracing_thread(setup)) != OK)
 			setup->error = ENG_ERROR;
 		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
 				SCN.img[SCN.effect]->image, 0, 0);
-		clock_gettime(CLOCK_REALTIME, &end);
-		delta_time = ( end.tv_sec - start.tv_sec ) \
-					 + ( end.tv_nsec - start.tv_nsec ) / 1E9;
-		printf( "%lf sec\n", delta_time);
+		ft_getdeltatime(start);
 		setup->mode = STATE_STOP;
 	}
 	ft_mlx_control_key(setup);
@@ -43,9 +55,9 @@ int			ft_expose(t_setup *setup)
 	return (0);
 }
 
-static int	ft_key_hook(int keycode, t_setup *setup)
+static int			ft_key_hook(int keycode, t_setup *setup)
 {
-	int		ret;
+	int				ret;
 
 	setup->key = keycode;
 	ret = OK;
@@ -62,43 +74,10 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 	return (0);
 }
 
-int			ft_loop_hook(t_setup *setup)
-{
-	t_vec3	rot;
-	double	distance;
-	double step;
-
-	if (SCN.cams)
-	{
-		step = M_PI / 360;
-		distance = 1.;
-		//rot.x = distance * -sinf(g_time * step) * \
-		//		cosf(g_time * step);
-		//rot.y = distance * -sinf(g_time * step);
-		//rot.z = -distance * cosf(g_time * step) * \
-		//		cosf(g_time * step);
-		rot.x = sinf(g_time * step);
-		rot.y = cosf(g_time * step);
-		rot.z = 0.;
-		//rot.x = 1.;
-		//rot.y = sinf(g_time * step);
-		//rot.z = cosf(g_time * step);
-		SCN.cur_cam->org = rot;
-		printf("rot.x %f, rot.y %f, rot.z %f\n", rot.x, rot.y, rot.z);
-		ft_saveimg(SCN, ft_savename("captures/test", g_time));
-		//ft_cosvalintime(&SCN.cur_cam->org.x, 0., 1., 0.1);
-		//ft_sinvalintime(&SCN.cur_cam->org.z, 0., 1., 0.1);
-		setup->mode = STATE_DRAW;
-		ft_expose(setup);
-		g_time += 1;
-	}
-	return (0);
-}
-
-void		ft_mlx_process(t_setup *setup)
+void				ft_mlx_process(t_setup *setup)
 {
 	if (setup->mode == STATE_START)
-		ft_start(setup); // juste UI, taper ENTER
+		ft_start(setup);
 	mlx_hook(UI_WIN->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hook, setup);
 	mlx_hook(UI_WIN->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
 			ft_quit, setup);

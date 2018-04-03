@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 19:30:59 by psebasti          #+#    #+#             */
-/*   Updated: 2017/08/02 16:18:15 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:51:07 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_ftoa(float f)
+char			*ft_ftoa(float f)
 {
 	int			int_num;
 	float		float_num;

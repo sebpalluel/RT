@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:36:45 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:57:49 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ size_t		ft_select_scene(t_setup *setup, int scene);
 size_t		ft_open_scene(t_setup *setup);
 void		ft_put_pixel(t_setup *setup, int x, int y, int color);
 void		ft_mlx_process(t_setup *setup);
+int			ft_expose(t_setup *setup);
 void		ft_put_pxl_to_img(t_setup *setup, t_vec3 pos, t_color *clr);
 void		ft_sinvalintime(double *val, double min, double max, double speed);
 void		ft_cosvalintime(double *val, double min, double max, double speed);
 void		ft_saveimg(t_scene scn, char *name);
 char		*ft_savename(const char *name, size_t counter);
+int			ft_loop_hook(t_setup *setup);
 
 
 t_bool		ft_getvectfromenv(t_vec3 *vect, char *value);

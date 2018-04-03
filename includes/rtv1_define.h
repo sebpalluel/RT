@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:03:30 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:58:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@
 
 # define CHOOSE_STR		"To choose scene, press"
 # define SELECT_STR		"0 || 1 || 2 || 3 || 4 || 5 || 6 || 7"
-# define START_STR		"RTv1 by psebasti & nchalot"
+# define START_STR		"RT by esuits & psebasti & nchalot & mbeilles"
 # define ENTER_STR		"Press ENTER to start"
 
 # define CAM_AV_STR		"Number of Camera available :"
