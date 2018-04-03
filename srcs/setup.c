@@ -34,7 +34,6 @@ int				ft_setup_menu(t_setup *setup)
 		setup->num_scn++;
 		setup->mode = STATE_OPEN;
 	}
-	//TODO marquer ici un message au cas ou depase le max window, du type nombre de rendu max atteint
 	return (OK);
 }
 

@@ -20,22 +20,20 @@ static inline t_ray	calculate_ray(int32_t x, int32_t y, t_setup *setup)
 	t_vec3			dir;
 
 	cam = *SCN.cur_cam;
-	org = ft_vec3vop_r( ft_vec3vop_r(ft_vec3sop_r(cam.rgt, \
-					(x - (SCN.width/ 2.0)) / SCN.height, '*'), \
-				ft_vec3sop_r(cam.dwn, (y - (SCN.height / 2.0)) \
-					/ SCN.height, '*'), '+'), cam.org, '+');
-	dir = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3sop_r(cam.frt, SCN.pers, '*')\
-				, ft_vec3vop_r(cam.org, ft_vec3vop_r(ft_vec3vop_r(\
-							ft_vec3sop_r(cam.rgt, (x - (SCN.width / 2.0)) \
-								/ SCN.height, '*'), \
-							ft_vec3sop_r(cam.dwn, (y - SCN.height / 2.0) \
-								/ SCN.height, '*'), '+'), cam.org, '+'), '-'),\
-				'-'));
+	org = ft_vec3vop_r(ft_vec3vop_r(ft_vec3sop_r(cam.rgt,
+			(x - (SCN.width / 2.0)) / SCN.height, '*'),
+			ft_vec3sop_r(cam.dwn, (y - (SCN.height / 2.0))
+			/ SCN.height, '*'), '+'), cam.org, '+');
+	dir = ft_vec3normalize_r(ft_vec3vop_r(ft_vec3sop_r(cam.frt, SCN.pers, '*')
+			, ft_vec3vop_r(cam.org, ft_vec3vop_r(ft_vec3vop_r(
+			ft_vec3sop_r(cam.rgt, (x - (SCN.width / 2.0)) / SCN.height, '*'),
+			ft_vec3sop_r(cam.dwn, (y - SCN.height / 2.0)
+			/ SCN.height, '*'), '+'), cam.org, '+'), '-'), '-'));
 	ray = init_ray(org, dir);
 	return (ray);
 }
 
-t_col ft_col_map(t_col col)
+t_col				ft_col_map(t_col col)
 {
 	if (col.r > 0)
 		col.r = col.r / (col.r + 1);
@@ -52,7 +50,7 @@ t_col ft_col_map(t_col col)
 	return (col);
 }
 
-void			*ft_raytracing(void *a)
+void				*ft_raytracing(void *a)
 {
 	t_setup		*setup;
 	t_pix		pix;
@@ -64,17 +62,15 @@ void			*ft_raytracing(void *a)
 	inc = SCN.height / THREAD;
 	thread_n = ft_get_thread_n(setup);
 	pix.y = inc * thread_n - 1;
-	to_y = (thread_n == THREAD - 1 ? SCN.height - 1 : \
+	to_y = (thread_n == THREAD - 1 ? SCN.height - 1 :
 			(inc * (thread_n + 1) - 1));
-	//pthread_mutex_lock(&setup->mutex.mutex);
 	while (++pix.y <= to_y)
 	{
 		pix.x = -1;
 		while (++pix.x < (int)SCN.width)
-				ft_put_pixel(setup, pix.x, pix.y, \
-						ft_coltoi(ft_col_map(send_ray(calculate_ray(pix.x, pix.y, setup), \
-								setup))));
+			ft_put_pixel(setup, pix.x, pix.y,
+				ft_coltoi(ft_col_map(send_ray(
+				calculate_ray(pix.x, pix.y, setup), setup))));
 	}
-	//pthread_mutex_unlock(&setup->mutex.mutex);
 	pthread_exit(NULL);
 }

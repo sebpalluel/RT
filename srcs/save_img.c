@@ -49,7 +49,7 @@ void				ft_saveimg(t_scene scn, char *name)
 	t_img			*img;
 
 	img = scn.img[scn.effect];
-	if (name && (fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, 0755)) >= 2 && 
+	if (name && (fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, 0755)) >= 2 &&
 			put_header(scn, fd) == OK)
 	{
 		xy[1] = -1;

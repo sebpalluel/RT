@@ -23,19 +23,3 @@ t_list			*ft_newshape(void)
 	form->next = NULL;
 	return (form);
 }
-
-//t_objsparam				*ft_objsparam(void)
-//{
-//	struct s_objsparam	*objs;
-//
-//	if (!(objs = ft_memalloc(sizeof(t_objsparam) * 2 + 1)))
-//		return (NULL);
-//	objs[SPH].paramfunc = ft_sphere_param;
-//	// objs[PLN].paramfunc = ft_plane_param;
-//	return (objs);
-//}
-//
-//size_t					ft_getobjscount(t_setup *setup)
-//{
-//	return (NPLANE + NSPHERE);
-//}

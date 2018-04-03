@@ -19,7 +19,8 @@ int				ft_raytracing_thread(t_setup *setup)
 	init_cam(SCN.cur_cam);
 	i = -1;
 	while (++i < THREAD)
-		if (pthread_create(&(setup->thrd[i]), NULL, ft_raytracing, (void *)setup))
+		if (pthread_create(&(setup->thrd[i]), NULL, ft_raytracing,
+			(void *)setup))
 			ft_quit(setup);
 	i = -1;
 	while (++i < THREAD)
