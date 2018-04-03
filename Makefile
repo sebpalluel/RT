@@ -149,10 +149,14 @@ DEP = -L $(PATH_LIB) -lft													\
 #==============================================================================#
 
 vpath %.c $(PATH_SRC)/raytracing
+vpath %.c $(PATH_SRC)/raytracing/texture
+vpath %.c $(PATH_SRC)/raytracing/render
 vpath %.c $(PATH_SRC)/parser
+vpath %.c $(PATH_SRC)/parser/scene
 vpath %.c $(PATH_SRC)/utils
-vpath %.c $(PATH_SRC)/shapes
+vpath %.c $(PATH_SRC)/shape
 vpath %.c $(PATH_SRC)/mlx
+vpath %.c $(PATH_SRC)/setup
 vpath %.c $(PATH_SRC)
 vpath %.o $(PATH_OBJ)
 vpath %.h $(PATH_INC)
