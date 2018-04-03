@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/03/29 14:40:17 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 18:46:46 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ SRCS =	main.c																\
 				noise.c														\
 				perlin_calc.c												\
 				postprocess.c												\
+				postprocess2.c												\
 				illumination.c												\
 				newton.c													\
 			raytracer_thread.c												\

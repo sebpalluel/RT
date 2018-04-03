@@ -4,7 +4,7 @@
 		<width> 1920 </width>
 		<height> 1080 </height>
 		<refl_max> 4 </refl_max>
-		<amb_light> 1.0 </amb_light>
+		<amb_light> 0.5 </amb_light>
 	</engine>
 
 	<cameras>
@@ -17,8 +17,8 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> 0.0, -1.0, -1.0 </position>
-			<color> 0, 0, 0, 0.0 </color>
+			<position> 0.0, 1.0, -1.0 </position>
+			<color> 1, 1, 1, 1.0 </color>
 		</light>
 	</lights>
 
@@ -37,16 +37,5 @@
 				<specularity> 0. </specularity>
 			</material>
 		</moebius>
-		<sphere>
-			<center> 0.6, 0, 0 </center>
-			<radius> 0.2 </radius>
-			<material>
-				<color> 1., 1., 0., 0.0 </color>
-				<reflexion> 0 </reflexion>
-				<refractive_index> 0. </refractive_index>
-				<transparency> 0. </transparency>
-				<specularity> 0. </specularity>
-			</material>
-		</sphere>
 	</objects>
 </scene>
