@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/04/03 20:35:18 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 20:55:46 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,6 @@ SRCS =	main.c																\
 		mlx_control.c														\
 		select_mode.c														\
 																			\
-		light.c																\
-																			\
 		shape.c																\
 			plane.c															\
 			sphere.c														\
@@ -100,12 +98,12 @@ SRCS =	main.c																\
 				illumination.c												\
 				newton.c													\
 			raytracer_thread.c												\
+			cam.c															\
 			texture.c														\
 				uv_maps.c													\
 				uv_maps_helpers.c											\
 																			\
 		parser.c															\
-			parser_torus_moebius.c											\
 			parse_to_env_utils.c											\
 			parser_error.c													\
 			parser_utils.c													\
@@ -113,8 +111,12 @@ SRCS =	main.c																\
 			parse_objects.c													\
 			open_scene.c													\
 				env.c														\
-				cam.c														\
-				engine.c													\
+				envtoscene_eng.c											\
+				envtoscene_cam.c											\
+				envtoscene_lgt.c											\
+				envtoscene_con_cyl.c										\
+				envtoscene_sph_pln.c										\
+				envtoscene_moe.c											\
 																			\
 		utils.c																\
 			sp_mat.c														\

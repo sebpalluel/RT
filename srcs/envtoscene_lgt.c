@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   envtoscene_lgt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/19 18:16:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:50:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
 		flag[1] = ft_getvectfromenv(&LGT(lgt)->vect, ENVSTRUCT(env)->value);
 	if (ft_strcmp(ENVSTRUCT(env)->name, "color") == 0)
 		flag[2] = ft_getcolfromenv(&LGT(lgt)->col, ENVSTRUCT(env)->value);
-		//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "focal_len") == 0)
-	//	flag[6] = ft_getdoublefromenv(&LGT[NLIGHT].focal_len, \
-	//			ENVSTRUCT(env)->value);
-	//if (LGT[NLIGHT].type && ft_strcmp(ENVSTRUCT(env)->name, "direction") == 0)
-	//	flag[7] = ft_getvectfromenv(&LGT[NLIGHT].dir, ENVSTRUCT(env)->value);
 	LGT(lgt)->num_arg++;
 }
 
