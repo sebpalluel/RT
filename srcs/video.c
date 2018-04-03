@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shape.c                                             :+:      :+:    :+:  */
+/*   video.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 16:47:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/29 16:28:26 by psebasti         ###   ########.fr       */
+/*   Created: 2018/04/03 21:54:20 by psebasti          #+#    #+#             */
+/*   Updated: 2018/04/03 22:00:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_list			*ft_newshape(void)
+int			ft_loop_hook(t_setup *setup)
 {
-	t_list		*form;
+	t_vec3	rot;
+	double	distance;
+	double step;
 
-	if (!(form = (t_list*)malloc(sizeof(t_list))) || \
-			!(form->content = (t_shape*)ft_memalloc(sizeof(t_shape))))
-		return (NULL);
-	form->content_size = sizeof(t_shape);
-	form->next = NULL;
-	return (form);
+	if (SCN.cams)
+	{
+		step = M_PI / 360;
+		distance = 1.;
+		rot.x = sinf(g_time * step);
+		rot.y = cosf(g_time * step);
+		rot.z = 0.;
+		SCN.cur_cam->org = rot;
+		ft_saveimg(SCN, ft_savename("captures/test", g_time));
+		setup->mode = STATE_DRAW;
+		ft_expose(setup);
+		g_time += 1;
+	}
+	return (0);
 }

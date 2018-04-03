@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 17:34:04 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 19:12:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:00:32 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char				*ft_savename(const char *name, size_t counter)
 
 	ret = ft_strjoinfree((char*)name, ft_itoa(counter), 2);
 	ret = ft_strjoinfree(ret, ft_strdup(".ppm"), 0);
-	printf("g_time %lu, str %s\n", g_time, ret);
 	return (ret);
 }
 
