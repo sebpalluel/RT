@@ -26,7 +26,19 @@ t_vec3	rand_directed_vec(t_vec3 dir)
 	return (ranvect);
 }
 
-t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj)
+t_ray	creat_newray(t_ray ray, t_vec3 norm, t_vec3 org)
+{
+	t_ray newray;
+
+	newray = ray;
+	org = ft_vec3vop_r(org, ft_vec3sop_r(norm, 0.00000001, '*'), '+');
+	newray.org = org;
+	newray.dist = -1;
+	newray.flag += 1;
+	return (newray);
+}
+
+t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin)
 {
 	t_ray	newray;
 	int		i;
@@ -35,30 +47,14 @@ t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj)
 	t_list	*objects;
 	double	dist;
 	double	olddist;
-	(void)obj;
 
 	setup = get_st();
 	glob = setup->background;
 	i = 0;
-	newray = ray;
-	origin = ft_vec3vop_r(origin, ft_vec3sop_r(norm, 0.00000001, '*'), '+');
-	newray.org = origin;
-	newray.dist = -1;
-	newray.flag += 1;
+	newray = creat_newray(ray, norm, origin);
 	while (i++ <= 100)
 	{
 		newray.dir = rand_directed_vec(norm);
-		olddist = -1;
-		objects = setup->scene->forms;
-		while (objects)
-		{
-			if (((dist = hit_shape()[FORM(objects)->type - 1](newray, FORM(objects))) > 0)
-				&& ((olddist > dist || olddist == -1)))
-				olddist = dist;
-			objects = objects->next;
-		}
-		if (olddist < 0)
-			olddist = INFINITY;
 		glob = ft_coladd(ft_colmultscale(send_ray(newray, setup), 0.01), glob);
 	}
 	return (glob);

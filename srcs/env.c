@@ -29,7 +29,7 @@ t_list			*ft_searchenv(t_list *env, char *name)
 
 t_list			*ft_newenv(char *name, char *value)
 {
-	t_list		*env; // changer env pour list parce que pas tres clair
+	t_list		*env;
 
 	if (!(env = (t_list*)malloc(sizeof(t_list))) || \
 			!(env->content = (t_env*)ft_memalloc(sizeof(t_env))))

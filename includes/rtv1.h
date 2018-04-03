@@ -20,8 +20,8 @@
 # include <time.h>
 # include <sys/time.h>
 //# include "/Users/esuits/Library/Frameworks/SDL2.framework/Headers/SDL.h"
-# include </Users/psebasti/.brew/include/SDL2/SDL.h>
-# include </Users/psebasti/.brew/include/SDL2/SDL_image.h>
+# include </Users/esuits/.brew/include/SDL2/SDL.h>
+# include </Users/esuits/.brew/include/SDL2/SDL_image.h>
 //# include <SDL_image.h>
 //# include <SDL.h>
 
@@ -116,8 +116,8 @@ t_func_dble	*hit_shape(void);
 t_func_vec3	*normal_shape(void);
 
 t_col		diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj);
-void		shadow(t_lgt *lgt, t_list *objects, t_vec3 hitpoint, t_col *shad);
-t_col		global_illum(t_ray ray, t_vec3 norm, t_vec3 origin, t_list *obj);
+void		shadow(t_lgt lgt, t_list *objects, t_vec3 hitpoint, t_col *shad);
+t_col		global_illum(t_ray ray, t_vec3 norm, t_vec3 origin);
 t_col		amb_light(t_col col, t_vec3 norm, t_vec3 dir, double amb_light);
 t_ray		reflexion(t_ray ray, t_vec3 norm);
 t_ray		refraction(t_ray ray, t_vec3 norm, double n2);
