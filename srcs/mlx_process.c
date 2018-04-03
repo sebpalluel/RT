@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 18:22:03 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 15:26:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,14 @@ int			ft_loop_hook(t_setup *setup)
 	{
 		step = M_PI / 360;
 		distance = 1.;
-		rot.x = distance * -sinf(g_time * step) * \
-				cosf(g_time * step);
-		rot.y = distance * -sinf(g_time * step);
-		rot.z = -distance * cosf(g_time * step) * \
-				cosf(g_time * step);
+		//rot.x = distance * -sinf(g_time * step) * \
+		//		cosf(g_time * step);
+		//rot.y = distance * -sinf(g_time * step);
+		//rot.z = -distance * cosf(g_time * step) * \
+		//		cosf(g_time * step);
+		rot.x = sinf(g_time * step);
+		rot.y = cosf(g_time * step);
+		rot.z = 0.;
 		SCN.cur_cam->org = rot;
 		printf("rot.x %f, rot.y %f, rot.z %f\n", rot.x, rot.y, rot.z);
 		ft_saveimg(SCN, ft_savename("captures/test", g_time));
