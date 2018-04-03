@@ -124,8 +124,8 @@ t_col	diff_col(t_mat mat, t_vec3 norm, t_lgt lgt, t_ray ray)
 
 	shad = lgt.col;
 	setup = get_st();
-	shadow(lgt, SCN.forms, hit, &shad);
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
+	shadow(lgt, SCN.forms, hit, &shad);
 	dist = ft_vec3norm(ft_vec3vop_r(hit, lgt.vect, '-'));
 	dist = dist * dist;
 	col = ft_colinterpol(setup->background, ft_colmultscale(
@@ -141,7 +141,7 @@ t_col	glob_col(t_vec3 hit, t_vec3 norm, t_setup *setup, t_ray ray)
 	t_col glob;
 
 	glob = setup->background;
-	if (ray.flag < 1)
+	if (ray.flag < (GLOBAL_ILL && 1))
 		glob = global_illum(ray, norm, hit);
 	return (glob);
 }
