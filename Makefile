@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/04/03 20:55:46 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 21:30:07 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,6 @@ SRCS =	main.c																\
 		mlx_control.c														\
 		select_mode.c														\
 																			\
-		shape.c																\
 			plane.c															\
 			sphere.c														\
 			cone.c															\
