@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 21:54:20 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 22:00:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:20:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			ft_loop_hook(t_setup *setup)
 {
 	t_vec3	rot;
 	double	distance;
-	double step;
+	double	step;
 
 	if (SCN.cams)
 	{
