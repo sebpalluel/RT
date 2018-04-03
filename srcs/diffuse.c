@@ -123,9 +123,9 @@ t_col	diff_col(t_mat mat, t_vec3 norm, t_lgt lgt, t_ray ray)
 	double dist;
 
 	shad = lgt.col;
+	setup = get_st();
 	shadow(lgt, SCN.forms, hit, &shad);
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-	setup = get_st();
 	dist = ft_vec3norm(ft_vec3vop_r(hit, lgt.vect, '-'));
 	dist = dist * dist;
 	col = ft_colinterpol(setup->background, ft_colmultscale(
