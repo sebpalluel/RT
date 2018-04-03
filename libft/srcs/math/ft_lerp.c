@@ -6,11 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 11:16:41 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 11:18:14 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:04:54 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 float		ft_lerp(float t, float a, float b)
 {

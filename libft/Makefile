@@ -6,7 +6,7 @@
 #*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:29:24 by psebasti          #+#    #+#             *#
-#*   Updated: 2018/03/21 17:49:59 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 23:07:14 by psebasti         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -233,7 +233,6 @@ SRC		=	$(MEMPATH)ft_memset.c\
 			$(RANDPATH)ft_randf.c\
 			$(RANDPATH)ft_quintic.c\
 			$(RANDPATH)ft_quinticderiv.c\
-			$(RANDPATH)ft_lerp.c\
 			$(RANDPATH)ft_rol.c\
 			$(RANDPATH)ft_ror.c\
 			$(FDPATH)ft_create_file.c\

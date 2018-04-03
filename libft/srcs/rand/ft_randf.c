@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 17:55:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/07 11:04:19 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:09:01 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-float			ft_randf()
+float			ft_randf(void)
 {
-	return ((float)rand()/RAND_MAX);
+	return ((float)rand() / RAND_MAX);
 }
