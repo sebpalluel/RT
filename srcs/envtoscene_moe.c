@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:20:52 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:55:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:41:52 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ void			ft_moebius_struct_pop(t_list *form, t_list *env, t_bool *flag)
 		flag[4] = ft_getdoublefromenv(&MOEB(form).width, ENVSTRUCT(env)->value);
 	flag = ft_mat_struct_pop(form, env, flag, 5);
 	FORM(form)->num_arg++;
+}
+
+static t_bool	ft_normalize_moeb(t_list *form)
+{
+	MOEB(form).axe_x = ft_vec3normalize_r(MOEB(form).axe_x);
+	MOEB(form).axe_y = ft_vec3normalize_r(ft_vec3vop_r(MOEB(form).axe_y, \
+				ft_vec3sop_r(MOEB(form).axe_x, ft_vec3dot(MOEB(form).axe_x, \
+						MOEB(form).axe_y), '*'), '-'));
+	if (MOEB(form).axe_y.x == 0 && MOEB(form).axe_y.y == 0 && \
+			MOEB(form).axe_y.z == 0)
+		return (ERROR);
+	return (OK);
 }
 
 size_t			ft_moebius(t_list **list)
@@ -48,11 +60,8 @@ size_t			ft_moebius(t_list **list)
 	while (FORM(form)->num_arg < ft_getnumvar(NVARMOEBIUS, form) \
 			&& env && (env = env->next))
 		ft_moebius_struct_pop(form, env, flag);
-	if (ft_checkifallset(flag, ft_getnumvar(NVARMOEBIUS, form)) != OK)
-		return (setup->error = MOEBIUS_ERROR);
-	MOEB(form).axe_x = ft_vec3normalize_r(MOEB(form).axe_x);
-	MOEB(form).axe_y = ft_vec3normalize_r(ft_vec3vop_r(MOEB(form).axe_y, ft_vec3sop_r(MOEB(form).axe_x, ft_vec3dot(MOEB(form).axe_x, MOEB(form).axe_y), '*'), '-'));
-	if (MOEB(form).axe_y.x == 0 && MOEB(form).axe_y.y == 0 && MOEB(form).axe_y.z == 0)
+	if (ft_checkifallset(flag, ft_getnumvar(NVARMOEBIUS, form)) != OK || \
+			ft_normalize_moeb(form) != OK)
 		return (setup->error = MOEBIUS_ERROR);
 	*list = env;
 	return (OK);

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 20:44:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:46:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:38:09 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ size_t			ft_cylindre(t_list **list)
 	while (form->next)
 		form = form->next;
 	FORM(form)->type = CYL;
-	while (FORM(form)->num_arg < ft_getnumvar(NVARCYLINDRE, form) && env && (env = env->next))
+	while (FORM(form)->num_arg < ft_getnumvar(NVARCYLINDRE, form) && env && \
+			(env = env->next))
 		ft_cylindre_struct_pop(form, env, flag);
 	if (ft_checkifallset(flag, ft_getnumvar(NVARCYLINDRE, form)) != OK)
 		return (setup->error = CYLINDRE_ERROR);

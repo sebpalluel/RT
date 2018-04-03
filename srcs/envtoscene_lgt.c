@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:50:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:38:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_list	*ft_newlgt(void)
 }
 
 void			ft_light_struct_pop(t_list *lgt, t_list *env, t_bool *flag)
-{	
+{
 	if (ft_strcmp(ENVSTRUCT(env)->name, "type") == 0)
 		flag[0] = ft_getsize_tfromenv(&LGT(lgt)->type, \
 				ENVSTRUCT(env)->value);

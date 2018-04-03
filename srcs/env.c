@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:33:46 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 21:28:16 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:37:37 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list			*ft_newenv(char *name, char *value)
 {
-	t_list		*env; // changer env pour list parce que pas tres clair
+	t_list		*env;
 
 	if (!(env = (t_list*)malloc(sizeof(t_list))) || \
 			!(env->content = (t_env*)ft_memalloc(sizeof(t_env))))
@@ -30,7 +30,6 @@ t_list			*ft_newenv(char *name, char *value)
 		return (NULL);
 	return (env);
 }
-
 
 t_list			*ft_newshape(void)
 {
