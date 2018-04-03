@@ -82,7 +82,7 @@ void			ft_getmaterial(t_list **env, char *mat_str)
 		if (!get_tex && !get_gen)
 			ft_lstaddend(env, ft_newenv(ft_strdup("texture_mode"), \
 						ft_strdup("0")));
-		free (mat_str);
+		free(mat_str);
 		if (no_val || (get_gen && get_tex))
 			get_st()->error = MAT_ERROR;
 	}

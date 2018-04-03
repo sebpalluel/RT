@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 
-int		init_mat(t_matrix *mat, int i, int j)
+int			init_mat(t_matrix *mat, int i, int j)
 {
 	int		a;
 
@@ -27,7 +27,7 @@ int		init_mat(t_matrix *mat, int i, int j)
 	return (1);
 }
 
-void	add_mat(t_matrix *a, t_matrix *b)
+void		add_mat(t_matrix *a, t_matrix *b)
 {
 	int		x;
 	int		y;
@@ -42,9 +42,9 @@ void	add_mat(t_matrix *a, t_matrix *b)
 
 t_matrix	*mult_mat(t_matrix a, t_matrix b)
 {
-	int		x;
-	int		y;
-	int		k;
+	int			x;
+	int			y;
+	int			k;
 	t_matrix	*res;
 
 	res = NULL;
@@ -60,7 +60,7 @@ t_matrix	*mult_mat(t_matrix a, t_matrix b)
 	return (res);
 }
 
-void	scale_mat(double a, t_matrix *res)
+void		scale_mat(double a, t_matrix *res)
 {
 	int		x;
 	int		y;
@@ -69,9 +69,4 @@ void	scale_mat(double a, t_matrix *res)
 	while (++x < res->i && (y = -1))
 		while (++y < res->j)
 			res->mat[x][y] *= a;
-}
-
-double	det_mat(t_vec3 a, t_vec3 b, t_vec3 c)
-{
-	return (a.x * b.y * c.z + b.x * c.y * a.z + c.x * a.y * b.z - c.x * b.y * a.z - a.x * c.y * b.z - b.x * a.y * c.z);
 }

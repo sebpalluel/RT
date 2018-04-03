@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
 size_t			ft_args_to_fd(t_setup *setup)
 {
 	char		**tmp;
@@ -72,6 +73,6 @@ int				main(int ac, char **av)
 	setup->background = ft_col_r(0, 0, 0, 0);
 	setup->path = av[1] != NULL ? ft_strdup(av[1]) : NULL;
 	if ((setup->error = (ac < 3) ? OK : ERROR) == OK)
-		ft_mlx_process(setup); // Si tout est alloue commence avec mode STATE_START
+		ft_mlx_process(setup);
 	return (ft_quit(setup));
 }

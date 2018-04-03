@@ -12,9 +12,9 @@
 
 #include "../includes/rtv1.h"
 
-# define PERSISTANCE	0.75
-# define FREQUENCY		25.
-# define LAYERS			5
+#define PERSISTANCE	0.75
+#define FREQUENCY		25.
+#define LAYERS			5
 
 double			ft_perlin(t_vec3 vec3, t_gen gen)
 {
@@ -29,7 +29,8 @@ double			ft_perlin(t_vec3 vec3, t_gen gen)
 	i = -1;
 	while (++i < (int)gen.p_layers)
 	{
-		perlin += ft_perlin_noise(vec3.x * f + i, vec3.y * f + i, vec3.z * f + i) * amp;
+		perlin += ft_perlin_noise(vec3.x * f + i, vec3.y *
+			f + i, vec3.z * f + i) * amp;
 		amp *= gen.p_prst;
 		f *= 2;
 	}
@@ -82,7 +83,8 @@ double			ft_cloud(t_vec3 vec3, t_gen gen)
 
 	amp = 20.;
 	cloud = ft_perlin(vec3, gen);
-	cloud = cos(((vec3.x * vec3.y * vec3.z) / (vec3.x * 2)) + cloud * amp) / 2. + 0.5;
+	cloud = cos(((vec3.x * vec3.y * vec3.z) /
+		(vec3.x * 2)) + cloud * amp) / 2. + 0.5;
 	return (cloud);
 }
 

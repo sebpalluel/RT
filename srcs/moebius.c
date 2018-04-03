@@ -83,30 +83,30 @@ t_vec3						change_base(t_vec3 a, t_vec3 x, t_vec3 y)
 double						moeb_calc1(t_vec3 d)
 {
 	return (d.x * d.x * d.y + d.y * d.y * d.y - 2 * d.x *
-			d.x * d.z - 2 * d.y * d.y * d.z + d.y * d.z * d.z);
+		d.x * d.z - 2 * d.y * d.y * d.z + d.y * d.z * d.z);
 }
 
 double						moeb_calc2(t_vec3 d, t_vec3 o, double r)
 {
 	return (calc(d.x, o.x, d.y, o.y) + 3 * d.y * d.y * o.y
-			- 2 * r * d.x * d.z - 2 * calc(d.x, o.x, d.z, o.z) -
-			2 * calc(d.y, o.y, d.z, o.z) + calc(d.z, o.z, d.y, o.y));
+		- 2 * r * d.x * d.z - 2 * calc(d.x, o.x, d.z, o.z) -
+		2 * calc(d.y, o.y, d.z, o.z) + calc(d.z, o.z, d.y, o.y));
 }
 
 double						moeb_calc3(t_vec3 d, t_vec3 o, double r)
 {
-	return ( -r * r * d.y + 2 * d.x * o.x * o.y
-			+ d.y * o.x * o.x + 3 * d.y * o.y * o.y - 2 * r * (o.x * d.z +
-				d.x * o.z) - 2 * (2 * d.x * o.x * o.z + d.z * o.x * o.x) - 2 * (2 *
-					d.y * o.y * o.z + d.z * o.y * o.y) + 2 * d.z * o.z * o.y + d.y * o.z
+	return (-r * r * d.y + 2 * d.x * o.x * o.y
+		+ d.y * o.x * o.x + 3 * d.y * o.y * o.y - 2 * r * (o.x * d.z +
+		d.x * o.z) - 2 * (2 * d.x * o.x * o.z + d.z * o.x * o.x) - 2 * (2 *
+		d.y * o.y * o.z + d.z * o.y * o.y) + 2 * d.z * o.z * o.y + d.y * o.z
 			* o.z);
 }
 
 double						moeb_calc4(t_vec3 o, double r)
 {
 	return (-r * r * o.y + o.x * o.x * o.y + o.y * o.y * o.y
-			- 2 * r * o.x * o.z - 2 * o.x * o.x * o.z - 2 * o.y * o.y * o.z
-			+ o.y * o.z * o.z);
+		- 2 * r * o.x * o.z - 2 * o.x * o.x * o.z - 2 * o.y * o.y * o.z
+		+ o.y * o.z * o.z);
 }
 
 double						hit_moe(t_ray ray, t_shape *form)
@@ -132,7 +132,7 @@ double						hit_moe(t_ray ray, t_shape *form)
 		if (abcd[i] < 0)
 			return (-1);
 		if (is_in_moeb(ft_vec3vop_r(ft_vec3vop_r(ft_vec3sop_r(ray.dir, abcd[i],
-								'*'), ray.org, '+'), form->moeb.org, '-'), form->moeb))
+			'*'), ray.org, '+'), form->moeb.org, '-'), form->moeb))
 			return (abcd[i]);
 	}
 	return (-1);
@@ -163,9 +163,9 @@ t_vec3						normal_moe(t_ray ray, t_list *moe)
 	tmpvec = ft_vec3vop_r(MOEB(moe).axe_x, MOEB(moe).axe_y, 'c');
 	t = hitpoint;
 	norm = ft_vec3_r(2 * t.x * t.y - 2 * MOEB(moe).r * t.z - 4 * t.x * t.z,
-			-MOEB(moe).r * MOEB(moe).r + t.x * t.x + 3 * t.y * t.y - 4 * t.y * t.z +
-			t.z * t.z,
-			-2 * MOEB(moe).r * t.x - 2 * t.x * t.x - 2 * t.y * t.y + 2 * t.y * t.z);
+		-MOEB(moe).r * MOEB(moe).r + t.x * t.x + 3 * t.y * t.y - 4 * t.y * t.z +
+		t.z * t.z,
+		-2 * MOEB(moe).r * t.x - 2 * t.x * t.x - 2 * t.y * t.y + 2 * t.y * t.z);
 	norm = norm_moeb(MOEB(moe).axe_x, MOEB(moe).axe_y, norm);
 	if (ft_vec3dot(norm, ray.dir) > 0)
 		norm = ft_vec3sop_r(norm, -1, '*');

@@ -59,7 +59,7 @@ t_vec3			normal_plane(t_ray ray, t_list *plane)
 	return (norm);
 }
 
-double	hit_plan(t_ray ray, t_shape *form)
+double			hit_plan(t_ray ray, t_shape *form)
 {
 	double a;
 	double b;

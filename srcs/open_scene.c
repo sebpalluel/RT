@@ -21,15 +21,13 @@ size_t			ft_envtosetup(t_setup *setup)
 
 	env = SCN.env;
 	validobjs = ft_validobjs();
-	while (env && ENVSTRUCT(env))
+	while (env && ENVSTRUCT(env) && (i = -1))
 	{
-		i = -1;
 		flag = ERROR;
 		while (env && ++i < NUM_OBJS)
 		{
 			if (ft_strcmp(ENVSTRUCT(env)->name, validobjs[i]) == 0)
 			{
-
 				flag = OK;
 				if (parse_obj()[i](&env) != OK)
 					return (ERROR);
