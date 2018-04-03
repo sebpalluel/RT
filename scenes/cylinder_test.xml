@@ -3,7 +3,6 @@
 	<engine>
 		<width> 1920 </width>
 		<height> 1080 </height>
-		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.7 </amb_light>
 	</engine>
@@ -31,9 +30,10 @@
 			<radius> 0.75 </radius>
 			<material>
 				<color> 1., 1., 1., 1. </color>
-				<reflexion> 0 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 1 </mode>
 					<p_color> 1., 0., 0., 1. </p_color>
@@ -52,6 +52,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
 			</material>
 			<cylindre>
 				<position> 0.3, 0.5, -5. </position>
@@ -62,6 +63,7 @@
 					<reflexion> 0 </reflexion>
 					<refractive_index> 0. </refractive_index>
 					<transparency> 0. </transparency>
+					<specularity> 0. </specularity>
 				</material>
 			</cylindre>
 		</cylindre>
@@ -76,6 +78,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
 				<texture>
 					<texture_num> 1 </texture_num>
 					<size_x> 1. </size_x>

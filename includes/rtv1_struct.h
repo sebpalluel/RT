@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:32:54 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/02 23:02:18 by mbeilles         ###   ########.fr       */
+/*   Updated: 2018/04/03 17:43:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_mat
 	double			refl;
 	double			n;
 	double			trsp;
+	double			s;
 	size_t			text_m;
 	t_text_c		text_c;
 	t_gen			gen;
@@ -172,7 +173,6 @@ typedef struct		s_scene
 	t_fd			fd;
 	double			move_step;
 	double			rot_step;
-	size_t			refr_max;
 	size_t			refl_max;
 	double			amb_light;
 	double			pers;

@@ -3,7 +3,6 @@
 	<engine>
 		<width> 1920 </width>
 		<height> 1080 </height>
-		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 0.09 </amb_light>
 	</engine>
@@ -50,6 +49,7 @@
 				<reflexion> 1. </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 1. </transparency>
+				<specularity> 1. </specularity>
 			</material>
 		</cone>
 		<cone>
@@ -61,6 +61,7 @@
 				<reflexion> 1. </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 1. </transparency>
+				<specularity> 1. </specularity>
 			</material>
 		</cone>
 		<plane>
@@ -71,6 +72,7 @@
 				<reflexion> 0.8 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 1. </transparency>
+				<specularity> 1. </specularity>
 			</material>
 		</plane>
 		<sphere>
@@ -81,6 +83,7 @@
 				<reflexion> 0.8 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 1. </transparency>
+				<specularity> 1. </specularity>
 			</material>
 		</sphere>
 		<sphere>
@@ -91,6 +94,7 @@
 				<reflexion> 0.8 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 1. </transparency>
+				<specularity> 1. </specularity>
 			</material>
 		</sphere>
 	</objects>

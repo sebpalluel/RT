@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:50:02 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 13:04:49 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 17:43:42 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		ft_getengine(t_list **env, char *eng_str)
 	ft_lstaddend(env, ft_newenv(ft_strdup("engine"), NULL));
 	ft_getvaluetoenv(env, eng_str, "width", &no_val);
 	ft_getvaluetoenv(env, eng_str, "height", &no_val);
-	ft_getvaluetoenv(env, eng_str, "refr_max", &no_val);
 	ft_getvaluetoenv(env, eng_str, "refl_max", &no_val);
 	ft_getvaluetoenv(env, eng_str, "amb_light", &no_val);
 	if (no_val)

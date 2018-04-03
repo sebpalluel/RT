@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:16:45 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/12 22:56:58 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:04:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_col		ft_hextocol(int hexvalue)
 	col.r = ((hexvalue & 0xff0000) >> 16) / 255.;
 	col.g = ((hexvalue & 0xff00) >> 8) / 255.;
 	col.b = (hexvalue & 0xff) / 255.;
-	col.s = 1.;
+	col.a = 1.;
 	return (col);
 }
 

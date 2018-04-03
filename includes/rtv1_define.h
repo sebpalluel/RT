@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 15:28:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 17:44:35 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define AMP			1.3
 
 # define VIDEO_MODE		1
+# define GLOBAL_ILL		0
 
 # define STATE_RUN		0
 # define STATE_START	1
@@ -75,12 +76,12 @@
 # define M_GEN			2
 # define NVARTEX		3
 # define NVARGEN		5
-# define NVARMAT		5
+# define NVARMAT		6
 # define NVARMAT_MAX	NVARMAT + NVARGEN
 
 # define UI_WIN			setup->ui_win
 # define UI_IMG			setup->ui_img
-# define NVARENG		5
+# define NVARENG		4
 # define SCN			setup->scene[setup->scn_num]
 # define NVARCAM		2
 # define NVARLIGHT		4
