@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nchalot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/17 12:09:13 by nchalot           #+#    #+#             */
+/*   Updated: 2018/04/03 22:19:32 by psebasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/rtv1.h"
 
-t_col	get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
+t_col			get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 {
-	t_col color;
-	Uint8 r;
-	Uint8 g;
-	Uint8 b;
-	Uint8 a;
+	t_col		color;
+	Uint8		r;
+	Uint8		g;
+	Uint8		b;
+	Uint8		a;
 
 	SDL_GetRGBA(pixel, fmt, &r, &g, &b, &a);
 	color.r = r / 255.0;
@@ -16,10 +28,10 @@ t_col	get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 	return (color);
 }
 
-Uint32	getpixel(SDL_Surface *surface, int x, int y)
+Uint32			getpixel(SDL_Surface *surface, int x, int y)
 {
-	int		bpp;
-	Uint8	*p;
+	int			bpp;
+	Uint8		*p;
 
 	bpp = surface->format->BytesPerPixel;
 	p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
@@ -40,11 +52,11 @@ Uint32	getpixel(SDL_Surface *surface, int x, int y)
 		return (0);
 }
 
-void	cpy_px_map(t_text *texture, SDL_Surface *img)
+void			cpy_px_map(t_text *texture, SDL_Surface *img)
 {
-	Uint32	pixel;
-	int		x;
-	int		y;
+	Uint32		pixel;
+	int			x;
+	int			y;
 
 	(void)texture;
 	y = 0;
@@ -63,7 +75,7 @@ void	cpy_px_map(t_text *texture, SDL_Surface *img)
 	}
 }
 
-t_text	*get_texture_datas(char *path)
+t_text			*get_texture_datas(char *path)
 {
 	SDL_Surface	*img;
 	t_text		*texture;
@@ -91,11 +103,11 @@ t_text	*get_texture_datas(char *path)
 	return (texture);
 }
 
-t_mat	get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
+t_mat			get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 {
-	t_mat	hit_mat;
-	t_text	*text;
-	t_col	prev_col;
+	t_mat		hit_mat;
+	t_text		*text;
+	t_col		prev_col;
 
 	hit_mat = mat_obj;
 	if (FORM(form)->type < NUM_FORM)

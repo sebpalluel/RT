@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/04/03 21:30:07 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 22:08:29 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS =	main.c																\
 			setup_free.c													\
 		mlx_process.c														\
 		mlx_control.c														\
+		video.c																\
 		select_mode.c														\
 																			\
 			plane.c															\
@@ -91,6 +92,7 @@ SRCS =	main.c																\
 				reflexion.c													\
 				diffuse.c													\
 				noise.c														\
+				checker.c													\
 				perlin_calc.c												\
 				postprocess.c												\
 				postprocess2.c												\
@@ -103,6 +105,7 @@ SRCS =	main.c																\
 				uv_maps_helpers.c											\
 																			\
 		parser.c															\
+			parser_xml.c													\
 			parse_to_env_utils.c											\
 			parser_error.c													\
 			parser_utils.c													\

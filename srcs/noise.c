@@ -6,15 +6,11 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 11:47:36 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:02:57 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-
-#define PERSISTANCE	0.75
-#define FREQUENCY		25.
-#define LAYERS			5
 
 double			ft_perlin(t_vec3 vec3, t_gen gen)
 {
@@ -86,18 +82,4 @@ double			ft_cloud(t_vec3 vec3, t_gen gen)
 	cloud = cos(((vec3.x * vec3.y * vec3.z) /
 		(vec3.x * 2)) + cloud * amp) / 2. + 0.5;
 	return (cloud);
-}
-
-double			ft_checker(t_vec3 vec3, t_gen gen)
-{
-	int			size;
-
-	(void)gen;
-	size = 5;
-	vec3 = ft_vec3multscale_r(vec3, 100.);
-	if (((int)floor(vec3.x / size)
-				+ (int)floor(vec3.y / size)) % 2 != 0)
-		return (1.);
-	else
-		return (0.);
 }
