@@ -35,13 +35,14 @@ t_col	send_ray(t_ray ray, t_setup *setup)
 	nearest = NULL;
 	while (ptr)
 	{
-		if (((FORM(ptr)->type != 0) && (dist = hit_shape()[FORM(ptr)->type - 1](ray, FORM(ptr))) >= 0)
+		if (((FORM(ptr)->type != 0) && (dist =
+			hit_shape()[FORM(ptr)->type - 1](ray, FORM(ptr))) >= 0)
 				&& ((ray.dist > dist || ray.dist == -1) && dist >= 0))
 		{
 			nearest = ptr;
 			ray.dist = dist;
 		}
-	ptr = ptr->next;
+		ptr = ptr->next;
 	}
 	if (!nearest)
 		return (setup->background);
