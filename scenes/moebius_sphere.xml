@@ -3,7 +3,6 @@
 	<engine>
 		<width> 1920 </width>
 		<height> 1080 </height>
-		<refr_max> 4 </refr_max>
 		<refl_max> 4 </refl_max>
 		<amb_light> 1.0 </amb_light>
 	</engine>
@@ -35,6 +34,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.333 </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</moebius>
 		<sphere>
@@ -45,6 +45,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</sphere>
 	</objects>

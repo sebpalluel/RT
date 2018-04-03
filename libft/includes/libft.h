@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:50:29 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 17:49:04 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:04:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				ft_coltoi(t_col col);
 t_col			ft_coladd(t_col col1, t_col col2);
 t_col			ft_colmultscale(t_col col, double t);
 t_col			ft_colmult(t_col col1, t_col col2);
-t_col			ft_col_r(double r, double g, double b, double s);
+t_col			ft_col_r(double r, double g, double b, double a);
 t_col			ft_colinterpol(t_col col1, t_col col2, double t);
 void			ft_mlxdelete(t_mlx *mlx, t_img *img);
 void			ft_imgclean(t_img *img, size_t width, size_t height);

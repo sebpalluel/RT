@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 19:31:09 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/05 17:18:40 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:01:22 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct			s_col
 	double				r;
 	double				g;
 	double				b;
-	double				s;
+	double				a;
 }						t_col;
 
 typedef struct			s_mlx

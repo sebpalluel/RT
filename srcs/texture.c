@@ -6,13 +6,13 @@ t_col	get_px_color(SDL_PixelFormat *fmt, Uint32 pixel)
 	Uint8 r;
 	Uint8 g;
 	Uint8 b;
-	Uint8 s;
+	Uint8 a;
 
-	SDL_GetRGBA(pixel, fmt, &r, &g, &b, &s);
+	SDL_GetRGBA(pixel, fmt, &r, &g, &b, &a);
 	color.r = r / 255.0;
 	color.g = g / 255.0;
 	color.b = b / 255.0;
-	color.s = s / 255.0;
+	color.a = a / 255.0;
 	return (color);
 }
 

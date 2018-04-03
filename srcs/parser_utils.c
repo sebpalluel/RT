@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:44:40 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/20 19:21:37 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:16:24 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,15 @@ t_bool		*ft_mat_struct_pop(t_list *form, t_list *env, t_bool *flag, \
 	else if (ft_strcmp(ENVSTRUCT(env)->name, "transparency") == 0)
 		flag[n_flag + 3] = ft_getdoublefromenv(&FORM(form)->mat.trsp, \
 				ENVSTRUCT(env)->value);
+	else if (ft_strcmp(ENVSTRUCT(env)->name, "specularity") == 0)
+		flag[n_flag + 4] = ft_getdoublefromenv(&FORM(form)->mat.s, \
+				ENVSTRUCT(env)->value);
 	else if (ft_strcmp(ENVSTRUCT(env)->name, "texture_mode") == 0)
-		flag[n_flag + 4] = ft_getsize_tfromenv(&FORM(form)->mat.text_m, \
+		flag[n_flag + 5] = ft_getsize_tfromenv(&FORM(form)->mat.text_m, \
 				ENVSTRUCT(env)->value);
 	else if (FORM(form)->mat.text_m)
-		flag = ((FORM(form)->mat.text_m == M_TEX) ? ft_text_struct_pop(form, env, \
-				flag, n_flag + 5) : ft_gen_struct_pop(form, env, flag, n_flag + 5));
-
+		flag = ((FORM(form)->mat.text_m == M_TEX) ? \
+				ft_text_struct_pop(form, env, flag, n_flag + 6) : \
+				ft_gen_struct_pop(form, env, flag, n_flag + 6));
 	return (flag);
 }

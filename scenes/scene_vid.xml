@@ -3,7 +3,6 @@
 	<engine>
 		<width> 1920 </width>
 		<height> 1080 </height>
-		<refr_max> 10 </refr_max>
 		<refl_max> 10 </refl_max>
 		<amb_light> 0.3 </amb_light>
 	</engine>
@@ -50,6 +49,7 @@
 				<reflexion> 0.5 </reflexion>
 				<refractive_index> 1.0 </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</moebius>
 		<sphere>
@@ -60,6 +60,7 @@
 				<reflexion> 1 </reflexion>
 				<refractive_index> 2 </refractive_index>
 				<transparency> 0.5 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</sphere>
 		<sphere>
@@ -70,6 +71,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 1 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</sphere>
 		<sphere>
@@ -80,6 +82,7 @@
 				<reflexion> 0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 1 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</sphere>
 		<sphere>
@@ -90,6 +93,7 @@
 				<reflexion> 1 </reflexion>
 				<refractive_index> 1 </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 			</material>
 		</sphere>
 		<cylindre>
@@ -101,6 +105,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 1 </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 5 </mode>
 					<p_color> 1., 1., 1., 1. </p_color>
@@ -118,6 +123,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 4 </mode>
 					<p_color> 1., 0., 0., 1. </p_color>
@@ -135,6 +141,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 4 </mode>
 					<p_color> 1., 1., 1., 1. </p_color>
@@ -152,6 +159,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 4 </mode>
 					<p_color> 1., 1., 1., 1. </p_color>
@@ -169,6 +177,7 @@
 				<reflexion> 0.0 </reflexion>
 				<refractive_index> 1. </refractive_index>
 				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
 				<generative>
 					<mode> 4 </mode>
 					<p_color> 1., 1., 1., 1. </p_color>
