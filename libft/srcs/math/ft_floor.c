@@ -6,16 +6,16 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:13:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 15:40:35 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:05:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 int				ft_floor(double fp)
 {
 	int			ret;
 
 	ret = (int)fp;
-	return(ret - (ret > fp));
+	return (ret - (ret > fp));
 }

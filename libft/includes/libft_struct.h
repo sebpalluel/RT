@@ -6,14 +6,14 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 19:31:09 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 16:01:22 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:59:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 #ifndef LIBFT_STRUCT_H
 # define LIBFT_STRUCT_H
+
+# include "libft.h"
 
 typedef struct			s_list
 {

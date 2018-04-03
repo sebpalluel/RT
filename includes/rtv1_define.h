@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 21:58:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:58:11 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include "../libft/includes/libft.h"
 
-
 # define WIDTH			1280
 # define HEIGHT			720
 # define RATIO			WIDTH / HEIGHT
 # define FOV			45
-# define DEG2RAD(x)    ((x * M_PI) / 180)
+# define DEG2RAD(x)		((x * M_PI) / 180)
 # define MAX_SIZE		10000
 # define MAX_OBJ		20
 # define THREAD			128
@@ -48,25 +47,6 @@
 # define STATE_WRI		9
 
 # define CIRCLE			PAS/PAS_TOTAL * (2 * M_PI)
-
-# define FILE_ERROR_S	"error: file doesn't exist or don't have the rights"
-# define ENG_ERROR_S	"error: engine is not in the correct format"
-# define LIGHT_ERROR_S	"error: light struct is not in the correct format"
-# define PLANE_ERROR_S	"error: plane struct is not in the correct format"
-# define SPHERE_ERROR_S	"error: sphere struct is not in the correct format"
-# define CONE_ERROR_S	"error: cone struct is not in the correct format"
-# define CYL_ERROR_S	"error: cylindre struct is not in the correct format"
-# define TOR_ERROR_S	"error: torus struct is not in the correct format"
-# define MOE_ERROR_S	"error: moebius struct is not in the correct format"
-# define CAM_ERROR_S	"error: cam struct is not in the correct format"
-# define SCN_ERROR_S	"error: scene is not in the correct format"
-# define OBJ_ERROR_S	"error: objects are not in the correct format"
-# define DIM_ERROR_S	"error: dim is not in the correct format [100;4000]"
-# define TEX_MT_ERROR_S	"error: texture not allowed for torus and moebius"
-# define XML_ERROR_S	"error: one of the xml struct is not in the correct format"
-# define MAT_ERROR_S	"error: one of the material is not in the correct format"
-# define GEN_ERROR_S	"error: generative struct is not in the correct format"
-# define TEX_ERROR_S	"error: texture struct is not in the correct format"
 
 # define ENG_S			parsed[0]
 # define CAM_S			parsed[1]
@@ -99,7 +79,6 @@
 # define CONE(x)		FORM(x)->cone
 # define CYLI(x)		FORM(x)->cyl
 # define MOEB(x)		FORM(x)->moeb
-//# define ENV(x)			((t_env *)(*(x)->env).content)
 # define ENVSTRUCT(x)	((t_env *)(*(x)).content)
 
 # define SPH			1
@@ -126,7 +105,8 @@
 # define CAM_AV_STR		"Number of Camera available :"
 # define CAM_CH_STR		"Choose the cam with number and press ENTER :"
 
-# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon (2) | Negative (3) | B&W (4) | Blur (5)"
+# define EFF_AV_STR		"Effects available : Normal (0) | Sepia (1) | Cartoon "
+# define EFF_AV_STR2	EFF_AV_STR"(2) | Negative (3) | B&W (4) | Blur (5)"
 # define EFF_CH_STR		"Choose the effect with number and press ENTER :"
 
 # define WRI_CH_STR		"Choose screenshot with number and press ENTER :"
@@ -137,11 +117,5 @@
 # define GUI_M_EFF_STR	"|To choose an effect to apply  :  E  |"
 # define GUI_M_SCR_STR	"|To make a screenshot          :  W  |"
 # define GUI_M_ESC_STR	"|Exit Program                  : ESC |"
-//# define RIGHT_STR		"Turn Right :  Right"
-//# define PLUS_STR		"Speed Up   :  +"
-//# define MINUS_STR		"Slow Down  :  -"
-//# define GUI_STR		"Hide GUI   :  G"
-//# define S_MODE_STR		"Change SKY :  1 2 3 4 5 6"
-//# define ESC_STR		"Quit Game  :  Esc"
 
 #endif
