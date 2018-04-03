@@ -136,12 +136,19 @@ t_col	diff_col(t_mat mat, t_vec3 norm, t_lgt lgt, t_ray ray)
 	return (col);
 }
 
+t_col	glob_col(t_vec3 hit, t_vec3 norm, t_setup *setup, t_ray ray)
+{
+	t_col glob;
+
+	glob = setup->background;
+	if (ray.flag < (GLOBAL_ILL && 1))
+		glob = global_illum(ray, norm, hit);
+	return (glob);
+}
+
 t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 {
 	t_col		col;
-	t_col		shad;
-	t_col		glob;
-	t_ray		refract_ray;
 	t_list		*lgt;
 	t_setup		*setup;
 	t_vec3		hit;
@@ -150,17 +157,14 @@ t_col	diffuse(t_vec3 norm, t_list *form, t_ray ray, t_mat mat_obj)
 	setup = get_st();
 	lgt = SCN.lgts;
 	hit = ft_vec3vop_r(ray.org, ft_vec3sop_r(ray.dir, ray.dist, '*'), '+');
-	glob = setup->background;
 	hit_mat = get_mat_at(hit, form, mat_obj);
 	col = amb_light(hit_mat.col, norm, ray.dir, SCN.amb_light);
-	if (ray.flag < (GLOBAL_ILL && 1))
-		glob = global_illum(ray, norm, hit);
 	while (lgt)
 	{
 		col = ft_coladd(diff_col(hit_mat, norm, *LGT(lgt), ray), col);
 		lgt = lgt->next;
 	}
-	col = ft_colinterpol(ft_colinterpol(ft_coladd(col, glob),
+	col = ft_colinterpol(ft_colinterpol(ft_coladd(col, glob_col(hit, norm, setup, ray)),
 		ft_colmult(refract_col(hit_mat, norm, setup, ray), hit_mat.col),
 		hit_mat.trsp), reflex_col(hit_mat, norm, setup, ray), hit_mat.refl);
 	return (col);
