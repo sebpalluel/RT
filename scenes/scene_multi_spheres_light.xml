@@ -4,8 +4,8 @@
 	<engine>
 		<width> 1920 </width>
 		<height> 1080 </height>
-		<refl_max> 128 </refl_max>
-		<amb_light> 0.2 </amb_light>
+		<refl_max> 0 </refl_max>
+		<amb_light> 0.3 </amb_light>
 	</engine>
 
 	<cameras>
@@ -18,33 +18,22 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> -0.5, 0.0, 0.0 </position>
-			<color> 1., 1., 1., 1. </color>
+			<position> 1., 0.1, 0.0 </position>
+			<color> 1., 0., 0., 1. </color>
 		</light>
 
 	</lights>
 
 	<objects>
 		<sphere>
-			<center> 1.0, 0.2, 0.0 </center>
+			<center> 1.0, 0., 0.0 </center>
 			<radius> 0.2 </radius>
 			<material>
-				<color> 0.9, 0.9, 1., 0.0 </color>
-				<reflexion> 0. </reflexion>
-				<refractive_index> 1.33 </refractive_index>
+				<color> 1., 1., 1., 0.0 </color>
+				<reflexion> 0.5 </reflexion>
+				<refractive_index> 0. </refractive_index>
 				<transparency> 1. </transparency>
-				<specularity> 0. </specularity>
-			</material>
-		</sphere>
-		<sphere>
-			<center> 1.0, -0.2, 0.0 </center>
-			<radius> 0.2 </radius>
-			<material>
-				<color> 0.9, 0.9, 1., 0.0 </color>
-				<reflexion> 0. </reflexion>
-				<refractive_index> 1.33 </refractive_index>
-				<transparency> 1. </transparency>
-				<specularity> 0. </specularity>
+				<specularity> 1. </specularity>
 			</material>
 		</sphere>
 		<plane>
@@ -52,7 +41,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
@@ -63,7 +52,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
@@ -74,7 +63,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0.0, 1.0, 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
@@ -85,7 +74,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
@@ -96,7 +85,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
@@ -107,7 +96,7 @@
 			<distance> 2 </distance>
 			<material>
 				<color> 0., 1., 0.7, 0.95 </color>
-				<reflexion> 0.9 </reflexion>
+				<reflexion> 0. </reflexion>
 				<refractive_index> 0. </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>

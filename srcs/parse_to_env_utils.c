@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 16:52:35 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/21 10:59:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:14:47 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void			ft_getmaterial(t_list **env, char *mat_str)
 		ft_getvaluetoenv(env, mat_str, "reflexion", &no_val);
 		ft_getvaluetoenv(env, mat_str, "refractive_index", &no_val);
 		ft_getvaluetoenv(env, mat_str, "transparency", &no_val);
+		ft_getvaluetoenv(env, mat_str, "specularity", &no_val);
 		get_tex = ft_gettexture(env, ft_getobjstr(mat_str, "texture"));
 		get_gen = ft_getgenerative(env, ft_getobjstr(mat_str, "generative"));
 		if (!get_tex && !get_gen)

@@ -13,6 +13,8 @@ CFLAGS+=-O2
 all: $(NOM)
 	@echo > /dev/null
 
+debug: $(NOM)
+
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)
 	@ranlib $(NOM)
