@@ -225,15 +225,17 @@ endif
 
 
 $(NAME): $(OBJS)
+ifeq	(, $(filter debug, $(MAKECMDGOALS)))
 	@$(eval INSTRUCTION := all)
 	@if [ $(MAKE_DEP) == 1 ]; then $(DEPENDECIES) fi;
-ifeq	(, $(filter debug, $(MAKECMDGOALS)))
 	@printf $(COMPILING_PRD)
 	@$(CC) -o $(NAME) $(ARG_O) $(DEP) $(CFLAG) $(FAST_FLAG); \
 		if [ $$? != 1 ]; then printf $(MAKING_SUCCESS); exit 0; \
 		else printf $(MAKING_FAILURE); exit 2; fi
 	@printf $(COMPILED_PRD)
 else
+	@$(eval INSTRUCTION := debug)
+	@if [ $(MAKE_DEP) == 1 ]; then $(DEPENDECIES) fi;
 	@printf $(COMPILING_DBG)
 	@$(CC) -o $(NAME) $(ARG_O) $(DEP) $(CFLAG) $(SLOW_FLAG); \
 		if [ $$? != 1 ]; then printf $(MAKING_SUCCESS); exit 0; \
@@ -285,4 +287,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: install_dependencies install_brew install_sdl clean fclean prestate
+.PHONY: install_dependencies install_brew install_sdl clean fclean
