@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 20:33:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:37:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:12:51 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_cam_select(t_setup *setup)
 		ft_cam_change(setup);
 	}
 	setup->mode = (setup->mode == STATE_CAM && setup->key == ENTER) ? \
-				  STATE_DRAW : STATE_CAM;
+				STATE_DRAW : STATE_CAM;
 }
 
 void		ft_effect_select(t_setup *setup)
@@ -64,7 +64,7 @@ void		ft_effect_select(t_setup *setup)
 		ft_effect_change(setup, ret);
 	}
 	setup->mode = (setup->mode == STATE_EFF && setup->key == ENTER) ? \
-				  STATE_STOP : STATE_EFF;
+				STATE_STOP : STATE_EFF;
 }
 
 void		ft_take_screenshot(t_setup *setup)
