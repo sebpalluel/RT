@@ -266,11 +266,14 @@ OBJS_DIRS = $(sort $(dir $(OBJS)))
 INCS_DIRS = $(addsuffix /, $(INCDIR))
 INCS = $(addprefix -I, $(INCS_DIRS))
 
+FAST_FLAG = -O3 -march=native -flto
+SLOW_FLAG = -fsanitize=address -g3 -O0
+
 EXT		=	Makefile
 
-debug: all
-
 all: $(NAME) $(EXT)
+
+debug: all
 
 $(NAME): build $(LIBS) $(OBJS)
 ifneq (,$(filter debug,$(MAKECMDGOALS)))
@@ -296,9 +299,9 @@ re: fclean all
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 ifneq (,$(filter debug,$(MAKECMDGOALS)))
-	@$(CC) -c -o $@ $< $(INCS) $(FLAGS) $(DEBUG_F)
+	@$(CC) -c -o $@ $< $(INCS) $(FLAGS) $(SLOW_FLAG)
 	@echo -n .
 else
-	@$(CC) -c -o $@ $< $(INCS) $(FLAGS)
+	@$(CC) -c -o $@ $< $(INCS) $(FLAGS) $(FAST_FLAG)
 	@echo -n .
 endif
