@@ -6,7 +6,7 @@
 #    By: mbeilles <mbeilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/18 08:44:16 by mbeilles          #+#    #+#              #
-#*   Updated: 2018/04/03 18:46:46 by psebasti         ###   ########.fr       *#
+#*   Updated: 2018/04/03 20:35:18 by psebasti         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS =	main.c																\
 			setup_free.c													\
 		mlx_process.c														\
 		mlx_control.c														\
+		select_mode.c														\
 																			\
 		light.c																\
 																			\

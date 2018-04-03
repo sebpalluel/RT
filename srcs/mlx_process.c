@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 18:32:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:09:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_key_hook(int keycode, t_setup *setup)
 		ret = ft_setup_menu(setup);
 	if (setup->mode == STATE_OPEN)
 		ret = ft_open_scene(setup);
-	if (setup->key == ESC || ret != OK)
+	if (ret != OK)
 		ft_quit(setup);
 	ft_expose(setup);
 	return (0);
@@ -85,7 +85,7 @@ int			ft_loop_hook(t_setup *setup)
 		//rot.z = cosf(g_time * step);
 		SCN.cur_cam->org = rot;
 		printf("rot.x %f, rot.y %f, rot.z %f\n", rot.x, rot.y, rot.z);
-		//ft_saveimg(SCN, ft_savename("captures/test", g_time));
+		ft_saveimg(SCN, ft_savename("captures/test", g_time));
 		//ft_cosvalintime(&SCN.cur_cam->org.x, 0., 1., 0.1);
 		//ft_sinvalintime(&SCN.cur_cam->org.z, 0., 1., 0.1);
 		setup->mode = STATE_DRAW;
