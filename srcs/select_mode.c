@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 20:33:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 22:12:51 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:33:56 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		ft_effect_select(t_setup *setup)
 	mlx_put_image_to_window(setup->mlx_ptr, UI_WIN->win_ptr, \
 			UI_IMG->image, 0, 0);
 	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, x, 16, 0x32cd32, \
-			EFF_AV_STR);
+			EFF_AV_STR2);
 	mlx_string_put(setup->mlx_ptr, UI_WIN->win_ptr, x, 32, 0x32cd32, \
 			EFF_CH_STR);
 	ret = ft_mlx_keytoint(setup->key);

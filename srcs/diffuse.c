@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:34:43 by esuits            #+#    #+#             */
-/*   Updated: 2018/03/20 11:29:41 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:39:39 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ t_col	glob_col(t_vec3 hit, t_vec3 norm, t_setup *setup, t_ray ray)
 	t_col glob;
 
 	glob = setup->background;
-	if (ray.flag < 1)
+	if (ray.flag < (GLOBAL_ILL && 1))
 		glob = global_illum(ray, norm, hit);
 	return (glob);
 }
