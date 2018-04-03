@@ -44,9 +44,6 @@ t_col	global_illum(t_ray ray, t_vec3 norm, t_vec3 origin)
 	int		i;
 	t_setup	*setup;
 	t_col	glob;
-	t_list	*objects;
-	double	dist;
-	double	olddist;
 
 	setup = get_st();
 	glob = setup->background;
