@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 18:47:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/03/06 14:23:34 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:00:44 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,8 @@
 */
 
 # define MB_ERR_HD					"Memblock error: "
-# define MB_ERR_M_FAIL				MB_ERR_HD "malloc failed too many times, exiting"
-# define MB_ERR_E_BIG				MB_ERR_HD "element bigger than block, exiting"
+# define MB_ERR_M_FAIL				MB_ERR_HD "malloc failed, exiting"
+# define MB_ERR_E_BIG				MB_ERR_HD "element bigger than block"
 
 /*
 ** --- Attributes ---
