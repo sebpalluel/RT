@@ -91,6 +91,7 @@ SRCS =	main.c																\
 				shadow.c													\
 				reflexion.c													\
 				diffuse.c													\
+				diffuse2.c													\
 				noise.c														\
 				checker.c													\
 				perlin_calc.c												\
@@ -126,6 +127,8 @@ SRCS =	main.c																\
 			singleton.c														\
 			singleton2.c													\
 			save_img.c														\
+			calc_utils.c													\
+			moebius_calc.c													\
 #		draw.c																\
 		raycaster.c															\
 

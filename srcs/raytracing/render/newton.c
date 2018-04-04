@@ -1,17 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newton.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nchalot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/04 10:23:01 by nchalot           #+#    #+#             */
+/*   Updated: 2018/04/04 10:23:21 by nchalot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/rtv1.h"
-
-double	ft_cubic_derivative_estimate(double a, double b, double c, double x)
-{
-	return (3 * a * x * x + 2 * b * x + c);
-}
-
-double	ft_cubic_estimate(double a, double b, double c, double x)
-{
-	double tmp;
-
-	tmp = x * x;
-	return (a * tmp * x + b * tmp + c * x);
-}
 
 double	ft_resolve_cubic_n(double a, double b, double c, double d)
 {
