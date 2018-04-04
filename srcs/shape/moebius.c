@@ -98,6 +98,7 @@ t_vec3						normal_moe(t_ray ray, t_list *moe)
 		t.z * t.z,
 		-2 * MOEB(moe).r * t.x - 2 * t.x * t.x - 2 * t.y * t.y + 2 * t.y * t.z);
 	norm = norm_moeb(MOEB(moe).axe_x, MOEB(moe).axe_y, norm);
+	norm = ft_vec3normalize_r(norm);
 	if (ft_vec3dot(norm, ray.dir) > 0)
 		norm = ft_vec3sop_r(norm, -1, '*');
 	return (norm);

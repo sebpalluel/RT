@@ -1,0 +1,218 @@
+<scene>
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refl_max> 16 </refl_max>
+		<amb_light> 0.2 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> 0.0, 0.0, 0.0 </origin>
+			<look_at> 1.0, 0.0, 0.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.0, 0.0 </position>
+			<color> 1., 1., 1., 1. </color>
+		</light>
+	</lights>
+
+	<objects>
+
+		<moebius>
+			<origin> 1.0, -1, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 0.0, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 1., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 1, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 0., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+
+		<moebius>
+			<origin> 1.0, -1, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 0.0, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 1., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 1, 0. </origin>
+			<axe_x> -1, 0, 0. </axe_x>
+			<axe_y> 0., 0., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+
+		<moebius>
+			<origin> 1.0, -1, 0.5 </origin>
+			<axe_x> -1, 1, 0. </axe_x>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 0.0, 0.5 </origin>
+			<axe_x> -1, 1, 0. </axe_x>
+			<axe_y> 0., 1., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 1, 0.5 </origin>
+			<axe_x> -1, 1, 0. </axe_x>
+			<axe_y> 0., 0., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+
+		<moebius>
+			<origin> 1.0, -1, -0.5 </origin>
+			<axe_x> -1, -1, 0. </axe_x>
+			<axe_y> 0., 1., 0. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 0.0, -0.5 </origin>
+			<axe_x> -1, -1, 0. </axe_x>
+			<axe_y> 0., 1., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+		<moebius>
+			<origin> 1.0, 1, -0.5 </origin>
+			<axe_x> -1, -1, 0. </axe_x>
+			<axe_y> 0., 0., 1. </axe_y>
+			<radius> 0.3 </radius>
+			<width> 0.2 </width>
+			<material>
+				<color> 1., 1., 1., 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+
+
+		<plane>
+			<normale> -1, 0, 0 </normale>
+			<distance> 2 </distance>
+			<material>
+				<color> 1., 1., 1, 1 </color>
+				<reflexion> 00 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 1 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+	</objects>
+</scene>
