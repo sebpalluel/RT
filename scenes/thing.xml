@@ -1,0 +1,490 @@
+<scene>
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.2 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+			<origin> -4.0, 1.5, 0.0 </origin>
+			<look_at> 0.0, 0.0, 0.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 0.0 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 17.5, 0, 2.2 </position>
+			<color> 100., 100., 90.00, 0.0 </color>
+		</light>
+		<light>
+			<type> 0 </type>
+			<position> 4, 0, 0 </position>
+			<color> 0.2, 0.3, 0.3, 0.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+		<plane>
+			<normale> 0, 0.0, -1 </normale>
+			<distance> 3 </distance>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 12 </texture_num>
+					<size_x> 1.5 </size_x>
+					<size_y> 1.5 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> -1, 0.0, 0 </normale>
+			<distance> 7.2 </distance>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 5 </texture_num>
+					<size_x> 5 </size_x>
+					<size_y> 5 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, 0.0, 1 </normale>
+			<distance> 3 </distance>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.1 </reflexion>
+				<refractive_index> 1. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 0 </texture_num>
+					<size_x> 1.5 </size_x>
+					<size_y> 1.5 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<sphere>
+			<center> 2, -3, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 2, -3, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 2, -3, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 6.5, -3, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 6.5, -3, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 6.5, -3, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 2, 3, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 2, 3, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 2, 3, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 6.5, 3, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 6.5, 3, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 6.5, 3, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 2, -7, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 2, -7, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 2, -7, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0.0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 6.5, -7, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 6.5, -7, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 6.5, -7, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0.2 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 2, -11, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 2, -11, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 2, -11, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.05 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0.0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<sphere>
+			<center> 6.5, -11, -3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<sphere>
+			<center> 6.5, -11, 3 </center>
+			<radius> 0.7 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1.333 </refractive_index>
+				<transparency> 0 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 0.1 </size_x>
+					<size_y> 0.1 </size_y>
+				</texture>
+			</material>
+		</sphere>
+		<cylindre>
+			<position> 6.5, -11, 0. </position>
+			<direction> 0., 0, 1.0 </direction>
+			<radius> 0.5 </radius>
+			<material>
+				<color> 1.0, 1.0, 1.0, 0.0 </color>
+				<reflexion> 0.0 </reflexion>
+				<refractive_index> 1.33 </refractive_index>
+				<transparency> 0.2 </transparency>
+				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 11 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
+			</material>
+		</cylindre>
+		<moebius>
+			<origin> 4.0, 0, 0. </origin>
+			<axe_x> -1, 4, 0. </axe_x>
+			<axe_y> 0., 1., 0.2 </axe_y>
+			<radius> 1 </radius>
+			<width> 1 </width>
+			<material>
+				<color> 1., 1., 0.4, 1. </color>
+				<reflexion> 0 </reflexion>
+				<refractive_index> 1 </refractive_index>
+				<transparency> 0.4 </transparency>
+				<specularity> 0. </specularity>
+			</material>
+		</moebius>
+	</objects>
+</scene>
