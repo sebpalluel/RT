@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:41:27 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:47:42 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 17:28:34 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,24 @@ void			ft_engine_struct_pop(t_setup *setup, t_list *env, t_bool *flag)
 	SCN.num_arg++;
 }
 
+int				ft_hook_exit(int key, t_setup *setup)
+{
+	if (key == ESC)
+		ft_quit(setup);
+	return (0);
+}
+
 static void		ft_create_new_window(t_setup *setup)
 {
-	SCN.win = (t_mlx *)ft_memalloc(sizeof(t_mlx));
+	if (!(SCN.win = (t_mlx *)ft_memalloc(sizeof(t_mlx))))
+	{
+		setup->error = ERROR;
+		return ;
+	}
 	SCN.win->win_ptr = mlx_new_window(setup->mlx_ptr, SCN.width, \
 			SCN.height, setup->path);
 	SCN.img = (t_img**)ft_memalloc(sizeof(t_img*) * 2);
-	if (!SCN.win || !SCN.win->win_ptr || !SCN.img || \
+	if (!SCN.win->win_ptr || !SCN.img || \
 			!(SCN.img[0] = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height)) ||\
 			!(SCN.img[1] = ft_imgnew(setup->mlx_ptr, SCN.width, SCN.height)))
 		setup->error = ERROR;
@@ -40,7 +51,8 @@ static void		ft_create_new_window(t_setup *setup)
 		SCN.win->mlx_ptr = setup->mlx_ptr;
 		mlx_hook(SCN.win->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, \
 				ft_quit, setup);
-		mlx_put_image_to_window(setup->mlx_ptr, SCN.win->win_ptr, \
+		mlx_hook(SCN.win->win_ptr, KEYPRESS, KEYPRESSMASK, ft_hook_exit, setup);
+		mlx_put_image_to_window(SCN.win->mlx_ptr, SCN.win->win_ptr, \
 				setup->loading->image, SCN.width / 3., SCN.height / 2.7);
 	}
 }
