@@ -6,7 +6,7 @@
 /*   By: esuits <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 21:32:13 by esuits            #+#    #+#             */
-/*   Updated: 2018/04/03 22:13:56 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 17:26:25 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ t_text			**get_texture(void)
 	textures[3] = get_texture_datas("./textures/wood.jpg");
 	textures[4] = get_texture_datas("./textures/stainedGlass1.png");
 	textures[5] = get_texture_datas("./textures/tilesStainedGlass.png");
+	textures[6] = get_texture_datas("./textures/anvil_base.png");
+	textures[7] = get_texture_datas("./textures/hardened_clay.png");
+	textures[8] = get_texture_datas("./textures/log_spruce_top.png");
+	textures[9] = get_texture_datas("./textures/planks_oak.png");
+	textures[10] = get_texture_datas("./textures/prismarine_bricks.png");
+	textures[11] = get_texture_datas("./textures/quartz_block_bottom.png");
+	textures[12] = get_texture_datas("./textures/stone_diorite.png");
+	textures[13] = get_texture_datas("./textures/stone_andesite.png");
 	return (textures);
 }
 

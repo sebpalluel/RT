@@ -22,9 +22,9 @@ $(NOM):	$(OBJ)
 clean:
 	@rm -f $(NOM) $(OBJ) *~
 
-fclean:
+fclean: clean
 	@rm -f mlx_app
 
-re: clean all
+re: fclean all
 
 .PHONY: all
