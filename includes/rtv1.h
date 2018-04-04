@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 16:21:13 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 19:34:20 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				usage(t_error mode);
 int				ft_quit(t_setup *setup);
 void			ft_start(t_setup *setup);
 void			ft_mlx_control_key(t_setup *setup);
+void			ft_mlx_control(t_setup *setup);
 void			ft_cam_select(t_setup *setup);
 void			ft_effect_select(t_setup *setup);
 void			ft_take_screenshot(t_setup *setup);

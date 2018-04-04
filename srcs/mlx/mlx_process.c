@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 16:20:59 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 19:33:26 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void				ft_getdeltatime(struct timespec start)
 
 	clock_gettime(CLOCK_REALTIME, &end);
 	delta_time = (end.tv_sec - start.tv_sec) \
-				+ (end.tv_nsec - start.tv_nsec) / 1E9;
+				 + (end.tv_nsec - start.tv_nsec) / 1E9;
 	if ((nbr = ft_ftoa(delta_time)))
 	{
 		ft_putstr(nbr);
@@ -49,7 +49,8 @@ int					ft_expose(t_setup *setup)
 		ft_getdeltatime(start);
 		setup->mode = STATE_STOP;
 	}
-	ft_mlx_control_key(setup);
+	if (setup->mode == STATE_STOP)
+		ft_mlx_control(setup);
 	if (ret != OK)
 		ft_quit(setup);
 	return (0);
@@ -61,7 +62,8 @@ int					ft_key_hook(int keycode, t_setup *setup)
 
 	setup->key = keycode;
 	ret = OK;
-	ft_mlx_control_key(setup);
+	if (setup->mode != STATE_START)
+		ft_mlx_control_key(setup);
 	if (setup->key == ENTER && setup->mode == STATE_START)
 		setup->mode = (setup->ac > 1) ? STATE_OPEN : STATE_SELECT;
 	if (setup->mode == STATE_SELECT)

@@ -6,13 +6,13 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:38:07 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 19:34:08 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static void	ft_mlx_control(t_setup *setup)
+void		ft_mlx_control(t_setup *setup)
 {
 	int		x;
 
