@@ -65,8 +65,8 @@ BREW_INSTALL_CMD = if [ -f $(HOME)/.brew ]; then printf $(HD)"Installing Brew\n"
 
 SDL_INSTALL_CMD = printf $(HD)"Installing SDL2\n"$(NRM) \
 				  && brew install sdl2 \
-				  && printf $(HD)"Installing SDL2_Ttf\n"$(NRM) \
-				  && brew install sdl2_ttf
+				  && printf $(HD)"Installing SDL2_Image\n"$(NRM) \
+				  && brew install sdl2_image
 
 #==============================================================================#
 #                                   Sources                                    #
