@@ -10,6 +10,10 @@
 
 	<cameras>
 		<camera>
+			<origin> 0.0, 0., 0. </origin>
+			<look_at> 1.0, 0.0, 0.0 </look_at>
+		</camera>
+		<camera>
 			<origin> 0.0, 1, 1 </origin>
 			<look_at> 1.0, 0.0, 0.0 </look_at>
 		</camera>

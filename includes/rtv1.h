@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 10:52:30 by nchalot          ###   ########.fr       */
+/*   Updated: 2018/04/04 16:21:13 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			ft_cosvalintime(double *val, double min, double max,
 void			ft_saveimg(t_scene scn, char *name);
 char			*ft_savename(const char *name, size_t counter);
 int				ft_loop_hook(t_setup *setup);
+int				ft_key_hook(int keycode, t_setup *setup);
 
 t_bool			ft_getvectfromenv(t_vec3 *vect, char *value);
 t_bool			ft_getcolfromenv(t_col *col, char *value);
