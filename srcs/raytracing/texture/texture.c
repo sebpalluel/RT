@@ -6,7 +6,7 @@
 /*   By: nchalot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 12:09:13 by nchalot           #+#    #+#             */
-/*   Updated: 2018/04/03 22:19:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 17:39:31 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_text			*get_texture_datas(char *path)
 		exit(1);
 	if (!(img = IMG_Load(path)))
 	{
-		printf("load failed\n");
+		ft_putendl("load failed\n");
 		free(texture);
 		exit(1);
 	}
