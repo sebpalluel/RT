@@ -95,7 +95,7 @@
 # define SCN_PATH_2		"scenes/scn_text_gen_cyl.xml"
 # define SCN_PATH_3		"scenes/scn_noproj_text.xml"
 # define SCN_PATH_4		"scenes/scene_vid.xml"
-# define SCN_PATH_5		"scenes/"
+# define SCN_PATH_5		"scenes/thing.xml"
 
 # define CHOOSE_STR		"To choose scene, press"
 # define SELECT_STR		"0 || 1 || 2 || 3 || 4 || 5 || 6 || 7"
