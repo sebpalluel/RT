@@ -1,0 +1,156 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.7 </amb_light>
+	</engine>
+
+	<cameras>
+		<camera>
+      <origin> 0.75, 0.0, 0.0 </origin>
+			<look_at> 1.0, 0.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> -0.75, 0.0, 0.0 </origin>
+			<look_at> -1.0, 0.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.75, 0.0 </origin>
+			<look_at> 0.0, 1.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, -0.75, 0.0 </origin>
+			<look_at> 0.0, -1.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.0, 0.75 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.0, -0.75 </origin>
+			<look_at> 0.0, 0.0, -1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.0, 0.0, 0.01 </position>
+			<color> 1., 1., 1., 0.0 </color>
+		</light>
+	</lights>
+
+	<objects>
+
+		<plane>
+			<normale> 0, 1, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 1, 0.745, 0.46, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 0 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, -1, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.73, 0.86, 0.345, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 1 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+		<plane>
+			<normale> -1, 0, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 1., 0.465, 0.465, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 2 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+		<plane>
+			<normale> 1, 0, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.976, 0.79, 0.14, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 3 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, 0, 1 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.584, 0.686, 0.752, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 4 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, 0, -1 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.78, 0.925, 0.933, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+				<generative>
+					<mode> 5 </mode>
+					<p_color> 1., 0., 0., 1. </p_color>
+					<perlin_layers> 5 </perlin_layers>
+					<perlin_frequency> 25. </perlin_frequency>
+					<perlin_persistance> 0.75 </perlin_persistance>
+				</generative>
+			</material>
+		</plane>
+	</objects>
+</scene>

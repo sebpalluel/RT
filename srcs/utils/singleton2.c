@@ -47,8 +47,12 @@ t_text			**get_texture(void)
 {
 	static t_text *textures[NUM_TEXT];
 
-	textures[0] = get_texture_datas("./textures/grillage.png");
-	textures[1] = get_texture_datas("./textures/tile4.bmp");
+	textures[0] = get_texture_datas("./textures/mosaique.png");
+	textures[1] = get_texture_datas("./textures/metal.jpg");
+	textures[2] = get_texture_datas("./textures/brick.jpg");
+	textures[3] = get_texture_datas("./textures/wood.jpg");
+	textures[4] = get_texture_datas("./textures/stainegGlass1.png");
+	textures[5] = get_texture_datas("./textures/stainedGlass2.png");
 	return (textures);
 }
 

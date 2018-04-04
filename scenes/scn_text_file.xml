@@ -1,0 +1,143 @@
+<scene>
+
+	<engine>
+		<width> 1920 </width>
+		<height> 1080 </height>
+		<refl_max> 4 </refl_max>
+		<amb_light> 0.7 </amb_light>
+	</engine>
+
+  <cameras>
+		<camera>
+      <origin> 0.75, 0.0, 0.0 </origin>
+			<look_at> 1.0, 0.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> -0.75, 0.0, 0.0 </origin>
+			<look_at> -1.0, 0.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.75, 0.0 </origin>
+			<look_at> 0.0, 1.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, -0.75, 0.0 </origin>
+			<look_at> 0.0, -1.0, 0.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.0, 0.75 </origin>
+			<look_at> 0.0, 0.0, 1.0 </look_at>
+		</camera>
+    <camera>
+      <origin> 0.0, 0.0, -0.75 </origin>
+			<look_at> 0.0, 0.0, -1.0 </look_at>
+		</camera>
+	</cameras>
+
+	<lights>
+		<light>
+			<type> 0 </type>
+			<position> 0.01, 0.0, 3 </position>
+			<color> 1., 1., 1., 1 </color>
+		</light>
+	</lights>
+
+	<objects>
+    <plane>
+			<normale> 0, 1, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 1, 0.745, 0.46, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 0 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, -1, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.73, 0.86, 0.345, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 1 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> -1, 0, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 1., 0.465, 0.465, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 2 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> 1, 0, 0 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.976, 0.79, 0.14, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 3 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, 0, 1 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.584, 0.686, 0.752, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 4 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+		<plane>
+			<normale> 0, 0, -1 </normale>
+			<distance> 2 </distance>
+      <material>
+				<color> 0.78, 0.925, 0.933, 1. </color>
+				<reflexion> 0. </reflexion>
+				<refractive_index> 0. </refractive_index>
+				<transparency> 0. </transparency>
+				<specularity> 0. </specularity>
+        <texture>
+					<texture_num> 5 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
+			</material>
+		</plane>
+	</objects>
+</scene>
