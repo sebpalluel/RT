@@ -39,5 +39,5 @@ ehthumbs.db
 Thumbs.db
 ######################
 # Custom defined
-captures/*
+captures/screenshot_*
 rt
