@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:57:36 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 20:47:50 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:04:25 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void			ft_cam_change(t_setup *setup)
 		while (list && ++cam_n <= SCN.cam_n)
 			list = list->next;
 	SCN.cur_cam = CAM(list);
+	SCN.effect = 0;
 }
