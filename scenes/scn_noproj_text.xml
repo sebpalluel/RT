@@ -32,6 +32,11 @@
 				<refractive_index> 1.33 </refractive_index>
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
+				<texture>
+					<texture_num> 1 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
 			</material>
 		</sphere>
     <sphere>
@@ -43,6 +48,11 @@
         <refractive_index> 1.33 </refractive_index>
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
+				<texture>
+					<texture_num> 2 </texture_num>
+					<size_x> 1 </size_x>
+					<size_y> 1 </size_y>
+				</texture>
       </material>
     </sphere>
     <sphere>
@@ -54,13 +64,11 @@
         <refractive_index> 1.33 </refractive_index>
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
-        <generative>
-					<mode> 1 </mode>
-					<p_color> 1., 0., 0., 1. </p_color>
-					<perlin_layers> 5 </perlin_layers>
-					<perlin_frequency> 25. </perlin_frequency>
-					<perlin_persistance> 0.75 </perlin_persistance>
-				</generative>
+				<texture>
+					<texture_num> 5 </texture_num>
+					<size_x> 2 </size_x>
+					<size_y> 2 </size_y>
+				</texture>
       </material>
     </sphere>
     <sphere>
@@ -73,7 +81,7 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-					<texture_num> 3 </texture_num>
+					<texture_num> 7 </texture_num>
 					<size_x> 1 </size_x>
 					<size_y> 1 </size_y>
 				</texture>
@@ -88,6 +96,11 @@
         <refractive_index> 1.33 </refractive_index>
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
+				<texture>
+					<texture_num> 3 </texture_num>
+					<size_x> 0.5 </size_x>
+					<size_y> 0.5 </size_y>
+				</texture>
       </material>
     </sphere>
     <sphere>
@@ -100,7 +113,7 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-          <texture_num> 2 </texture_num>
+          <texture_num> 6 </texture_num>
           <size_x> 1 </size_x>
           <size_y> 1 </size_y>
         </texture>
@@ -116,7 +129,7 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-					<texture_num> 0 </texture_num>
+					<texture_num> 4 </texture_num>
 					<size_x> 1 </size_x>
 					<size_y> 1 </size_y>
 				</texture>
@@ -132,9 +145,9 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-					<texture_num> 1 </texture_num>
-					<size_x> 1 </size_x>
-					<size_y> 1 </size_y>
+					<texture_num> 8 </texture_num>
+					<size_x> 0.2 </size_x>
+					<size_y> 0.2 </size_y>
 				</texture>
       </material>
     </sphere>
@@ -148,9 +161,9 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-					<texture_num> 5 </texture_num>
-					<size_x> 1 </size_x>
-					<size_y> 1 </size_y>
+					<texture_num> 9 </texture_num>
+					<size_x> 0.2 </size_x>
+					<size_y> 0.2 </size_y>
 				</texture>
       </material>
     </sphere>
@@ -164,7 +177,7 @@
 				<transparency> 0. </transparency>
 				<specularity> 0. </specularity>
         <texture>
-					<texture_num> 2 </texture_num>
+					<texture_num> 0 </texture_num>
 					<size_x> 0.5 </size_x>
 					<size_y> 0.5 </size_y>
 				</texture>

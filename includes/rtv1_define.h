@@ -90,11 +90,11 @@
 # define MOVE_STEP		0.05
 # define ROT_STEP		0.1
 
-# define SCN_PATH_0		"scenes/scene_0.xml"
-# define SCN_PATH_1		"scenes/scene_1.xml"
-# define SCN_PATH_2		"scenes/"
-# define SCN_PATH_3		"scenes/"
-# define SCN_PATH_4		"scenes/"
+# define SCN_PATH_0		"scenes/spheres.xml"
+# define SCN_PATH_1		"scenes/cylindres.xml"
+# define SCN_PATH_2		"scenes/scn_text_gen_cyl.xml"
+# define SCN_PATH_3		"scenes/scn_noproj_text.xml"
+# define SCN_PATH_4		"scenes/scene_vid.xml"
 # define SCN_PATH_5		"scenes/"
 
 # define CHOOSE_STR		"To choose scene, press"
