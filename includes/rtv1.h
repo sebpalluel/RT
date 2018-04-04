@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 22:49:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 10:52:30 by nchalot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,17 +182,18 @@ t_vec3			uv_map_cyl(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 t_vec3			uv_map_cone(t_vec3 hit, t_list *form, t_mat *mat, t_text *text);
 
 double			ft_2min_pos(double a, double b);
-double	ft_cubic_derivative_estimate(double a, double b, double c, double x);
+double			ft_cubic_derivative_estimate(double a, double b, \
+												double c, double x);
 int				ft_resolve_cubic_min(double *a, double *b, double *c, double d);
-double	ft_cubic_estimate(double a, double b, double c, double x);
+double			ft_cubic_estimate(double a, double b, double c, double x);
 double			ft_resolve_quadric_min(double b, double c, double d, double e);
-void						ft_sort_pos(double *a, double *b, double *c);
-t_vec3						change_base(t_vec3 a, t_vec3 x, t_vec3 y);
-double						moeb_calc1(t_vec3 d);
-double						moeb_calc2(t_vec3 d, t_vec3 o, double r);
-double						moeb_calc3(t_vec3 d, t_vec3 o, double r);
-double						moeb_calc4(t_vec3 o, double r);
+void			ft_sort_pos(double *a, double *b, double *c);
+t_vec3			change_base(t_vec3 a, t_vec3 x, t_vec3 y);
+double			moeb_calc1(t_vec3 d);
+double			moeb_calc2(t_vec3 d, t_vec3 o, double r);
+double			moeb_calc3(t_vec3 d, t_vec3 o, double r);
+double			moeb_calc4(t_vec3 o, double r);
 double			det_mat(t_vec3 a, t_vec3 b, t_vec3 c);
-double	lambert(t_ray ray, t_vec3 norm, t_lgt lgt);
-double	phong(t_ray ray, t_mat mat, t_vec3 norm, t_lgt light);
+double			lambert(t_ray ray, t_vec3 norm, t_lgt lgt);
+double			phong(t_ray ray, t_mat mat, t_vec3 norm, t_lgt light);
 #endif
