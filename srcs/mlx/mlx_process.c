@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 19:33:26 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 19:48:15 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					ft_expose(t_setup *setup)
 		setup->mode = STATE_STOP;
 	}
 	if (setup->mode == STATE_STOP)
-		ft_mlx_control(setup);
+		ft_mlx_control_key(setup);
 	if (ret != OK)
 		ft_quit(setup);
 	return (0);
