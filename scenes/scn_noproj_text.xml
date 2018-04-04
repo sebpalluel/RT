@@ -148,7 +148,7 @@
         <transparency> 0. </transparency>
         <specularity> 0. </specularity>
         <texture>
-					<texture_num> 4 </texture_num>
+					<texture_num> 5 </texture_num>
 					<size_x> 1 </size_x>
 					<size_y> 1 </size_y>
 				</texture>

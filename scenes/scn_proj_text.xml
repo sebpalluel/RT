@@ -17,7 +17,7 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> -3, 0.0, 0.0 </position>
+			<position> -2, 0.0, 0.0 </position>
 			<color> 5., 5., 5., 1 </color>
 		</light>
 	</lights>
@@ -172,7 +172,7 @@
 		</plane>
 		<plane>
 			<normale> 1, 0, 0 </normale>
-			<distance> 2 </distance>
+			<distance> 1.5 </distance>
       <material>
 				<color> 0.78, 0.925, 0.933, 1. </color>
 				<reflexion> 0. </reflexion>
@@ -181,8 +181,8 @@
 				<specularity> 0. </specularity>
         <texture>
 					<texture_num> 4 </texture_num>
-					<size_x> 0.5 </size_x>
-					<size_y> 0.5 </size_y>
+					<size_x> 0.09 </size_x>
+					<size_y> 0.09 </size_y>
 				</texture>
 			</material>
 		</plane>

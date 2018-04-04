@@ -51,8 +51,8 @@ t_text			**get_texture(void)
 	textures[1] = get_texture_datas("./textures/metal.jpg");
 	textures[2] = get_texture_datas("./textures/brick.jpg");
 	textures[3] = get_texture_datas("./textures/wood.jpg");
-	textures[4] = get_texture_datas("./textures/stainegGlass1.png");
-	textures[5] = get_texture_datas("./textures/stainedGlass2.png");
+	textures[4] = get_texture_datas("./textures/stainedGlass1.png");
+	textures[5] = get_texture_datas("./textures/tilesStainedGlass.png");
 	return (textures);
 }
 
