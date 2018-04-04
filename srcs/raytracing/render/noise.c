@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 16:05:00 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 22:02:57 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 17:48:43 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ double			ft_zebra(t_vec3 vec3, t_gen gen)
 
 	amp = 200.;
 	perlin = ft_perlin(vec3, gen);
-	zebra = (sin((vec3.x + perlin * amp) * 2 * M_PI / 200.f) + 1) / 2.f;
+	zebra = (sin((vec3.x + perlin * amp) * 2. * M_PI / 200.) + 1.) / 2.;
 	return (zebra);
 }
 
@@ -68,7 +68,7 @@ double			ft_wood(t_vec3 vec3, t_gen gen)
 	wood = fmod(perlin, step);
 	if (wood > step / 2)
 		wood = step - wood;
-	freq = (1 - cos(M_PI * wood / (step / 2.0))) / 2.0;
+	freq = (1. - cos(M_PI * wood / (step / 2.0))) / 2.0;
 	return (freq);
 }
 
