@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 18:01:08 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/03 21:59:54 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 16:20:59 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int					ft_expose(t_setup *setup)
 	return (0);
 }
 
-static int			ft_key_hook(int keycode, t_setup *setup)
+int					ft_key_hook(int keycode, t_setup *setup)
 {
 	int				ret;
 

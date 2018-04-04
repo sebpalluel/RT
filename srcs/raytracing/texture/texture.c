@@ -6,7 +6,7 @@
 /*   By: nchalot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 12:09:13 by nchalot           #+#    #+#             */
-/*   Updated: 2018/04/03 22:19:32 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 17:50:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_text			*get_texture_datas(char *path)
 		exit(1);
 	if (!(img = IMG_Load(path)))
 	{
-		printf("load failed\n");
+		ft_putendl("load failed\n");
 		free(texture);
 		exit(1);
 	}
@@ -121,7 +121,7 @@ t_mat			get_mat_at(t_vec3 hit, t_list *form, t_mat mat_obj)
 		{
 			prev_col = hit_mat.col;
 			hit = uv_map()[FORM(form)->type - 1](hit, form, &hit_mat, text);
-			hit_mat.col = ft_colinterpol(hit_mat.col, ft_col_r(0., 0., 0., 1.),
+			hit_mat.col = ft_colinterpol(hit_mat.col, mat_obj.gen.col,
 					effects()[mat_obj.gen.mode](hit, mat_obj.gen));
 		}
 	}
