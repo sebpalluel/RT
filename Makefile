@@ -126,6 +126,7 @@ SRCS =	main.c																\
 			matrices.c														\
 			singleton.c														\
 			singleton2.c													\
+			singleton3.c													\
 			save_img.c														\
 			calc_utils.c													\
 			moebius_calc.c													\

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 17:34:04 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 19:09:52 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 21:02:50 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void				ft_saveimg(t_scene scn, char *name)
 		}
 		close(fd);
 	}
+	(name ? free(name) : NULL);
 }

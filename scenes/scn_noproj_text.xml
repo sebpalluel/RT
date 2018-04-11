@@ -4,7 +4,7 @@
 		<width> 1920 </width>
 		<height> 1080 </height>
 		<refl_max> 4 </refl_max>
-		<amb_light> 0 </amb_light>
+		<amb_light> 0.2 </amb_light>
 	</engine>
 
   <cameras>
@@ -17,7 +17,7 @@
 	<lights>
 		<light>
 			<type> 0 </type>
-			<position> -3, 0.0, 0.0 </position>
+			<position> -2, 0.0, 0.0 </position>
 			<color> 5., 5., 5., 1 </color>
 		</light>
 	</lights>
@@ -169,7 +169,7 @@
     </sphere>
     <plane>
 			<normale> -1, 0, 0 </normale>
-			<distance> 2 </distance>
+			<distance> 1.25 </distance>
       <material>
 				<color> 1, 1, 1, 1. </color>
 				<reflexion> 0. </reflexion>

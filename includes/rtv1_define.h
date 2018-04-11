@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:31:26 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 19:41:44 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:37:18 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@
 # define SCN_PATH_4		"scenes/scene_vid.xml"
 # define SCN_PATH_5		"scenes/thing.xml"
 # define SCN_PATH_6		"scenes/scn_proj_text.xml"
-# define SCN_PATH_7		"scenes/zero.xml"
+# define SCN_PATH_7		"scenes/scene_multi_spheres_light.xml"
+# define SCN_DEFAULT_NUMBER	8
 
 # define CHOOSE_STR		"To choose scene, press"
 # define SELECT_STR		"0 || 1 || 2 || 3 || 4 || 5 || 6 || 7"

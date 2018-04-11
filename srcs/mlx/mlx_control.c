@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 14:19:33 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 20:05:28 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:46:17 by psebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,18 @@ void		ft_mlx_control_key(t_setup *setup)
 {
 	if (setup->mode == STATE_STOP)
 		ft_mlx_control(setup);
-	if (setup->key == C_KEY || setup->mode == STATE_CAM)
-		ft_cam_select(setup);
-	if (setup->key == S_KEY)
-		setup->mode = STATE_SELECT;
-	if (setup->key == W_KEY || setup->mode == STATE_WRI)
-		ft_take_screenshot(setup);
-	if ((setup->key == E_KEY || setup->mode == STATE_EFF) && setup->mode != 
-			STATE_START)
-		ft_effect_select(setup);
+	if (setup->mode != STATE_SELECT)
+	{
+		if (setup->key == C_KEY || setup->mode == STATE_CAM)
+			ft_cam_select(setup);
+		else if (setup->key == S_KEY)
+			setup->mode = STATE_SELECT;
+		else if (setup->key == W_KEY || setup->mode == STATE_WRI)
+			ft_take_screenshot(setup);
+		else if ((setup->key == E_KEY || setup->mode == STATE_EFF) &&
+				setup->mode != STATE_START)
+			ft_effect_select(setup);
+	}
 	if (setup->key == ESC)
 		ft_quit(setup);
 }

@@ -6,7 +6,7 @@
 /*   By: psebasti <sebpalluel@free.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:25:18 by psebasti          #+#    #+#             */
-/*   Updated: 2018/04/04 19:34:20 by psebasti         ###   ########.fr       */
+/*   Updated: 2018/04/04 21:16:08 by mbeilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,4 +198,6 @@ double			moeb_calc4(t_vec3 o, double r);
 double			det_mat(t_vec3 a, t_vec3 b, t_vec3 c);
 double			lambert(t_ray ray, t_vec3 norm, t_lgt lgt);
 double			phong(t_ray ray, t_mat mat, t_vec3 norm, t_lgt light);
+
+char			*get_default_scenes_path(int scene);
 #endif
